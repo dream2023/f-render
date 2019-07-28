@@ -23,7 +23,10 @@
             </el-header>
             <!-- 表单 -->
             <el-main>
-              <app-form :formAttr="formAttr"></app-form>
+              <app-form
+                :formAttr="formAttr"
+                @select="handleSelectFormItem"
+              ></app-form>
             </el-main>
           </el-container>
           <!-- 属性 -->
@@ -40,7 +43,7 @@
                 label="表单项属性"
                 name="item-attr"
               >
-                <app-item-attr />
+                <app-item-attr :formItem="selectedItem" />
               </el-tab-pane>
               <el-tab-pane
                 label="表单属性"
@@ -76,11 +79,15 @@ export default {
   },
   data () {
     return {
+      selectedItem: {},
       formAttr: {},
       activeAttr: 'item-attr'
     }
   },
   methods: {
+    handleSelectFormItem (formItem) {
+      this.selectedItem = formItem
+    },
     handleFormAttrChange (attr) {
       this.formAttr = attr
     }

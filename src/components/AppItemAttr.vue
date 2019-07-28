@@ -1,12 +1,13 @@
 <template>
   <ele-form
-    :form-data="value"
-    :form-desc="formDesc"
+    :formData="formItem.formData"
+    :formDesc="formItem.formDesc"
     :isShowBackBtn="false"
     :isShowSubmitBtn="false"
+    :rules="rules"
     :span="20"
     labelPosition="top"
-    v-if="value"
+    v-if="isShow"
   ></ele-form>
 </template>
 
@@ -14,50 +15,35 @@
 export default {
   name: 'AppFormAttr',
   props: {
-    value: Object
+    formItem: Object
   },
   data () {
     return {
-      formDesc: {
-        type: {
-          type: 'select',
-          label: '类型',
-          attrs: {
-            disabled: true
-          }
+      isShow: false,
+      rules: {
+        field: {
+          required: true, message: '字段必填'
         },
         label: {
-          type: 'input',
-          label: '标签'
-        },
-        layout: {
-          type: 'slider',
-          label: '布局',
-          default: 24,
-          attrs: {
-            min: 1,
-            max: 24
-          }
-        },
-        tip: {
-          type: 'input',
-          label: '提示信息'
+          required: true, message: '标签不能为空'
         }
-        // ,'class': {
-        //   type: ''
-        // }
       }
     }
   },
   watch: {
-    formData: {
-      handler (data) {
-        this.$emit('change', data)
+    // 重新渲染
+    'formItem.formDesc': {
+      handler () {
+        this.isShow = false
+        this.$nextTick(() => {
+          this.isShow = true
+        })
       },
-      deep: true
+      deep: false
     }
   },
-  methods: {},
+  methods: {
+  },
   mounted () {}
 }
 </script>

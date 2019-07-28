@@ -4,6 +4,7 @@ import 'normalize.css'
 import EleForm from 'vue-ele-form'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import EleFormJsonEditor from 'vue-ele-form-json-editor'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)
@@ -16,6 +17,7 @@ Vue.use(EleForm, {
     }
   }
 })
+Vue.component('json-editor', EleFormJsonEditor)
 
 new Vue({
   render: h => h(App)

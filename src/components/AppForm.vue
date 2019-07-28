@@ -32,27 +32,27 @@
           <template v-for="(formItem, index) of list">
             <el-col
               :class="{'form-item-active': selectIndex === index}"
-              :key="formItem.field"
-              :md="formItem.layout || 24"
+              :key="formItem.formData.field"
+              :md="formItem.formData.layout || 24"
               :xs="24"
               @click.native="handleFormItemClick(index)"
               class="form-item"
-              v-if="formItem.type !== 'hide'"
+              v-if="formItem.formData.type !== 'hide'"
             >
               <el-form-item
-                :label="formItem.label"
-                :prop="formItem.field"
+                :label="formItem.formData.label"
+                :prop="formItem.formData.field"
               >
                 <component
                   :desc="formItem"
-                  :is="getComponentName(formItem.type)"
-                  :key="formItem.field"
+                  :is="getComponentName(formItem.formData.type)"
+                  :key="formItem.formData.field"
                   v-model="formData[formItem.field]"
                 />
                 <div
                   class="ele-form-tip"
-                  v-if="formItem.tip"
-                >{{formItem.tip}}</div>
+                  v-if="formItem.formData.tip"
+                >{{formItem.formData.tip}}</div>
               </el-form-item>
               <el-button
                 @click.stop="handleDelete(index)"
@@ -84,7 +84,7 @@ export default {
   },
   data () {
     return {
-      selectIndex: 0,
+      selectIndex: null,
       list: [],
       formData: {},
       rules: {}
@@ -96,18 +96,23 @@ export default {
       if (index >= this.list.length) {
         this.selectIndex = this.list.length - 1
       }
+      this.$emit('select', this.list[this.selectIndex])
     },
     handleFormItemClick (index) {
       this.selectIndex = index
+      this.$emit('select', this.list[this.selectIndex])
     },
     handleAdd (res) {
       this.selectIndex = res.newIndex
+      this.$emit('select', this.list[this.selectIndex])
     },
     handleMoveStart (res) {
       this.selectIndex = res.oldIndex
+      this.$emit('select', this.list[this.selectIndex])
     },
     handleMoveEnd (res) {
       this.selectIndex = res.newIndex
+      this.$emit('select', this.list[this.selectIndex])
     },
     handleSubmit (data) {
       return Promise.resolve()
