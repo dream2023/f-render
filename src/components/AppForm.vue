@@ -4,7 +4,7 @@
     shadow="never"
   >
     <ele-form
-      :form-data="formData"
+      :form-data="{}"
       :form-desc="{}"
       :request-fn="handleSubmit"
       :rules="rules"
@@ -47,7 +47,7 @@
                   :desc="formItem"
                   :is="getComponentName(formItem.formData.type)"
                   :key="formItem.formData.field"
-                  v-model="formData[formItem.field]"
+                  v-model="formItem.formData.default"
                 />
                 <div
                   class="ele-form-tip"
@@ -73,6 +73,7 @@
 
 <script>
 import draggable from 'vuedraggable'
+const cloneDeep = require('lodash.clonedeep')
 
 export default {
   name: 'AppForm',
@@ -82,11 +83,27 @@ export default {
   components: {
     draggable
   },
+  watch: {
+    list: {
+      handler (list) {
+        list = cloneDeep(list)
+        const formDesc = list.reduce((acc, { formData }) => {
+          const field = formData['field']
+          delete formData['field']
+          if (formData.default === null || formData.default === undefined) delete formData.default
+          if (formData.layout === 24) delete formData.layout
+          acc[field] = formData
+          return acc
+        }, {})
+        this.$emit('change', formDesc)
+      },
+      deep: true
+    }
+  },
   data () {
     return {
       selectIndex: null,
       list: [],
-      formData: {},
       rules: {}
     }
   },

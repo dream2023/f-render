@@ -19,12 +19,16 @@
           <el-container style="border-left: 1px solid #eee;border-right: 1px solid #eee;">
             <!-- header -->
             <el-header style="padding: 0;z-index: 1;text-align:right">
-              <app-main-header></app-main-header>
+              <app-main-header
+                :formAttr="formAttr"
+                :formDesc="formDesc"
+              ></app-main-header>
             </el-header>
             <!-- 表单 -->
             <el-main>
               <app-form
                 :formAttr="formAttr"
+                @change="handleFormChange"
                 @select="handleSelectFormItem"
               ></app-form>
             </el-main>
@@ -79,12 +83,16 @@ export default {
   },
   data () {
     return {
+      formDesc: {},
       selectedItem: {},
       formAttr: {},
       activeAttr: 'item-attr'
     }
   },
   methods: {
+    handleFormChange (formDesc) {
+      this.formDesc = formDesc
+    },
     handleSelectFormItem (formItem) {
       this.selectedItem = formItem
     },

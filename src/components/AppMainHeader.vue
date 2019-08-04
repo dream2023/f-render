@@ -1,23 +1,97 @@
 <template>
   <div class="app-main-header">
     <el-button
+      @click="isShowData = true"
       icon="el-icon-upload2"
       type="text"
-    >导出数据</el-button>
+    >生成数据</el-button>
     <el-button
+      @click="isShowCode = true"
       icon="el-icon-tickets"
       type="text"
     >生成代码</el-button>
+
+    <!-- 导出数据弹框 -->
+    <el-dialog
+      :visible.sync="isShowData"
+      append-to-body
+      v-if="isShowData"
+      width="600px"
+    >
+      <json-editor :value="codeData"></json-editor>
+      <div style="text-align: center;margin-top: 20px">
+        <el-button
+          @click="handleCopyData"
+          type="primary"
+        >复制数据</el-button>
+      </div>
+    </el-dialog>
+
+    <!-- 生成代码弹框 -->
+    <el-dialog
+      :visible.sync="isShowCode"
+      append-to-body
+      v-if="isShowCode"
+      width="600px"
+    >
+      <codemirror :value="codeHtml"></codemirror>
+      <div style="text-align: center;margin-top: 20px">
+        <el-button
+          @click="handleCopyHtml"
+          type="primary"
+        >复制代码</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
 <script>
+import tpl from './tpl'
+const copy = require('clipboard-copy')
+
 export default {
   name: 'AppMainHeader',
-  data () {
-    return {}
+  props: {
+    formDesc: Object,
+    formAttr: Object
   },
-  methods: {},
+  computed: {
+    codeHtml () {
+      let htmlFormAttr = ''
+      const formAttrEntries = Object.entries(this.formAttr)
+      if (formAttrEntries.length) {
+        htmlFormAttr = formAttrEntries.reduce((acc, val) => {
+          acc.push(`:${val[0]}="${val[1]}"`)
+          return acc
+        }, [])
+        htmlFormAttr = htmlFormAttr.join('\n    ') + '\n    '
+      }
+      return this.tpl.replace('%1', htmlFormAttr).replace('%2', JSON.stringify(this.formDesc))
+    },
+    codeData () {
+      return Object.assign({}, this.formAttr, {
+        formDesc: this.formDesc
+      })
+    }
+  },
+  data () {
+    return {
+      tpl: tpl,
+      formData: {},
+      isShowData: false,
+      isShowCode: false
+    }
+  },
+  methods: {
+    handleCopyData () {
+      copy(JSON.stringify(this.codeData))
+      this.$message.success('复制成功!')
+    },
+    handleCopyHtml () {
+      copy(this.codeHtml)
+      this.$message.success('复制成功!')
+    }
+  },
   mounted () {}
 }
 </script>

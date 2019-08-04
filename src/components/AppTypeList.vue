@@ -69,42 +69,14 @@ export default {
           }
         }
       },
+      default: {
+        type: 'codemirror',
+        label: '默认值'
+      },
       tip: {
         type: 'input',
         label: '表单项提示'
       }
-      // ,default: {
-      //   type: 'code',
-      //   label: '默认值'
-      // },
-      // options: {
-      //   type: 'code',
-      //   label: '表单项选项',
-      //   tip: '支持字符串数组/对象数组/函数/Promise'
-      // },
-      // displayFormatter: {
-      //   type: 'code',
-      //   label: '对显示的值格式化',
-      //   tip: '类型为函数'
-      // },
-      // valueFormatter: {
-      //   type: 'code',
-      //   label: '对最终提交的值格式化',
-      //   tip: '类型为函数'
-      // },
-      // class: {
-      //   type: 'code',
-      //   label: '表单项组件的类',
-      //   tip: '支持字符串/数组/对象'
-      // },
-      // on: {
-      //   type: 'code',
-      //   label: '表单项组件的事件'
-      // },
-      // slots: {
-      //   type: 'code',
-      //   label: '表单项组件的插槽'
-      // }
     }
     this.formDesc = formDesc
     return {
@@ -114,124 +86,146 @@ export default {
           type: 'text',
           label: '静态文本',
           default: '我是一段静态文本',
-          isHideSlots: true
+          isHideSlots: true,
+          defaultType: 'input'
         },
         {
           type: 'input',
           label: '单行输入框',
-          isHideOptions: true
+          isHideOptions: true,
+          defaultType: 'input'
         },
         {
           type: 'autocomplete',
           label: '带建议的输入框',
-          isHideOptions: true
+          isHideOptions: true,
+          defaultType: 'input'
         },
         {
           type: 'textarea',
           label: '多行输入框',
-          isHideOptions: true
+          isHideOptions: true,
+          defaultType: 'input'
         },
         {
           type: 'password',
           label: '密码框',
-          isHideOptions: true
+          isHideOptions: true,
+          defaultType: 'input'
         },
         {
           type: 'number',
           label: '数字',
           isHideOptions: true,
-          isHideSlots: true
+          isHideSlots: true,
+          defaultType: 'number'
         },
         {
           type: 'checkbox',
           label: '复选',
           options: options,
-          isHideSlots: true
+          isHideSlots: true,
+          defaultType: 'json-editor'
         },
         {
           type: 'checkbox-button',
           label: '复选按钮',
           options: options,
-          isHideSlots: true
+          isHideSlots: true,
+          defaultType: 'json-editor'
         },
         {
           type: 'radio',
           label: '单选',
           options: options,
-          isHideSlots: true
+          isHideSlots: true,
+          defaultType: 'input'
         },
         {
           type: 'select',
           label: '选择器',
-          options: options
+          options: options,
+          defaultType: 'input'
         },
         {
           type: 'date',
           label: '日期',
           isHideOptions: true,
-          isHideSlots: true
+          isHideSlots: true,
+          defaultType: 'date'
         },
         {
           type: 'daterange',
           label: '日期范围',
           isHideOptions: true,
-          isHideSlots: true
+          isHideSlots: true,
+          defaultType: 'daterange'
         },
         {
           type: 'datetime',
           label: '时间和日期',
           isHideOptions: true,
-          isHideSlots: true
+          isHideSlots: true,
+          defaultType: 'datetime'
         },
         {
           type: 'datetimerange',
           label: '日期和时间范围',
           isHideOptions: true,
-          isHideSlots: true
+          isHideSlots: true,
+          defaultType: 'datetimerange'
         },
         {
           type: 'time',
           label: '时间',
           isHideOptions: true,
-          isHideSlots: true
+          isHideSlots: true,
+          defaultType: 'time'
         },
         {
           type: 'switch',
           label: '开关',
           isHideOptions: true,
-          isHideSlots: true
+          isHideSlots: true,
+          defaultType: 'switch'
         },
         {
           type: 'slider',
           label: '滑块',
           isHideOptions: true,
-          isHideSlots: true
+          isHideSlots: true,
+          defaultType: 'slider'
         },
         {
           type: 'color',
           label: '颜色选择器',
           isHideOptions: true,
-          isHideSlots: true
+          isHideSlots: true,
+          defaultType: 'color'
         },
         {
           type: 'cascader',
-          label: '级联选择器'
+          label: '级联选择器',
+          defaultType: 'json-editor'
         },
         {
           type: 'transfer',
-          label: '穿梭框'
+          label: '穿梭框',
+          defaultType: 'json-editor'
         },
         {
           type: 'rate',
           label: '评分组件',
           isHideOptions: true,
-          isHideSlots: true
+          isHideSlots: true,
+          defaultType: 'input'
         },
         {
           type: 'tag',
           label: '标签',
           isHideOptions: true,
-          isHideSlots: true
+          isHideSlots: true,
+          defaultType: 'json-editor'
         },
         {
           type: 'gallery',
@@ -257,13 +251,15 @@ export default {
       data = cloneDeep(data)
       data.field = data.type + this.globalId++
       const formDesc = cloneDeep(this.formDesc)
-      if (data.isHideSlots === true) {
-        // formDesc.slots.type = 'hide'
+      if (data.defaultType) {
+        formDesc.default.type = data.defaultType
+        if (formDesc.default.type === 'json-editor') {
+          formDesc.default.default = []
+          formDesc.default.attrs = {
+            height: '200px'
+          }
+        }
       }
-      if (data.isHideOptions === true) {
-        // formDesc.options.type = 'hide'
-      }
-      // formDesc.default.default = data.default
       data.formDesc = formDesc
       data.formData = {
         field: data.field,

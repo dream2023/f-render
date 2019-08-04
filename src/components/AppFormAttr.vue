@@ -10,6 +10,8 @@
 </template>
 
 <script>
+const cloneDeep = require('lodash.clonedeep')
+
 export default {
   name: 'AppFormAttr',
   data () {
@@ -57,6 +59,15 @@ export default {
           label: '返回按钮文字'
         }
       },
+      defaultData: {
+        isShowSubmitBtn: true,
+        isShowBackBtn: true,
+        submitBtnText: '提交',
+        backBtnText: '返回',
+        labelWidth: 100,
+        labelPosition: null,
+        span: null
+      },
       formData: {
         isShowSubmitBtn: true,
         isShowBackBtn: true,
@@ -71,12 +82,15 @@ export default {
   watch: {
     formData: {
       handler (data) {
-        if (!data.labelPosition) {
-          delete data.labelPosition
+        data = cloneDeep(data)
+        // 删除默认值属性
+        const defaultData = this.defaultData
+        for (const i in defaultData) {
+          if (data[i] === defaultData[i]) {
+            delete data[i]
+          }
         }
-        if (!data.span) {
-          delete data.span
-        }
+
         this.$emit('change', data)
       },
       deep: true

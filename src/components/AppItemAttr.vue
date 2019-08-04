@@ -6,6 +6,7 @@
     :isShowSubmitBtn="false"
     :rules="rules"
     :span="20"
+    class="app-item-attr"
     labelPosition="top"
     v-if="isShow"
   ></ele-form>
@@ -32,14 +33,13 @@ export default {
   },
   watch: {
     // 重新渲染
-    'formItem.formDesc': {
-      handler () {
-        this.isShow = false
+    'formItem.formDesc' (val) {
+      this.isShow = false
+      if (val) {
         this.$nextTick(() => {
           this.isShow = true
         })
-      },
-      deep: false
+      }
     }
   },
   methods: {
@@ -47,3 +47,9 @@ export default {
   mounted () {}
 }
 </script>
+
+<style>
+.app-item-attr .CodeMirror {
+  height: 200px;
+}
+</style>
