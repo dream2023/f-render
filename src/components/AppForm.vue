@@ -1,13 +1,9 @@
 <template>
-  <el-card
-    header="表单"
-    shadow="never"
-  >
+  <div class="app-form-container">
     <ele-form
       :form-data="{}"
       :form-desc="{}"
       :request-fn="handleSubmit"
-      :rules="rules"
       @request-success="handleSuccess"
       ref="ele-form"
       v-bind="formAttr"
@@ -20,9 +16,10 @@
         @end="handleMoveEnd"
         @start="handleMoveStart"
         group="form"
-        style="padding-bottom: 60px;"
+        style="padding-bottom: 80px;"
         tag="el-row"
       >
+        <!-- 当为空时 -->
         <div
           class="form-area-placeholder"
           v-if="list.length === 0"
@@ -30,6 +27,7 @@
         <template v-else>
           <!-- 表单项 -->
           <template v-for="(formItem, index) of list">
+            <!-- 列 -->
             <el-col
               :class="{'form-item-active': selectIndex === index}"
               :key="formItem.formData.field"
@@ -39,21 +37,26 @@
               class="form-item"
               v-if="formItem.formData.type !== 'hide'"
             >
+              <!-- 表单项 -->
               <el-form-item
                 :label="formItem.formData.label"
                 :prop="formItem.formData.field"
               >
+                <!-- 组件 -->
                 <component
                   :desc="formItem"
                   :is="getComponentName(formItem.formData.type)"
                   :key="formItem.formData.field"
                   v-model="formItem.formData.default"
                 />
+                <!-- 提示 -->
                 <div
                   class="ele-form-tip"
                   v-if="formItem.formData.tip"
                 >{{formItem.formData.tip}}</div>
               </el-form-item>
+
+              <!-- 删除按钮 -->
               <el-button
                 @click.stop="handleDelete(index)"
                 class="form-item-delete-btn"
@@ -68,7 +71,7 @@
         </template>
       </draggable>
     </ele-form>
-  </el-card>
+  </div>
 </template>
 
 <script>
@@ -84,13 +87,24 @@ export default {
     draggable
   },
   watch: {
+    // 检查变化, 抛出选中项到属性编辑见面
+    selectIndex (index) {
+      this.$emit('select', this.list[index])
+    },
+    // 检测列表变化, 抛出变化, 用于生成代码
     list: {
       handler (list) {
         list = cloneDeep(list)
+
         const formDesc = list.reduce((acc, { formData }) => {
           const field = formData['field']
+          // 删除字段属性
           delete formData['field']
+
+          // 判断默认值
           if (formData.default === null || formData.default === undefined) delete formData.default
+
+          // 判断布局
           if (formData.layout === 24) delete formData.layout
           acc[field] = formData
           return acc
@@ -103,34 +117,35 @@ export default {
   data () {
     return {
       selectIndex: null,
-      list: [],
-      rules: {}
+      list: []
     }
   },
   methods: {
+    // 删除
     handleDelete (index) {
       this.list.splice(index, 1)
       if (index >= this.list.length) {
         this.selectIndex = this.list.length - 1
       }
-      this.$emit('select', this.list[this.selectIndex])
     },
-    handleFormItemClick (index) {
-      this.selectIndex = index
-      this.$emit('select', this.list[this.selectIndex])
-    },
+    // 新增
     handleAdd (res) {
       this.selectIndex = res.newIndex
-      this.$emit('select', this.list[this.selectIndex])
     },
+    // 移动开始
     handleMoveStart (res) {
       this.selectIndex = res.oldIndex
-      this.$emit('select', this.list[this.selectIndex])
     },
+    // 移动结束
     handleMoveEnd (res) {
       this.selectIndex = res.newIndex
-      this.$emit('select', this.list[this.selectIndex])
     },
+    // 点击选中
+    handleFormItemClick (index) {
+      this.selectIndex = index
+    },
+
+    // 表单提交
     handleSubmit (data) {
       return Promise.resolve()
     },
@@ -138,20 +153,21 @@ export default {
     handleSuccess () {
       this.$message.success('创建成功')
     },
-    formAttrChange (attr) {
-      this.attr = attr
-    },
+
+    // 获取组件名(调用ele-form内部方法)
     getComponentName (type) {
       return this.$refs['ele-form'].getComponentName(type)
     }
-  },
-  mounted () {
-
   }
 }
 </script>
 
 <style>
+.app-form-container {
+  padding: 20px;
+}
+
+/* 当无表单时的占位 */
 .form-area-placeholder {
   width: 100%;
   height: 300px;
@@ -161,6 +177,7 @@ export default {
   text-align: center;
 }
 
+/* 表单项 */
 .form-item {
   background: white;
   cursor: move;
@@ -169,9 +186,12 @@ export default {
   padding: 0 20px;
   border: 1px dashed rgba(0, 0, 0, 0);
 }
+
 .form-item-active {
   border: 1px dashed #409eff;
 }
+
+/* 遮挡区(遮挡住) */
 .form-item::after {
   content: " ";
   display: block;
@@ -182,6 +202,7 @@ export default {
   position: absolute;
   z-index: 2;
 }
+
 .form-item-delete-btn {
   position: absolute;
   right: 0;

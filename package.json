@@ -16,8 +16,13 @@
     "sprintf-js": "^1.1.2",
     "vue": "^2.6.10",
     "vue-ele-form": "^0.3.8",
+    "vue-ele-form-bmap": "^0.1.0",
     "vue-ele-form-codemirror": "^0.1.0",
+    "vue-ele-form-image-uploader": "^0.1.1",
     "vue-ele-form-json-editor": "^0.1.2",
+    "vue-ele-form-markdown-editor": "^0.1.1",
+    "vue-ele-form-quill-editor": "^0.1.0",
+    "vue-ele-form-video-uploader": "^0.1.2",
     "vuedraggable": "^2.23.0"
   },
   "devDependencies": {

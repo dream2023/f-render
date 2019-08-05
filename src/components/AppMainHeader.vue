@@ -1,5 +1,6 @@
 <template>
-  <div class="app-main-header">
+  <div class="app-main-header-container">
+    <!-- 顶部按钮 -->
     <el-button
       @click="isShowData = true"
       icon="el-icon-upload2"
@@ -59,6 +60,7 @@ export default {
     codeHtml () {
       let htmlFormAttr = ''
       const formAttrEntries = Object.entries(this.formAttr)
+      // 拼接ele-form属性
       if (formAttrEntries.length) {
         htmlFormAttr = formAttrEntries.reduce((acc, val) => {
           acc.push(`:${val[0]}="${val[1]}"`)
@@ -91,16 +93,15 @@ export default {
       copy(this.codeHtml)
       this.$message.success('复制成功!')
     }
-  },
-  mounted () {}
+  }
 }
 </script>
 
 <style>
-.app-main-header {
+.app-main-header-container {
   height: 60px;
   line-height: 60px;
-  padding-right: 20px;
+  padding-left: 20px;
   border-bottom: 1px solid #ebeef5;
 }
 </style>

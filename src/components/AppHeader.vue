@@ -1,6 +1,13 @@
 <template>
-  <div class="app-header-box">
-    <h1 class="app-header-title">VUE-ELE-FORM 表单生成器</h1>
+  <div class="app-header-container">
+    <el-link
+      :underline="false"
+      href="https://github.com/dream2023/vue-ele-form"
+      target="_blank"
+      type="primary"
+    >
+      <h1 class="app-header-title">VUE-ELE-FORM 表单生成器</h1>
+    </el-link>
     <el-link
       href="https://github.com/dream2023/vue-ele-form"
       target="_blank"
@@ -11,17 +18,12 @@
 
 <script>
 export default {
-  name: 'AppHeader',
-  data () {
-    return {}
-  },
-  methods: {},
-  mounted () {}
+  name: 'AppHeader'
 }
 </script>
 
 <style>
-.app-header-box {
+.app-header-container {
   display: flex;
   justify-content: space-between;
   box-sizing: border-box;

@@ -1,6 +1,12 @@
 import Vue from 'vue'
 import EleFormJsonEditor from 'vue-ele-form-json-editor'
 import EleFormCodemirror from 'vue-ele-form-codemirror'
+import EleFormImageUploader from 'vue-ele-form-image-uploader'
+import EleFormVideoUploader from 'vue-ele-form-video-uploader'
+import EleFormQuillEditor from 'vue-ele-form-quill-editor'
+import EleFormMarkdownEditor from 'vue-ele-form-markdown-editor'
+import EleFormBmap from 'vue-ele-form-bmap'
+
 // language
 import 'codemirror/mode/javascript/javascript.js'
 import 'codemirror/mode/vue/vue.js'
@@ -40,5 +46,9 @@ import 'codemirror/addon/fold/markdown-fold.js'
 import 'codemirror/addon/fold/xml-fold.js'
 
 Vue.component('codemirror', EleFormCodemirror)
-
 Vue.component('json-editor', EleFormJsonEditor)
+Vue.component('image-uploader', EleFormImageUploader)
+Vue.component('video-uploader', EleFormVideoUploader)
+Vue.component('quill-editor', EleFormQuillEditor)
+Vue.component('markdown-editor', EleFormMarkdownEditor)
+Vue.component('bmap', EleFormBmap)

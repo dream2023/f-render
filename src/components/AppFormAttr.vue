@@ -80,6 +80,7 @@ export default {
     }
   },
   watch: {
+    // 检查变化, 同步到 app-form 组件
     formData: {
       handler (data) {
         data = cloneDeep(data)
@@ -95,8 +96,6 @@ export default {
       },
       deep: true
     }
-  },
-  methods: {},
-  mounted () {}
+  }
 }
 </script>

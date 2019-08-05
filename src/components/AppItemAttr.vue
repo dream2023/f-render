@@ -8,7 +8,7 @@
     :span="20"
     class="app-item-attr"
     labelPosition="top"
-    v-if="isShow"
+    v-if="isShow && formItem"
   ></ele-form>
 </template>
 
@@ -41,15 +41,6 @@ export default {
         })
       }
     }
-  },
-  methods: {
-  },
-  mounted () {}
+  }
 }
 </script>
-
-<style>
-.app-item-attr .CodeMirror {
-  height: 200px;
-}
-</style>

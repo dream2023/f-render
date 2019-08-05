@@ -39,6 +39,9 @@ Vue.use(EleForm, {
       theme: 'monokai',
       extraKeys: { Ctrl: 'autocomplete' }
     }
+  },
+  bmap: {
+    ak: '9YLHZRPvUNLhi34Oh2ojqeGSpzCf1rVG'
   }
 })
 
