@@ -42,7 +42,7 @@ export default {
     const formDesc = {
       field: {
         type: 'input',
-        label: '字段'
+        label: '数据字段'
       },
       label: {
         type: 'input',
@@ -78,7 +78,7 @@ export default {
   methods: {
     addFormItem (data) {
       data = cloneDeep(data)
-      data.field = data.type + this.globalId++
+      data.field = 'key_' + this.globalId++
       const formDesc = cloneDeep(this.formDesc)
       if (data.defaultType) {
         formDesc.default.type = data.defaultType

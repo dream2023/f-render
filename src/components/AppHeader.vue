@@ -2,14 +2,14 @@
   <div class="app-header-container">
     <el-link
       :underline="false"
-      href="https://github.com/dream2023/vue-ele-form"
+      href="https://github.com/dream2023/vue-ele-form-generator"
       target="_blank"
       type="primary"
     >
       <h1 class="app-header-title">VUE-ELE-FORM 表单生成器</h1>
     </el-link>
     <el-link
-      href="https://github.com/dream2023/vue-ele-form"
+      href="https://github.com/dream2023/vue-ele-form-generator"
       target="_blank"
       type="primary"
     >GitHub</el-link>
