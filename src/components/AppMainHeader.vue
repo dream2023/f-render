@@ -16,6 +16,7 @@
     <el-dialog
       :visible.sync="isShowData"
       append-to-body
+      title="数据"
       v-if="isShowData"
       width="600px"
     >
@@ -32,6 +33,7 @@
     <el-dialog
       :visible.sync="isShowCode"
       append-to-body
+      title="代码"
       v-if="isShowCode"
       width="600px"
     >
