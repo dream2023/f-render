@@ -51,6 +51,7 @@
 <script>
 import tpl from './tpl'
 const copy = require('clipboard-copy')
+const cloneDeep = require('lodash.clonedeep')
 
 export default {
   name: 'AppMainHeader',
@@ -70,12 +71,40 @@ export default {
         }, [])
         htmlFormAttr = htmlFormAttr.join('\n    ') + '\n    '
       }
-      return this.tpl.replace('%1', htmlFormAttr).replace('%2', JSON.stringify(this.formDesc))
+      return this.tpl.replace('%1', htmlFormAttr).replace('%2', JSON.stringify(this.computedDesc)).replace('%3', JSON.stringify(this.computedRules))
     },
+
+    // 数据
     codeData () {
       return Object.assign({}, this.formAttr, {
-        formDesc: this.formDesc
+        formDesc: this.computedDesc,
+        rules: this.computedRules
       })
+    },
+
+    // 获取校检规则
+    computedRules () {
+      const formDesc = cloneDeep(this.formDesc)
+      const rules = Object.keys(formDesc).reduce((rules, key) => {
+        if (formDesc[key].required) {
+          rules[key] = [
+            { required: true, message: '请输入' + formDesc[key].label }
+          ]
+        }
+        return rules
+      }, {})
+
+      return rules
+    },
+    // 将 desc 去除校检
+    computedDesc () {
+      const formDesc = cloneDeep(this.formDesc)
+      for (let key in formDesc) {
+        if (formDesc[key].required) {
+          delete formDesc[key].required
+        }
+      }
+      return formDesc
     }
   },
   data () {

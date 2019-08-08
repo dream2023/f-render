@@ -1,6 +1,7 @@
 const tpl = `<template>
   <ele-form
     %1:form-data="formData"
+    :rules="rules"
     :form-desc="formDesc"
   ></ele-form>
 </template>
@@ -10,7 +11,8 @@ export default {
   data () {
     return {
       formData: {},
-      formDesc: %2
+      formDesc: %2,
+      rules: %3
     }
   }
 }

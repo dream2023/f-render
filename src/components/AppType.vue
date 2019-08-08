@@ -64,6 +64,11 @@ export default {
         type: 'codemirror',
         label: '默认值'
       },
+      required: {
+        type: 'yesno',
+        label: '校检',
+        title: '是否必填'
+      },
       tip: {
         type: 'input',
         label: '表单项提示'
