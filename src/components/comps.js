@@ -105,6 +105,13 @@ export default [
         defaultType: 'switch'
       },
       {
+        type: 'yesno',
+        label: '是否',
+        title: '是否选择',
+        isHideOptions: true,
+        defaultType: 'switch'
+      },
+      {
         type: 'slider',
         label: '滑块',
         isHideOptions: true,
