@@ -2,6 +2,11 @@
   <div class="app-main-header-container">
     <!-- 顶部按钮 -->
     <el-button
+      @click="isPreview = true"
+      icon="el-icon-view"
+      type="text"
+    >预览</el-button>
+    <el-button
       @click="isShowData = true"
       icon="el-icon-upload2"
       type="text"
@@ -11,7 +16,22 @@
       icon="el-icon-tickets"
       type="text"
     >生成代码</el-button>
-
+    <el-dialog
+      :visible.sync="isPreview"
+      append-to-body
+      title="预览"
+      v-if="isPreview"
+      width="90%"
+    >
+      <ele-form
+        :form-desc="formDesc"
+        :formData="formData"
+        :request-fn="handleRequest"
+        :rules="computedRules"
+        @request-success="handleRequestSuccess"
+        v-bind="formAttr"
+      ></ele-form>
+    </el-dialog>
     <!-- 导出数据弹框 -->
     <el-dialog
       :visible.sync="isShowData"
@@ -112,7 +132,8 @@ export default {
       tpl: tpl,
       formData: {},
       isShowData: false,
-      isShowCode: false
+      isShowCode: false,
+      isPreview: false
     }
   },
   methods: {
@@ -123,6 +144,13 @@ export default {
     handleCopyHtml () {
       copy(this.codeHtml)
       this.$message.success('复制成功!')
+    },
+    handleRequest (data) {
+      console.log(data)
+      return Promise.resolve()
+    },
+    handleRequestSuccess () {
+      this.$message.success('发送成功')
     }
   }
 }
