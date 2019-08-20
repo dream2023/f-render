@@ -1,53 +1,53 @@
 {
-  "name": "vue-ele-form-generator",
-  "version": "0.1.4",
-  "description": "vue-ele-form-generator是专为vue-ele-form开发的可视化表单设计工具, 让表单开发的效率更上一层楼",
-  "private": false,
-  "license": "MIT",
-  "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/dream2023/vue-ele-form-generator"
-  },
-  "dependencies": {
-    "clipboard-copy": "^3.1.0",
-    "core-js": "^2.6.5",
-    "element-ui": "^2.11.1",
-    "lodash.clonedeep": "^4.5.0",
-    "normalize.css": "^8.0.1",
-    "vue": "^2.6.10",
-    "vue-ele-form": "^0.3.11",
-    "vue-ele-form-bmap": "^0.1.0",
-    "vue-ele-form-codemirror": "^0.1.0",
-    "vue-ele-form-image-uploader": "^0.1.1",
-    "vue-ele-form-json-editor": "^0.1.2",
-    "vue-ele-form-markdown-editor": "^0.1.1",
-    "vue-ele-form-quill-editor": "^0.1.0",
-    "vue-ele-form-video-uploader": "^0.1.2",
-    "vuedraggable": "^2.23.0"
-  },
-  "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.9.0",
-    "@vue/cli-plugin-eslint": "^3.9.0",
-    "@vue/cli-service": "^3.9.0",
-    "@vue/eslint-config-standard": "^4.0.0",
-    "babel-eslint": "^10.0.1",
-    "eslint": "^5.16.0",
-    "eslint-plugin-vue": "^5.0.0",
-    "lint-staged": "^8.1.5",
-    "vue-template-compiler": "^2.6.10"
-  },
-  "gitHooks": {
-    "pre-commit": "lint-staged"
-  },
-  "lint-staged": {
-    "*.{js,vue}": [
-      "vue-cli-service lint",
-      "git add"
-    ]
-  }
+    "name": "vue-ele-form-generator",
+    "version": "0.1.5",
+    "description": "vue-ele-form-generator是专为vue-ele-form开发的可视化表单设计工具, 让表单开发的效率更上一层楼",
+    "private": false,
+    "license": "MIT",
+    "scripts": {
+        "serve": "vue-cli-service serve",
+        "build": "vue-cli-service build",
+        "lint": "vue-cli-service lint"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/dream2023/vue-ele-form-generator"
+    },
+    "dependencies": {
+        "clipboard-copy": "^3.1.0",
+        "core-js": "^2.6.5",
+        "element-ui": "^2.11.1",
+        "lodash.clonedeep": "^4.5.0",
+        "normalize.css": "^8.0.1",
+        "vue": "^2.6.10",
+        "vue-ele-form": "^0.3.13",
+        "vue-ele-form-bmap": "^0.1.0",
+        "vue-ele-form-codemirror": "^0.1.0",
+        "vue-ele-form-image-uploader": "^0.1.1",
+        "vue-ele-form-json-editor": "^0.1.2",
+        "vue-ele-form-markdown-editor": "^0.1.1",
+        "vue-ele-form-quill-editor": "^0.1.0",
+        "vue-ele-form-video-uploader": "^0.1.2",
+        "vuedraggable": "^2.23.0"
+    },
+    "devDependencies": {
+        "@vue/cli-plugin-babel": "^3.9.0",
+        "@vue/cli-plugin-eslint": "^3.9.0",
+        "@vue/cli-service": "^3.9.0",
+        "@vue/eslint-config-standard": "^4.0.0",
+        "babel-eslint": "^10.0.1",
+        "eslint": "^5.16.0",
+        "eslint-plugin-vue": "^5.0.0",
+        "lint-staged": "^8.1.5",
+        "vue-template-compiler": "^2.6.10"
+    },
+    "gitHooks": {
+        "pre-commit": "lint-staged"
+    },
+    "lint-staged": {
+        "*.{js,vue}": [
+            "vue-cli-service lint",
+            "git add"
+        ]
+    }
 }

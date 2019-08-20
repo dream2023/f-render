@@ -75,6 +75,30 @@ export default [
         defaultType: 'date'
       },
       {
+        type: 'dates',
+        label: '多日期',
+        isHideOptions: true,
+        defaultType: 'dates'
+      },
+      {
+        type: 'week',
+        label: '周',
+        isHideOptions: true,
+        defaultType: 'week'
+      },
+      {
+        type: 'month',
+        label: '月',
+        isHideOptions: true,
+        defaultType: 'month'
+      },
+      {
+        type: 'year',
+        label: '年',
+        isHideOptions: true,
+        defaultType: 'year'
+      },
+      {
         type: 'daterange',
         label: '日期范围',
         isHideOptions: true,
