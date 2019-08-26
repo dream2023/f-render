@@ -50,6 +50,14 @@ export default {
             { text: '隐藏', value: false }
           ]
         },
+        isShowResetBtn: {
+          type: 'radio',
+          label: '重置按钮',
+          options: [
+            { text: '显示', value: true },
+            { text: '隐藏', value: false }
+          ]
+        },
         submitBtnText: {
           type: 'input',
           label: '提交按钮文字'
@@ -57,11 +65,16 @@ export default {
         backBtnText: {
           type: 'input',
           label: '返回按钮文字'
+        },
+        resetBtnText: {
+          type: 'input',
+          label: '返回按钮文字'
         }
       },
       defaultData: {
         isShowSubmitBtn: true,
         isShowBackBtn: true,
+        isShowResetBtn: false,
         submitBtnText: '提交',
         backBtnText: '返回',
         labelWidth: 100,
@@ -71,8 +84,10 @@ export default {
       formData: {
         isShowSubmitBtn: true,
         isShowBackBtn: true,
+        isShowResetBtn: false,
         submitBtnText: '提交',
         backBtnText: '返回',
+        resetBtnText: '重置',
         labelWidth: 100,
         labelPosition: null,
         span: null
