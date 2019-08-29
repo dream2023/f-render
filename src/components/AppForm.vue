@@ -26,47 +26,84 @@
         >从左侧拖拽来添加表单项</div>
         <template v-else>
           <!-- 表单项 -->
-          <template v-for="(formItem, index) of list">
-            <!-- 列 -->
-            <el-col
-              :class="{'form-item-active': selectIndex === index}"
-              :key="formItem.formData.field"
-              :md="formItem.formData.layout || 24"
-              :xs="24"
-              @click.native="handleFormItemClick(index)"
-              class="form-item"
-              v-if="formItem.formData.type !== 'hide'"
-            >
-              <!-- 表单项 -->
+          <template v-if="formAttr.inline">
+            <template v-for="(formItem, index) of list">
               <el-form-item
+                :class="{'form-item-active': selectIndex === index}"
+                :key="index"
                 :label="formItem.formData.label"
                 :prop="formItem.formData.field"
+                @click.native="handleFormItemClick(index)"
+                v-if="formItem.type !== 'hide'"
               >
-                <!-- 组件 -->
+                <!-- 具名 作用域插槽(用于用户自定义显示) -->
                 <component
                   :desc="formItem"
                   :is="getComponentName(formItem.formData.type)"
                   :key="formItem.formData.field"
                   v-model="formItem.formData.default"
                 />
-                <!-- 提示 -->
                 <div
                   class="ele-form-tip"
-                  v-if="formItem.formData.tip"
-                >{{formItem.formData.tip}}</div>
-              </el-form-item>
+                  v-if="formItem.tip"
+                >{{formItem.tip}}</div>
 
-              <!-- 删除按钮 -->
-              <el-button
-                @click.stop="handleDelete(index)"
-                class="form-item-delete-btn"
-                icon="el-icon-delete"
-                size="mini"
-                style="border-radius: 0"
-                type="primary"
-                v-if="selectIndex === index"
-              ></el-button>
-            </el-col>
+                <!-- 删除按钮 -->
+                <el-button
+                  @click.stop="handleDelete(index)"
+                  class="form-item-delete-btn"
+                  icon="el-icon-delete"
+                  size="mini"
+                  style="border-radius: 0"
+                  type="primary"
+                  v-if="selectIndex === index"
+                ></el-button>
+              </el-form-item>
+            </template>
+          </template>
+          <template v-else>
+            <template v-for="(formItem, index) of list">
+              <!-- 列 -->
+              <el-col
+                :class="{'form-item-active': selectIndex === index}"
+                :key="formItem.formData.field"
+                :md="formItem.formData.layout || 24"
+                :xs="24"
+                @click.native="handleFormItemClick(index)"
+                class="form-item"
+                v-if="formItem.formData.type !== 'hide'"
+              >
+                <!-- 表单项 -->
+                <el-form-item
+                  :label="formItem.formData.label"
+                  :prop="formItem.formData.field"
+                >
+                  <!-- 组件 -->
+                  <component
+                    :desc="formItem"
+                    :is="getComponentName(formItem.formData.type)"
+                    :key="formItem.formData.field"
+                    v-model="formItem.formData.default"
+                  />
+                  <!-- 提示 -->
+                  <div
+                    class="ele-form-tip"
+                    v-if="formItem.formData.tip"
+                  >{{formItem.formData.tip}}</div>
+                </el-form-item>
+
+                <!-- 删除按钮 -->
+                <el-button
+                  @click.stop="handleDelete(index)"
+                  class="form-item-delete-btn"
+                  icon="el-icon-delete"
+                  size="mini"
+                  style="border-radius: 0"
+                  type="primary"
+                  v-if="selectIndex === index"
+                ></el-button>
+              </el-col>
+            </template>
           </template>
         </template>
       </draggable>

@@ -17,6 +17,14 @@ export default {
   data () {
     return {
       formDesc: {
+        inline: {
+          type: 'radio',
+          label: 'inline模式 / layout模式',
+          options: [
+            { text: 'layout模式', value: false },
+            { text: 'inline模式', value: true }
+          ]
+        },
         labelPosition: {
           type: 'select',
           label: '标签位置',
@@ -72,6 +80,7 @@ export default {
         }
       },
       defaultData: {
+        inline: false,
         isShowSubmitBtn: true,
         isShowBackBtn: true,
         isShowResetBtn: false,
@@ -82,6 +91,7 @@ export default {
         span: null
       },
       formData: {
+        inline: false,
         isShowSubmitBtn: true,
         isShowBackBtn: true,
         isShowResetBtn: false,
