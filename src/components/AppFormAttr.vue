@@ -23,52 +23,41 @@ export default {
           options: [
             { text: 'layout模式', value: false },
             { text: 'inline模式', value: true }
-          ],
-          on: {
-            change: (inline) => {
-              if (inline === true) {
-                this.formDesc.span.type = 'hide'
-                this.formDesc.isResponsive.type = 'hide'
-                this.formData.isResponsive = true
-                this.formDesc.labelPosition.options.shift()
-              } else {
-                this.formDesc.span.type = 'select'
-                this.formDesc.isResponsive.type = 'switch'
-                this.formDesc.labelPosition.options.unshift({ text: '响应式', value: null })
-              }
-            }
-          }
+          ]
         },
         isResponsive: {
           type: 'switch',
           label: '是否响应式',
+          vif (data) {
+            return !data.inline
+          },
           options: [
             { text: '是', value: true },
             { text: '否', value: false }
-          ],
-          on: {
-            change: (isResponsive) => {
-              if (isResponsive === true) {
-                this.formDesc.labelPosition.options.unshift({ text: '响应式', value: null })
-                this.formDesc.span.options.unshift({ text: '响应式', value: null })
-              } else {
-                this.formDesc.labelPosition.options.shift()
-                this.formDesc.span.options.shift()
-              }
-            }
-          }
+          ]
         },
         labelPosition: {
           type: 'select',
           label: '标签位置',
-          options: [ { text: '响应式', value: null }, { text: 'left', value: 'left' }, { text: 'right', value: 'right' }, { text: 'top', value: 'top' } ]
+          options (data) {
+            const options = ['left', 'right', 'top']
+            if (data.isResponsive && !data.inline) {
+              options.unshift({ text: '响应式', value: null })
+            }
+            return options
+          }
         },
         span: {
           type: 'select',
           label: '表单宽度',
-          options () {
+          vif (data) {
+            return !data.inline
+          },
+          options (data) {
             const options = Array.from({ length: 24 }, (v, i) => { return { text: `${24 - i} / 24`, value: 24 - i } })
-            options.unshift({ text: '响应式', value: null })
+            if (data.isResponsive) {
+              options.unshift({ text: '响应式', value: null })
+            }
             return options
           },
           style: {
