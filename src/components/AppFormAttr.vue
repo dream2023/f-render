@@ -23,12 +23,45 @@ export default {
           options: [
             { text: 'layout模式', value: false },
             { text: 'inline模式', value: true }
-          ]
+          ],
+          on: {
+            change: (inline) => {
+              if (inline === true) {
+                this.formDesc.span.type = 'hide'
+                this.formDesc.isResponsive.type = 'hide'
+                this.formData.isResponsive = true
+                this.formDesc.labelPosition.options.shift()
+              } else {
+                this.formDesc.span.type = 'select'
+                this.formDesc.isResponsive.type = 'switch'
+                this.formDesc.labelPosition.options.unshift({ text: '响应式', value: null })
+              }
+            }
+          }
+        },
+        isResponsive: {
+          type: 'switch',
+          label: '是否响应式',
+          options: [
+            { text: '是', value: true },
+            { text: '否', value: false }
+          ],
+          on: {
+            change: (isResponsive) => {
+              if (isResponsive === true) {
+                this.formDesc.labelPosition.options.unshift({ text: '响应式', value: null })
+                this.formDesc.span.options.unshift({ text: '响应式', value: null })
+              } else {
+                this.formDesc.labelPosition.options.shift()
+                this.formDesc.span.options.shift()
+              }
+            }
+          }
         },
         labelPosition: {
           type: 'select',
           label: '标签位置',
-          options: [ { text: '响应式', value: null }, 'left', 'right', 'top' ]
+          options: [ { text: '响应式', value: null }, { text: 'left', value: 'left' }, { text: 'right', value: 'right' }, { text: 'top', value: 'top' } ]
         },
         span: {
           type: 'select',
@@ -41,6 +74,14 @@ export default {
           style: {
             width: '100%'
           }
+        },
+        labelWidth: {
+          type: 'number',
+          label: '标签宽度',
+          attrs: {
+            step: 10
+          },
+          tip: '默认值为auto'
         },
         isShowSubmitBtn: {
           type: 'radio',
@@ -79,26 +120,16 @@ export default {
           label: '返回按钮文字'
         }
       },
-      defaultData: {
-        inline: false,
-        isShowSubmitBtn: true,
-        isShowBackBtn: true,
-        isShowResetBtn: false,
-        submitBtnText: '提交',
-        backBtnText: '返回',
-        labelWidth: 100,
-        labelPosition: null,
-        span: null
-      },
       formData: {
         inline: false,
-        isShowSubmitBtn: true,
-        isShowBackBtn: true,
-        isShowResetBtn: false,
+        isShowSubmitBtn: null,
+        isShowBackBtn: null,
+        isShowResetBtn: null,
+        isResponsive: true,
         submitBtnText: '提交',
         backBtnText: '返回',
         resetBtnText: '重置',
-        labelWidth: 100,
+        labelWidth: 0,
         labelPosition: null,
         span: null
       }
@@ -121,6 +152,9 @@ export default {
       },
       deep: true
     }
+  },
+  created () {
+    this.defaultData = cloneDeep(this.formData)
   }
 }
 </script>
