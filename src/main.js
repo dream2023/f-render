@@ -16,6 +16,15 @@ Vue.use(EleForm, {
       return file.url
     }
   },
+  'upload-file': {
+    responseFn (response, file) {
+      return {
+        name: file.name,
+        url: URL.createObjectURL(file.raw),
+        size: file.size
+      }
+    }
+  },
   codemirror: {
     options: {
       tabSize: 4,

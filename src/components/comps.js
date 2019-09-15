@@ -194,6 +194,12 @@ export default [
         defaultType: 'input'
       },
       {
+        type: 'upload-file',
+        label: '文件上传',
+        isHideOptions: true,
+        defaultType: 'input'
+      },
+      {
         type: 'video-uploader',
         label: '上传视频',
         isHideOptions: true,

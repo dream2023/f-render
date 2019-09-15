@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import EleformUploadFile from 'vue-ele-form-upload-file'
 import EleFormJsonEditor from 'vue-ele-form-json-editor'
 import EleFormCodemirror from 'vue-ele-form-codemirror'
 import EleFormImageUploader from 'vue-ele-form-image-uploader'
@@ -45,6 +46,7 @@ import 'codemirror/addon/fold/indent-fold.js'
 import 'codemirror/addon/fold/markdown-fold.js'
 import 'codemirror/addon/fold/xml-fold.js'
 
+Vue.component('upload-file', EleformUploadFile)
 Vue.component('codemirror', EleFormCodemirror)
 Vue.component('json-editor', EleFormJsonEditor)
 Vue.component('image-uploader', EleFormImageUploader)
