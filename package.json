@@ -1,6 +1,6 @@
 {
   "name": "vue-ele-form-generator",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "description": "vue-ele-form-generator是专为vue-ele-form开发的可视化表单设计工具, 让表单开发的效率更上一层楼",
   "private": false,
   "license": "MIT",
@@ -20,14 +20,14 @@
     "lodash.clonedeep": "^4.5.0",
     "normalize.css": "^8.0.1",
     "vue": "^2.6.10",
-    "vue-ele-form": "^0.3.23",
     "vue-ele-form-bmap": "^0.1.0",
     "vue-ele-form-codemirror": "^0.1.0",
-    "vue-ele-form-image-uploader": "^0.1.1",
+    "vue-ele-form-gallery": "^0.1.1",
+    "vue-ele-form-image-uploader": "^0.1.4",
     "vue-ele-form-json-editor": "^0.1.2",
     "vue-ele-form-markdown-editor": "^0.1.1",
     "vue-ele-form-quill-editor": "^0.1.0",
-    "vue-ele-form-upload-file": "^0.0.3",
+    "vue-ele-form-upload-file": "0.0.3",
     "vue-ele-form-video-uploader": "^0.1.2",
     "vuedraggable": "^2.23.0"
   },
@@ -40,7 +40,8 @@
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
     "lint-staged": "^8.1.5",
-    "vue-ele-form": "^0.3.23",
+    "mockjs": "^1.0.1-beta3",
+    "vue-ele-form": "^0.6.3",
     "vue-template-compiler": "^2.6.10"
   },
   "gitHooks": {

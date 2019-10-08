@@ -164,17 +164,17 @@ export default [
         defaultType: 'input'
       },
       {
+        type: 'image',
+        label: '图片展示',
+        default: 'https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg',
+        isHideOptions: true,
+        defaultType: 'input'
+      },
+      {
         type: 'tag',
         label: '标签',
         isHideOptions: true,
         defaultType: 'json-editor'
-      },
-      {
-        type: 'gallery',
-        label: '图片/视频预览',
-        default:
-          'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
-        isHideOptions: true
       },
       {
         type: 'button',
@@ -235,6 +235,13 @@ export default [
         isHideOptions: true,
         default: '',
         defaultType: 'codemirror'
+      },
+      {
+        type: 'gallery',
+        label: '图片及视频展示',
+        isHideOptions: true,
+        default: 'https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg',
+        defaultType: 'input'
       }
     ]
   }
