@@ -94,12 +94,24 @@ export default {
           }
         }
       }
+      if (data.isHideOptions !== false && data.options) {
+        formDesc.options = {
+          label: '选项',
+          type: 'json-editor',
+          attrs: {
+            height: '200px'
+          }
+        }
+      }
       data.formDesc = formDesc
       data.formData = {
         field: data.field,
         type: data.type,
         label: data.label,
         default: data.default
+      }
+      if (data.isHideOptions !== false && data.options) {
+        data.formData.options = data.options
       }
       return data
     }
