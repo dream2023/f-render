@@ -1,13 +1,4 @@
 import Vue from 'vue'
-import EleformUploadFile from 'vue-ele-form-upload-file'
-import EleFormJsonEditor from 'vue-ele-form-json-editor'
-import EleFormCodemirror from 'vue-ele-form-codemirror'
-import EleFormImageUploader from 'vue-ele-form-image-uploader'
-import EleFormVideoUploader from 'vue-ele-form-video-uploader'
-import EleFormQuillEditor from 'vue-ele-form-quill-editor'
-import EleFormMarkdownEditor from 'vue-ele-form-markdown-editor'
-import EleFormBmap from 'vue-ele-form-bmap'
-import EleFormGallery from 'vue-ele-form-gallery'
 
 // language
 import 'codemirror/mode/javascript/javascript.js'
@@ -47,12 +38,12 @@ import 'codemirror/addon/fold/indent-fold.js'
 import 'codemirror/addon/fold/markdown-fold.js'
 import 'codemirror/addon/fold/xml-fold.js'
 
-Vue.component('upload-file', EleformUploadFile)
-Vue.component('codemirror', EleFormCodemirror)
-Vue.component('json-editor', EleFormJsonEditor)
-Vue.component('image-uploader', EleFormImageUploader)
-Vue.component('video-uploader', EleFormVideoUploader)
-Vue.component('quill-editor', EleFormQuillEditor)
-Vue.component('markdown-editor', EleFormMarkdownEditor)
-Vue.component('bmap', EleFormBmap)
-Vue.component('gallery', EleFormGallery)
+Vue.component('upload-file', () => import('vue-ele-form-upload-file'))
+Vue.component('codemirror', () => import('vue-ele-form-codemirror'))
+Vue.component('json-editor', () => import('vue-ele-form-json-editor'))
+Vue.component('image-uploader', () => import('vue-ele-form-image-uploader'))
+Vue.component('video-uploader', () => import('vue-ele-form-video-uploader'))
+Vue.component('quill-editor', () => import('vue-ele-form-quill-editor'))
+Vue.component('markdown-editor', () => import('vue-ele-form-markdown-editor'))
+Vue.component('bmap', () => import('vue-ele-form-bmap'))
+Vue.component('gallery', () => import('vue-ele-form-gallery'))
