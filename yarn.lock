@@ -693,6 +693,13 @@
   dependencies:
     regenerator-runtime "^0.13.2"
 
+"@babel/runtime@^7.3.1":
+  version "7.7.7"
+  resolved "https://registry.npm.taobao.org/@babel/runtime/download/@babel/runtime-7.7.7.tgz#194769ca8d6d7790ec23605af9ee3e42a0aa79cf"
+  integrity sha1-GUdpyo1td5DsI2Ba+e4+QqCqec8=
+  dependencies:
+    regenerator-runtime "^0.13.2"
+
 "@babel/template@^7.1.0":
   version "7.6.0"
   resolved "https://registry.npm.taobao.org/@babel/template/download/@babel/template-7.6.0.tgz#7f0159c7f5012230dad64cca42ec9bdb5c9536e6"
@@ -812,6 +819,20 @@
   version "1.1.3"
   resolved "https://registry.npm.taobao.org/@nodelib/fs.stat/download/@nodelib/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
   integrity sha1-K1o6s/kYzKSKjHVMCBaOPwPrphs=
+
+"@riophae/vue-treeselect@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.npm.taobao.org/@riophae/vue-treeselect/download/@riophae/vue-treeselect-0.4.0.tgz#0baed5a794cffc580b63591f35c125e51c0df241"
+  integrity sha1-C67Vp5TP/FgLY1kfNcEl5RwN8kE=
+  dependencies:
+    "@babel/runtime" "^7.3.1"
+    babel-helper-vue-jsx-merge-props "^2.0.3"
+    easings-css "^1.0.0"
+    fuzzysearch "^1.0.3"
+    is-promise "^2.1.0"
+    lodash "^4.0.0"
+    material-colors "^1.2.6"
+    watch-size "^2.0.0"
 
 "@samverschueren/stream-to-observable@^0.3.0":
   version "0.3.0"
@@ -1619,7 +1640,7 @@ babel-eslint@^10.0.1:
     eslint-visitor-keys "^1.0.0"
     resolve "^1.12.0"
 
-babel-helper-vue-jsx-merge-props@^2.0.0:
+babel-helper-vue-jsx-merge-props@^2.0.0, babel-helper-vue-jsx-merge-props@^2.0.3:
   version "2.0.3"
   resolved "https://registry.npm.taobao.org/babel-helper-vue-jsx-merge-props/download/babel-helper-vue-jsx-merge-props-2.0.3.tgz#22aebd3b33902328e513293a8e4992b384f9f1b6"
   integrity sha1-Iq69OzOQIyjlEyk6jkmSs4T58bY=
@@ -3178,6 +3199,11 @@ duplexify@^3.4.2, duplexify@^3.6.0:
     readable-stream "^2.0.0"
     stream-shift "^1.0.0"
 
+easings-css@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npm.taobao.org/easings-css/download/easings-css-1.0.0.tgz#dde569003bb7a4a0c0b77878f5db3e0be5679c81"
+  integrity sha1-3eVpADu3pKDAt3h49ds+C+VnnIE=
+
 easy-stack@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npm.taobao.org/easy-stack/download/easy-stack-1.0.0.tgz#12c91b3085a37f0baa336e9486eac4bf94e3e788"
@@ -4126,6 +4152,11 @@ functional-red-black-tree@^1.0.1:
   version "1.0.1"
   resolved "https://registry.npm.taobao.org/functional-red-black-tree/download/functional-red-black-tree-1.0.1.tgz#1b0ab3bd553b2a0d6399d29c0e3ea0b252078327"
   integrity sha1-GwqzvVU7Kg1jmdKcDj6gslIHgyc=
+
+fuzzysearch@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.npm.taobao.org/fuzzysearch/download/fuzzysearch-1.0.3.tgz#dffc80f6d6b04223f2226aa79dd194231096d008"
+  integrity sha1-3/yA9tawQiPyImqnndGUIxCW0Ag=
 
 g-status@^2.0.2:
   version "2.0.2"
@@ -5510,7 +5541,7 @@ lodash.uniq@^4.5.0:
   resolved "https://registry.npm.taobao.org/lodash.uniq/download/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
   integrity sha1-0CJTc662Uq3BvILklFM5qEJ1R3M=
 
-lodash@^4.17.11, lodash@^4.17.12, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.3.0:
+lodash@^4.0.0, lodash@^4.17.11, lodash@^4.17.12, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.3.0:
   version "4.17.15"
   resolved "https://registry.npm.taobao.org/lodash/download/lodash-4.17.15.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Flodash%2Fdownload%2Flodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
   integrity sha1-tEf2ZwoEVbv+7dETku/zMOoJdUg=
@@ -5631,6 +5662,11 @@ matcher@^1.0.0:
   integrity sha1-UdgwHhOPhAmCszixFrsMCa9iwcI=
   dependencies:
     escape-string-regexp "^1.0.4"
+
+material-colors@^1.2.6:
+  version "1.2.6"
+  resolved "https://registry.npm.taobao.org/material-colors/download/material-colors-1.2.6.tgz#6d1958871126992ceecc72f4bcc4d8f010865f46"
+  integrity sha1-bRlYhxEmmSzuzHL0vMTY8BCGX0Y=
 
 mavon-editor@^2.7.5:
   version "2.7.6"
@@ -7834,6 +7870,11 @@ send@0.17.1:
     range-parser "~1.2.1"
     statuses "~1.5.0"
 
+serialize-javascript@^1.4.0, serialize-javascript@^1.7.0:
+  version "1.9.1"
+  resolved "https://registry.npm.taobao.org/serialize-javascript/download/serialize-javascript-1.9.1.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fserialize-javascript%2Fdownload%2Fserialize-javascript-1.9.1.tgz#cfc200aef77b600c47da9bb8149c943e798c2fdb"
+  integrity sha1-z8IArvd7YAxH2pu4FJyUPnmML9s=
+
 serialize-javascript@^2.1.2:
   version "2.1.2"
   resolved "https://registry.npm.taobao.org/serialize-javascript/download/serialize-javascript-2.1.2.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fserialize-javascript%2Fdownload%2Fserialize-javascript-2.1.2.tgz#ecec53b0e0317bdc95ef76ab7074b7384785fa61"
@@ -9034,6 +9075,13 @@ vue-ele-form-quill-editor@^0.1.0:
     bc-quill-image-resize-module "^3.0.0"
     vue2-editor "^2.9.1"
 
+vue-ele-form-tree-select@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.npm.taobao.org/vue-ele-form-tree-select/download/vue-ele-form-tree-select-0.1.1.tgz#ae472bfc51b9edeed10073723143b683e1a6871e"
+  integrity sha1-rkcr/FG57e7RAHNyMUO2g+Gmhx4=
+  dependencies:
+    "@riophae/vue-treeselect" "^0.4.0"
+
 vue-ele-form-upload-file@0.0.5:
   version "0.0.5"
   resolved "https://registry.npm.taobao.org/vue-ele-form-upload-file/download/vue-ele-form-upload-file-0.0.5.tgz#2492aabbf9f183325068507f6979a97f1c9a1c68"
@@ -9182,6 +9230,11 @@ vuex@^3.1.2:
   version "3.1.2"
   resolved "https://registry.npm.taobao.org/vuex/download/vuex-3.1.2.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fvuex%2Fdownload%2Fvuex-3.1.2.tgz#a2863f4005aa73f2587e55c3fadf3f01f69c7d4d"
   integrity sha1-ooY/QAWqc/JYflXD+t8/AfacfU0=
+
+watch-size@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npm.taobao.org/watch-size/download/watch-size-2.0.0.tgz#096ee28d0365bd7ea03d9c8bf1f2f50a73be1474"
+  integrity sha1-CW7ijQNlvX6gPZyL8fL1CnO+FHQ=
 
 watchpack@^1.6.0:
   version "1.6.0"

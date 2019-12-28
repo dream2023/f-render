@@ -212,6 +212,28 @@ export default [
         defaultType: 'input'
       },
       {
+        type: 'tree-select',
+        label: '树形下拉选择器',
+        defaultType: 'input',
+        options: [{
+          id: 'a',
+          label: 'a',
+          children: [{
+            id: 'aa',
+            label: 'aa'
+          }, {
+            id: 'ab',
+            label: 'ab'
+          }]
+        }, {
+          id: 'b',
+          label: 'b'
+        }, {
+          id: 'c',
+          label: 'c'
+        }]
+      },
+      {
         type: 'codemirror',
         label: '代码编辑器',
         isHideOptions: true,
