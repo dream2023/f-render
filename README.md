@@ -4,9 +4,9 @@
 
 vue-ele-form-generator 是专为 [vue-ele-form](https://github.com/dream2023/vue-ele-form) 开发的可视化表单设计工具, 让表单开发的效率更上一层楼!
 
-在线设计地址: [https://dream2023.gitee.io/vue-ele-form-generator](https://dream2023.gitee.io/vue-ele-form-generator/)
+在线设计地址(有点慢, 请耐心): [https://vue-ele-form-generator.netlify.com/](https://vue-ele-form-generator.netlify.com//)
 
-![image](https://raw.githubusercontent.com/dream2023/images/master/vue-ele-form-generator.4j3mllhqkds.gif)
+[![vue-ele-form-generator 演示图](https://s2.ax1x.com/2019/12/28/le1ecq.gif)](https://vue-ele-form-generator.netlify.com)
 
 ## 特性
 
@@ -24,4 +24,4 @@ vue-ele-form-generator 是专为 [vue-ele-form](https://github.com/dream2023/vue
 
 如果觉得还不错，请作者喝杯咖啡吧 Thanks♪(･ω･)ﾉ
 
-![image](https://raw.githubusercontent.com/dream2023/images/master/donation.61k4s17xdft.jpg)
+![赞助作者](https://s2.ax1x.com/2019/12/28/le10ED.jpg)

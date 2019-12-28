@@ -19,6 +19,7 @@
     "element-ui": "^2.13.0",
     "lodash.clonedeep": "^4.5.0",
     "normalize.css": "^8.0.1",
+    "serialize-javascript": "^2.1.2",
     "vue": "^2.6.10",
     "vue-ele-form-bmap": "^0.1.0",
     "vue-ele-form-codemirror": "^0.1.0",

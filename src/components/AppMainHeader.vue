@@ -1,21 +1,15 @@
 <template>
   <div class="app-main-header-container">
     <!-- 顶部按钮 -->
-    <el-button
-      @click="isPreview = true"
-      icon="el-icon-view"
-      type="text"
-    >预览</el-button>
-    <el-button
-      @click="isShowData = true"
-      icon="el-icon-upload2"
-      type="text"
-    >生成数据</el-button>
-    <el-button
-      @click="isShowCode = true"
-      icon="el-icon-tickets"
-      type="text"
-    >生成代码</el-button>
+    <el-button @click="isPreview = true" icon="el-icon-view" type="text"
+      >预览</el-button
+    >
+    <el-button @click="isShowData = true" icon="el-icon-upload2" type="text"
+      >生成数据</el-button
+    >
+    <el-button @click="isShowCode = true" icon="el-icon-tickets" type="text"
+      >生成代码</el-button
+    >
     <el-dialog
       :visible.sync="isPreview"
       append-to-body
@@ -42,10 +36,7 @@
     >
       <json-editor :value="codeData"></json-editor>
       <div style="text-align: center;margin-top: 20px">
-        <el-button
-          @click="handleCopyData"
-          type="primary"
-        >复制数据</el-button>
+        <el-button @click="handleCopyData" type="primary">复制数据</el-button>
       </div>
     </el-dialog>
 
@@ -59,10 +50,7 @@
     >
       <codemirror :value="codeHtml"></codemirror>
       <div style="text-align: center;margin-top: 20px">
-        <el-button
-          @click="handleCopyHtml"
-          type="primary"
-        >复制代码</el-button>
+        <el-button @click="handleCopyHtml" type="primary">复制代码</el-button>
       </div>
     </el-dialog>
   </div>
@@ -70,6 +58,7 @@
 
 <script>
 import tpl from './tpl'
+const serialize = require('serialize-javascript')
 const copy = require('clipboard-copy')
 const cloneDeep = require('lodash.clonedeep')
 
@@ -80,7 +69,7 @@ export default {
     formAttr: Object
   },
   computed: {
-    codeHtml () {
+    codeHtml() {
       let htmlFormAttr = ''
       const formAttrEntries = Object.entries(this.formAttr)
       // 拼接ele-form属性
@@ -91,11 +80,14 @@ export default {
         }, [])
         htmlFormAttr = htmlFormAttr.join('\n    ') + '\n    '
       }
-      return this.tpl.replace('%1', htmlFormAttr).replace('%2', JSON.stringify(this.computedDesc)).replace('%3', JSON.stringify(this.computedRules))
-    },
 
+      return this.tpl
+        .replace('%1', htmlFormAttr)
+        .replace('%2', this.serializeObj(this.computedDesc))
+        .replace('%3', this.serializeObj(this.computedRules))
+    },
     // 数据
-    codeData () {
+    codeData() {
       return Object.assign({}, this.formAttr, {
         formDesc: this.computedDesc,
         rules: this.computedRules
@@ -103,7 +95,7 @@ export default {
     },
 
     // 获取校检规则
-    computedRules () {
+    computedRules() {
       const formDesc = cloneDeep(this.formDesc)
       const rules = Object.keys(formDesc).reduce((rules, key) => {
         if (formDesc[key].required) {
@@ -117,7 +109,7 @@ export default {
       return rules
     },
     // 将 desc 去除校检
-    computedDesc () {
+    computedDesc() {
       const formDesc = cloneDeep(this.formDesc)
       for (let key in formDesc) {
         if (formDesc[key].required) {
@@ -127,7 +119,7 @@ export default {
       return formDesc
     }
   },
-  data () {
+  data() {
     return {
       tpl: tpl,
       formData: {},
@@ -137,20 +129,28 @@ export default {
     }
   },
   methods: {
-    handleCopyData () {
+    handleCopyData() {
       copy(JSON.stringify(this.codeData))
       this.$message.success('复制成功!')
     },
-    handleCopyHtml () {
+    handleCopyHtml() {
       copy(this.codeHtml)
       this.$message.success('复制成功!')
     },
-    handleRequest (data) {
+    handleRequest(data) {
       console.log(data)
       return Promise.resolve()
     },
-    handleRequestSuccess () {
+    handleRequestSuccess() {
       this.$message.success('发送成功')
+    },
+    // 序列表对象为字符串
+    serializeObj(obj) {
+      if (obj || Object.keys(obj).length === 0) return '{}'
+      return serialize(obj, { space: 2 })
+        .replace(/"(\w+)":/g, '$1:')
+        .replace(/(\s\s)(\S)/g, '      $1$2')
+        .replace(/}$/, '      }')
     }
   }
 }
