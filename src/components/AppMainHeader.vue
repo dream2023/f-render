@@ -146,7 +146,7 @@ export default {
     },
     // 序列表对象为字符串
     serializeObj(obj) {
-      if (obj || Object.keys(obj).length === 0) return '{}'
+      if (!obj || Object.keys(obj).length === 0) return '{}'
       return serialize(obj, { space: 2 })
         .replace(/"(\w+)":/g, '$1:')
         .replace(/(\s\s)(\S)/g, '      $1$2')
