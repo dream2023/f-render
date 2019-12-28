@@ -58,17 +58,43 @@
 
 <script>
 import tpl from './tpl'
+import { mapState } from 'vuex'
 const serialize = require('serialize-javascript')
 const copy = require('clipboard-copy')
 const cloneDeep = require('lodash.clonedeep')
 
 export default {
   name: 'AppMainHeader',
-  props: {
-    formDesc: Object,
-    formAttr: Object
-  },
   computed: {
+    ...mapState(['formAttr', 'list']),
+    formDesc() {
+      const list = cloneDeep(this.list)
+      // 将数组转为对象, 并删除无用的属性
+      // 例如: [ {filed: 'name', label: '姓名', default: undefined }, [{filed: 'age', label: '年龄', default: 18}] ] => {name: {label: '姓名'}, age: {label: '年龄', default: 18}}
+      return list.reduce((acc, { formData }) => {
+        const field = formData['field']
+        // 删除字段属性
+        delete formData['field']
+
+        // 判断默认值, 如果默认值不存在, 则删除此属性(无需展示)
+        if (formData.default === null || formData.default === undefined) {
+          delete formData.default
+        }
+
+        // 判断布局, layout默认是24, 如果未改变, 则删除此属性(无需展示)
+        if (formData.layout === 24) delete formData.layout
+
+        // 删除私有属性
+        formData = Object.keys(formData).reduce((res, key) => {
+          // _vif, _vshow等
+          if (!key.startsWith('_')) res[key] = formData[key]
+          return res
+        }, {})
+
+        acc[field] = formData
+        return acc
+      }, {})
+    },
     codeHtml() {
       let htmlFormAttr = ''
       const formAttrEntries = Object.entries(this.formAttr)

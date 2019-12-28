@@ -10,11 +10,12 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 const cloneDeep = require('lodash.clonedeep')
 
 export default {
   name: 'AppFormAttr',
-  data () {
+  data() {
     return {
       formDesc: {
         inline: {
@@ -28,7 +29,7 @@ export default {
         isResponsive: {
           type: 'switch',
           label: '是否响应式',
-          vif (data) {
+          vif(data) {
             return !data.inline
           },
           options: [
@@ -39,7 +40,7 @@ export default {
         labelPosition: {
           type: 'select',
           label: '标签位置',
-          options (data) {
+          options(data) {
             const options = ['left', 'right', 'top']
             if (data.isResponsive && !data.inline) {
               options.unshift({ text: '响应式', value: null })
@@ -50,11 +51,13 @@ export default {
         span: {
           type: 'select',
           label: '表单宽度',
-          vif (data) {
+          vif(data) {
             return !data.inline
           },
-          options (data) {
-            const options = Array.from({ length: 24 }, (v, i) => { return { text: `${24 - i} / 24`, value: 24 - i } })
+          options(data) {
+            const options = Array.from({ length: 24 }, (v, i) => {
+              return { text: `${24 - i} / 24`, value: 24 - i }
+            })
             if (data.isResponsive) {
               options.unshift({ text: '响应式', value: null })
             }
@@ -125,11 +128,11 @@ export default {
     }
   },
   watch: {
-    // 检查变化, 同步到 app-form 组件
+    // 检查变化
     formData: {
-      handler (data) {
+      handler(data) {
         data = cloneDeep(data)
-        // 删除默认值属性
+        // 删除默认值属性(默认属性无需展示)
         const defaultData = this.defaultData
         for (const i in defaultData) {
           if (data[i] === defaultData[i]) {
@@ -137,12 +140,15 @@ export default {
           }
         }
 
-        this.$emit('change', data)
+        this.updateFormAttr(data)
       },
       deep: true
     }
   },
-  created () {
+  methods: {
+    ...mapMutations(['updateFormAttr'])
+  },
+  created() {
     this.defaultData = cloneDeep(this.formData)
   }
 }

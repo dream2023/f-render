@@ -5,6 +5,7 @@ import EleForm from 'vue-ele-form'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import './extend.js'
+import store from './store'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)
@@ -55,5 +56,6 @@ Vue.use(EleForm, {
 })
 
 new Vue({
+  store,
   render: h => h(App)
 }).$mount('#app')

@@ -4,32 +4,16 @@
     <div class="app-container">
       <app-type class="app-type"></app-type>
       <div class="app-main">
-        <app-main-header
-          :formAttr="formAttr"
-          :formDesc="formDesc"
-        ></app-main-header>
-        <app-form
-          :formAttr="formAttr"
-          @change="handleFormChange"
-          @select="handleSelectFormItem"
-        ></app-form>
+        <app-main-header></app-main-header>
+        <app-form></app-form>
       </div>
       <div class="app-attr">
-        <el-tabs
-          :stretch="true"
-          v-model="activeTab"
-        >
-          <el-tab-pane
-            label="表单项属性"
-            name="0"
-          >
-            <app-item-attr :formItem="selectedItem" />
+        <el-tabs :stretch="true" v-model="activeTab">
+          <el-tab-pane label="表单项属性" name="0">
+            <app-item-attr />
           </el-tab-pane>
-          <el-tab-pane
-            label="表单属性"
-            name="1"
-          >
-            <app-form-attr @change="handleFormAttrChange" />
+          <el-tab-pane label="表单属性" name="1">
+            <app-form-attr />
           </el-tab-pane>
         </el-tabs>
       </div>
@@ -55,26 +39,9 @@ export default {
     AppType,
     AppMainHeader
   },
-  data () {
+  data() {
     return {
-      // 表单项描述
-      formDesc: {},
-      // 表单属性
-      formAttr: {},
-      selectedItem: {},
-      // 当前激活的 tab 用
       activeTab: '0'
-    }
-  },
-  methods: {
-    handleFormChange (formDesc) {
-      this.formDesc = formDesc
-    },
-    handleSelectFormItem (formItem) {
-      this.selectedItem = formItem
-    },
-    handleFormAttrChange (attr) {
-      this.formAttr = attr
     }
   }
 }
