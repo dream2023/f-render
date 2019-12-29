@@ -63,7 +63,7 @@ export default {
 }
 
 .app-type {
-  width: 300px;
+  width: 280px;
   overflow: scroll;
 }
 

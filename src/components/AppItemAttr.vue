@@ -8,7 +8,7 @@
     :span="20"
     class="app-item-attr"
     labelPosition="top"
-    v-if="isShow && currentFormItem"
+    v-if="currentFormItem && currentFormItem.formDesc"
   ></ele-form>
 </template>
 
@@ -16,7 +16,7 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'AppFormAttr',
+  name: 'AppItemAttr',
   computed: {
     ...mapGetters(['currentFormItem'])
   },

@@ -15,12 +15,9 @@
         :sort="false"
       >
         <template v-for="item of comp.comps">
-          <div
-            :key="item.type"
-            class="type-item"
-          >
-            <div class="type-item-title">{{item.type}}</div>
-            <div>{{item.label}}</div>
+          <div :key="item.type" class="type-item">
+            <div class="type-item-title">{{ item.type }}</div>
+            <div>{{ item.label }}</div>
           </div>
         </template>
       </draggable>
@@ -38,7 +35,7 @@ export default {
   components: {
     draggable
   },
-  data () {
+  data() {
     const formDesc = {
       field: {
         type: 'input',
@@ -55,7 +52,7 @@ export default {
         attrs: {
           min: 1,
           max: 24,
-          'format-tooltip' (val) {
+          'format-tooltip'(val) {
             return `${val} / 24`
           }
         }
@@ -81,9 +78,10 @@ export default {
     }
   },
   methods: {
-    addFormItem (data) {
+    // 拖拽后的数据
+    addFormItem(data) {
       data = cloneDeep(data)
-      data.field = 'key_' + this.globalId++
+      data.field = 'key_' + Date.now()
       const formDesc = cloneDeep(this.formDesc)
       if (data.defaultType) {
         formDesc.default.type = data.defaultType
@@ -108,6 +106,7 @@ export default {
         field: data.field,
         type: data.type,
         label: data.label,
+        layout: 24,
         default: data.default
       }
       if (data.isHideOptions !== false && data.options) {
@@ -137,7 +136,7 @@ export default {
   padding: 6px 8px;
   box-sizing: border-box;
   margin: 5px;
-  font-size: 13px;
+  font-size: 12px;
 }
 
 .type-item-title {

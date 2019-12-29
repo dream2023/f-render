@@ -10,6 +10,7 @@
     >
       <draggable
         :animation="200"
+        v-if="isRenderFinish"
         :disabled="false"
         :list="list"
         @add="handleAdd"
@@ -119,6 +120,16 @@ export default {
   },
   computed: {
     ...mapState(['list', 'selectIndex', 'formAttr'])
+  },
+  data() {
+    return {
+      isRenderFinish: false
+    }
+  },
+  mounted() {
+    this.$nextTick(() => {
+      this.isRenderFinish = true
+    })
   },
   methods: {
     ...mapMutations(['deleteItemByIndex', 'updateSelectIndex']),
