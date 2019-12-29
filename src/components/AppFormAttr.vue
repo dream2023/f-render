@@ -91,6 +91,14 @@ export default {
             { text: '隐藏', value: false }
           ]
         },
+        isShowCancelBtn: {
+          type: 'radio',
+          label: '取消按钮',
+          options: [
+            { text: '显示', value: true },
+            { text: '隐藏', value: false }
+          ]
+        },
         isShowResetBtn: {
           type: 'radio',
           label: '重置按钮',
@@ -99,6 +107,11 @@ export default {
             { text: '隐藏', value: false }
           ]
         },
+        formBtnSize: {
+          type: 'select',
+          label: '表单按钮大小',
+          options: [{ text: '默认', value: null }, 'medium', 'small', 'mini']
+        },
         submitBtnText: {
           type: 'input',
           label: '提交按钮文字'
@@ -106,6 +119,10 @@ export default {
         backBtnText: {
           type: 'input',
           label: '返回按钮文字'
+        },
+        cancelBtnText: {
+          type: 'input',
+          label: '取消按钮文字'
         },
         resetBtnText: {
           type: 'input',
@@ -117,13 +134,16 @@ export default {
         isShowSubmitBtn: null,
         isShowBackBtn: null,
         isShowResetBtn: null,
+        isShowCancelBtn: null,
         isResponsive: true,
         submitBtnText: '提交',
+        cancelBtnText: '取消',
         backBtnText: '返回',
         resetBtnText: '重置',
         labelWidth: 0,
         labelPosition: null,
-        span: null
+        span: null,
+        formBtnSize: null
       }
     }
   },
