@@ -1,7 +1,7 @@
 <template>
   <div class="app-main">
     <app-main-left class="app-main-left" />
-    <div class="app-main-center">
+    <div class="app-main-container">
       <app-main-header />
       <app-main-center />
     </div>
@@ -46,7 +46,7 @@ export default {
   overflow: scroll;
 }
 
-.app-main-center {
+.app-main-container {
   flex: 1;
   border-left: 1px solid #ebeef5;
   border-right: 1px solid #ebeef5;
