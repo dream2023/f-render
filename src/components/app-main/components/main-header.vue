@@ -1,5 +1,5 @@
 <template>
-  <div class="app-main-header-container">
+  <div class="app-main-header">
     <!-- 顶部按钮 -->
     <el-button @click="isPreview = true" icon="el-icon-view" type="text"
       >预览</el-button
@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import tpl from './tpl'
+import tpl from '@/tpl'
 import { mapState } from 'vuex'
 const serialize = require('serialize-javascript')
 const copy = require('clipboard-copy')
@@ -183,7 +183,7 @@ export default {
 </script>
 
 <style>
-.app-main-header-container {
+.app-main-header {
   height: 60px;
   line-height: 60px;
   padding-left: 20px;

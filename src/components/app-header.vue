@@ -1,5 +1,5 @@
 <template>
-  <div class="app-header-container">
+  <div class="app-header">
     <el-link
       :underline="false"
       href="https://github.com/dream2023/vue-ele-form-generator"
@@ -12,7 +12,8 @@
       href="https://github.com/dream2023/vue-ele-form-generator"
       target="_blank"
       type="primary"
-    >GitHub</el-link>
+      >GitHub</el-link
+    >
   </div>
 </template>
 
@@ -23,7 +24,11 @@ export default {
 </script>
 
 <style>
-.app-header-container {
+.app-header {
+  box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+  z-index: 1;
+  width: 100%;
+  padding: 0 20px;
   display: flex;
   justify-content: space-between;
   box-sizing: border-box;

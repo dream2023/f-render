@@ -1,5 +1,5 @@
 <template>
-  <div class="app-type-container">
+  <div class="app-main-left">
     <el-card
       :body-style="{ padding: '10px' }"
       :header="comp.title"
@@ -27,7 +27,7 @@
 
 <script>
 import draggable from 'vuedraggable'
-import comps from './comps'
+import comps from '@/comps'
 const cloneDeep = require('lodash.clonedeep')
 
 export default {
@@ -119,7 +119,7 @@ export default {
 </script>
 
 <style>
-.app-type-container {
+.app-main-left {
   line-height: 1.5em;
   height: 100%;
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="app-form-container">
+  <div class="app-main-center">
     <ele-form
       :form-data="{}"
       :form-desc="{}"
@@ -175,7 +175,7 @@ export default {
 </script>
 
 <style>
-.app-form-container {
+.app-main-center {
   padding: 20px;
 }
 
