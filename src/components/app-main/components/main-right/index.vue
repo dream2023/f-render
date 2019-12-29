@@ -1,22 +1,22 @@
 <template>
   <el-tabs :stretch="true" v-model="activeTab">
     <el-tab-pane label="表单项属性" name="0">
-      <app-form-item-attr />
+      <app-form-item-config />
     </el-tab-pane>
     <el-tab-pane label="表单属性" name="1">
-      <app-form-attr />
+      <app-form-config />
     </el-tab-pane>
   </el-tabs>
 </template>
 
 <script>
-import AppFormAttr from './form-attr'
-import AppFormItemAttr from './form-item-attr'
+import AppFormConfig from './components/form-config'
+import AppFormItemConfig from './components/form-item-config'
 export default {
   name: 'app-main-right',
   components: {
-    AppFormAttr,
-    AppFormItemAttr
+    AppFormConfig,
+    AppFormItemConfig
   },
   data() {
     return {

@@ -6,7 +6,6 @@
     :isShowSubmitBtn="false"
     :rules="rules"
     :span="20"
-    class="app-item-attr"
     labelPosition="top"
     v-if="currentFormItem && currentFormItem.formDesc"
   ></ele-form>
