@@ -21,7 +21,6 @@
         :form-desc="formDesc"
         :formData="formData"
         :request-fn="handleRequest"
-        :rules="computedRules"
         @request-success="handleRequestSuccess"
         v-bind="formAttr"
       ></ele-form>
@@ -71,7 +70,7 @@ export default {
       const list = cloneDeep(this.list)
       // 将数组转为对象, 并删除无用的属性
       // 例如: [ {filed: 'name', label: '姓名', default: undefined }, [{filed: 'age', label: '年龄', default: 18}] ] => {name: {label: '姓名'}, age: {label: '年龄', default: 18}}
-      return list.reduce((acc, { formData }) => {
+      return list.reduce((acc, formData) => {
         const field = formData['field']
         // 删除字段属性
         delete formData['field']
@@ -110,30 +109,14 @@ export default {
       return this.tpl
         .replace('%1', htmlFormAttr)
         .replace('%2', this.serializeObj(this.computedDesc))
-        .replace('%3', this.serializeObj(this.computedRules))
     },
     // 数据
     codeData() {
       return Object.assign({}, this.formAttr, {
-        formDesc: this.computedDesc,
-        rules: this.computedRules
+        formDesc: this.computedDesc
       })
     },
 
-    // 获取校检规则
-    computedRules() {
-      const formDesc = cloneDeep(this.formDesc)
-      const rules = Object.keys(formDesc).reduce((rules, key) => {
-        if (formDesc[key].required) {
-          rules[key] = [
-            { required: true, message: '请输入' + formDesc[key].label }
-          ]
-        }
-        return rules
-      }, {})
-
-      return rules
-    },
     // 将 desc 去除校检
     computedDesc() {
       const formDesc = cloneDeep(this.formDesc)

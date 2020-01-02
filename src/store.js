@@ -17,7 +17,7 @@ export default new Vuex.Store({
   getters: {
     // 当前表单项
     currentFormItem (state) {
-      return state.selectIndex !== null ? state.list[state.selectIndex] : {}
+      return state.selectIndex !== null ? state.list[state.selectIndex] : null
     }
   },
   mutations: {

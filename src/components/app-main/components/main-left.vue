@@ -28,7 +28,6 @@
 <script>
 import draggable from 'vuedraggable'
 import comps from '@/comps'
-const cloneDeep = require('lodash.clonedeep')
 
 export default {
   name: 'AppType',
@@ -36,83 +35,36 @@ export default {
     draggable
   },
   data() {
-    const formDesc = {
-      field: {
-        type: 'input',
-        label: '数据字段'
-      },
-      label: {
-        type: 'input',
-        label: '标签'
-      },
-      layout: {
-        type: 'slider',
-        label: '宽度',
-        default: 24,
-        attrs: {
-          min: 1,
-          max: 24,
-          'format-tooltip'(val) {
-            return `${val} / 24`
-          }
-        }
-      },
-      default: {
-        type: 'codemirror',
-        label: '默认值'
-      },
-      required: {
-        type: 'yesno',
-        label: '校检',
-        title: '是否必填'
-      },
-      tip: {
-        type: 'input',
-        label: '表单项提示'
-      }
-    }
-    this.formDesc = formDesc
     return {
-      globalId: 0,
-      comps: comps
+      comps: comps,
+      // 默认值
+      commonData: {
+        layout: 24
+      }
     }
   },
   methods: {
     // 拖拽后的数据
-    addFormItem(data) {
-      data = cloneDeep(data)
-      data.field = 'key_' + Date.now()
-      const formDesc = cloneDeep(this.formDesc)
-      if (data.defaultType) {
-        formDesc.default.type = data.defaultType
-        if (formDesc.default.type === 'json-editor') {
-          formDesc.default.default = []
-          formDesc.default.attrs = {
-            height: '200px'
-          }
-        }
+    addFormItem({ label, type }) {
+      // 增加 key
+      const field = 'key_' + Date.now()
+
+      // 获取配置
+      try {
+        const config = require(`@/config/${type}.js`)
+        const configData = Object.keys(config).reduce((acc, key) => {
+          acc[key] = config[key]['default'] || null
+          return acc
+        }, {})
+        return Object.assign(
+          {},
+          this.commonData,
+          { label, type, field },
+          configData
+        )
+      } catch {
+        this.$message.error('请到config目录下添加相关配置')
       }
-      if (data.isHideOptions !== false && data.options) {
-        formDesc.options = {
-          label: '选项',
-          type: 'json-editor',
-          attrs: {
-            height: '200px'
-          }
-        }
-      }
-      data.formDesc = formDesc
-      data.formData = {
-        field: data.field,
-        type: data.type,
-        label: data.label,
-        layout: 24,
-        default: data.default
-      }
-      if (data.isHideOptions !== false && data.options) {
-        data.formData.options = data.options
-      }
-      return data
     }
   }
 }

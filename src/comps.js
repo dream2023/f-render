@@ -1,186 +1,123 @@
-const options = [
-  { text: '选项1', value: 1 },
-  { text: '选项2', value: 2 },
-  { text: '选项3', value: 3 }
-]
 export default [
   {
     title: '内置组件',
     comps: [
       {
         type: 'text',
-        label: '静态文本',
-        default: '我是一段静态文本',
-        defaultType: 'input'
+        label: '静态文本'
       },
       {
         type: 'input',
-        label: '单行输入框',
-        isHideOptions: true,
-        defaultType: 'input'
+        label: '单行输入框'
       },
       {
         type: 'autocomplete',
-        label: '带建议的输入框',
-        isHideOptions: true,
-        defaultType: 'input'
+        label: '带建议的输入框'
       },
       {
         type: 'textarea',
-        label: '多行输入框',
-        isHideOptions: true,
-        defaultType: 'input'
+        label: '多行输入框'
       },
       {
         type: 'password',
-        label: '密码框',
-        isHideOptions: true,
-        defaultType: 'input'
+        label: '密码框'
       },
       {
         type: 'number',
-        label: '数字',
-        isHideOptions: true,
-        isHideSlots: true,
-        defaultType: 'number'
+        label: '数字'
       },
       {
         type: 'checkbox',
-        label: '复选',
-        options: options,
-        defaultType: 'json-editor'
+        label: '复选'
       },
       {
         type: 'checkbox-button',
-        label: '复选按钮',
-        options: options,
-        defaultType: 'json-editor'
+        label: '复选按钮'
       },
       {
         type: 'radio',
-        label: '单选',
-        options: options,
-        defaultType: 'input'
+        label: '单选'
       },
       {
         type: 'select',
-        label: '选择器',
-        options: options,
-        defaultType: 'input'
+        label: '选择器'
       },
       {
         type: 'date',
-        label: '日期',
-        isHideOptions: true,
-        defaultType: 'date'
+        label: '日期'
       },
       {
         type: 'dates',
-        label: '多日期',
-        isHideOptions: true,
-        defaultType: 'dates'
+        label: '多日期'
       },
       {
         type: 'week',
-        label: '周',
-        isHideOptions: true,
-        defaultType: 'week'
+        label: '周'
       },
       {
         type: 'month',
-        label: '月',
-        isHideOptions: true,
-        defaultType: 'month'
+        label: '月'
       },
       {
         type: 'year',
-        label: '年',
-        isHideOptions: true,
-        defaultType: 'year'
+        label: '年'
       },
       {
         type: 'daterange',
-        label: '日期范围',
-        isHideOptions: true,
-        defaultType: 'daterange'
+        label: '日期范围'
       },
       {
         type: 'datetime',
-        label: '时间和日期',
-        isHideOptions: true,
-        defaultType: 'datetime'
+        label: '时间和日期'
       },
       {
         type: 'datetimerange',
-        label: '日期和时间范围',
-        isHideOptions: true,
-        defaultType: 'datetimerange'
+        label: '日期和时间范围'
       },
       {
         type: 'time',
-        label: '时间',
-        isHideOptions: true,
-        defaultType: 'time'
+        label: '时间'
       },
       {
         type: 'switch',
-        label: '开关',
-        isHideOptions: true,
-        defaultType: 'switch'
+        label: '开关'
       },
       {
         type: 'yesno',
         label: '是否',
-        title: '是否选择',
-        isHideOptions: true,
-        defaultType: 'switch'
+        title: '是否选择'
       },
       {
         type: 'slider',
-        label: '滑块',
-        isHideOptions: true,
-        defaultType: 'slider'
+        label: '滑块'
       },
       {
         type: 'color',
-        label: '颜色选择器',
-        isHideOptions: true,
-        defaultType: 'color'
+        label: '颜色选择器'
       },
       {
         type: 'cascader',
-        label: '级联选择器',
-        defaultType: 'json-editor'
+        label: '级联选择器'
       },
       {
         type: 'transfer',
-        label: '穿梭框',
-        defaultType: 'json-editor'
+        label: '穿梭框'
       },
       {
         type: 'rate',
-        label: '评分组件',
-        isHideOptions: true,
-        defaultType: 'input'
+        label: '评分组件'
       },
       {
         type: 'image',
-        label: '图片展示',
-        default: 'https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg',
-        isHideOptions: true,
-        defaultType: 'input'
+        label: '图片展示'
       },
       {
         type: 'tag',
-        label: '标签',
-        isHideOptions: true,
-        defaultType: 'json-editor'
+        label: '标签'
       },
       {
         type: 'button',
-        label: '按钮',
-        title: '一个按钮',
-        isHideOptions: true
+        label: '按钮'
       }
     ]
   },
@@ -189,81 +126,43 @@ export default [
     comps: [
       {
         type: 'image-uploader',
-        label: '上传图片',
-        isHideOptions: true,
-        defaultType: 'input'
+        label: '上传图片'
       },
       {
         type: 'upload-file',
-        label: '文件上传',
-        isHideOptions: true,
-        defaultType: 'input'
+        label: '文件上传'
       },
       {
         type: 'video-uploader',
-        label: '上传视频',
-        isHideOptions: true,
-        defaultType: 'input'
+        label: '上传视频'
       },
       {
         type: 'quill-editor',
-        label: '富文本编辑器',
-        isHideOptions: true,
-        defaultType: 'input'
+        label: '富文本编辑器'
       },
       {
         type: 'tree-select',
-        label: '树形下拉选择器',
-        defaultType: 'input',
-        options: [{
-          id: 'a',
-          label: 'a',
-          children: [{
-            id: 'aa',
-            label: 'aa'
-          }, {
-            id: 'ab',
-            label: 'ab'
-          }]
-        }, {
-          id: 'b',
-          label: 'b'
-        }, {
-          id: 'c',
-          label: 'c'
-        }]
+        label: '树形下拉选择器'
       },
       {
         type: 'codemirror',
-        label: '代码编辑器',
-        isHideOptions: true,
-        defaultType: 'codemirror'
+        label: '代码编辑器'
       },
       {
         type: 'json-editor',
-        label: 'JSON编辑器',
-        isHideOptions: true,
-        defaultType: 'json-editor'
+        label: 'JSON编辑器'
       },
       {
         type: 'markdown-editor',
-        label: 'markdown编辑器',
-        isHideOptions: true,
-        defaultType: 'markdown-editor'
+        label: 'markdown编辑器'
       },
       {
         type: 'bmap',
-        label: '地图',
-        isHideOptions: true,
-        default: '',
-        defaultType: 'codemirror'
+        label: '地图'
       },
       {
         type: 'gallery',
-        label: '图片及视频展示',
-        isHideOptions: true,
-        default: 'https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg',
-        defaultType: 'input'
+        label: '图片及视频展示'
       }
     ]
   }

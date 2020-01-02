@@ -31,17 +31,18 @@
               <el-form-item
                 :class="{ 'form-item-active': selectIndex === index }"
                 :key="index"
-                :label="formItem.formData.label"
-                :prop="formItem.formData.field"
+                :label="formItem.label"
+                :prop="formItem.field"
                 @click.native="handleFormItemClick(index)"
                 v-if="formItem.type !== 'hide'"
               >
                 <!-- 具名 作用域插槽(用于用户自定义显示) -->
                 <component
                   :desc="formItem"
-                  :is="getComponentName(formItem.formData.type)"
-                  :key="formItem.formData.field"
-                  v-model="formItem.formData.default"
+                  :options="formItem.options"
+                  :is="getComponentName(formItem.type)"
+                  :key="formItem.field"
+                  v-model="formItem.default"
                 />
                 <div class="ele-form-tip" v-if="formItem.tip">
                   {{ formItem.tip }}
@@ -65,28 +66,26 @@
               <!-- 列 -->
               <el-col
                 :class="{ 'form-item-active': selectIndex === index }"
-                :key="formItem.formData.field"
-                :md="formItem.formData.layout || 24"
+                :key="formItem.field"
+                :md="formItem.layout || 24"
                 :xs="24"
                 @click.native="handleFormItemClick(index)"
                 class="form-item"
-                v-if="formItem.formData.type !== 'hide'"
+                v-if="formItem.type !== 'hide'"
               >
                 <!-- 表单项 -->
-                <el-form-item
-                  :label="formItem.formData.label"
-                  :prop="formItem.formData.field"
-                >
+                <el-form-item :label="formItem.label" :prop="formItem.field">
                   <!-- 组件 -->
                   <component
                     :desc="formItem"
-                    :is="getComponentName(formItem.formData.type)"
-                    :key="formItem.formData.field"
-                    v-model="formItem.formData.default"
+                    :options="formItem.options"
+                    :is="getComponentName(formItem.type)"
+                    :key="formItem.field"
+                    v-model="formItem.default"
                   />
                   <!-- 提示 -->
-                  <div class="ele-form-tip" v-if="formItem.formData.tip">
-                    {{ formItem.formData.tip }}
+                  <div class="ele-form-tip" v-if="formItem.tip">
+                    {{ formItem.tip }}
                   </div>
                 </el-form-item>
 

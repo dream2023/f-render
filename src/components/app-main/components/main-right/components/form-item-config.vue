@@ -1,27 +1,67 @@
 <template>
-  <ele-form
-    :formData="currentFormItem.formData"
-    :formDesc="currentFormItem.formDesc"
-    :isShowBackBtn="false"
-    :isShowSubmitBtn="false"
-    :rules="rules"
-    :span="20"
-    labelPosition="top"
-    v-if="currentFormItem && currentFormItem.formDesc"
-  ></ele-form>
+  <div>
+    <ele-form
+      :formData="currentFormItem"
+      :formDesc="formDesc"
+      :isShowBackBtn="false"
+      :isShowSubmitBtn="false"
+      :rules="rules"
+      :span="20"
+      labelPosition="top"
+      v-if="currentFormItem"
+    ></ele-form>
+  </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'AppItemAttr',
+  name: 'AppFormItemAttr',
   computed: {
-    ...mapGetters(['currentFormItem'])
+    ...mapGetters(['currentFormItem']),
+    formDesc() {
+      const customConfig = require(`@/config/${this.currentFormItem.type}.js`)
+      return Object.assign({}, this.commonConfig, customConfig)
+    }
   },
   data() {
     return {
-      isShow: false,
+      // 通用配置
+      commonConfig: {
+        field: {
+          type: 'input',
+          label: '数据字段'
+        },
+        label: {
+          type: 'input',
+          label: '标签'
+        },
+        default: {
+          type: 'input',
+          label: '默认值'
+        },
+        layout: {
+          type: 'slider',
+          label: '宽度',
+          attrs: {
+            min: 1,
+            max: 24,
+            'format-tooltip'(val) {
+              return `${val} / 24`
+            }
+          }
+        },
+        required: {
+          type: 'yesno',
+          label: '校检',
+          title: '是否必填'
+        },
+        tip: {
+          type: 'input',
+          label: '表单项提示'
+        }
+      },
       rules: {
         field: {
           required: true,
@@ -31,17 +71,6 @@ export default {
           required: true,
           message: '标签不能为空'
         }
-      }
-    }
-  },
-  watch: {
-    // 重新渲染
-    'currentFormItem.formDesc'(val) {
-      this.isShow = false
-      if (val) {
-        this.$nextTick(() => {
-          this.isShow = true
-        })
       }
     }
   }
