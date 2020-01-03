@@ -73,27 +73,27 @@ export default {
       const list = cloneDeep(this.list)
       // 将数组转为对象, 并删除无用的属性
       // 例如: [ {filed: 'name', label: '姓名', default: undefined }, [{filed: 'age', label: '年龄', default: 18}] ] => {name: {label: '姓名'}, age: {label: '年龄', default: 18}}
-      return list.reduce((acc, formData) => {
-        const field = formData['field']
+      return list.reduce((acc, formDesc) => {
+        const field = formDesc['field']
         // 删除字段属性
-        delete formData['field']
+        delete formDesc['field']
 
         // 判断默认值, 如果默认值不存在, 则删除此属性(无需展示)
-        if (formData.default === null || formData.default === undefined) {
-          delete formData.default
+        if (formDesc.default === null || formDesc.default === undefined) {
+          delete formDesc.default
         }
 
         // 判断布局, layout默认是24, 如果未改变, 则删除此属性(无需展示)
-        if (formData.layout === 24) delete formData.layout
+        if (formDesc.layout === 24) delete formDesc.layout
 
         // 删除私有属性
-        formData = Object.keys(formData).reduce((res, key) => {
+        formDesc = Object.keys(formDesc).reduce((res, key) => {
           // _vif, _vshow等
-          if (!key.startsWith('_')) res[key] = formData[key]
+          if (!key.startsWith('_')) res[key] = formDesc[key]
           return res
         }, {})
 
-        acc[field] = formData
+        acc[field] = formDesc
         return acc
       }, {})
     },
@@ -111,24 +111,13 @@ export default {
 
       return this.tpl
         .replace('%1', htmlFormAttr)
-        .replace('%2', this.serializeObj(this.computedDesc))
+        .replace('%2', this.serializeObj(this.formDesc))
     },
     // 数据
     codeData() {
       return Object.assign({}, this.formAttr, {
-        formDesc: this.computedDesc
+        formDesc: this.formDesc
       })
-    },
-
-    // 将 desc 去除校检
-    computedDesc() {
-      const formDesc = cloneDeep(this.formDesc)
-      for (let key in formDesc) {
-        if (formDesc[key].required) {
-          delete formDesc[key].required
-        }
-      }
-      return formDesc
     }
   },
   data() {
