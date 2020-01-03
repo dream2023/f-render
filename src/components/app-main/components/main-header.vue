@@ -10,6 +10,9 @@
     <el-button @click="isShowCode = true" icon="el-icon-tickets" type="text"
       >生成代码</el-button
     >
+    <el-button @click="clearList" icon="el-icon-delete" type="text"
+      >清空列表</el-button
+    >
     <el-dialog
       :visible.sync="isPreview"
       append-to-body
@@ -57,7 +60,7 @@
 
 <script>
 import tpl from '@/tpl'
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 const serialize = require('serialize-javascript')
 const copy = require('clipboard-copy')
 const cloneDeep = require('lodash.clonedeep')
@@ -138,6 +141,7 @@ export default {
     }
   },
   methods: {
+    ...mapMutations(['clearList']),
     handleCopyData() {
       copy(JSON.stringify(this.codeData))
       this.$message.success('复制成功!')

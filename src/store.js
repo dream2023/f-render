@@ -25,6 +25,11 @@ export default new Vuex.Store({
     updateSelectIndex (state, selectIndex) {
       state.selectIndex = selectIndex
     },
+    // 清空列表
+    clearList (state) {
+      state.list = []
+      state.selectIndex = null
+    },
     // 更新表单属性
     updateFormAttr (state, formAttr) {
       state.formAttr = formAttr
