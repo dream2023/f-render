@@ -1,6 +1,8 @@
 module.exports = {
-  default: {
-    type: 'week',
-    label: '默认值'
+  common: {
+    default: {
+      type: 'week',
+      label: '默认值'
+    }
   }
 }

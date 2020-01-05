@@ -1,6 +1,8 @@
 module.exports = {
-  default: {
-    type: 'color',
-    label: '默认值'
+  common: {
+    default: {
+      type: 'color',
+      label: '默认值'
+    }
   }
 }

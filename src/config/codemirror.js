@@ -1,6 +1,8 @@
 module.exports = {
-  default: {
-    type: 'codemirror',
-    label: '默认值'
+  common: {
+    default: {
+      type: 'codemirror',
+      label: '默认值'
+    }
   }
 }

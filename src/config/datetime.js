@@ -1,6 +1,8 @@
 module.exports = {
-  default: {
-    type: 'datetime',
-    label: '默认值'
+  common: {
+    default: {
+      type: 'datetime',
+      label: '默认值'
+    }
   }
 }

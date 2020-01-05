@@ -1,6 +1,8 @@
 module.exports = {
-  default: {
-    type: 'rate',
-    label: '默认值'
+  common: {
+    default: {
+      type: 'rate',
+      label: '默认值'
+    }
   }
 }

@@ -15,13 +15,14 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import configList from '@/config'
 
 export default {
   name: 'AppFormItemAttr',
   computed: {
     ...mapGetters(['currentFormItem']),
     formDesc() {
-      const customConfig = require(`@/config/${this.currentFormItem.type}.js`)
+      const customConfig = configList[this.currentFormItem.type].common || {}
       return Object.assign({}, this.commonConfig, customConfig)
     }
   },

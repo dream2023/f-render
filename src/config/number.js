@@ -1,6 +1,8 @@
 module.exports = {
-  default: {
-    type: 'number',
-    label: '默认值'
+  common: {
+    default: {
+      type: 'number',
+      label: '默认值'
+    }
   }
 }

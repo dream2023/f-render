@@ -44,7 +44,7 @@
     "eslint-plugin-vue": "^5.0.0",
     "lint-staged": "^8.1.5",
     "mockjs": "^1.1.0",
-    "vue-ele-form": "^0.6.12",
+    "vue-ele-form": "^0.6.13",
     "vue-template-compiler": "^2.6.10"
   },
   "gitHooks": {

@@ -1,6 +1,8 @@
 module.exports = {
-  default: {
-    type: 'switch',
-    label: '默认值'
+  common: {
+    default: {
+      type: 'switch',
+      label: '默认值'
+    }
   }
 }

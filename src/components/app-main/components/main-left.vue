@@ -28,6 +28,7 @@
 <script>
 import draggable from 'vuedraggable'
 import comps from '@/comps'
+import configList from '@/config'
 
 export default {
   name: 'AppType',
@@ -51,7 +52,7 @@ export default {
 
       // 获取配置
       try {
-        const config = require(`@/config/${type}.js`)
+        const config = configList[type].common || {}
         const configData = Object.keys(config).reduce((acc, key) => {
           acc[key] = config[key]['default'] || null
           return acc

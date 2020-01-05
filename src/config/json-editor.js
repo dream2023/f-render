@@ -1,6 +1,8 @@
 module.exports = {
-  default: {
-    type: 'json-editor',
-    label: '默认值'
+  common: {
+    default: {
+      type: 'json-editor',
+      label: '默认值'
+    }
   }
 }

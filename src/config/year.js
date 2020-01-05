@@ -1,6 +1,8 @@
 module.exports = {
-  default: {
-    type: 'year',
-    label: '默认值'
+  common: {
+    default: {
+      type: 'year',
+      label: '默认值'
+    }
   }
 }
