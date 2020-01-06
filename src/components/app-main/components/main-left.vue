@@ -29,6 +29,7 @@
 import draggable from 'vuedraggable'
 import comps from '@/comps'
 import configList from '@/config'
+import cloneDeep from 'lodash.clonedeep'
 
 export default {
   name: 'AppType',
@@ -47,25 +48,31 @@ export default {
   methods: {
     // 拖拽后的数据
     addFormItem({ label, type }) {
-      // 增加 key
-      const field = 'key_' + Date.now()
-
       // 获取配置
-      try {
-        const config = configList[type].common || {}
-        const configData = Object.keys(config).reduce((acc, key) => {
-          acc[key] = config[key]['default'] || null
-          return acc
-        }, {})
-        return Object.assign(
-          {},
-          this.commonData,
-          { label, type, field },
-          configData
-        )
-      } catch {
-        this.$message.error('请到config目录下添加相关配置')
-      }
+      // 关于 `attrsData` 和 `attrsDefaultData`, 及 `commonData` 和 `commonDefaultData` 的解释请看 src/config/README.md
+      const {
+        attrsData = {},
+        attrsDefaultData = {},
+        commonData = {},
+        commonDefaultData = {}
+      } = configList[type] || {}
+
+      return Object.assign(
+        {},
+        this.commonData,
+        cloneDeep(commonDefaultData),
+        cloneDeep(commonData),
+        {
+          field: 'key_' + Date.now(),
+          label,
+          type,
+          // 组件属性
+          attrs: {
+            ...cloneDeep(attrsDefaultData),
+            ...cloneDeep(attrsData)
+          }
+        }
+      )
     }
   }
 }

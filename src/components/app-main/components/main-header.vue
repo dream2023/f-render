@@ -60,6 +60,7 @@
 
 <script>
 import tpl from '@/tpl'
+import configList from '@/config'
 import { mapState, mapMutations } from 'vuex'
 const serialize = require('serialize-javascript')
 const copy = require('clipboard-copy')
@@ -72,26 +73,27 @@ export default {
     formDesc() {
       const list = cloneDeep(this.list)
       // 将数组转为对象, 并删除无用的属性
-      // 例如: [ {filed: 'name', label: '姓名', default: undefined }, [{filed: 'age', label: '年龄', default: 18}] ] => {name: {label: '姓名'}, age: {label: '年龄', default: 18}}
       return list.reduce((acc, formDesc) => {
-        const field = formDesc['field']
-        // 删除字段属性
-        delete formDesc['field']
-
         // 判断默认值, 如果默认值不存在, 则删除此属性(无需展示)
-        if (formDesc.default === null || formDesc.default === undefined) {
-          delete formDesc.default
+        const { commonDefaultData = {}, attrsDefaultData = {} } =
+          configList[formDesc.type] || {}
+        formDesc = this.deleteDefeaultProperty(formDesc, {
+          ...commonDefaultData,
+          ...this.commonData
+        })
+
+        // 组件自身属性
+        formDesc.attrs = this.deleteDefeaultProperty(
+          formDesc.attrs,
+          attrsDefaultData
+        )
+        if (Object.keys(formDesc.attrs).length === 0) {
+          delete formDesc.attrs
         }
 
-        // 判断布局, layout默认是24, 如果未改变, 则删除此属性(无需展示)
-        if (formDesc.layout === 24) delete formDesc.layout
-
-        // 删除私有属性
-        formDesc = Object.keys(formDesc).reduce((res, key) => {
-          // _vif, _vshow等
-          if (!key.startsWith('_')) res[key] = formDesc[key]
-          return res
-        }, {})
+        // 删除字段属性
+        const field = formDesc['field']
+        delete formDesc['field']
 
         acc[field] = formDesc
         return acc
@@ -103,7 +105,10 @@ export default {
       // 拼接ele-form属性
       if (formAttrEntries.length) {
         htmlFormAttr = formAttrEntries.reduce((acc, val) => {
-          acc.push(`:${val[0]}="${val[1]}"`)
+          // 如果是字符串则不加:, 其它类型则加 :
+          acc.push(
+            (typeof val[1] === 'string' ? '' : ':') + `${val[0]}="${val[1]}"`
+          )
           return acc
         }, [])
         htmlFormAttr = htmlFormAttr.join('\n    ') + '\n    '
@@ -124,12 +129,29 @@ export default {
     return {
       tpl: tpl,
       formData: {},
+      commonData: {
+        layout: 24
+      },
       isShowData: false,
       isShowCode: false,
       isPreview: false
     }
   },
   methods: {
+    deleteDefeaultProperty(obj, deleteObj) {
+      obj = cloneDeep(obj)
+      for (let key in obj) {
+        // 删除默认值
+        if (obj[key] === deleteObj[key]) {
+          delete obj[key]
+        }
+
+        if (obj[key] === undefined || obj[key] === null) {
+          delete obj[key]
+        }
+      }
+      return obj
+    },
     ...mapMutations(['clearList']),
     handleCopyData() {
       copy(JSON.stringify(this.codeData))
@@ -140,6 +162,7 @@ export default {
       this.$message.success('复制成功!')
     },
     handleRequest(data) {
+      // eslint-disable-next-line no-console
       console.log(data)
       return Promise.resolve()
     },

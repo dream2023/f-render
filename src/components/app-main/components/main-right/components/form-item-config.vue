@@ -1,16 +1,14 @@
 <template>
-  <div>
-    <ele-form
-      :formData="currentFormItem"
-      :formDesc="formDesc"
-      :isShowBackBtn="false"
-      :isShowSubmitBtn="false"
-      :rules="rules"
-      :span="20"
-      labelPosition="top"
-      v-if="currentFormItem"
-    ></ele-form>
-  </div>
+  <ele-form
+    :formData="currentFormItem"
+    :formDesc="formDesc"
+    :isShowBackBtn="false"
+    :isShowSubmitBtn="false"
+    :rules="rules"
+    :span="20"
+    labelPosition="top"
+    v-if="currentFormItem"
+  ></ele-form>
 </template>
 
 <script>
@@ -18,7 +16,7 @@ import { mapGetters } from 'vuex'
 import configList from '@/config'
 
 export default {
-  name: 'AppFormItemAttr',
+  name: 'AppFormItemConfig',
   computed: {
     ...mapGetters(['currentFormItem']),
     formDesc() {

@@ -1,5 +1,8 @@
 module.exports = {
-  common: {
-
-  }
+  attrs: {},
+  attrsData: {},
+  attrsDefaultData: {},
+  common: {},
+  commonData: {},
+  commonDefaultData: {}
 }

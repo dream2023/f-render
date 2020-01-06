@@ -14,7 +14,7 @@ import { mapMutations } from 'vuex'
 const cloneDeep = require('lodash.clonedeep')
 
 export default {
-  name: 'AppFormAttr',
+  name: 'AppFormConfig',
   data() {
     return {
       formDesc: {

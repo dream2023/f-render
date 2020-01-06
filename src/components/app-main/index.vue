@@ -54,7 +54,7 @@ export default {
 }
 
 .app-main-right {
-  width: 280px;
+  width: 300px;
   margin-top: 21px;
   overflow: scroll;
 }
