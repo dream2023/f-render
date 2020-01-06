@@ -8,11 +8,12 @@
     :span="20"
     labelPosition="top"
     v-if="currentFormItem"
-  ></ele-form>
+  />
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+import { changeFormLabel } from '@/tool.js'
 import configList from '@/config'
 
 export default {
@@ -21,7 +22,8 @@ export default {
     ...mapGetters(['currentFormItem']),
     formDesc() {
       const customConfig = configList[this.currentFormItem.type].common || {}
-      return Object.assign({}, this.commonConfig, customConfig)
+      const formDesc = Object.assign({}, this.commonConfig, customConfig)
+      return changeFormLabel(formDesc)
     }
   },
   data() {
@@ -30,7 +32,7 @@ export default {
       commonConfig: {
         field: {
           type: 'input',
-          label: '数据字段'
+          label: '字段名'
         },
         label: {
           type: 'input',

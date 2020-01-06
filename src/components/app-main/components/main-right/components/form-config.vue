@@ -1,7 +1,7 @@
 <template>
   <ele-form
     :form-data="formData"
-    :form-desc="formDesc"
+    :form-desc="computedFormDesc"
     :isShowBackBtn="false"
     :isShowSubmitBtn="false"
     :span="20"
@@ -11,6 +11,7 @@
 
 <script>
 import { mapMutations } from 'vuex'
+import { changeFormLabel } from '@/tool.js'
 const cloneDeep = require('lodash.clonedeep')
 
 export default {
@@ -163,6 +164,11 @@ export default {
         this.updateFormAttr(data)
       },
       deep: true
+    }
+  },
+  computed: {
+    computedFormDesc() {
+      return changeFormLabel(this.formDesc)
     }
   },
   methods: {

@@ -75,8 +75,11 @@ export default {
       // 将数组转为对象, 并删除无用的属性
       return list.reduce((acc, formDesc) => {
         // 判断默认值, 如果默认值不存在, 则删除此属性(无需展示)
-        const { commonDefaultData = {}, attrsDefaultData = {} } =
-          configList[formDesc.type] || {}
+        const {
+          commonDefaultData = {},
+          attrsDefaultData = {},
+          assistProperty = []
+        } = configList[formDesc.type] || {}
         formDesc = this.deleteDefeaultProperty(formDesc, {
           ...commonDefaultData,
           ...this.commonData
@@ -85,7 +88,8 @@ export default {
         // 组件自身属性
         formDesc.attrs = this.deleteDefeaultProperty(
           formDesc.attrs,
-          attrsDefaultData
+          attrsDefaultData,
+          assistProperty
         )
         if (Object.keys(formDesc.attrs).length === 0) {
           delete formDesc.attrs
@@ -138,7 +142,7 @@ export default {
     }
   },
   methods: {
-    deleteDefeaultProperty(obj, deleteObj) {
+    deleteDefeaultProperty(obj, deleteObj = {}, assistProperty = []) {
       obj = cloneDeep(obj)
       for (let key in obj) {
         // 删除默认值
@@ -146,7 +150,13 @@ export default {
           delete obj[key]
         }
 
+        // 删除无值的
         if (obj[key] === undefined || obj[key] === null) {
+          delete obj[key]
+        }
+
+        // 删除辅助列
+        if (assistProperty.includes(key)) {
           delete obj[key]
         }
       }

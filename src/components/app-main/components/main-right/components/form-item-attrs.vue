@@ -1,20 +1,19 @@
 <template>
-  <div>
-    <ele-form
-      :formData="currentFormItem.attrs"
-      :formDesc="formDesc"
-      :isShowBackBtn="false"
-      :isShowSubmitBtn="false"
-      :span="20"
-      labelPosition="top"
-      v-if="isShow"
-    ></ele-form>
-  </div>
+  <ele-form
+    :formData="currentFormItem.attrs"
+    :formDesc="formDesc"
+    :isShowBackBtn="false"
+    :isShowSubmitBtn="false"
+    :span="20"
+    labelPosition="top"
+    v-if="isShow"
+  ></ele-form>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
 import configList from '@/config'
+import { changeFormLabel } from '@/tool.js'
 
 export default {
   name: 'AppFormItemAttrs',
@@ -24,7 +23,9 @@ export default {
       return this.currentFormItem && this.currentFormItem.attrs
     },
     formDesc() {
-      return configList[this.currentFormItem.type].attrs || {}
+      const config = configList[this.currentFormItem.type]
+      const formDesc = config.attrs || {}
+      return changeFormLabel(formDesc, config.assistProperty)
     }
   }
 }
