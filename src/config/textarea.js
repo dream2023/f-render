@@ -12,28 +12,19 @@ module.exports = {
       label: '输入框行'
     },
     autosizeType: {
-      type: 'select',
-      label: '是否自适应内容高度',
+      type: 'radio',
+      label: '自适应内容高度值类型',
       options: [
-        { text: '默认', value: null },
-        { text: '自适应', value: 1 },
-        { text: '最大最小值', value: 2 }
+        { text: '自适应', value: 'switch' },
+        { text: '最大最小值', value: 'json-editor' }
       ]
     },
     autosize: {
-      type: 'switch',
-      label: '是否开启自适应内容高度',
-      vif: (data) => data.autosizeType === 1
-    },
-    minRows: {
-      type: 'number',
-      label: '最小行数',
-      vif: (data) => data.autosizeType === 2
-    },
-    maxRows: {
-      type: 'number',
-      label: '最大行数',
-      vif: (data) => data.autosizeType === 2
+      type: data => data.autosizeType,
+      label: '自适应内容高度配置',
+      attrs: {
+        height: '200px'
+      }
     },
     resize: {
       type: 'select',
@@ -74,6 +65,7 @@ module.exports = {
   assistProperty: ['autosizeType'],
   attrsDefaultData: {
     rows: 2,
+    autosizeType: 'switch',
     autosize: false,
     showWordLimit: false,
     clearable: false

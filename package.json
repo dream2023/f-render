@@ -20,6 +20,7 @@
     "secure-ls": "^1.2.6",
     "serialize-javascript": "^2.1.2",
     "vue": "^2.6.10",
+    "vue-ele-form": "^0.6.15",
     "vue-ele-form-bmap": "^0.1.0",
     "vue-ele-form-codemirror": "^0.1.0",
     "vue-ele-form-gallery": "^0.1.1",
@@ -44,7 +45,6 @@
     "eslint-plugin-vue": "^5.0.0",
     "lint-staged": "^8.1.5",
     "mockjs": "^1.1.0",
-    "vue-ele-form": "^0.6.13",
     "vue-template-compiler": "^2.6.10"
   },
   "gitHooks": {
