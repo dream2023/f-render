@@ -1,7 +1,19 @@
-module.exports = {
-  attrs: {},
+export default {
+  attrs: {
+    textColor: {
+      type: 'color',
+      label: '按钮形式的 Radio 激活时的文本颜色'
+    },
+    fill: {
+      type: 'color',
+      label: '按钮形式的 Radio 激活时的填充色和边框色'
+    }
+  },
   attrsData: {},
-  attrsDefaultData: {},
+  attrsDefaultData: {
+    textColor: '#ffffff',
+    fill: '#409EFF'
+  },
   common: {
     options: {
       type: 'json-editor',

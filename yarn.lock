@@ -5526,6 +5526,11 @@ lodash.defaultsdeep@^4.6.1:
   resolved "https://registry.npm.taobao.org/lodash.defaultsdeep/download/lodash.defaultsdeep-4.6.1.tgz#512e9bd721d272d94e3d3a63653fa17516741ca6"
   integrity sha1-US6b1yHSctlOPTpjZT+hdRZ0HKY=
 
+lodash.isequal@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.npm.taobao.org/lodash.isequal/download/lodash.isequal-4.5.0.tgz#415c4478f2bcc30120c22ce10ed3226f7d3e18e0"
+  integrity sha1-QVxEePK8wwEgwizhDtMib30+GOA=
+
 lodash.kebabcase@^4.1.1:
   version "4.1.1"
   resolved "https://registry.npm.taobao.org/lodash.kebabcase/download/lodash.kebabcase-4.1.1.tgz#8489b1cb0d29ff88195cceca448ff6d6cc295c36"
@@ -9124,10 +9129,10 @@ vue-ele-form-video-uploader@^0.1.3:
   dependencies:
     vue-ele-upload-video "^2.0.5"
 
-vue-ele-form@^0.6.15:
-  version "0.6.15"
-  resolved "https://registry.npm.taobao.org/vue-ele-form/download/vue-ele-form-0.6.15.tgz?cache=0&sync_timestamp=1578405371418&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fvue-ele-form%2Fdownload%2Fvue-ele-form-0.6.15.tgz#8025a41ec40280bcd601575cf06605aeb7328125"
-  integrity sha1-gCWkHsQCgLzWAVdc8GYFrrcygSU=
+vue-ele-form@^0.6.16:
+  version "0.6.16"
+  resolved "https://registry.npm.taobao.org/vue-ele-form/download/vue-ele-form-0.6.16.tgz#60709fd2ae63e41e2f6681fdd7f4227e38289e76"
+  integrity sha1-YHCf0q5j5B4vZoH91/QifjgonnY=
   dependencies:
     dayjs "^1.8.15"
     lodash.clonedeep "^4.5.0"

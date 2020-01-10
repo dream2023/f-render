@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   attrs: {
     type: {
       type: 'input',
@@ -32,13 +32,6 @@ module.exports = {
       type: 'switch',
       label: '是否可清空'
     },
-    maxlength: {
-      type: 'input',
-      label: '最大输入长度',
-      attrs: {
-        type: 'number'
-      }
-    },
     minlength: {
       type: 'input',
       label: '最小输入长度',
@@ -46,17 +39,22 @@ module.exports = {
         type: 'number'
       }
     },
+    maxlength: {
+      type: 'input',
+      label: '最大输入长度',
+      attrs: {
+        type: 'number'
+      }
+    },
     showWordLimit: {
       type: 'switch',
+      vif: data => data.minlength || data.maxlength,
       label: '是否显示输入字数统计'
     },
     size: {
       type: 'select',
       label: '输入框尺寸',
-      options: ['medium', 'small', 'mini'],
-      attrs: {
-        clearable: true
-      }
+      options: [{ text: '默认', value: null }, 'medium', 'small', 'mini']
     },
     max: {
       type: 'input',
@@ -102,6 +100,7 @@ module.exports = {
   },
   attrsData: {},
   attrsDefaultData: {
+    size: null,
     type: 'text',
     showWordLimit: false,
     clearable: false,

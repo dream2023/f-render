@@ -65,6 +65,7 @@ import { mapState, mapMutations } from 'vuex'
 const serialize = require('serialize-javascript')
 const copy = require('clipboard-copy')
 const cloneDeep = require('lodash.clonedeep')
+const isEqual = require('lodash.isequal')
 
 export default {
   name: 'AppMainHeader',
@@ -78,8 +79,10 @@ export default {
         const {
           commonDefaultData = {},
           attrsDefaultData = {},
-          assistProperty = []
+          assistProperty = [],
+          attrs = {}
         } = configList[formDesc.type] || {}
+
         formDesc = this.deleteDefeaultProperty(formDesc, {
           ...commonDefaultData,
           ...this.commonData
@@ -89,7 +92,8 @@ export default {
         formDesc.attrs = this.deleteDefeaultProperty(
           formDesc.attrs,
           attrsDefaultData,
-          assistProperty
+          assistProperty,
+          attrs
         )
         if (Object.keys(formDesc.attrs).length === 0) {
           delete formDesc.attrs
@@ -142,11 +146,16 @@ export default {
     }
   },
   methods: {
-    deleteDefeaultProperty(obj, deleteObj = {}, assistProperty = []) {
+    deleteDefeaultProperty(
+      obj,
+      defaultObj = {},
+      assistProperty = [],
+      formatterObj = {}
+    ) {
       obj = cloneDeep(obj)
       for (let key in obj) {
         // 删除默认值
-        if (obj[key] === deleteObj[key]) {
+        if (isEqual(obj[key], defaultObj[key])) {
           delete obj[key]
         }
 
@@ -158,6 +167,11 @@ export default {
         // 删除辅助列
         if (assistProperty.includes(key)) {
           delete obj[key]
+        }
+
+        // 对数据格式化
+        if (formatterObj[key] && formatterObj[key].valueFormatter) {
+          obj[key] = formatterObj[key].valueFormatter(obj[key])
         }
       }
       return obj

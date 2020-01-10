@@ -1,15 +1,23 @@
-module.exports = {
-  attrs: {},
+export default {
+  attrs: {
+    min: {
+      type: 'number',
+      label: '可被勾选的 Checkbox 的最小数量'
+    },
+    max: {
+      type: 'number',
+      label: '可被勾选的 Checkbox 的最大数量'
+    }
+  },
   attrsData: {},
-  attrsDefaultData: {},
+  attrsDefaultData: {
+    min: 0,
+    max: 0
+  },
   common: {
     default: {
       type: 'json-editor',
-      label: '默认值',
-      style: {
-        height: '130px',
-        overflow: 'hidden'
-      }
+      label: '默认值'
     },
     options: {
       type: 'json-editor',

@@ -45,4 +45,14 @@ export default {
 .el-tabs__active-bar {
   height: 1px !important;
 }
+.jsoneditor-container.min-box {
+  height: 200px !important;
+}
+div.jsoneditor-menu {
+  display: none;
+}
+div.jsoneditor-outer.has-main-menu-bar {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
 </style>

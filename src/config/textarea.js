@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   attrs: {
     placeholder: {
       type: 'input',
@@ -38,7 +38,8 @@ module.exports = {
     },
     showWordLimit: {
       type: 'switch',
-      label: '是否显示输入字数统计'
+      label: '是否显示输入字数统计',
+      vif: data => data.minlength || data.maxlength
     },
     clearable: {
       type: 'switch',

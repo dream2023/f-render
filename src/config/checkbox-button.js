@@ -1,15 +1,39 @@
-module.exports = {
-  attrs: {},
+export default {
+  attrs: {
+    textColor: {
+      type: 'color',
+      label: 'Checkbox 激活时的文本颜色'
+    },
+    fill: {
+      type: 'color',
+      label: 'Checkbox 激活时的填充色和边框色'
+    },
+    size: {
+      type: 'select',
+      label: '多选框组尺寸',
+      options: [{ text: '默认', value: null }, 'medium', 'small', 'mini']
+    },
+    min: {
+      type: 'number',
+      label: '可被勾选的 Checkbox 的最小数量'
+    },
+    max: {
+      type: 'number',
+      label: '可被勾选的 Checkbox 的最大数量'
+    }
+  },
   attrsData: {},
-  attrsDefaultData: {},
+  attrsDefaultData: {
+    size: null,
+    min: 0,
+    max: 0,
+    textColor: '#ffffff',
+    fill: '#409EFF'
+  },
   common: {
     default: {
       type: 'json-editor',
-      label: '默认值',
-      style: {
-        height: '130px',
-        overflow: 'hidden'
-      }
+      label: '默认值'
     },
     options: {
       type: 'json-editor',
