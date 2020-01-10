@@ -9129,10 +9129,10 @@ vue-ele-form-video-uploader@^0.1.3:
   dependencies:
     vue-ele-upload-video "^2.0.5"
 
-vue-ele-form@^0.6.16:
-  version "0.6.16"
-  resolved "https://registry.npm.taobao.org/vue-ele-form/download/vue-ele-form-0.6.16.tgz#60709fd2ae63e41e2f6681fdd7f4227e38289e76"
-  integrity sha1-YHCf0q5j5B4vZoH91/QifjgonnY=
+vue-ele-form@^0.6.18:
+  version "0.6.18"
+  resolved "https://registry.npm.taobao.org/vue-ele-form/download/vue-ele-form-0.6.18.tgz#d1e8283568da9668a0dd9e034fa3966660b95f9c"
+  integrity sha1-0egoNWjalmig3Z4DT6OWZmC5X5w=
   dependencies:
     dayjs "^1.8.15"
     lodash.clonedeep "^4.5.0"

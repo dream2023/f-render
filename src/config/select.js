@@ -18,7 +18,8 @@ export default {
     },
     size: {
       type: 'select',
-      label: '输入框尺寸'
+      label: '输入框尺寸',
+      options: [{ text: '默认', value: null }, 'medium', 'small', 'mini']
     },
     clearable: {
       type: 'switch',
@@ -48,10 +49,6 @@ export default {
       type: 'switch',
       label: '是否为远程搜索'
     },
-    loading: {
-      type: 'switch',
-      label: '是否正在从远程获取数据'
-    },
     loadingText: {
       type: 'input',
       label: '远程加载时显示的文字'
@@ -76,10 +73,6 @@ export default {
       type: 'switch',
       label: '在输入框按下回车，选择第一个匹配项。需配合 filterable 或 remote 使用'
     },
-    name: {
-      type: 'input',
-      label: ''
-    },
     automaticDropdown: {
       type: 'switch',
       label: '对于不可搜索的 Select，是否在输入框获得焦点后自动弹出选项菜单'
@@ -87,8 +80,9 @@ export default {
   },
   attrsData: {},
   attrsDefaultData: {
+    size: null,
     multiple: false,
-    valueKey: false,
+    valueKey: 'value',
     clearable: false,
     collapseTags: false,
     multipleLimit: 0,

@@ -1,18 +1,14 @@
 export default {
   attrs: {
-    textColor: {
-      type: 'color',
-      label: '按钮形式的 Radio 激活时的文本颜色'
-    },
-    fill: {
-      type: 'color',
-      label: '按钮形式的 Radio 激活时的填充色和边框色'
+    size: {
+      type: 'select',
+      label: '单选框组尺寸',
+      options: [{ text: '默认', value: null }, 'medium', 'small', 'mini']
     }
   },
   attrsData: {},
   attrsDefaultData: {
-    textColor: '#ffffff',
-    fill: '#409EFF'
+    size: null
   },
   common: {
     options: {

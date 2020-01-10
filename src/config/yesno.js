@@ -1,7 +1,26 @@
 export default {
-  attrs: {},
+  attrs: {
+    border: {
+      type: 'switch',
+      label: '是否显示边框'
+    },
+    size: {
+      type: 'select',
+      label: 'Checkbox 的尺寸',
+      options: [{ text: '默认', value: null }, 'medium', 'small', 'mini'],
+      vif: data => data.border
+    },
+    indeterminate: {
+      type: 'switch',
+      label: '设置 indeterminate 状态，只负责样式控制'
+    }
+  },
   attrsData: {},
-  attrsDefaultData: {},
+  attrsDefaultData: {
+    border: false,
+    size: null,
+    indeterminate: false
+  },
   common: {
     title: {
       type: 'input',

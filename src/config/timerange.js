@@ -1,17 +1,27 @@
 export default {
   attrs: {
-    type: {
-      type: 'select',
-      label: '显示类型',
-      options: ['year', 'month', 'date', 'week', 'datetime']
-    },
-    placeholder: {
+    startPlaceholder: {
       type: 'input',
-      label: '占位内容'
+      label: '范围选择时开始日期的占位内容'
     },
-    format: {
+    endPlaceholder: {
       type: 'input',
-      label: '显示在输入框中的格式'
+      label: '范围选择时结束日期的占位内容'
+    },
+    rangeSeparator: {
+      type: 'input',
+      label: '选择范围时的分隔符'
+    },
+    arrowControl: {
+      type: 'switch',
+      label: '是否使用箭头进行时间选择'
+    },
+    valueFormat: {
+      type: 'input',
+      label: '绑定值的格式, 不指定则绑定值为 Date 对象',
+      attrs: {
+        clearable: true
+      }
     },
     clearable: {
       type: 'switch',
@@ -26,9 +36,14 @@ export default {
       label: '输入框尺寸',
       options: [{ text: '默认', value: null }, 'medium', 'small', 'mini']
     },
+    align: {
+      type: 'select',
+      label: '对齐方式',
+      options: ['left', 'center', 'right']
+    },
     popperClass: {
       type: 'input',
-      label: 'DatePicker 下拉框的类名'
+      label: 'TimePicker 下拉框的类名'
     },
     pickerOptions: {
       type: 'json-editor',
@@ -49,18 +64,19 @@ export default {
   },
   attrsData: {},
   attrsDefaultData: {
-    type: 'date',
     readonly: false,
     editable: true,
     clearable: true,
+    align: 'left',
     size: null,
     pickerOptions: {},
-    prefixIcon: 'el-icon-date',
+    rangeSeparator: '-',
+    prefixIcon: 'el-icon-time',
     clearIcon: 'el-icon-circle-close'
   },
   common: {
     default: {
-      type: 'date',
+      type: 'timerange',
       label: '默认值'
     }
   },

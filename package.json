@@ -21,7 +21,7 @@
     "secure-ls": "^1.2.6",
     "serialize-javascript": "^2.1.2",
     "vue": "^2.6.10",
-    "vue-ele-form": "^0.6.16",
+    "vue-ele-form": "^0.6.18",
     "vue-ele-form-bmap": "^0.1.0",
     "vue-ele-form-codemirror": "^0.1.0",
     "vue-ele-form-gallery": "^0.1.1",

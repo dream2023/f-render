@@ -2,29 +2,25 @@ export default {
   attrs: {
     size: {
       type: 'select',
-      label: '多选框组尺寸',
+      label: '单选框组尺寸',
       options: [{ text: '默认', value: null }, 'medium', 'small', 'mini']
     },
-    min: {
-      type: 'number',
-      label: '可被勾选的 Checkbox 的最小数量'
+    textColor: {
+      type: 'color',
+      label: 'Radio 激活时的文本颜色'
     },
-    max: {
-      type: 'number',
-      label: '可被勾选的 Checkbox 的最大数量'
+    fill: {
+      type: 'color',
+      label: 'Radio 激活时的填充色和边框色'
     }
   },
   attrsData: {},
   attrsDefaultData: {
     size: null,
-    min: 0,
-    max: 0
+    textColor: '#ffffff',
+    fill: '#409EFF'
   },
   common: {
-    default: {
-      type: 'json-editor',
-      label: '默认值'
-    },
     options: {
       type: 'json-editor',
       label: '选项'
@@ -37,7 +33,5 @@ export default {
       { text: '选项3', value: 3 }
     ]
   },
-  commonDefaultData: {
-    default: []
-  }
+  commonDefaultData: {}
 }

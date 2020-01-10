@@ -39,28 +39,20 @@ export default [
         label: '单选'
       },
       {
+        type: 'radio-button',
+        label: '单选按钮'
+      },
+      {
         type: 'select',
         label: '选择器'
       },
       {
+        type: 'switch',
+        label: '开关'
+      },
+      {
         type: 'date',
         label: '日期'
-      },
-      {
-        type: 'dates',
-        label: '多日期'
-      },
-      {
-        type: 'week',
-        label: '周'
-      },
-      {
-        type: 'month',
-        label: '月'
-      },
-      {
-        type: 'year',
-        label: '年'
       },
       {
         type: 'daterange',
@@ -79,8 +71,24 @@ export default [
         label: '时间'
       },
       {
-        type: 'switch',
-        label: '开关'
+        type: 'timerange',
+        label: '时间范围'
+      },
+      {
+        type: 'dates',
+        label: '多日期'
+      },
+      {
+        type: 'week',
+        label: '周'
+      },
+      {
+        type: 'month',
+        label: '月'
+      },
+      {
+        type: 'year',
+        label: '年'
       },
       {
         type: 'yesno',

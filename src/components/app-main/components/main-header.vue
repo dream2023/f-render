@@ -83,13 +83,13 @@ export default {
           attrs = {}
         } = configList[formDesc.type] || {}
 
-        formDesc = this.deleteDefeaultProperty(formDesc, {
+        formDesc = this.processData(formDesc, {
           ...commonDefaultData,
           ...this.commonData
         })
 
         // 组件自身属性
-        formDesc.attrs = this.deleteDefeaultProperty(
+        formDesc.attrs = this.processData(
           formDesc.attrs,
           attrsDefaultData,
           assistProperty,
@@ -146,12 +146,7 @@ export default {
     }
   },
   methods: {
-    deleteDefeaultProperty(
-      obj,
-      defaultObj = {},
-      assistProperty = [],
-      formatterObj = {}
-    ) {
+    processData(obj, defaultObj = {}, assistProperty = [], formatterObj = {}) {
       obj = cloneDeep(obj)
       for (let key in obj) {
         // 删除默认值
@@ -166,6 +161,11 @@ export default {
 
         // 删除辅助列
         if (assistProperty.includes(key)) {
+          delete obj[key]
+        }
+
+        // 删除私有属性
+        if (key.startsWith('_')) {
           delete obj[key]
         }
 
