@@ -87,6 +87,10 @@ export default [
         label: '月'
       },
       {
+        type: 'monthrange',
+        label: '月范围'
+      },
+      {
         type: 'year',
         label: '年'
       },

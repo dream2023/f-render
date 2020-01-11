@@ -1,5 +1,5 @@
 <template>
-  <el-tabs :stretch="true" v-model="activeTab">
+  <el-tabs class="app-main-right-container" :stretch="true" v-model="activeTab">
     <el-tab-pane label="组件通用配置" name="0">
       <app-form-item-config />
     </el-tab-pane>
@@ -32,26 +32,26 @@ export default {
 </script>
 
 <style>
-.el-tabs__nav-wrap {
+.app-main-right-container .el-tabs__nav-wrap {
   padding: 0 15px;
 }
-.el-tabs__item {
+.app-main-right-container .el-tabs__item {
   padding: 0 10px;
 }
-.el-tabs__nav-wrap::after {
+.app-main-right-container .el-tabs__nav-wrap::after {
   height: 1px !important;
 }
 
-.el-tabs__active-bar {
+.app-main-right-container .el-tabs__active-bar {
   height: 1px !important;
 }
-.jsoneditor-container.min-box {
+.app-main-right-container .jsoneditor-container.min-box {
   height: 200px !important;
 }
-div.jsoneditor-menu {
+.app-main-right-container div.jsoneditor-menu {
   display: none;
 }
-div.jsoneditor-outer.has-main-menu-bar {
+.app-main-right-container div.jsoneditor-outer.has-main-menu-bar {
   margin-top: 0 !important;
   padding-top: 0 !important;
 }

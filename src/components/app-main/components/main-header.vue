@@ -174,6 +174,11 @@ export default {
           obj[key] = formatterObj[key].valueFormatter(obj[key])
         }
       }
+
+      // 有点时候_options会删不到
+      if (obj._options) {
+        delete obj._options
+      }
       return obj
     },
     ...mapMutations(['clearList']),
