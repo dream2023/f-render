@@ -157,6 +157,14 @@ export default [
         label: '树形下拉选择器'
       },
       {
+        type: 'dynamic',
+        label: '动态组件'
+      },
+      {
+        type: 'table-editor',
+        label: '表格内容编辑组件'
+      },
+      {
         type: 'codemirror',
         label: '代码编辑器'
       },

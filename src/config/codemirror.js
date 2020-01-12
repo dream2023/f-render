@@ -1,7 +1,14 @@
 export default {
-  attrs: {},
+  attrs: {
+    options: {
+      type: 'json-editor',
+      label: '配置'
+    }
+  },
   attrsData: {},
-  attrsDefaultData: {},
+  attrsDefaultData: {
+    options: {}
+  },
   common: {
     default: {
       type: 'codemirror',

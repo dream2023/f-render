@@ -1,7 +1,24 @@
 export default {
-  attrs: {},
+  attrs: {
+    height: {
+      type: 'input',
+      label: '高度'
+    },
+    plus: {
+      type: 'switch',
+      label: '是否显示全屏按钮'
+    },
+    options: {
+      type: 'json-editor',
+      label: '配置'
+    }
+  },
   attrsData: {},
-  attrsDefaultData: {},
+  attrsDefaultData: {
+    height: '300px',
+    plus: false,
+    options: {}
+  },
   common: {
     default: {
       type: 'json-editor',

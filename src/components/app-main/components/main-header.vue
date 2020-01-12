@@ -149,6 +149,11 @@ export default {
     processData(obj, defaultObj = {}, assistProperty = [], formatterObj = {}) {
       obj = cloneDeep(obj)
       for (let key in obj) {
+        // 对数据格式化
+        if (formatterObj[key] && formatterObj[key].valueFormatter) {
+          obj[key] = formatterObj[key].valueFormatter(obj[key])
+        }
+
         // 删除默认值
         if (isEqual(obj[key], defaultObj[key])) {
           delete obj[key]
@@ -167,11 +172,6 @@ export default {
         // 删除私有属性
         if (key.startsWith('_')) {
           delete obj[key]
-        }
-
-        // 对数据格式化
-        if (formatterObj[key] && formatterObj[key].valueFormatter) {
-          obj[key] = formatterObj[key].valueFormatter(obj[key])
         }
       }
 

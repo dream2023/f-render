@@ -1,6 +1,6 @@
 {
   "name": "vue-ele-form-generator",
-  "version": "0.1.15",
+  "version": "1.0.0",
   "description": "vue-ele-form-generator是专为vue-ele-form开发的可视化表单设计工具, 让表单开发的效率更上一层楼",
   "private": false,
   "license": "MIT",
@@ -14,6 +14,7 @@
     "url": "https://github.com/dream2023/vue-ele-form-generator"
   },
   "dependencies": {
+    "async-validator": "^3.2.3",
     "clipboard-copy": "^3.1.0",
     "element-ui": "^2.13.0",
     "lodash.clonedeep": "^4.5.0",
@@ -24,11 +25,13 @@
     "vue-ele-form": "^0.6.19",
     "vue-ele-form-bmap": "^0.1.0",
     "vue-ele-form-codemirror": "^0.1.0",
+    "vue-ele-form-dynamic": "^0.1.1",
     "vue-ele-form-gallery": "^0.1.1",
     "vue-ele-form-image-uploader": "^0.1.4",
     "vue-ele-form-json-editor": "^0.1.2",
     "vue-ele-form-markdown-editor": "^0.1.1",
     "vue-ele-form-quill-editor": "^0.1.0",
+    "vue-ele-form-table-editor": "^0.1.2",
     "vue-ele-form-tree-select": "^0.1.1",
     "vue-ele-form-upload-file": "0.0.5",
     "vue-ele-form-video-uploader": "^0.1.3",

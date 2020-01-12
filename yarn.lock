@@ -1572,6 +1572,11 @@ async-limiter@~1.0.0:
   resolved "https://registry.npm.taobao.org/async-limiter/download/async-limiter-1.0.1.tgz#dd379e94f0db8310b08291f9d64c3209766617fd"
   integrity sha1-3TeelPDbgxCwgpH51kwyCXZmF/0=
 
+async-validator@^3.2.0, async-validator@^3.2.3:
+  version "3.2.3"
+  resolved "https://registry.npm.taobao.org/async-validator/download/async-validator-3.2.3.tgz#b38b72f9c08c1d28548df13bb260b6908448ca49"
+  integrity sha1-s4ty+cCMHShUjfE7smC2kIRIykk=
+
 async-validator@~1.8.1:
   version "1.8.5"
   resolved "https://registry.npm.taobao.org/async-validator/download/async-validator-1.8.5.tgz#dc3e08ec1fd0dddb67e60842f02c0cd1cec6d7f0"
@@ -3236,6 +3241,13 @@ ejs@^2.6.1:
   version "2.7.1"
   resolved "https://registry.npm.taobao.org/ejs/download/ejs-2.7.1.tgz?cache=0&sync_timestamp=1567453332151&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fejs%2Fdownload%2Fejs-2.7.1.tgz#5b5ab57f718b79d4aca9254457afecd36fa80228"
   integrity sha1-W1q1f3GLedSsqSVEV6/s02+oAig=
+
+ele-table-editor@^0.4.3:
+  version "0.4.3"
+  resolved "https://registry.npm.taobao.org/ele-table-editor/download/ele-table-editor-0.4.3.tgz#3c4e0ba189baafc29320b7d6409f68eb38c6dc27"
+  integrity sha1-PE4LoYm6r8KTILfWQJ9o6zjG3Cc=
+  dependencies:
+    async-validator "^3.2.0"
 
 electron-to-chromium@^1.3.247:
   version "1.3.277"
@@ -9072,6 +9084,13 @@ vue-ele-form-codemirror@^0.1.0:
   dependencies:
     vue-codemirror "^4.0.6"
 
+vue-ele-form-dynamic@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.npm.taobao.org/vue-ele-form-dynamic/download/vue-ele-form-dynamic-0.1.1.tgz#68fbfd25e69c0919dfcf73237238027d3d8e9cd0"
+  integrity sha1-aPv9JeacCRnfz3MjcjgCfT2OnNA=
+  dependencies:
+    async-validator "^3.2.0"
+
 vue-ele-form-gallery@^0.1.1:
   version "0.1.1"
   resolved "https://registry.npm.taobao.org/vue-ele-form-gallery/download/vue-ele-form-gallery-0.1.1.tgz#fa5835f7503f9cb9d9c9fa59c0ae41ff1e6b166f"
@@ -9107,6 +9126,13 @@ vue-ele-form-quill-editor@^0.1.0:
   dependencies:
     bc-quill-image-resize-module "^3.0.0"
     vue2-editor "^2.9.1"
+
+vue-ele-form-table-editor@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.npm.taobao.org/vue-ele-form-table-editor/download/vue-ele-form-table-editor-0.1.2.tgz?cache=0&sync_timestamp=1578813993057&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fvue-ele-form-table-editor%2Fdownload%2Fvue-ele-form-table-editor-0.1.2.tgz#7ad5dee84a3a11e03af6157b0f5cd0c7e626213e"
+  integrity sha1-etXe6Eo6EeA69hV7D1zQx+YmIT4=
+  dependencies:
+    ele-table-editor "^0.4.3"
 
 vue-ele-form-tree-select@^0.1.1:
   version "0.1.1"
