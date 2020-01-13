@@ -5,15 +5,28 @@
   "private": false,
   "license": "MIT",
   "scripts": {
+    "start": "node bin/fgen",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint --mode production"
+    "lint": "vue-cli-service lint --mode production",
+    "pubs": "yarn build && npm publish --registry http://registry.npmjs.org && git push --follow-tags origin master"
+  },
+  "bin": {
+    "fgen": "./bin/fgen"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/dream2023/vue-ele-form-generator"
   },
+  "keywords": [
+    "vue-ele-form",
+    "vue-ele-form-generator",
+    "form-schema",
+    "vue-form"
+  ],
+  "homepage": "https://vue-ele-form-generator.netlify.com/",
   "dependencies": {
+    "anywhere": "^1.5.0",
     "async-validator": "^3.2.3",
     "clipboard-copy": "^3.1.0",
     "element-ui": "^2.13.0",
@@ -21,6 +34,7 @@
     "lodash.isequal": "^4.5.0",
     "secure-ls": "^1.2.6",
     "serialize-javascript": "^2.1.2",
+    "shelljs": "^0.8.3",
     "vue": "^2.6.10",
     "vue-ele-form": "^0.6.19",
     "vue-ele-form-bmap": "^0.1.0",
