@@ -38,10 +38,6 @@ export default {
           type: 'input',
           label: '标签'
         },
-        default: {
-          type: 'input',
-          label: '默认值'
-        },
         layout: {
           type: 'slider',
           label: '宽度',
@@ -52,6 +48,10 @@ export default {
               return `${val} / 24`
             }
           }
+        },
+        default: {
+          type: 'input',
+          label: '默认值'
         },
         required: {
           type: 'yesno',
