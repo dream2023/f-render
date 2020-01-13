@@ -42,7 +42,7 @@ export default {
 }
 
 .app-main-left {
-  width: 280px;
+  width: 300px;
   overflow: scroll;
 }
 
@@ -54,7 +54,7 @@ export default {
 }
 
 .app-main-right {
-  width: 300px;
+  width: 315px;
   margin-top: 21px;
   overflow: scroll;
 }
