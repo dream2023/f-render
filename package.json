@@ -9,7 +9,8 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint --mode production",
-    "pubs": "yarn build && npm publish --registry http://registry.npmjs.org && git push --follow-tags origin master"
+    "release": "standard-version",
+    "pubs": "yarn build && yarn release && npm publish --registry http://registry.npmjs.org && git push --follow-tags origin master"
   },
   "bin": {
     "fgen": "./bin/fgen"
@@ -36,6 +37,8 @@
     "async-validator": "^3.2.3",
     "babel-eslint": "^10.0.1",
     "clipboard-copy": "^3.1.0",
+    "commitizen": "^4.0.3",
+    "cz-conventional-changelog": "^3.0.2",
     "element-ui": "^2.13.0",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
@@ -45,6 +48,7 @@
     "mockjs": "^1.1.0",
     "secure-ls": "^1.2.6",
     "serialize-javascript": "^2.1.2",
+    "standard-version": "^7.0.1",
     "vue": "^2.6.10",
     "vue-ele-form": "^0.6.19",
     "vue-ele-form-bmap": "^0.1.0",
@@ -63,6 +67,11 @@
     "vuedraggable": "^2.23.0",
     "vuex": "^3.1.2",
     "vuex-persistedstate": "^2.7.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog"
+    }
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
