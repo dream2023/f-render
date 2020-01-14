@@ -10,7 +10,34 @@ export default new Vuex.Store({
     // 表单属性
     formAttr: {},
     // 表单项列表
-    list: [],
+    list: [
+      {
+        field: 'name',
+        type: 'input',
+        label: '姓名(示例)',
+        layout: 12,
+        required: true,
+        attrs: {}
+      },
+      {
+        field: 'age',
+        type: 'input',
+        label: '年龄(示例)',
+        layout: 12,
+        required: true,
+        attrs: {
+          type: 'number',
+          min: 10
+        }
+      },
+      {
+        field: 'description',
+        type: 'quill-editor',
+        label: '介绍',
+        layout: 24,
+        attrs: {}
+      }
+    ],
     // 当前表单项索引
     selectIndex: null
   },
