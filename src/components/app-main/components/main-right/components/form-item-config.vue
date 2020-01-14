@@ -1,14 +1,19 @@
 <template>
-  <ele-form
-    :formData="currentFormItem"
-    :formDesc="formDesc"
-    :isShowBackBtn="false"
-    :isShowSubmitBtn="false"
-    :rules="rules"
-    :span="20"
-    labelPosition="top"
-    v-if="currentFormItem"
-  />
+  <div>
+    <ele-form
+      :formData="currentFormItem"
+      :formDesc="formDesc"
+      :isShowBackBtn="false"
+      :isShowSubmitBtn="false"
+      :rules="rules"
+      :span="20"
+      labelPosition="top"
+      v-if="currentFormItem"
+    />
+    <div class="form-item-placeholder" v-else>
+      从左侧拖拽添加表单项并点选
+    </div>
+  </div>
 </template>
 
 <script>

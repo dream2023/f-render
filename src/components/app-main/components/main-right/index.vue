@@ -32,6 +32,13 @@ export default {
 </script>
 
 <style>
+.form-item-placeholder {
+  height: 300px;
+  line-height: 300px;
+  color: #909399;
+  text-align: center;
+}
+
 .app-main-right-container .el-tabs__nav-wrap {
   padding: 0 15px;
 }
