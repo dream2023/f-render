@@ -134,7 +134,7 @@ export default [
     ]
   },
   {
-    title: '扩展组件',
+    title: '扩展组件(需安装)',
     comps: [
       {
         type: 'image-uploader',
