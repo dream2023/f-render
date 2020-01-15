@@ -1,4 +1,5 @@
 export default {
+  url: 'https://element.eleme.cn/#/zh-CN/component/checkbox#an-niu-yang-shi',
   attrs: {
     textColor: {
       type: 'color',

@@ -1,4 +1,5 @@
 export default {
+  url: 'https://element.eleme.cn/#/zh-CN/component/time-picker#ren-yi-shi-jian-fan-wei',
   attrs: {
     startPlaceholder: {
       type: 'input',

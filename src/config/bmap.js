@@ -1,4 +1,5 @@
 export default {
+  url: 'https://github.com/dream2023/vue-ele-form-bmap',
   attrs: {
     ak: {
       type: 'input',

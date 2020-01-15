@@ -1,4 +1,5 @@
 export default {
+  url: 'https://github.com/dream2023/vue-ele-form-upload-file',
   attrs: {
     action: {
       type: 'input',

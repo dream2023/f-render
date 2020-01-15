@@ -1,4 +1,5 @@
 export default {
+  url: 'https://element.eleme.cn/#/zh-CN/component/select',
   attrs: {
     placeholder: {
       type: 'input',

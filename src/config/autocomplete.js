@@ -1,4 +1,5 @@
 export default {
+  url: 'https://element.eleme.cn/#/zh-CN/component/input#dai-shu-ru-jian-yi',
   attrs: {
     placeholder: {
       type: 'input',

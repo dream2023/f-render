@@ -1,4 +1,5 @@
 export default {
+  url: 'https://element.eleme.cn/#/zh-CN/component/radio#an-niu-yang-shi',
   attrs: {
     size: {
       type: 'select',

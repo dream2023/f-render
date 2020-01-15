@@ -1,4 +1,5 @@
 export default {
+  url: 'https://element.eleme.cn/#/zh-CN/component/date-picker#xuan-ze-ri-qi-fan-wei',
   attrs: {
     type: {
       type: 'select',

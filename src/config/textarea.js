@@ -1,4 +1,5 @@
 export default {
+  url: 'https://element.eleme.cn/#/zh-CN/component/input#wen-ben-yu',
   attrs: {
     placeholder: {
       type: 'input',

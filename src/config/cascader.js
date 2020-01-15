@@ -1,4 +1,5 @@
 export default {
+  url: 'https://element.eleme.cn/#/zh-CN/component/cascader',
   attrs: {
     props: {
       type: 'json-editor',

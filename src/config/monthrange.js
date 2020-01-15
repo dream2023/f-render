@@ -1,4 +1,5 @@
 export default {
+  url: 'https://element.eleme.cn/#/zh-CN/component/date-picker#xuan-ze-yue-fen-fan-wei',
   attrs: {
     startPlaceholder: {
       type: 'input',

@@ -1,4 +1,5 @@
 export default {
+  url: 'https://element.eleme.cn/#/zh-CN/component/button',
   attrs: {
     size: {
       type: 'select',
