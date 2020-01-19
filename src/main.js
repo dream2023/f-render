@@ -2,8 +2,10 @@ import Vue from 'vue'
 import App from './App.vue'
 import EleForm from 'vue-ele-form'
 import ElementUI from 'element-ui'
-import './extend.js'
+import 'element-ui/lib/theme-chalk/index.css'
+import 'normalize.css'
 import store from './store'
+import './extend'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)

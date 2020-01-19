@@ -6,8 +6,9 @@
   "license": "MIT",
   "scripts": {
     "start": "node bin/fgen",
-    "serve": "vue-cli-service serve",
+    "serve": "vue-cli-service serve --mode web.dev",
     "build": "vue-cli-service build",
+    "build:web": "vue-cli-service build --mode web.prod",
     "lint": "vue-cli-service lint --mode production",
     "release": "standard-version",
     "pubs": "yarn build && yarn release && npm publish --registry http://registry.npmjs.org && git push --follow-tags origin master"
@@ -38,6 +39,7 @@
     "babel-eslint": "^10.0.1",
     "clipboard-copy": "^3.1.0",
     "commitizen": "^4.0.3",
+    "core-js": "2.6.5",
     "cz-conventional-changelog": "^3.0.2",
     "element-ui": "^2.13.0",
     "eslint": "^5.16.0",
@@ -46,6 +48,7 @@
     "lodash.clonedeep": "^4.5.0",
     "lodash.isequal": "^4.5.0",
     "mockjs": "^1.1.0",
+    "normalize.css": "^8.0.1",
     "secure-ls": "^1.2.6",
     "serialize-javascript": "^2.1.2",
     "standard-version": "^7.0.1",
