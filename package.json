@@ -27,7 +27,10 @@
   ],
   "homepage": "https://vue-ele-form-generator.netlify.com/",
   "dependencies": {
-    "serve-handler": "^6.1.2"
+    "chalk": "^3.0.0",
+    "commander": "^4.1.0",
+    "serve-handler": "^6.1.2",
+    "update-notifier": "^4.0.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.9.0",

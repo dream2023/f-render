@@ -1,10 +1,25 @@
 const exec = require('child_process').exec
-const argv = process.argv.slice(2)
-const port = argv[1] || '54321'
+const program = require('commander')
 const handler = require('serve-handler')
 const http = require('http')
 const path = require('path')
+const chalk = require('chalk')
 const spawn = require('child_process').spawn
+const updateNotifier = require('update-notifier')
+const pkg = require('./package.json')
+
+// 检查更新
+function updateCheck () {
+  const notifier = updateNotifier({ pkg })
+  const message = []
+
+  if (notifier.update) {
+    message.push('Update available: ' + chalk.green.bold(notifier.update.latest) + chalk.gray(' (current: ' + notifier.update.current + ')'))
+    message.push('Run ' + chalk.magenta('npm install -g ' + pkg.name) + ' to update.')
+    console.log(message.join(' '))
+  }
+}
+updateCheck()
 
 const openURL = function (url) {
   switch (process.platform) {
@@ -24,7 +39,16 @@ const server = http.createServer((request, response) => {
   })
 })
 
-server.listen(port, () => {
-  console.log(`Running at http://localhost:${port}`)
-  openURL(`http://localhost:${port}`)
+program
+  .version(`fgen ${pkg.version}`)
+  .usage('<command> [options]')
+
+program
+  .option('-p, --port <port>', 'Port used by the server', 54321)
+
+program.parse(process.argv)
+
+server.listen(program.port, () => {
+  console.log(`Running at http://localhost:${program.port}`)
+  openURL(`http://localhost:${program.port}`)
 })
