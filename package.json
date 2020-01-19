@@ -6,9 +6,8 @@
   "license": "MIT",
   "scripts": {
     "start": "node bin/fgen",
-    "serve": "vue-cli-service serve --mode web.dev",
+    "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "build:web": "vue-cli-service build --mode web.prod",
     "lint": "vue-cli-service lint --mode production",
     "release": "standard-version",
     "pubs": "yarn build && yarn release && npm publish --registry http://registry.npmjs.org && git push --follow-tags origin master"

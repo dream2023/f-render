@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import persistedstate from './persistedstate'
-import { isWeb } from '../tool'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -65,5 +64,5 @@ export default new Vuex.Store({
       state.list.splice(index, 1)
     }
   },
-  plugins: isWeb ? [persistedstate()] : []
+  plugins: persistedstate()
 })

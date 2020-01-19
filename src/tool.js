@@ -15,4 +15,3 @@ export function changeFormLabel (obj = {}, exceptProperty = []) {
   }
   return obj
 }
-export const isWeb = process.env.VUE_APP_WEB
