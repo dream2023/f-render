@@ -14,9 +14,9 @@ function updateCheck () {
   const message = []
 
   if (notifier.update) {
-    message.push('Update available: ' + chalk.green.bold(notifier.update.latest) + chalk.gray(' (current: ' + notifier.update.current + ')'))
+    message.push('Update available: ' + chalk.green.bold(notifier.update.latest) + chalk.gray(' (current: ' + notifier.update.current + ');'))
     message.push('Run ' + chalk.magenta('npm install -g ' + pkg.name) + ' to update.')
-    console.log(message.join(' '))
+    console.log(message.join('\r\n'))
   }
 }
 updateCheck()
