@@ -10,7 +10,7 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint --mode production",
     "release": "standard-version",
-    "pubs": "yarn build && yarn release && npm publish --registry http://registry.npmjs.org && git push --follow-tags origin master"
+    "pubs": "npm run build && npm run release && npm publish --registry http://registry.npmjs.org && git push --follow-tags origin master"
   },
   "bin": {
     "fgen": "./bin/fgen"
@@ -23,7 +23,14 @@
     "vue-ele-form",
     "vue-ele-form-generator",
     "form-schema",
-    "vue-form"
+    "vue-form",
+    "form-designer",
+    "form-design",
+    "element-ui",
+    "form-generator",
+    "for-generate",
+    "vue-form-generator",
+    "form schema"
   ],
   "homepage": "https://vue-ele-form-generator.netlify.com/",
   "dependencies": {
@@ -55,10 +62,10 @@
     "serialize-javascript": "^2.1.2",
     "standard-version": "^7.0.1",
     "vue": "^2.6.10",
-    "vue-ele-form": "^0.6.19",
+    "vue-ele-form": "^0.6.20",
     "vue-ele-form-bmap": "^0.1.0",
     "vue-ele-form-codemirror": "^0.1.0",
-    "vue-ele-form-dynamic": "^0.1.1",
+    "vue-ele-form-dynamic": "^0.2.0",
     "vue-ele-form-gallery": "^0.1.1",
     "vue-ele-form-image-uploader": "^0.1.4",
     "vue-ele-form-json-editor": "^0.1.2",

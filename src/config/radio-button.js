@@ -22,6 +22,12 @@ export default {
     fill: '#409EFF'
   },
   common: {
+    default: {
+      type: 'radio',
+      label: '默认值',
+      isReloadOptions: true,
+      options: (data) => data.options
+    },
     options: {
       type: 'json-editor',
       label: '选项'

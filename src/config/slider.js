@@ -83,7 +83,7 @@ export default {
   },
   common: {
     default: {
-      type: 'slider',
+      type: 'number',
       label: '默认值'
     }
   },

@@ -33,8 +33,10 @@ export default {
   },
   common: {
     default: {
-      type: 'json-editor',
-      label: '默认值'
+      type: 'checkbox',
+      label: '默认值',
+      isReloadOptions: true,
+      options: data => data.options
     },
     options: {
       type: 'json-editor',

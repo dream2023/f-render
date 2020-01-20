@@ -42,8 +42,12 @@ export default {
   },
   common: {
     default: {
-      type: 'json-editor',
-      label: '默认值'
+      type: 'select',
+      label: '默认值',
+      options: data => data.options.map(item => ({ text: item.label, value: item.key })),
+      attrs: {
+        multiple: true
+      }
     },
     options: {
       type: 'json-editor',

@@ -33,12 +33,20 @@ export default {
   },
   common: {
     default: {
-      type: 'input',
-      label: '默认值'
+      type: 'dynamic',
+      label: '默认值',
+      attrs: {
+        columns: {
+          type: 'el-input',
+          attrs: {
+            placeholder: '图片链接'
+          }
+        }
+      }
     }
   },
   commonData: {
-    default: 'https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg'
+    default: ['https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg']
   },
   commonDefaultData: {}
 }

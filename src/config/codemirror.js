@@ -12,7 +12,7 @@ export default {
   },
   common: {
     default: {
-      type: 'codemirror',
+      type: 'textarea',
       label: '默认值'
     }
   },

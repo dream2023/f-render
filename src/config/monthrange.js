@@ -87,7 +87,7 @@ export default {
   },
   common: {
     default: {
-      type: 'daterange',
+      type: 'monthrange',
       label: '默认值'
     }
   },

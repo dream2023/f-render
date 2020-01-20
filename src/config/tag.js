@@ -62,8 +62,16 @@ export default {
   },
   common: {
     default: {
-      type: 'json-editor',
-      label: '选项'
+      type: 'dynamic',
+      label: '默认值',
+      attrs: {
+        columns: {
+          type: 'el-input',
+          attrs: {
+            placeholder: '默认tag'
+          }
+        }
+      }
     }
   },
   commonData: {},

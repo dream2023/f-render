@@ -82,7 +82,7 @@ export default {
   },
   common: {
     default: {
-      type: 'rate',
+      type: 'number',
       label: '默认值'
     }
   },

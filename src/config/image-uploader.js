@@ -25,6 +25,18 @@ export default {
       label: '裁剪宽度',
       vif: data => data.corp
     },
+    multiple: {
+      type: 'switch',
+      label: '是否支持多选文件'
+    },
+    limit: {
+      type: 'input',
+      label: '文件个数显示',
+      vif: data => data.multiple,
+      attrs: {
+        type: 'number'
+      }
+    },
     size: {
       type: 'number',
       label: '图片显示大小',
@@ -44,21 +56,9 @@ export default {
       type: 'switch',
       label: '图片懒加载'
     },
-    limit: {
-      type: 'input',
-      label: '文件个数显示',
-      vif: data => data.multiple,
-      attrs: {
-        type: 'number'
-      }
-    },
     drag: {
       type: 'switch',
       label: '是否启用拖拽上传'
-    },
-    multiple: {
-      type: 'switch',
-      label: '是否支持多选文件'
     },
     withCredentials: {
       type: 'switch',

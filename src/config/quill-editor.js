@@ -55,7 +55,12 @@ export default {
     editorToolbar: [],
     withCredentials: false
   },
-  common: {},
+  common: {
+    default: {
+      type: 'textarea',
+      label: '默认值'
+    }
+  },
   commonData: {},
   commonDefaultData: {}
 }

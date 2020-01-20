@@ -67,6 +67,11 @@ export default {
     appendToBody: false
   },
   common: {
+    default: {
+      type: 'tree-select',
+      label: '默认值',
+      options: data => data.options
+    },
     options: {
       type: 'json-editor',
       label: '选项'

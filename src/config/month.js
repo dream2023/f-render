@@ -55,7 +55,7 @@ export default {
   },
   common: {
     default: {
-      type: 'year',
+      type: 'month',
       label: '默认值'
     }
   },
