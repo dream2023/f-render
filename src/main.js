@@ -6,6 +6,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import 'normalize.css'
 import store from './store'
 import './extend'
+const _ = require('lodash')
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)
@@ -55,6 +56,7 @@ Vue.use(EleForm, {
   }
 })
 
+Vue.prototype.$lodash = _
 new Vue({
   store,
   render: h => h(App)

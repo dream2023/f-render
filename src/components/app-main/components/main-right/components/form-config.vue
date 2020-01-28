@@ -12,7 +12,6 @@
 <script>
 import { mapMutations } from 'vuex'
 import { changeFormLabel } from '@/tool.js'
-const cloneDeep = require('lodash.clonedeep')
 
 export default {
   name: 'AppFormConfig',
@@ -152,7 +151,7 @@ export default {
     // 检查变化
     formData: {
       handler(data) {
-        data = cloneDeep(data)
+        data = this.$lodash.cloneDeep(data)
         // 删除默认值属性(默认属性无需展示)
         const defaultData = this.defaultData
         for (const i in defaultData) {
@@ -175,7 +174,7 @@ export default {
     ...mapMutations(['updateFormAttr'])
   },
   created() {
-    this.defaultData = cloneDeep(this.formData)
+    this.defaultData = this.$lodash.cloneDeep(this.formData)
   }
 }
 </script>

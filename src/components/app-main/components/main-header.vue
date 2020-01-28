@@ -64,15 +64,13 @@ import configList from '@/config'
 import { mapState, mapMutations } from 'vuex'
 const serialize = require('serialize-javascript')
 const copy = require('clipboard-copy')
-const cloneDeep = require('lodash.clonedeep')
-const isEqual = require('lodash.isequal')
 
 export default {
   name: 'AppMainHeader',
   computed: {
     ...mapState(['formAttr', 'list']),
     formDesc() {
-      const list = cloneDeep(this.list)
+      const list = this.$lodash.cloneDeep(this.list)
       // 将数组转为对象, 并删除无用的属性
       return list.reduce((acc, formDesc) => {
         // 判断默认值, 如果默认值不存在, 则删除此属性(无需展示)
@@ -147,7 +145,7 @@ export default {
   },
   methods: {
     processData(obj, defaultObj = {}, assistProperty = [], formatterObj = {}) {
-      obj = cloneDeep(obj)
+      obj = this.$lodash.cloneDeep(obj)
       for (let key in obj) {
         // 对数据格式化
         if (formatterObj[key] && formatterObj[key].valueFormatter) {
@@ -155,7 +153,7 @@ export default {
         }
 
         // 删除默认值
-        if (isEqual(obj[key], defaultObj[key])) {
+        if (this.$lodash.isEqual(obj[key], defaultObj[key])) {
           delete obj[key]
         }
 

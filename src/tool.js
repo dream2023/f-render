@@ -1,6 +1,6 @@
-// 修改label => key + label 更明确告知用户属性名
-import cloneDeep from 'lodash.clonedeep'
+import cloneDeep from 'lodash/cloneDeep'
 
+// 修改label => key + label 更明确告知用户属性名
 export function changeFormLabel (obj = {}, exceptProperty = []) {
   obj = cloneDeep(obj)
   for (let key in obj) {

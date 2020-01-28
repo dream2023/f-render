@@ -29,7 +29,6 @@
 import draggable from 'vuedraggable'
 import comps from '@/comps'
 import configList from '@/config'
-import cloneDeep from 'lodash.clonedeep'
 
 export default {
   name: 'AppType',
@@ -60,16 +59,16 @@ export default {
       return Object.assign(
         {},
         this.commonData,
-        cloneDeep(commonDefaultData),
-        cloneDeep(commonData),
+        this.$lodash.cloneDeep(commonDefaultData),
+        this.$lodash.cloneDeep(commonData),
         {
           field: 'key_' + Date.now(),
           label,
           type,
           // 组件属性
           attrs: {
-            ...cloneDeep(attrsDefaultData),
-            ...cloneDeep(attrsData)
+            ...this.$lodash.cloneDeep(attrsDefaultData),
+            ...this.$lodash.cloneDeep(attrsData)
           }
         }
       )
