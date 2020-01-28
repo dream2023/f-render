@@ -66,7 +66,7 @@
     "vue-ele-form": "^0.8.2",
     "vue-ele-form-bmap": "^0.1.0",
     "vue-ele-form-codemirror": "^0.1.0",
-    "vue-ele-form-dynamic": "^0.2.0",
+    "vue-ele-form-dynamic": "^0.3.0",
     "vue-ele-form-gallery": "^0.1.1",
     "vue-ele-form-image-uploader": "^0.1.4",
     "vue-ele-form-json-editor": "^0.1.2",

@@ -10560,10 +10560,10 @@ vue-ele-form-codemirror@^0.1.0:
   dependencies:
     vue-codemirror "^4.0.6"
 
-vue-ele-form-dynamic@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.npm.taobao.org/vue-ele-form-dynamic/download/vue-ele-form-dynamic-0.2.0.tgz#862d5ed362ab53fce6018dae087bf71015685e47"
-  integrity sha1-hi1e02KrU/zmAY2uCHv3EBVoXkc=
+vue-ele-form-dynamic@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.npm.taobao.org/vue-ele-form-dynamic/download/vue-ele-form-dynamic-0.3.0.tgz#d184e16c264f18170df85a4a0f9587d103fc27a7"
+  integrity sha1-0YThbCZPGBcN+FpKD5WH0QP8J6c=
   dependencies:
     async-validator "^3.2.0"
 

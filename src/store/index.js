@@ -46,6 +46,10 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    // 更新表单项
+    updateCurrentItem (state, item) {
+      state.list.splice(state.selectIndex, 1, item)
+    },
     // 更新选中的索引
     updateSelectIndex (state, selectIndex) {
       state.selectIndex = selectIndex
