@@ -1,16 +1,17 @@
 <template>
   <ele-form
-    :form-data="formData"
+    v-model="formAttr"
     :form-desc="computedFormDesc"
     :isShowBackBtn="false"
     :isShowSubmitBtn="false"
     :span="20"
+    ref="ele-form"
     labelPosition="top"
   ></ele-form>
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import { mapMutations, mapState } from 'vuex'
 import { changeFormLabel } from '@/tool.js'
 
 export default {
@@ -20,18 +21,24 @@ export default {
       formDesc: {
         inline: {
           type: 'radio',
+          default: false,
           label: 'inline模式 / layout模式',
           options: [
             { text: 'layout模式', value: false },
             { text: 'inline模式', value: true }
-          ]
+          ],
+          on: {
+            change: val => {
+              if (!val) {
+                this.formAttr.isResponsive = true
+              }
+            }
+          }
         },
         isResponsive: {
           type: 'switch',
           label: '是否响应式',
-          vif(data) {
-            return !data.inline
-          },
+          vif: data => !data.inline,
           options: [
             { text: '是', value: true },
             { text: '否', value: false }
@@ -51,9 +58,7 @@ export default {
         span: {
           type: 'select',
           label: '表单宽度',
-          vif(data) {
-            return !data.inline
-          },
+          vif: data => !data.inline,
           options(data) {
             const options = Array.from({ length: 24 }, (v, i) => {
               return { text: `${24 - i} / 24`, value: 24 - i }
@@ -67,13 +72,25 @@ export default {
             width: '100%'
           }
         },
+        isDialog: {
+          type: 'switch',
+          label: '是否为弹窗'
+        },
+        isShowLabel: {
+          type: 'switch',
+          label: '是否显示标签'
+        },
         labelWidth: {
-          type: 'number',
+          type: 'input',
           label: '标签宽度',
           attrs: {
-            step: 10
+            type: 'number'
           },
           tip: '默认值为auto'
+        },
+        disabled: {
+          type: 'switch',
+          label: '全局禁用表单'
         },
         isShowSubmitBtn: {
           type: 'radio',
@@ -83,10 +100,19 @@ export default {
             { text: '隐藏', value: false }
           ]
         },
+        isShowResetBtn: {
+          type: 'radio',
+          label: '重置按钮',
+          options: [
+            { text: '显示', value: true },
+            { text: '隐藏', value: false }
+          ]
+        },
         isShowBackBtn: {
           type: 'radio',
           label: '返回按钮',
           options: [
+            { text: '默认', value: null },
             { text: '显示', value: true },
             { text: '隐藏', value: false }
           ]
@@ -95,14 +121,7 @@ export default {
           type: 'radio',
           label: '取消按钮',
           options: [
-            { text: '显示', value: true },
-            { text: '隐藏', value: false }
-          ]
-        },
-        isShowResetBtn: {
-          type: 'radio',
-          label: '重置按钮',
-          options: [
+            { text: '默认', value: null },
             { text: '显示', value: true },
             { text: '隐藏', value: false }
           ]
@@ -128,53 +147,17 @@ export default {
           type: 'input',
           label: '返回按钮文字'
         }
-      },
-      formData: {
-        inline: false,
-        isShowSubmitBtn: null,
-        isShowBackBtn: null,
-        isShowResetBtn: null,
-        isShowCancelBtn: null,
-        isResponsive: true,
-        submitBtnText: '提交',
-        cancelBtnText: '取消',
-        backBtnText: '返回',
-        resetBtnText: '重置',
-        labelWidth: 0,
-        labelPosition: null,
-        span: null,
-        formBtnSize: null
       }
     }
   },
-  watch: {
-    // 检查变化
-    formData: {
-      handler(data) {
-        data = this.$lodash.cloneDeep(data)
-        // 删除默认值属性(默认属性无需展示)
-        const defaultData = this.defaultData
-        for (const i in defaultData) {
-          if (data[i] === defaultData[i]) {
-            delete data[i]
-          }
-        }
-
-        this.updateFormAttr(data)
-      },
-      deep: true
-    }
-  },
   computed: {
+    ...mapState(['formAttr']),
     computedFormDesc() {
       return changeFormLabel(this.formDesc)
     }
   },
   methods: {
     ...mapMutations(['updateFormAttr'])
-  },
-  created() {
-    this.defaultData = this.$lodash.cloneDeep(this.formData)
   }
 }
 </script>

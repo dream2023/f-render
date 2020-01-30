@@ -10,8 +10,8 @@
     <el-button @click="isShowCode = true" icon="el-icon-tickets" type="text"
       >生成代码</el-button
     >
-    <el-button @click="clearList" icon="el-icon-delete" type="text"
-      >清空列表</el-button
+    <el-button @click="clearForm" icon="el-icon-delete" type="text"
+      >清空表单</el-button
     >
     <el-dialog
       :visible.sync="isPreview"
@@ -60,8 +60,10 @@
 
 <script>
 import tpl from '@/tpl'
+import _ from 'lodash-es'
 import configList from '@/config'
 import { mapState, mapMutations } from 'vuex'
+import formAttrDefault from '@/store/formAttrDefault'
 const serialize = require('serialize-javascript')
 const copy = require('clipboard-copy')
 
@@ -69,55 +71,61 @@ export default {
   name: 'AppMainHeader',
   computed: {
     ...mapState(['formAttr', 'list']),
+    filterFormAttr() {
+      const formAttr = _.cloneDeep(this.formAttr)
+      for (let key in formAttr) {
+        const val = formAttr[key]
+        // 删除默认值 & 空值, 不需要展示
+        if (_.isNil(val) || val === formAttrDefault[key]) {
+          delete formAttr[key]
+        }
+      }
+      return formAttr
+    },
     formDesc() {
-      const list = this.$lodash.cloneDeep(this.list)
+      // 以 field 为 key, 转为对象
+      const formDesc = _.keyBy(_.cloneDeep(this.list), 'field')
       // 将数组转为对象, 并删除无用的属性
-      return list.reduce((acc, formDesc) => {
+      for (let key in formDesc) {
+        let formItem = formDesc[key]
         // 判断默认值, 如果默认值不存在, 则删除此属性(无需展示)
         const {
           commonDefaultData = {},
           attrsDefaultData = {},
           assistProperty = [],
           attrs = {}
-        } = configList[formDesc.type] || {}
+        } = configList[formItem.type] || {}
 
-        formDesc = this.processData(formDesc, {
-          ...commonDefaultData,
-          ...this.commonData
-        })
+        formItem = this.processData(formItem, commonDefaultData)
 
         // 组件自身属性
-        formDesc.attrs = this.processData(
-          formDesc.attrs,
+        formItem.attrs = this.processData(
+          formItem.attrs,
           attrsDefaultData,
           assistProperty,
           attrs
         )
-        if (Object.keys(formDesc.attrs).length === 0) {
-          delete formDesc.attrs
+        if (_.isEmpty(formItem.attrs)) {
+          delete formItem.attrs
         }
 
-        // 删除字段属性
-        const field = formDesc['field']
-        delete formDesc['field']
-
-        acc[field] = formDesc
-        return acc
-      }, {})
+        // 删除多余字段
+        delete formItem['field']
+      }
+      return formDesc
     },
     codeHtml() {
-      let htmlFormAttr = ''
-      const formAttrEntries = Object.entries(this.formAttr)
-      // 拼接ele-form属性
-      if (formAttrEntries.length) {
-        htmlFormAttr = formAttrEntries.reduce((acc, val) => {
-          // 如果是字符串则不加:, 其它类型则加 :
-          acc.push(
-            (typeof val[1] === 'string' ? '' : ':') + `${val[0]}="${val[1]}"`
-          )
-          return acc
-        }, [])
-        htmlFormAttr = htmlFormAttr.join('\n    ') + '\n    '
+      // 如果是字符串属性值和其它属性值, 一个有 : , 一个没有
+      // 例如 {name: 'jack', age: 10} => ['name="jack"', ':age="10"']
+      let htmlFormAttr = Object.entries(this.filterFormAttr)
+        .map(
+          ([key, val]) =>
+            (typeof val === 'string' ? '' : ':') + `${key}="${val}"`
+        )
+        .join('\n    ')
+
+      if (htmlFormAttr.length) {
+        htmlFormAttr = htmlFormAttr + '\n    '
       }
 
       return this.tpl
@@ -126,7 +134,7 @@ export default {
     },
     // 数据
     codeData() {
-      return Object.assign({}, this.formAttr, {
+      return Object.assign({}, this.filterFormAttr, {
         formDesc: this.formDesc
       })
     }
@@ -135,55 +143,47 @@ export default {
     return {
       tpl: tpl,
       formData: {},
-      commonData: {
-        layout: 24
-      },
       isShowData: false,
       isShowCode: false,
       isPreview: false
     }
   },
   methods: {
+    ...mapMutations(['clearList', 'updateFormAttr']),
+    // 处理数据
     processData(obj, defaultObj = {}, assistProperty = [], formatterObj = {}) {
-      obj = this.$lodash.cloneDeep(obj)
-      for (let key in obj) {
+      obj = _.cloneDeep(obj)
+      for (let key of Reflect.ownKeys(obj)) {
         // 对数据格式化
         if (formatterObj[key] && formatterObj[key].valueFormatter) {
           obj[key] = formatterObj[key].valueFormatter(obj[key])
         }
 
-        // 删除默认值
-        if (this.$lodash.isEqual(obj[key], defaultObj[key])) {
+        // 删除默认值 & 无值的 & 辅助属性 & 私有属性
+        const deleteValidator = [
+          _.isEqual(obj[key], defaultObj[key]),
+          _.isNil(obj[key]),
+          assistProperty.includes(key),
+          key.startsWith('_')
+        ]
+
+        if (deleteValidator.some(Boolean)) {
           delete obj[key]
         }
-
-        // 删除无值的
-        if (obj[key] === undefined || obj[key] === null) {
-          delete obj[key]
-        }
-
-        // 删除辅助列
-        if (assistProperty.includes(key)) {
-          delete obj[key]
-        }
-
-        // 删除私有属性
-        if (key.startsWith('_')) {
-          delete obj[key]
-        }
-      }
-
-      // 有点时候_options会删不到
-      if (obj._options) {
-        delete obj._options
       }
       return obj
     },
-    ...mapMutations(['clearList']),
+    // 清空表单
+    clearForm() {
+      this.clearList()
+      this.updateFormAttr(formAttrDefault)
+    },
+    // 复制数据
     handleCopyData() {
-      copy(JSON.stringify(this.codeData))
+      copy(serialize(this.codeData, { space: 2 }))
       this.$message.success('复制成功!')
     },
+    // 复制 html
     handleCopyHtml() {
       copy(this.codeHtml)
       this.$message.success('复制成功!')
@@ -198,7 +198,7 @@ export default {
     },
     // 序列表对象为字符串
     serializeObj(obj) {
-      if (!obj || Object.keys(obj).length === 0) return '{}'
+      if (_.isEmpty(obj)) return '{}'
       return serialize(obj, { space: 2 })
         .replace(/"(\w+)":/g, '$1:')
         .replace(/(\s\s)(\S)/g, '      $1$2')

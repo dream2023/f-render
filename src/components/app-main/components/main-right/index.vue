@@ -17,7 +17,7 @@ import AppFormConfig from './components/form-config'
 import AppFormItemAttrs from './components/form-item-attrs'
 import AppFormItemConfig from './components/form-item-config'
 export default {
-  name: 'app-main-right',
+  name: 'AppMainRight',
   components: {
     AppFormConfig,
     AppFormItemAttrs,

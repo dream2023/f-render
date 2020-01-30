@@ -26,22 +26,19 @@
 </template>
 
 <script>
-import draggable from 'vuedraggable'
+import _ from 'lodash-es'
 import comps from '@/comps'
 import configList from '@/config'
+import draggable from 'vuedraggable'
 
 export default {
-  name: 'AppType',
+  name: 'AppMainLeft',
   components: {
     draggable
   },
   data() {
     return {
-      comps: comps,
-      // 默认值
-      commonData: {
-        layout: 24
-      }
+      comps: comps
     }
   },
   methods: {
@@ -58,17 +55,16 @@ export default {
 
       return Object.assign(
         {},
-        this.commonData,
-        this.$lodash.cloneDeep(commonDefaultData),
-        this.$lodash.cloneDeep(commonData),
+        _.cloneDeep(commonDefaultData),
+        _.cloneDeep(commonData),
         {
-          field: 'key_' + Date.now(),
+          field: _.uniqueId('key_'),
           label,
           type,
           // 组件属性
           attrs: {
-            ...this.$lodash.cloneDeep(attrsDefaultData),
-            ...this.$lodash.cloneDeep(attrsData)
+            ..._.cloneDeep(attrsDefaultData),
+            ..._.cloneDeep(attrsData)
           }
         }
       )

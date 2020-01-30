@@ -1,6 +1,6 @@
 const tpl = `<template>
   <ele-form
-    %1:form-desc="formDesc"
+    %1:formDesc="formDesc"
     v-model="formData"
     :request-fn="handleRequest"
     @request-success="handleRequestSuccess"

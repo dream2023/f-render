@@ -1,92 +1,61 @@
 <template>
   <div class="app-main-center">
     <ele-form
-      :form-data="{}"
-      :form-desc="{}"
+      v-model="formData"
+      :form-desc="formDesc"
       :request-fn="handleSubmit"
       @request-success="handleSuccess"
       ref="ele-form"
       v-bind="formAttr"
     >
-      <draggable
-        :animation="200"
-        v-if="isRenderFinish"
-        :disabled="false"
-        :list="list"
-        @add="handleAdd"
-        @end="handleMoveEnd"
-        @start="handleMoveStart"
-        group="form"
-        style="padding-bottom: 80px;"
-        tag="el-row"
-      >
-        <!-- 当为空时 -->
-        <div class="form-area-placeholder" v-if="list.length === 0">
-          从左侧拖拽来添加表单项
-        </div>
-        <template v-else>
-          <!-- 表单项 -->
-          <template v-if="formAttr.inline">
-            <template v-for="(formItem, index) of list">
-              <el-form-item
-                :class="{ 'form-item-active': selectIndex === index }"
-                :key="index"
-                :label="formItem.label"
-                :prop="formItem.field"
-                @click.native="handleFormItemClick(index)"
-                v-if="formItem.type !== 'hide'"
-              >
-                <!-- 具名 作用域插槽(用于用户自定义显示) -->
-                <component
-                  :desc="formItem"
-                  :options="formItem.options"
-                  :is="getComponentName(formItem.type)"
-                  :key="formItem.field"
-                  v-model="formItem.default"
-                />
-                <div class="ele-form-tip" v-if="formItem.tip">
-                  {{ formItem.tip }}
-                </div>
-
-                <!-- 删除按钮 -->
-                <el-button
-                  @click.stop="handleDelete(index)"
-                  class="form-item-delete-btn"
-                  icon="el-icon-delete"
-                  size="mini"
-                  style="border-radius: 0"
-                  type="primary"
-                  v-if="selectIndex === index"
-                ></el-button>
-              </el-form-item>
-            </template>
-          </template>
+      <template v-slot:form-content="{ formData, formDesc, formErrorObj }">
+        <draggable
+          :animation="200"
+          v-if="isRenderFinish"
+          :disabled="false"
+          :list="list"
+          @add="handleAdd"
+          @end="handleMoveEnd"
+          @start="handleMoveStart"
+          group="form"
+          tag="el-row"
+          style="padding-bottom: 80px;"
+        >
+          <!-- 当为空时 -->
+          <div class="form-area-placeholder" v-if="list.length === 0">
+            从左侧拖拽来添加表单项
+          </div>
           <template v-else>
-            <template v-for="(formItem, index) of list">
-              <!-- 列 -->
+            <template v-for="(formItem, field, index) of formDesc">
               <el-col
-                :class="{ 'form-item-active': selectIndex === index }"
-                :key="formItem.field"
-                :md="formItem.layout || 24"
-                :xs="24"
+                :key="field"
+                v-bind="getColAttrs(formItem.layout)"
                 @click.native="handleFormItemClick(index)"
+                v-if="formItem._vif"
                 class="form-item"
-                v-if="formItem.type !== 'hide'"
+                :class="{ 'form-item-active': selectIndex === index }"
               >
-                <!-- 表单项 -->
-                <el-form-item :label="formItem.label" :prop="formItem.field">
-                  <!-- 组件 -->
+                <el-form-item
+                  :error="formErrorObj ? formErrorObj[field] : null"
+                  :label="
+                    formAttr.isShowLabel === false ? null : formItem.label
+                  "
+                  :prop="field"
+                >
                   <component
+                    :disabled="formAttr.disabled || formItem._disabled"
                     :desc="formItem"
-                    :options="formItem.options"
-                    :is="getComponentName(formItem.type)"
-                    :key="formItem.field"
+                    :is="formItem._type"
+                    :options="formItem._options"
+                    :ref="field"
+                    :field="field"
                     v-model="formItem.default"
                   />
-                  <!-- 提示 -->
-                  <div class="ele-form-tip" v-if="formItem.tip">
-                    {{ formItem.tip }}
-                  </div>
+                  <div
+                    class="ele-form-tip"
+                    v-if="formItem.tip"
+                    v-html="formItem.tip"
+                  ></div>
                 </el-form-item>
 
                 <!-- 删除按钮 -->
@@ -102,26 +71,32 @@
               </el-col>
             </template>
           </template>
-        </template>
-      </draggable>
+        </draggable>
+      </template>
     </ele-form>
   </div>
 </template>
 
 <script>
+import * as _ from 'lodash'
 import draggable from 'vuedraggable'
 import { mapState, mapMutations } from 'vuex'
 
 export default {
-  name: 'AppForm',
+  name: 'AppMainCenter',
   components: {
     draggable
   },
   computed: {
-    ...mapState(['list', 'selectIndex', 'formAttr'])
+    ...mapState(['list', 'selectIndex', 'formAttr']),
+    formDesc() {
+      return _.keyBy(_.cloneDeep(this.list), 'field')
+    }
   },
   data() {
     return {
+      formData: {},
+      // 确保渲染结束
       isRenderFinish: false
     }
   },
@@ -166,8 +141,8 @@ export default {
       this.$message.success('创建成功')
     },
     // 获取组件名(调用ele-form内部方法)
-    getComponentName(type) {
-      return this.$refs['ele-form'].getComponentName(type)
+    getColAttrs(layout) {
+      return this.$refs['ele-form'].getColAttrs(layout)
     }
   }
 }

@@ -18,7 +18,7 @@ import AppMainCenter from './components/main-center'
 import AppMainRight from './components/main-right/index'
 
 export default {
-  name: 'App',
+  name: 'AppMain',
   components: {
     AppMainLeft,
     AppMainCenter,

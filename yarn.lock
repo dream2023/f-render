@@ -6468,6 +6468,11 @@ locate-path@^5.0.0:
   dependencies:
     p-locate "^4.1.0"
 
+lodash-es@^4.17.15:
+  version "4.17.15"
+  resolved "https://registry.npm.taobao.org/lodash-es/download/lodash-es-4.17.15.tgz#21bd96839354412f23d7a10340e5eac6ee455d78"
+  integrity sha1-Ib2Wg5NUQS8j16EDQOXqxu5FXXg=
+
 lodash._reinterpolate@^3.0.0:
   version "3.0.0"
   resolved "https://registry.npm.taobao.org/lodash._reinterpolate/download/lodash._reinterpolate-3.0.0.tgz#0ccf2d89166af03b3663c796538b75ac6e114d9d"
@@ -10631,10 +10636,10 @@ vue-ele-form-video-uploader@^0.1.3:
   dependencies:
     vue-ele-upload-video "^2.0.5"
 
-vue-ele-form@^0.8.2:
-  version "0.8.2"
-  resolved "https://registry.npm.taobao.org/vue-ele-form/download/vue-ele-form-0.8.2.tgz#7d20827798d8d96ba85e28615aa56b4e83f0cc96"
-  integrity sha1-fSCCd5jY2WuoXihhWqVrToPwzJY=
+vue-ele-form@^0.8.3:
+  version "0.8.3"
+  resolved "https://registry.npm.taobao.org/vue-ele-form/download/vue-ele-form-0.8.3.tgz#59f74c78b48e9755b7197d4f5c748c28e8ab0db7"
+  integrity sha1-WfdMeLSOl1W3GX1PXHSMKOirDbc=
   dependencies:
     dayjs "^1.8.15"
     is-number "^7.0.0"
