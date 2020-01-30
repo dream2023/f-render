@@ -58,7 +58,7 @@ export default {
         _.cloneDeep(commonDefaultData),
         _.cloneDeep(commonData),
         {
-          field: _.uniqueId('key_'),
+          field: 'key_' + Date.now(),
           label,
           type,
           // 组件属性
