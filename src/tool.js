@@ -15,3 +15,14 @@ export function changeFormLabel (obj = {}, exceptProperty = []) {
   }
   return obj
 }
+
+// 判断是否为 vscode
+// vscode无法使用 localStorage
+export function isVscode () {
+  try {
+    localStorage.getItem('test')
+    return false
+  } catch {
+    return true
+  }
+}

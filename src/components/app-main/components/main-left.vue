@@ -1,5 +1,5 @@
 <template>
-  <div class="app-main-left">
+  <div>
     <el-card
       :body-style="{ padding: '10px' }"
       :header="comp.title"
@@ -74,10 +74,6 @@ export default {
 </script>
 
 <style>
-.app-main-left {
-  line-height: 1.5em;
-  height: 100%;
-}
 .type-item {
   width: 120px;
   color: #606266;
