@@ -40,10 +40,18 @@ fgen # fgen -p 端口号
 npm update -g vue-ele-form-generator
 ```
 
+### vscode 插件
+
+插件市场搜索: `vue-ele-form-generator`
+
 ## 链接
 
 - [vue-ele-form](https://github.com/dream2023/vue-ele-form)
 - [element-ui](http://element-cn.eleme.io)
+
+## 交流群
+
+[![交流群](https://s2.ax1x.com/2020/01/31/13TD74.md.png)]
 
 ## 捐赠
 
