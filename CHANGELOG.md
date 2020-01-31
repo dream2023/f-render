@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.7.0](https://github.com/dream2023/vue-ele-form-generator/compare/v1.6.1...v1.7.0) (2020-01-31)
+
+
+### Features
+
+* 增加可拖动左侧面板 ([1d94312](https://github.com/dream2023/vue-ele-form-generator/commit/1d94312bd5e809378371e56268e277435936a056))
+
 ### [1.6.1](https://github.com/dream2023/vue-ele-form-generator/compare/v1.6.0...v1.6.1) (2020-01-30)
 
 
