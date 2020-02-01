@@ -10,7 +10,7 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint --mode production",
     "release": "standard-version",
-    "pubs": "npm run build && npm run release && npm publish --registry http://registry.npmjs.org && git push --follow-tags origin master"
+    "pubs": "npm run build && npm run release && npm publish --registry http://registry.npmjs.org && git push --follow-tags origin master && gren release --override"
   },
   "bin": {
     "fgen": "./bin/fgen"
@@ -55,6 +55,7 @@
     "element-ui": "^2.13.0",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
+    "github-release-notes": "^0.17.1",
     "lint-staged": "^8.1.5",
     "lodash-es": "^4.17.15",
     "mockjs": "^1.1.0",

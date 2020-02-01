@@ -51,7 +51,7 @@ npm update -g vue-ele-form-generator
 
 ## 交流群
 
-[![交流群](https://s2.ax1x.com/2020/01/31/13TD74.md.png)]
+![交流群](https://s2.ax1x.com/2020/01/31/13TD74.md.png)
 
 ## 捐赠
 
