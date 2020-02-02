@@ -112,6 +112,10 @@ export default [
         label: '级联选择器'
       },
       {
+        type: 'cascader-panel',
+        label: '级联面板'
+      },
+      {
         type: 'transfer',
         label: '穿梭框'
       },
