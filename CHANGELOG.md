@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.8.0](https://github.com/dream2023/vue-ele-form-generator/compare/v1.7.0...v1.8.0) (2020-02-02)
+
+
+### Features
+
+* 增加cascader-panel组件 ([6bc0994](https://github.com/dream2023/vue-ele-form-generator/commit/6bc09943687f3816439710e934adbe71651a6aea))
+* 增加文档链接 ([63a3d06](https://github.com/dream2023/vue-ele-form-generator/commit/63a3d06ffdd4cdfe165f56cec808786cc8f8c84c))
+
+
+### Bug Fixes
+
+* 删除多余属性 ([723d283](https://github.com/dream2023/vue-ele-form-generator/commit/723d2832e3c83e2a7876b2509d06ea9a60de0feb))
+
 ## [1.7.0](https://github.com/dream2023/vue-ele-form-generator/compare/v1.6.1...v1.7.0) (2020-01-31)
 
 
