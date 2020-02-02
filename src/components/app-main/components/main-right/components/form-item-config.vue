@@ -1,6 +1,15 @@
 <template>
   <div>
     <template v-if="currentFormItem">
+      <div class="app-main-right-link">
+        <el-link
+          type="primary"
+          target="_blank"
+          href="https://www.yuque.com/chaojie-vjiel/vbwzgu/iw5dzf"
+          >点击查看通用配置</el-link
+        >&nbsp;
+        <span style="vertical-align: middle;">属性详细解释</span>
+      </div>
       <ele-form
         :formData="currentFormItem"
         :formDesc="formDesc"
@@ -98,7 +107,9 @@ export default {
           type: 'textarea',
           label: '校检规则',
           title: '新增校检规则',
-          displayFormatter: val => (val ? serialize(val, { space: 2 }) : '')
+          displayFormatter: val => (val ? serialize(val, { space: 2 }) : ''),
+          tip:
+            '校检规则文档, 请<a target="_blank" href="https://www.yuque.com/chaojie-vjiel/vbwzgu/qzzkpd" class="el-link el-link--primary">点击查看</a>'
         },
         tip: {
           type: 'input',

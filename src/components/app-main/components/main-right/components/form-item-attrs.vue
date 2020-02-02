@@ -1,7 +1,7 @@
 <template>
   <div>
     <template v-if="isShow">
-      <div v-if="attrLink" class="attr-link">
+      <div v-if="attrLink" class="app-main-right-link">
         <el-link type="primary" target="_blank" :href="attrLink"
           >点击查看&nbsp;{{ currentFormItem.type }}组件</el-link
         >&nbsp;
@@ -47,14 +47,3 @@ export default {
   }
 }
 </script>
-
-<style>
-.attr-link {
-  color: #666;
-  font-size: 14px;
-  margin-left: 24px;
-  padding-left: 10px;
-  margin-bottom: 10px;
-  border-left: 3px solid #eee;
-}
-</style>

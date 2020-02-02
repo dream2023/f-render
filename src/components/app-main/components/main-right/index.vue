@@ -62,4 +62,13 @@ export default {
   margin-top: 0 !important;
   padding-top: 0 !important;
 }
+
+.app-main-right-link {
+  color: #666;
+  font-size: 14px;
+  margin-left: 24px;
+  padding-left: 10px;
+  margin-bottom: 10px;
+  border-left: 3px solid #eee;
+}
 </style>

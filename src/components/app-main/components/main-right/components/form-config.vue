@@ -1,13 +1,25 @@
 <template>
-  <ele-form
-    v-model="formAttr"
-    :form-desc="computedFormDesc"
-    :isShowBackBtn="false"
-    :isShowSubmitBtn="false"
-    :span="20"
-    ref="ele-form"
-    labelPosition="top"
-  ></ele-form>
+  <div>
+    <div class="app-main-right-link">
+      <el-link
+        type="primary"
+        target="_blank"
+        href="https://www.yuque.com/chaojie-vjiel/vbwzgu/dyw8a7"
+        >点击查看表单配置</el-link
+      >&nbsp;
+      <span style="vertical-align: middle;">属性详细解释</span>
+    </div>
+
+    <ele-form
+      v-model="formAttr"
+      :form-desc="computedFormDesc"
+      :isShowBackBtn="false"
+      :isShowSubmitBtn="false"
+      :span="20"
+      ref="ele-form"
+      labelPosition="top"
+    ></ele-form>
+  </div>
 </template>
 
 <script>
