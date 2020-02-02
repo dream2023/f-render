@@ -59,7 +59,6 @@ export default {
 }
 
 .app-main-left {
-  min-width: 150px;
   overflow: scroll;
   line-height: 1.5em;
   height: 100%;
