@@ -111,6 +111,7 @@ export default {
 
         // 删除多余字段
         delete formItem['field']
+        formDesc[key] = formItem
       }
       return formDesc
     },
