@@ -198,7 +198,7 @@ export default {
     // 处理数据
     jsonInput(json) {
       this.jsonData = _.cloneDeep(json)
-      this.jsonFormDesc = _.cloneDeep(json).formDesc
+      this.jsonFormDesc = this.jsonData.formDesc
     },
     processData(obj, defaultObj = {}, assistProperty = [], formatterObj = {}) {
       obj = _.cloneDeep(obj)
@@ -229,8 +229,18 @@ export default {
     },
     // 处理粘贴的json
     handleJson() {
-      this.jsonTempFormAttr = Object.assign(formAttrDefault, this.jsonData) // 临时预览的 formAttr
-      this.innerDialogShow = true
+      if (typeof this.jsonData !== 'object') {
+        this.$message.error('请输入正确的 JSON 格式！')
+        return false
+      }
+      if (this.jsonData && this.jsonData.formDesc) {
+        let keys = Object.keys(formAttrDefault)
+        this.jsonTempFormAttr = Object.assign(formAttrDefault, _.pick(this.jsonData, keys)) // 临时预览的 formAttr
+        this.innerDialogShow = true
+      } else {
+        this.$message.error('数据必须有 "formDesc" 属性！')
+        return false
+      }
     },
     // 确认生成表单
     confirmGen() {
@@ -243,8 +253,7 @@ export default {
       // 清空原有list （待优化）
       this.clearForm()
       // 1.分离 formAttr （表单配置数据）
-      let formAttr = Object.assign(formAttrDefault, this.jsonData) // 覆盖原有数据
-      this.updateFormAttr(formAttr)
+      this.updateFormAttr(this.jsonTempFormAttr)
       // 2.更新 formDesc（组件通用配置数据）
       let list = Object.entries(this.jsonFormDesc).map(([key, val]) => {
         // 3.处理 formDesc.attr（组件属性配置数据）
