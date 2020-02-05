@@ -7,6 +7,9 @@
     <el-button @click="isShowData = true" icon="el-icon-upload2" type="text"
       >生成数据</el-button
     >
+    <el-button @click="isShowCodePen = true" icon="el-icon-download" type="text"
+      >导入代码</el-button
+    >
     <el-button @click="isShowCode = true" icon="el-icon-tickets" type="text"
       >生成代码</el-button
     >
@@ -39,6 +42,38 @@
       <json-editor :value="codeData"></json-editor>
       <div style="text-align: center;margin-top: 20px">
         <el-button @click="handleCopyData" type="primary">复制数据</el-button>
+      </div>
+    </el-dialog>
+
+    <!-- 导入数据弹框 -->
+    <el-dialog
+      :visible.sync="isShowCodePen"
+      append-to-body
+      title="导入数据"
+      v-if="isShowCodePen"
+      width="600px"
+    >
+      <el-dialog
+        width="90%"
+        title="预览表单"
+        :visible.sync="innerDialogShow"
+        append-to-body>
+        <ele-form
+          style="background: #f8f8f8"
+          v-if="innerDialogShow"
+          :form-desc="jsonFormDesc"
+          :formData="{}"
+          :request-fn="handleRequest"
+          @request-success="handleRequestSuccess"
+          v-bind="jsonTempFormAttr"
+        ></ele-form>
+        <div slot="footer" class="dialog-footer">
+          <el-button type="primary" @click="confirmGen">生成表单</el-button>
+        </div>
+      </el-dialog>
+      <json-editor @input="jsonInput" :value="jsonPenData"></json-editor>
+      <div style="text-align: center;margin-top: 20px">
+        <el-button @click="handleJson" type="primary">导入数据</el-button>
       </div>
     </el-dialog>
 
@@ -82,6 +117,10 @@ export default {
       }
       return formAttr
     },
+    // jsonFormDesc() {
+    //   console.log({ formDesc: this.jsonPenData.formDesc })
+    //   return { formDesc: this.jsonPenData.formDesc }
+    // },
     formDesc() {
       // 以 field 为 key, 转为对象
       const formDesc = _.keyBy(_.cloneDeep(this.list), 'field')
@@ -146,12 +185,21 @@ export default {
       formData: {},
       isShowData: false,
       isShowCode: false,
-      isPreview: false
+      isPreview: false,
+      isShowCodePen: false,
+      innerDialogShow: false,
+      jsonPenData: {},
+      jsonFormDesc: {},
+      jsonTempFormAttr: {}
     }
   },
   methods: {
-    ...mapMutations(['clearList', 'updateFormAttr']),
+    ...mapMutations(['clearList', 'updateFormAttr', 'updateList']),
     // 处理数据
+    jsonInput(json) {
+      this.jsonData = _.cloneDeep(json)
+      this.jsonFormDesc = _.cloneDeep(json).formDesc
+    },
     processData(obj, defaultObj = {}, assistProperty = [], formatterObj = {}) {
       obj = _.cloneDeep(obj)
       for (let key of Reflect.ownKeys(obj)) {
@@ -178,6 +226,43 @@ export default {
     clearForm() {
       this.clearList()
       this.updateFormAttr(formAttrDefault)
+    },
+    // 处理粘贴的json
+    handleJson() {
+      this.jsonTempFormAttr = Object.assign(formAttrDefault, this.jsonData) // 临时预览的 formAttr
+      this.innerDialogShow = true
+    },
+    // 确认生成表单
+    confirmGen() {
+      this.json2Form()
+      this.isShowCodePen = false
+      this.innerDialogShow = false
+    },
+    // 处理json数据，将json 映射到操作面板 （list)
+    json2Form() {
+      // 清空原有list （待优化）
+      this.clearForm()
+      // 1.分离 formAttr （表单配置数据）
+      let formAttr = Object.assign(formAttrDefault, this.jsonData) // 覆盖原有数据
+      this.updateFormAttr(formAttr)
+      // 2.更新 formDesc（组件通用配置数据）
+      let list = Object.entries(this.jsonFormDesc).map(([key, val]) => {
+        // 3.处理 formDesc.attr（组件属性配置数据）
+        if (val.attrs === undefined) {
+          return {
+            attrs: {},
+            field: key,
+            ...val
+          }
+        } else {
+          return {
+            field: key,
+            ...val
+          }
+        }
+      })
+      // 更新 list
+      this.updateList(list)
     },
     // 复制数据
     handleCopyData() {

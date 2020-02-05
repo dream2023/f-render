@@ -41,6 +41,10 @@ export default new Vuex.Store({
     // 删除列表项
     deleteItemByIndex (state, index) {
       state.list.splice(index, 1)
+    },
+    // 修改列表
+    updateList (state, newList) {
+      state.list = newList
     }
   },
   plugins: persistedstate()

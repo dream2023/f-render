@@ -118,6 +118,7 @@ export default {
     },
     // 新增
     handleAdd(res) {
+      console.log(res)
       this.updateSelectIndex(res.newIndex)
     },
     // 移动开始
@@ -134,6 +135,7 @@ export default {
     },
     // 表单提交
     handleSubmit(data) {
+      console.log(111, this.formDesc)
       return Promise.resolve()
     },
     // 请求成功
