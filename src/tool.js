@@ -1,4 +1,5 @@
 import _ from 'lodash-es'
+import configList from '@/config'
 
 // 修改label => key + label 更明确告知用户属性名
 export function changeFormLabel (obj = {}, exceptProperty = []) {
@@ -25,4 +26,30 @@ export function isVscode () {
   } catch {
     return true
   }
+}
+
+// 新 增表单项
+export function addFormItem ({ type, label, field }) {
+  const {
+    attrsData = {},
+    attrsDefaultData = {},
+    commonData = {},
+    commonDefaultData = {}
+  } = configList[type] || {}
+
+  return Object.assign(
+    {},
+    _.cloneDeep(commonDefaultData),
+    _.cloneDeep(commonData),
+    {
+      field: field,
+      label,
+      type,
+      // 组件属性
+      attrs: {
+        ..._.cloneDeep(attrsDefaultData),
+        ..._.cloneDeep(attrsData)
+      }
+    }
+  )
 }

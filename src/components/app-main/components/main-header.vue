@@ -10,6 +10,9 @@
     <el-button @click="isShowCode = true" icon="el-icon-tickets" type="text"
       >生成代码</el-button
     >
+    <el-button @click="isShowBatchDialog = true" icon="el-icon-plus" type="text"
+      >批量添加</el-button
+    >
     <el-button @click="clearForm" icon="el-icon-delete" type="text"
       >清空表单</el-button
     >
@@ -55,6 +58,9 @@
         <el-button @click="handleCopyHtml" type="primary">复制代码</el-button>
       </div>
     </el-dialog>
+
+    <!-- 批量添加 -->
+    <batch-dialog :visible.sync="isShowBatchDialog"></batch-dialog>
   </div>
 </template>
 
@@ -64,11 +70,13 @@ import _ from 'lodash-es'
 import configList from '@/config'
 import { mapState, mapMutations } from 'vuex'
 import formAttrDefault from '@/store/formAttrDefault'
+import batchDialog from './header-components/batchDialog'
 const serialize = require('serialize-javascript')
 const copy = require('clipboard-copy')
 
 export default {
   name: 'AppMainHeader',
+  components: { batchDialog },
   computed: {
     ...mapState(['formAttr', 'list']),
     filterFormAttr() {
@@ -146,7 +154,8 @@ export default {
       formData: {},
       isShowData: false,
       isShowCode: false,
-      isPreview: false
+      isPreview: false,
+      isShowBatchDialog: false
     }
   },
   methods: {

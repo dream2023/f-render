@@ -26,9 +26,8 @@
 </template>
 
 <script>
-import _ from 'lodash-es'
 import comps from '@/comps'
-import configList from '@/config'
+import { addFormItem } from '@/tool.js'
 import draggable from 'vuedraggable'
 
 export default {
@@ -44,30 +43,7 @@ export default {
   methods: {
     // 拖拽后的数据
     addFormItem({ label, type }) {
-      // 获取配置
-      // 关于 `attrsData` 和 `attrsDefaultData`, 及 `commonData` 和 `commonDefaultData` 的解释请看 src/config/README.md
-      const {
-        attrsData = {},
-        attrsDefaultData = {},
-        commonData = {},
-        commonDefaultData = {}
-      } = configList[type] || {}
-
-      return Object.assign(
-        {},
-        _.cloneDeep(commonDefaultData),
-        _.cloneDeep(commonData),
-        {
-          field: 'key_' + Date.now(),
-          label,
-          type,
-          // 组件属性
-          attrs: {
-            ..._.cloneDeep(attrsDefaultData),
-            ..._.cloneDeep(attrsData)
-          }
-        }
-      )
+      return addFormItem({ label, type, field: 'key_' + Date.now() })
     }
   }
 }
