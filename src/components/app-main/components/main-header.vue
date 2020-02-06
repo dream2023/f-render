@@ -58,17 +58,19 @@
         title="预览表单"
         :visible.sync="innerDialogShow"
         append-to-body>
-        <ele-form
-          style="background: #f8f8f8"
-          v-if="innerDialogShow"
-          :form-desc="jsonFormDesc"
-          :formData="{}"
-          :request-fn="handleRequest"
-          @request-success="handleRequestSuccess"
-          v-bind="jsonTempFormAttr"
-        ></ele-form>
+        <el-card class="box-card">
+          <ele-form
+            v-if="innerDialogShow"
+            :form-desc="jsonFormDesc"
+            :formData="{}"
+            :request-fn="handleRequest"
+            @request-success="handleRequestSuccess"
+            v-bind="jsonTempFormAttr"
+          ></ele-form>
+        </el-card>
         <div slot="footer" class="dialog-footer">
           <el-button type="primary" @click="confirmGen">生成表单</el-button>
+          <el-button @click="(innerDialogShow = isShowCodePen = false)">返回编辑</el-button>
         </div>
       </el-dialog>
       <json-editor @input="jsonInput" :value="jsonPenData"></json-editor>
@@ -117,10 +119,6 @@ export default {
       }
       return formAttr
     },
-    // jsonFormDesc() {
-    //   console.log({ formDesc: this.jsonPenData.formDesc })
-    //   return { formDesc: this.jsonPenData.formDesc }
-    // },
     formDesc() {
       // 以 field 为 key, 转为对象
       const formDesc = _.keyBy(_.cloneDeep(this.list), 'field')
@@ -255,21 +253,8 @@ export default {
       // 1.分离 formAttr （表单配置数据）
       this.updateFormAttr(this.jsonTempFormAttr)
       // 2.更新 formDesc（组件通用配置数据）
-      let list = Object.entries(this.jsonFormDesc).map(([key, val]) => {
-        // 3.处理 formDesc.attr（组件属性配置数据）
-        if (val.attrs === undefined) {
-          return {
-            attrs: {},
-            field: key,
-            ...val
-          }
-        } else {
-          return {
-            field: key,
-            ...val
-          }
-        }
-      })
+      // 3.处理 formDesc.attr（组件属性配置数据）
+      let list = Object.entries(this.jsonFormDesc).map(([key, val]) => ({ attrs: val.attrs || {}, field: key, ...val }))
       // 更新 list
       this.updateList(list)
     },
@@ -284,8 +269,6 @@ export default {
       this.$message.success('复制成功!')
     },
     handleRequest(data) {
-      // eslint-disable-next-line no-console
-      console.log(data)
       return Promise.resolve()
     },
     handleRequestSuccess() {
