@@ -245,7 +245,6 @@ export default {
       if (this.jsonData && this.jsonData.formDesc) {
         let keys = Object.keys(formAttrDefault)
         this.jsonTempFormAttr = Object.assign(formAttrDefault, _.pick(this.jsonData, keys)) // 临时预览的 formAttr
-        console.log(this.jsonTempFormAttr)
         this.innerDialogShow = true
       } else {
         this.$message.error('数据必须有 "formDesc" 属性！')
