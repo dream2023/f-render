@@ -4,8 +4,14 @@
     <el-button @click="isPreview = true" icon="el-icon-view" type="text"
       >预览</el-button
     >
-    <el-button @click="isShowData = true" icon="el-icon-upload2" type="text"
+    <el-button
+      @click="isShowExportData = true"
+      icon="el-icon-upload2"
+      type="text"
       >生成数据</el-button
+    >
+    <el-button @click="isShowHtmlCode = true" icon="el-icon-tickets" type="text"
+      >生成代码</el-button
     >
     <el-button
       @click="isShowImportDialog = true"
@@ -13,60 +19,31 @@
       type="text"
       >导入数据</el-button
     >
-    <el-button @click="isShowCode = true" icon="el-icon-tickets" type="text"
-      >生成代码</el-button
-    >
     <el-button @click="isShowBatchDialog = true" icon="el-icon-plus" type="text"
       >批量添加</el-button
     >
     <el-button @click="clearForm" icon="el-icon-delete" type="text"
       >清空表单</el-button
     >
-    <el-dialog
-      :visible.sync="isPreview"
-      append-to-body
-      title="预览"
-      v-if="isPreview"
-      width="90%"
-    >
-      <ele-form
-        :form-desc="formDesc"
-        :formData="formData"
-        :request-fn="handleRequest"
-        @request-success="handleRequestSuccess"
-        v-bind="formAttr"
-      ></ele-form>
-    </el-dialog>
-    <!-- 导出数据弹框 -->
-    <el-dialog
-      :visible.sync="isShowData"
-      append-to-body
-      title="数据"
-      v-if="isShowData"
-      width="600px"
-    >
-      <json-editor :value="codeData"></json-editor>
-      <div style="text-align: center;margin-top: 20px">
-        <el-button @click="handleCopyData" type="primary">复制数据</el-button>
-      </div>
-    </el-dialog>
+    <!-- 预览弹窗 -->
+    <preview-dialog :formDesc="formDesc" :visible.sync="isPreview" />
 
     <!-- 导入数据弹框 -->
     <import-dialog :visible.sync="isShowImportDialog" />
 
+    <!-- 导出数据弹框 -->
+    <export-dialog
+      :formDesc="formDesc"
+      :formAttr="filterFormAttr"
+      :visible.sync="isShowExportData"
+    />
+
     <!-- 生成代码弹框 -->
-    <el-dialog
-      :visible.sync="isShowCode"
-      append-to-body
-      title="代码"
-      v-if="isShowCode"
-      width="600px"
-    >
-      <codemirror :value="codeHtml"></codemirror>
-      <div style="text-align: center;margin-top: 20px">
-        <el-button @click="handleCopyHtml" type="primary">复制代码</el-button>
-      </div>
-    </el-dialog>
+    <html-dialog
+      :formDesc="formDesc"
+      :formAttr="filterFormAttr"
+      :visible.sync="isShowHtmlCode"
+    />
 
     <!-- 批量添加 -->
     <batch-dialog :visible.sync="isShowBatchDialog"></batch-dialog>
@@ -74,19 +51,25 @@
 </template>
 
 <script>
-import tpl from '@/tpl'
 import _ from 'lodash-es'
 import configList from '@/config'
 import { mapState, mapMutations } from 'vuex'
 import formAttrDefault from '@/store/formAttrDefault'
 import batchDialog from './components/batchDialog'
 import importDialog from './components/importDialog'
-const serialize = require('serialize-javascript')
-const copy = require('clipboard-copy')
+import exportDialog from './components/exportDialog'
+import previewDialog from './components/previewDialog'
+import htmlDialog from './components/htmlDialog'
 
 export default {
   name: 'AppMainHeader',
-  components: { batchDialog, importDialog },
+  components: {
+    batchDialog,
+    importDialog,
+    previewDialog,
+    exportDialog,
+    htmlDialog
+  },
   computed: {
     ...mapState(['formAttr', 'list']),
     filterFormAttr() {
@@ -132,38 +115,12 @@ export default {
         formDesc[key] = formItem
       }
       return formDesc
-    },
-    codeHtml() {
-      // 如果是字符串属性值和其它属性值, 一个有 : , 一个没有
-      // 例如 {name: 'jack', age: 10} => ['name="jack"', ':age="10"']
-      let htmlFormAttr = Object.entries(this.filterFormAttr)
-        .map(
-          ([key, val]) =>
-            (typeof val === 'string' ? '' : ':') + `${key}="${val}"`
-        )
-        .join('\n    ')
-
-      if (htmlFormAttr.length) {
-        htmlFormAttr = htmlFormAttr + '\n    '
-      }
-
-      return this.tpl
-        .replace('%1', htmlFormAttr)
-        .replace('%2', this.serializeObj(this.formDesc))
-    },
-    // 数据
-    codeData() {
-      return Object.assign({}, this.filterFormAttr, {
-        formDesc: this.formDesc
-      })
     }
   },
   data() {
     return {
-      tpl: tpl,
-      formData: {},
-      isShowData: false,
-      isShowCode: false,
+      isShowExportData: false,
+      isShowHtmlCode: false,
       isPreview: false,
       isShowBatchDialog: false,
       isShowImportDialog: false
@@ -192,31 +149,6 @@ export default {
         }
       }
       return obj
-    },
-    // 复制数据
-    handleCopyData() {
-      copy(serialize(this.codeData, { space: 2 }))
-      this.$message.success('复制成功!')
-    },
-    // 复制 html
-    handleCopyHtml() {
-      copy(this.codeHtml)
-      this.$message.success('复制成功!')
-    },
-    handleRequest(data) {
-      return Promise.resolve()
-    },
-    handleRequestSuccess(data) {
-      console.log('data')
-      this.$message.success('发送成功')
-    },
-    // 序列表对象为字符串
-    serializeObj(obj) {
-      if (_.isEmpty(obj)) return '{}'
-      return serialize(obj, { space: 2 })
-        .replace(/"(\w+)":/g, '$1:')
-        .replace(/(\s\s)(\S)/g, '      $1$2')
-        .replace(/}$/, '      }')
     }
   }
 }
