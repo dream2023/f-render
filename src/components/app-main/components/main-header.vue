@@ -8,7 +8,7 @@
       >生成数据</el-button
     >
     <el-button @click="isShowCodePen = true" icon="el-icon-download" type="text"
-      >导入代码</el-button
+      >导入数据</el-button
     >
     <el-button @click="isShowCode = true" icon="el-icon-tickets" type="text"
       >生成代码</el-button
@@ -47,6 +47,7 @@
 
     <!-- 导入数据弹框 -->
     <el-dialog
+      @close="handleJsonPenClose"
       :visible.sync="isShowCodePen"
       append-to-body
       title="导入数据"
@@ -58,7 +59,7 @@
         title="预览表单"
         :visible.sync="innerDialogShow"
         append-to-body>
-        <el-card class="box-card">
+        <el-card shadow="hover" class="box-card">
           <ele-form
             v-if="innerDialogShow"
             :form-desc="jsonFormDesc"
@@ -70,7 +71,7 @@
         </el-card>
         <div slot="footer" class="dialog-footer">
           <el-button type="primary" @click="confirmGen">生成表单</el-button>
-          <el-button @click="(innerDialogShow = isShowCodePen = false)">返回编辑</el-button>
+          <el-button @click="(innerDialogShow = false)">返回编辑</el-button>
         </div>
       </el-dialog>
       <json-editor @input="jsonInput" :value="jsonPenData"></json-editor>
@@ -225,6 +226,13 @@ export default {
       this.clearList()
       this.updateFormAttr(formAttrDefault)
     },
+    // 关闭 jsonPen 弹窗，清空数据
+    handleJsonPenClose() {
+      this.isShowCodePen = false
+      this.innerDialogShow = false
+      this.jsonData = {}
+      this.jsonFormDesc = {}
+    },
     // 处理粘贴的json
     handleJson() {
       if (typeof this.jsonData !== 'object') {
@@ -243,8 +251,7 @@ export default {
     // 确认生成表单
     confirmGen() {
       this.json2Form()
-      this.isShowCodePen = false
-      this.innerDialogShow = false
+      this.handleJsonPenClose()
     },
     // 处理json数据，将json 映射到操作面板 （list)
     json2Form() {
