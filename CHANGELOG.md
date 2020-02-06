@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.9.0](https://github.com/dream2023/vue-ele-form-generator/compare/v1.8.0...v1.9.0) (2020-02-06)
+
+
+### Features
+
+* 增加批量添加表单项 ([e20defd](https://github.com/dream2023/vue-ele-form-generator/commit/e20defd44f141143a22edda3a174d8e97ec5add6))
+
 ## [1.8.0](https://github.com/dream2023/vue-ele-form-generator/compare/v1.7.0...v1.8.0) (2020-02-02)
 
 
