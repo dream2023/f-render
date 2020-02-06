@@ -61,6 +61,7 @@
         append-to-body>
         <el-card shadow="hover" class="box-card">
           <ele-form
+            v-if="innerDialogShow"
             :form-desc="jsonFormDesc"
             :formData="{}"
             :request-fn="handleRequest"
@@ -73,9 +74,9 @@
           <el-button @click="(innerDialogShow = false)">返回编辑</el-button>
         </div>
       </el-dialog>
-      <json-editor @input="jsonInput" :value="jsonData"></json-editor>
+      <json-editor @input="jsonInput" :value="jsonPenData"></json-editor>
       <div style="text-align: center;margin-top: 20px">
-        <el-button @click="handleJson" :disabled="importDisabled" type="primary">导入数据</el-button>
+        <el-button @click="handleJson" type="primary">导入数据</el-button>
       </div>
     </el-dialog>
 
@@ -175,9 +176,6 @@ export default {
       return Object.assign({}, this.filterFormAttr, {
         formDesc: this.formDesc
       })
-    },
-    importDisabled() {
-      return !this.jsonData || Object.keys(this.jsonData).length === 0
     }
   },
   data() {
@@ -189,10 +187,9 @@ export default {
       isPreview: false,
       isShowCodePen: false,
       innerDialogShow: false,
-      // jsonPenData: {},
+      jsonPenData: {},
       jsonFormDesc: {},
-      jsonTempFormAttr: {},
-      jsonData: {}
+      jsonTempFormAttr: {}
     }
   },
   methods: {
@@ -245,7 +242,6 @@ export default {
       if (this.jsonData && this.jsonData.formDesc) {
         let keys = Object.keys(formAttrDefault)
         this.jsonTempFormAttr = Object.assign(formAttrDefault, _.pick(this.jsonData, keys)) // 临时预览的 formAttr
-        console.log(this.jsonTempFormAttr)
         this.innerDialogShow = true
       } else {
         this.$message.error('数据必须有 "formDesc" 属性！')
