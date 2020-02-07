@@ -2,6 +2,14 @@
   <div>
     <el-card
       :body-style="{ padding: '10px' }"
+    >
+      <el-input placeholder="请输入关键字查找组件" v-model.trim="searchValue"></el-input>
+    </el-card>
+    <div v-if="comps.length === 0">
+      <p class="no-comps-text">未找到相关组件~</p>
+    </div>
+    <el-card
+      :body-style="{ padding: '10px' }"
       :header="comp.title"
       :key="comp.title"
       shadow="never"
@@ -38,10 +46,38 @@ export default {
   },
   data() {
     return {
-      comps: comps
+      comps: comps,
+      searchValue: ''
     }
   },
+  watch: {
+    searchValue() {
+      this.debouncedSearch()
+    }
+  },
+  created () {
+    this.debouncedSearch = _.debounce(this.searchComponents, 400)
+  },
   methods: {
+    // 过滤搜索
+    searchComponents() {
+      this.comps = this.searchValue === '' ? comps : this.filteredComps()
+    },
+    filteredComps () {
+      const value = _.toLower(this.searchValue)
+      let newComps = comps.map(x => {
+        let newInnerComps = []
+        if (/^[a-z|-]+$/.test(value)) {
+          // 识别 value 为字母，匹配 type 字段
+          newInnerComps = _.filter(x.comps, x => x.type.indexOf(value) !== -1)
+        } else {
+          // 否则 value 为汉字，匹配 label 字段
+          newInnerComps = _.filter(x.comps, x => x.label.indexOf(value) !== -1)
+        }
+        return { ...x, comps: newInnerComps }
+      })
+      return newComps.filter(x => x.comps.length > 0)
+    },
     // 拖拽后的数据
     addFormItem({ label, type }) {
       // 获取配置
@@ -93,5 +129,11 @@ export default {
 .type-item-title {
   font-weight: bold;
   color: #222;
+}
+.no-comps-text {
+  text-align: center;
+  color: #409eff;
+  padding-top: 50px;
+  font-size: 14px;
 }
 </style>
