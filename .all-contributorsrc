@@ -6,6 +6,17 @@
   "commit": false,
   "contributors": [
     {
+      "login": "dream2023",
+      "name": "张超杰",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/19297757?v=4",
+      "profile": "http://dream2023.github.io",
+      "contributions": [
+        "doc",
+        "code",
+        "ideas"
+      ]
+    },
+    {
       "login": "Wisenl",
       "name": "Wisen",
       "avatar_url": "https://avatars0.githubusercontent.com/u/17942052?v=4",
@@ -20,5 +31,6 @@
   "projectOwner": "dream2023",
   "repoType": "github",
   "repoHost": "https://github.com",
-  "skipCi": true
+  "skipCi": true,
+  "commitConvention": "none"
 }
