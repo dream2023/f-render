@@ -1,10 +1,10 @@
 # vue-ele-form-generator | vue-ele-form 的表单设计器
 
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-
+[![MIT](https://img.shields.io/github/license/dream2023/vue-ele-form-generator)](https://github.com/dream2023/vue-ele-form-generator)
+![npm](https://img.shields.io/npm/dt/vue-ele-form-generator)
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
-
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
+[![Netlify Status](https://api.netlify.com/api/v1/badges/7a45ab0a-0a6b-4d27-b130-54de40296859/deploy-status)](https://app.netlify.com/sites/vue-ele-form-generator/deploys)
+[![Star on GitHub](https://img.shields.io/github/stars/dream2023/vue-ele-form-generator.svg?style=social)](https://github.com/dream2023/vue-ele-form-generator/stargazers)
 
 ## 介绍
 
