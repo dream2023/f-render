@@ -1,6 +1,7 @@
 <template>
   <div>
     <el-card
+      id="comps-search-card"
       :body-style="{ padding: '10px' }"
     >
       <el-input placeholder="请输入关键字查找组件" v-model.trim="searchValue"></el-input>
@@ -46,38 +47,36 @@ export default {
   },
   data() {
     return {
-      comps: comps,
-      searchValue: ''
+      searchValue: '',
+      tempVal: ''
     }
   },
   watch: {
-    searchValue() {
-      this.debouncedSearch()
+    searchValue(val) {
+      if (this.debouncedSearch) {
+        this.debouncedSearch(val)
+      } else {
+        this.debouncedSearch = _.debounce(val => {
+          this.tempVal = val
+        }, 200)
+      }
     }
   },
-  created () {
-    this.debouncedSearch = _.debounce(this.searchComponents, 400)
-  },
-  methods: {
-    // 过滤搜索
-    searchComponents() {
-      this.comps = this.searchValue === '' ? comps : this.filteredComps()
+  computed: {
+    comps() {
+      return this.tempVal === '' ? comps : this.filteredComps
     },
     filteredComps () {
-      const value = _.toLower(this.searchValue)
+      const value = _.toLower(this.tempVal)
       let newComps = comps.map(x => {
-        let newInnerComps = []
-        if (/^[a-z|-]+$/.test(value)) {
-          // 识别 value 为字母，匹配 type 字段
-          newInnerComps = _.filter(x.comps, x => x.type.indexOf(value) !== -1)
-        } else {
-          // 否则 value 为汉字，匹配 label 字段
-          newInnerComps = _.filter(x.comps, x => x.label.indexOf(value) !== -1)
-        }
+        // 匹配 type 或者 label，匹配上就返回该项
+        let newInnerComps = _.filter(x.comps, x => (x.type.indexOf(value) !== -1 || x.label.indexOf(value) !== -1))
         return { ...x, comps: newInnerComps }
       })
       return newComps.filter(x => x.comps.length > 0)
-    },
+    }
+  },
+  methods: {
     // 拖拽后的数据
     addFormItem({ label, type }) {
       // 获取配置
@@ -135,5 +134,11 @@ export default {
   color: #409eff;
   padding-top: 50px;
   font-size: 14px;
+}
+#comps-search-card {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-radius: 0;
 }
 </style>
