@@ -1,6 +1,9 @@
 # vue-ele-form-generator | vue-ele-form 的表单设计器
+
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## 介绍
@@ -45,7 +48,7 @@ npm update -g vue-ele-form-generator
 
 ### vscode 插件
 
-插件市场搜索: `vue-ele-form-generator`
+插件市场搜索: `fgen-for-vscode`, 或者点击[链接](https://marketplace.visualstudio.com/items?itemName=dream2023.fgen-for-vscode&ssr=false#review-details)
 
 ## 链接
 
@@ -54,13 +57,7 @@ npm update -g vue-ele-form-generator
 
 ## 交流群
 
-![交流群](https://s2.ax1x.com/2020/01/31/13TD74.md.png)
-
-## 捐赠
-
-如果觉得还不错，请作者喝杯咖啡吧 Thanks♪(･ω･)ﾉ
-
-[![赞助作者](https://s2.ax1x.com/2020/01/19/195AOI.md.jpg)](https://imgchr.com/i/195AOI)
+![交流群](https://s2.ax1x.com/2020/02/07/1gnFPK.jpg)
 
 ## Contributors ✨
 
@@ -77,6 +74,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
