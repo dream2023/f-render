@@ -1,4 +1,7 @@
 # vue-ele-form-generator | vue-ele-form 的表单设计器
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## 介绍
 
@@ -58,3 +61,22 @@ npm update -g vue-ele-form-generator
 如果觉得还不错，请作者喝杯咖啡吧 Thanks♪(･ω･)ﾉ
 
 [![赞助作者](https://s2.ax1x.com/2020/01/19/195AOI.md.jpg)](https://imgchr.com/i/195AOI)
+
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/Wisenl"><img src="https://avatars0.githubusercontent.com/u/17942052?v=4" width="100px;" alt=""/><br /><sub><b>Wisen</b></sub></a><br /><a href="https://github.com/dream2023/vue-ele-form-generator/commits?author=Wisenl" title="Code">💻</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
