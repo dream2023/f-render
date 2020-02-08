@@ -1,6 +1,15 @@
 <template>
   <div>
     <el-card
+      id="comps-search-card"
+      :body-style="{ padding: '10px' }"
+    >
+      <el-input placeholder="请输入关键字查找组件" v-model.trim="searchValue"></el-input>
+    </el-card>
+    <div v-if="comps.length === 0">
+      <p class="no-comps-text">未找到相关组件~</p>
+    </div>
+    <el-card
       :body-style="{ padding: '10px' }"
       :header="comp.title"
       :key="comp.title"
@@ -37,7 +46,33 @@ export default {
   },
   data() {
     return {
-      comps: comps
+      searchValue: '',
+      tempVal: ''
+    }
+  },
+  watch: {
+    searchValue(val) {
+      if (this.debouncedSearch) {
+        this.debouncedSearch(val)
+      } else {
+        this.debouncedSearch = _.debounce(val => {
+          this.tempVal = val
+        }, 200)
+      }
+    }
+  },
+  computed: {
+    comps() {
+      return this.tempVal === '' ? comps : this.filteredComps
+    },
+    filteredComps () {
+      const value = _.toLower(this.tempVal)
+      let newComps = comps.map(x => {
+        // 匹配 type 或者 label，匹配上就返回该项
+        let newInnerComps = _.filter(x.comps, x => (x.type.indexOf(value) !== -1 || x.label.indexOf(value) !== -1))
+        return { ...x, comps: newInnerComps }
+      })
+      return newComps.filter(x => x.comps.length > 0)
     }
   },
   methods: {
@@ -69,5 +104,17 @@ export default {
 .type-item-title {
   font-weight: bold;
   color: #222;
+}
+.no-comps-text {
+  text-align: center;
+  color: #409eff;
+  padding-top: 50px;
+  font-size: 14px;
+}
+#comps-search-card {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-radius: 0;
 }
 </style>
