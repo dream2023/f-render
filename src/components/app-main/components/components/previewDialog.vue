@@ -42,6 +42,7 @@ export default {
   },
   methods: {
     handleRequest(data) {
+      // eslint-disable-next-line no-console
       console.log(data)
       return Promise.resolve(data)
     },

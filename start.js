@@ -16,6 +16,7 @@ function updateCheck () {
   if (notifier.update) {
     message.push('Update available: ' + chalk.green.bold(notifier.update.latest) + chalk.gray(' (current: ' + notifier.update.current + ');'))
     message.push('Run ' + chalk.magenta('npm install -g ' + pkg.name) + ' Or ' + chalk.magenta('yarn global add ' + pkg.name) + ' to update.')
+    // eslint-disable-next-line no-console
     console.log(message.join('\r\n'))
   }
 }
@@ -49,6 +50,7 @@ program
 program.parse(process.argv)
 
 server.listen(program.port, () => {
+  // eslint-disable-next-line no-console
   console.log(`Running at http://localhost:${program.port}`)
   openURL(`http://localhost:${program.port}`)
 })

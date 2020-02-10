@@ -154,6 +154,7 @@ export default {
       return Promise.resolve()
     },
     handleRequestSuccess(data) {
+      // eslint-disable-next-line no-console
       console.log('data')
       this.$message.success('发送成功')
     }

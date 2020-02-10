@@ -9,8 +9,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint --mode production",
-    "release": "standard-version",
-    "pubs": "npm run build && npm run release && npm publish --registry http://registry.npmjs.org && git push --follow-tags origin master && gren release --override"
+    "release": "./release.sh"
   },
   "bin": {
     "fgen": "./bin/fgen"
