@@ -1,15 +1,14 @@
 <template>
   <div>
     <template v-if="isShow">
-      <div v-if="attrLink" class="app-main-right-link">
-        <el-link type="primary" target="_blank" :href="attrLink"
-          >点击查看&nbsp;{{ currentFormItem.type }}组件</el-link
-        >&nbsp;
-        <span style="vertical-align: middle;">属性详细解释</span>
-      </div>
+      <attrs-header
+        :url="attrLink"
+        :title="currentFormItem.type + '组件'"
+        v-model="keyword"
+      />
       <ele-form
         :formData="currentFormItem.attrs"
-        :formDesc="formDesc"
+        :formDesc="filterFormDesc"
         :isShowBackBtn="false"
         :isShowSubmitBtn="false"
         :span="20"
@@ -26,9 +25,13 @@
 import { mapGetters } from 'vuex'
 import configList from '@/config'
 import { changeFormLabel } from '@/tool.js'
+import SearchMixin from './components/searchMixin'
+import AttrsHeader from './components/attrs-header'
 
 export default {
   name: 'AppFormItemAttrs',
+  mixins: [SearchMixin],
+  components: { AttrsHeader },
   computed: {
     ...mapGetters(['currentFormItem']),
     isShow() {

@@ -1,18 +1,13 @@
 <template>
   <div>
-    <div class="app-main-right-link">
-      <el-link
-        type="primary"
-        target="_blank"
-        href="https://www.yuque.com/chaojie-vjiel/vbwzgu/dyw8a7"
-        >点击查看表单配置</el-link
-      >&nbsp;
-      <span style="vertical-align: middle;">属性详细解释</span>
-    </div>
-
+    <attrs-header
+      url="https://www.yuque.com/chaojie-vjiel/vbwzgu/dyw8a7"
+      title="表单配置"
+      v-model="keyword"
+    />
     <ele-form
       v-model="formAttr"
-      :form-desc="computedFormDesc"
+      :form-desc="filterFormDesc"
       :isShowBackBtn="false"
       :isShowSubmitBtn="false"
       :span="20"
@@ -25,12 +20,16 @@
 <script>
 import { mapMutations, mapState } from 'vuex'
 import { changeFormLabel } from '@/tool.js'
+import searchMixin from './components/searchMixin'
+import AttrsHeader from './components/attrs-header'
 
 export default {
   name: 'AppFormConfig',
+  mixins: [searchMixin],
+  components: { AttrsHeader },
   data() {
     return {
-      formDesc: {
+      originDesc: {
         inline: {
           type: 'radio',
           default: false,
@@ -164,8 +163,8 @@ export default {
   },
   computed: {
     ...mapState(['formAttr']),
-    computedFormDesc() {
-      return changeFormLabel(this.formDesc)
+    formDesc() {
+      return changeFormLabel(this.originDesc)
     }
   },
   methods: {

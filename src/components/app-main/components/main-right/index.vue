@@ -38,7 +38,6 @@ export default {
   color: #909399;
   text-align: center;
 }
-
 .app-main-right-container .el-tabs__nav-wrap {
   padding: 0 15px;
 }
@@ -61,14 +60,5 @@ export default {
 .app-main-right-container div.jsoneditor-outer.has-main-menu-bar {
   margin-top: 0 !important;
   padding-top: 0 !important;
-}
-
-.app-main-right-link {
-  color: #666;
-  font-size: 14px;
-  margin-left: 24px;
-  padding-left: 10px;
-  margin-bottom: 10px;
-  border-left: 3px solid #eee;
 }
 </style>
