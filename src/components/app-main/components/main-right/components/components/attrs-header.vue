@@ -8,7 +8,7 @@
     </div>
     <div class="app-main-right-search">
       <el-input
-        v-model="keyword"
+        v-model.trim="keyword"
         clearable
         @input="$emit('input', $event)"
         placeholder="输入关键字搜索属性"

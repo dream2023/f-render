@@ -1,36 +1,39 @@
 <template>
   <div>
-    <el-card id="comps-search-card" :body-style="{ padding: '10px' }">
+    <div class="search-comps">
       <el-input
+        clearable
         placeholder="请输入关键字查找组件"
         v-model.trim="searchValue"
       ></el-input>
-    </el-card>
+    </div>
     <div v-if="filteredComps.length === 0">
       <p class="no-comps-text">未找到相关组件~</p>
     </div>
-    <el-card
-      :body-style="{ padding: '10px' }"
-      :header="comp.title"
-      :key="comp.title"
-      shadow="never"
-      style="border: none;"
-      v-for="comp of filteredComps"
-    >
-      <draggable
-        :clone="addFormItem"
-        :group="{ name: 'form', pull: 'clone', put: false }"
-        :list="comp.comps"
-        :sort="false"
+    <div class="app-main-content">
+      <el-card
+        :body-style="{ padding: '10px' }"
+        :header="comp.title"
+        :key="comp.title"
+        shadow="never"
+        style="border: none;"
+        v-for="comp of filteredComps"
       >
-        <template v-for="item of comp.comps">
-          <div :key="item.type" class="type-item">
-            <div class="type-item-title">{{ item.type }}</div>
-            <div>{{ item.label }}</div>
-          </div>
-        </template>
-      </draggable>
-    </el-card>
+        <draggable
+          :clone="addFormItem"
+          :group="{ name: 'form', pull: 'clone', put: false }"
+          :list="comp.comps"
+          :sort="false"
+        >
+          <template v-for="item of comp.comps">
+            <div :key="item.type" class="type-item">
+              <div class="type-item-title">{{ item.type }}</div>
+              <div>{{ item.label }}</div>
+            </div>
+          </template>
+        </draggable>
+      </el-card>
+    </div>
   </div>
 </template>
 
@@ -78,6 +81,10 @@ export default {
 </script>
 
 <style>
+.search-comps {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
 .type-item {
   width: 120px;
   color: #606266;
@@ -103,11 +110,5 @@ export default {
   color: #409eff;
   padding-top: 50px;
   font-size: 14px;
-}
-#comps-search-card {
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-radius: 0;
 }
 </style>

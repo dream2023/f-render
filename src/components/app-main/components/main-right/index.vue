@@ -1,15 +1,20 @@
 <template>
-  <el-tabs class="app-main-right-container" :stretch="true" v-model="activeTab">
-    <el-tab-pane label="组件通用配置" name="0">
-      <app-form-item-config />
-    </el-tab-pane>
-    <el-tab-pane label="组件属性配置" name="1">
-      <app-form-item-attrs />
-    </el-tab-pane>
-    <el-tab-pane label="表单配置" name="2">
-      <app-form-config />
-    </el-tab-pane>
-  </el-tabs>
+  <div style="height: 100%;">
+    <el-tabs
+      class="app-main-right-container"
+      :stretch="true"
+      v-model="activeTab"
+    >
+      <el-tab-pane label="组件通用配置" name="0"></el-tab-pane>
+      <el-tab-pane label="组件属性配置" name="1"></el-tab-pane>
+      <el-tab-pane label="表单配置" name="2"> </el-tab-pane>
+    </el-tabs>
+    <div class="app-main-content">
+      <app-form-item-config v-show="activeTab === '0'" />
+      <app-form-item-attrs v-show="activeTab === '1'" />
+      <app-form-config v-show="activeTab === '2'" />
+    </div>
+  </div>
 </template>
 
 <script>

@@ -4,7 +4,7 @@
     <multipane-resizer></multipane-resizer>
     <div class="app-main-container">
       <app-main-header />
-      <app-main-center />
+      <app-main-center class="app-main-content" />
     </div>
     <multipane-resizer></multipane-resizer>
     <div class="app-main-right">
@@ -58,14 +58,19 @@ export default {
   margin-top: 2px;
 }
 
-.app-main-left {
+.app-main-content {
+  height: calc(100% - 60px);
   overflow: scroll;
+  padding-bottom: 20px;
+  box-sizing: border-box;
+}
+
+.app-main-left {
   line-height: 1.5em;
   height: 100%;
 }
 
 .app-main-container {
-  overflow: scroll;
   flex-grow: 1;
   flex: 1;
 }
@@ -73,7 +78,6 @@ export default {
 .app-main-right {
   width: 315px;
   margin-top: 21px;
-  overflow: scroll;
 }
 
 .app-main > .multipane-resizer {
