@@ -38,6 +38,7 @@
 import comps from '@/comps'
 import { addFormItem } from '@/tool.js'
 import draggable from 'vuedraggable'
+import _ from 'lodash'
 
 export default {
   name: 'AppMainLeft',
