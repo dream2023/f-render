@@ -1,6 +1,6 @@
 {
   "name": "vue-ele-form-generator",
-  "version": "1.10.0",
+  "version": "1.10.1",
   "description": "vue-ele-form-generator是专为vue-ele-form开发的可视化表单设计工具, 让表单开发的效率更上一层楼",
   "private": false,
   "license": "MIT",
@@ -8,7 +8,7 @@
     "start": "node bin/fgen",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint --mode production",
+    "lint": "vue-cli-service lint src/* --mode production",
     "release": "./release.sh"
   },
   "bin": {
