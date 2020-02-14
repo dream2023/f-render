@@ -23,13 +23,19 @@ vue-ele-form-generator 是专为 [vue-ele-form](https://github.com/dream2023/vue
 - 一键生成配置 json 数据
 - 一键生成.vue 格式内容
 
-## 安装
+## 安装 和 使用
 
-### 第一种方式: 在线设计地址(有点慢, 请耐心)
+### 第一步: 项目安装 vue-ele-form
+
+本可视化项目是专为 vue-ele-form 组件开发的表单设计器, 如果想要在项目中使用生成的代码, 必须[安装](https://www.yuque.com/chaojie-vjiel/vbwzgu/xl46cd) `vue-ele-form` 组件, 点击[查看](https://www.yuque.com/chaojie-vjiel/vbwzgu/xl46cd);
+
+### 第二步: 使用可视化设计表单
+
+#### 第一种方式: 在线设计地址(有点慢, 请耐心)
 
 [https://vue-ele-form-generator.netlify.com/](https://vue-ele-form-generator.netlify.com/)
 
-### 第二种方式: 本地启动
+#### 第二种方式: 本地启动
 
 ```bash
 # 安装
@@ -46,7 +52,7 @@ fgen # fgen -p 端口号
 npm update -g vue-ele-form-generator
 ```
 
-### 第三种方式: vscode 插件
+#### 第三种方式: vscode 插件
 
 插件市场搜索: `fgen-for-vscode`, 或者点击[链接](https://marketplace.visualstudio.com/items?itemName=dream2023.fgen-for-vscode&ssr=false#review-details)
 
