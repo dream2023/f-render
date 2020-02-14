@@ -19,7 +19,9 @@ export default {
 </script>
 
 <style>
+/* vscode 需要重置背景和样式 */
 body {
   background: white;
+  padding: 0;
 }
 </style>
