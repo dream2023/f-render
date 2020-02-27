@@ -8,6 +8,7 @@
       />
       <ele-form
         :formData="currentFormItem"
+        @input="updateCurrentItem"
         :formDesc="filterFormDesc"
         :isShowBackBtn="false"
         :isShowSubmitBtn="false"
@@ -38,114 +39,142 @@
   </div>
 </template>
 
-<script>
-import configList from '@/config'
-import { changeFormLabel } from '@/tool.js'
-import { mapGetters, mapMutations } from 'vuex'
-import FormItemRules from './components/form-item-rules'
-import AttrsHeader from './components/attrs-header'
-import SearchMixin from './components/searchMixin'
-const serialize = require('serialize-javascript')
+<script lang="ts">
+import _ from "lodash-es";
+import store from "@/store";
+import configList from "@/config";
+import { changeFormLabel } from "@/helpers/tool";
+import serialize from "serialize-javascript";
+import searchMixin from "./components/searchMixin";
+import AttrsHeader from "./components/attrs-header.vue";
+import FormItemRules from "./components/form-item-rules.vue";
+import { createComponent, toRefs, computed, ref } from "@vue/composition-api";
+import { FormDesc, FormDescListItem } from "@/types/formList";
 
-export default {
-  name: 'AppFormItemConfig',
-  mixins: [SearchMixin],
+export default createComponent({
+  name: "AppFormItemConfig",
   components: {
     AttrsHeader,
     FormItemRules
   },
-  computed: {
-    ...mapGetters(['currentFormItem']),
-    formDesc() {
-      const customConfig = configList[this.currentFormItem.type].common || {}
-      const formDesc = Object.assign({}, this.commonConfig, customConfig)
-      return changeFormLabel(formDesc)
-    }
-  },
-  data() {
-    return {
-      isShowRuleDialog: false,
-      // 通用配置
-      commonConfig: {
-        field: {
-          type: 'input',
-          label: '字段名'
-        },
-        label: {
-          type: 'input',
-          label: '标签'
-        },
-        layout: {
-          type: 'slider',
-          label: '宽度',
-          attrs: {
-            min: 1,
-            max: 24,
-            'format-tooltip'(val) {
-              return `${val} / 24`
-            }
-          },
-          on: {
-            input: val => {
-              // slider组件, 如果传递的value为null或者undefined, 会赋值为 1, 无法利用到默认值, 所以去掉
-              if (val !== 1) {
-                this.$set(this.currentFormItem, 'layout', val)
-              }
+  setup() {
+    const { list } = toRefs(store.state);
+
+    const { currentFormItem } = toRefs(store.getters);
+    const updateCurrentItem = (data: FormDescListItem) =>
+      store.commit("updateCurrentItem", data);
+    const countObj = computed(() => _.countBy(list.value, (o: any) => o.field));
+    const config: FormDesc = {
+      field: {
+        type: "input",
+        label: "字段名",
+        tip: "字段名不可重复",
+        rules: {
+          type: "string",
+          validator(rule: any, value: any, callback: AnyFunction) {
+            if (countObj.value[value] > 1) {
+              callback("字段名重复");
+            } else {
+              callback();
             }
           }
-        },
-        default: {
-          type: 'input',
-          label: '默认值'
-        },
-        required: {
-          type: 'yesno',
-          label: '校检',
-          title: '是否必填'
-        },
-        rules: {
-          type: 'textarea',
-          label: '校检规则',
-          title: '新增校检规则',
-          displayFormatter: val => (val ? serialize(val, { space: 2 }) : ''),
-          tip:
-            '校检规则文档, 请<a target="_blank" href="https://www.yuque.com/chaojie-vjiel/vbwzgu/qzzkpd" class="el-link el-link--primary">点击查看</a>'
-        },
-        tip: {
-          type: 'input',
-          label: '表单项提示'
         }
       },
-      rules: {
-        field: {
-          required: true,
-          message: '字段必填'
+      label: {
+        type: "input",
+        label: "标签"
+      },
+      layout: {
+        type: "slider",
+        label: "宽度",
+        attrs: {
+          min: 1,
+          max: 24,
+          "format-tooltip"(val: string) {
+            return `${val} / 24`;
+          }
         },
-        label: {
-          required: true,
-          message: '标签不能为空'
+        on: {
+          input: (val: any) => {
+            // slider组件, 如果传递的value为null或者undefined, 会赋值为 1, 无法利用到默认值, 所以去掉
+            if (val !== 1) {
+              updateCurrentItem({ ...currentFormItem.value, layout: val });
+            }
+          }
         }
+      },
+      default: {
+        type: "input",
+        label: "默认值"
+      },
+      required: {
+        type: "yesno",
+        label: "校检",
+        title: "是否必填"
+      },
+      rules: {
+        type: "textarea",
+        label: "校检规则",
+        title: "新增校检规则",
+        displayFormatter: (val: any) =>
+          val ? serialize(val, { space: 2 }) : "",
+        tip:
+          '校检规则文档, 请<a target="_blank" href="https://www.yuque.com/chaojie-vjiel/vbwzgu/qzzkpd" class="el-link el-link--primary">点击查看</a>'
+      },
+      tip: {
+        type: "input",
+        label: "表单项提示"
+      },
+      isShowLabel: {
+        label: "否显示标签",
+        type: "switch",
+        tip: "与全局isShowLabel作用相同"
+      },
+      labelWidth: {
+        label: "标签宽度",
+        type: "input",
+        tip: "需要以`px`作为单位, 例如`100px`, 默认为全局设置的labelWidth值"
       }
-    }
-  },
-  methods: {
-    ...mapMutations(['updateCurrentItem']),
-    // 编辑rules对象
-    handleChangeRules(rules) {
+    };
+    const rules = {
+      field: {
+        required: true,
+        message: "字段必填"
+      },
+      label: {
+        required: true,
+        message: "标签不能为空"
+      }
+    };
+    const formDesc = computed(() => {
+      const customConfig = configList[currentFormItem.value.type].common || {};
+      const formDesc = Object.assign({}, config, customConfig);
+      return changeFormLabel(formDesc);
+    });
+    const handleChangeRules = (rules: AnyObj) => {
       try {
         if (rules) {
-          rules = eval('(' + rules + ')')
-          if (typeof rules !== 'object') return
+          rules = eval("(" + rules + ")");
+          if (typeof rules !== "object") return;
         } else {
-          rules = []
+          rules = [];
         }
-        const data = Object.assign({}, this.currentFormItem, { rules: rules })
-        this.updateCurrentItem(data)
+        const data = Object.assign({}, currentFormItem.value, { rules: rules });
+        updateCurrentItem(data);
       } catch (error) {
         // eslint-disable-next-line no-console
-        console.error(error)
+        console.error(error);
       }
-    }
+    };
+
+    return {
+      updateCurrentItem,
+      currentFormItem,
+      ...searchMixin(formDesc),
+      handleChangeRules,
+      rules: rules,
+      isShowRuleDialog: ref(false)
+    };
   }
-}
+});
 </script>

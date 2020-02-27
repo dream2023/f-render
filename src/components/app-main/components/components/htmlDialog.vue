@@ -14,14 +14,17 @@
   </el-dialog>
 </template>
 
-<script>
-import tpl from '@/tpl'
-import _ from 'lodash-es'
-const copy = require('clipboard-copy')
-const serialize = require('serialize-javascript')
+<script lang="ts">
+import tpl from "@/helpers/tpl";
+import _ from "lodash-es";
+import copy from "clipboard-copy";
+import { Message } from "element-ui";
+import serialize from "serialize-javascript";
+import { createComponent, computed, toRefs } from "@vue/composition-api";
+import { FormDesc } from "@/types/formList";
 
-export default {
-  name: 'htmlDialog',
+export default createComponent({
+  name: "htmlDialog",
   props: {
     visible: {
       type: Boolean,
@@ -29,47 +32,56 @@ export default {
     },
     formDesc: {
       type: Object,
-      default: () => {}
+      default: () => ({})
     },
     formAttr: {
       type: Object,
-      default: () => {}
+      default: () => ({})
     }
   },
-  computed: {
-    codeHtml() {
-      // 如果是字符串属性值和其它属性值, 一个有 : , 一个没有
-      // 例如 {name: 'jack', age: 10} => ['name="jack"', ':age="10"']
-      let htmlFormAttr = Object.entries(this.formAttr)
-        .map(
-          ([key, val]) =>
-            (typeof val === 'string' ? '' : ':') + `${key}="${val}"`
-        )
-        .join('\n    ')
+  setup(props) {
+    const { formDesc, formAttr } = toRefs(props);
+    const codeHtml = computed(() => {
+      // 获取 FormAttr 的字符串
+      const getFormAttrStr = (formAttr: AnyObj) => {
+        // 如果是字符串属性值和其它属性值, 一个有 : , 一个没有
+        // 例如 {name: 'jack', age: 10} => ['name="jack"', ':age="10"']
+        let htmlFormAttr = Object.entries(formAttr)
+          .map(
+            ([key, val]) =>
+              (typeof val === "string" ? "" : ":") + `${key}="${val}"`
+          )
+          .join("\n    ");
 
-      if (htmlFormAttr.length) {
-        htmlFormAttr = htmlFormAttr + '\n    '
-      }
+        if (htmlFormAttr.length) {
+          htmlFormAttr = htmlFormAttr + "\n    ";
+        }
+        return htmlFormAttr;
+      };
+
+      // 获取 formDesc 的字符串
+      const getFormDescStr = (formDesc: FormDesc) => {
+        if (_.isEmpty(formDesc)) return "{}";
+        return serialize(formDesc, { space: 2 })
+          .replace(/"(\w+)":/g, "$1:")
+          .replace(/(\s\s)(\S)/g, "      $1$2")
+          .replace(/}$/, "      }");
+      };
 
       return tpl
-        .replace('%1', htmlFormAttr)
-        .replace('%2', this.serializeObj(this.formDesc))
-    }
-  },
-  methods: {
-    // 复制 html
-    handleCopyHtml() {
-      copy(this.codeHtml)
-      this.$message.success('复制成功!')
-    },
-    // 序列表对象为字符串
-    serializeObj(obj) {
-      if (_.isEmpty(obj)) return '{}'
-      return serialize(obj, { space: 2 })
-        .replace(/"(\w+)":/g, '$1:')
-        .replace(/(\s\s)(\S)/g, '      $1$2')
-        .replace(/}$/, '      }')
-    }
+        .replace("%1", getFormAttrStr(formAttr.value))
+        .replace("%2", getFormDescStr(formDesc.value));
+    });
+
+    const handleCopyHtml = () => {
+      copy(codeHtml.value);
+      Message.success("复制成功!");
+    };
+
+    return {
+      codeHtml,
+      handleCopyHtml
+    };
   }
-}
+});
 </script>

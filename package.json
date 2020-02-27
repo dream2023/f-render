@@ -5,14 +5,11 @@
   "private": false,
   "license": "MIT",
   "scripts": {
-    "start": "node bin/fgen",
+    "bootstrap": "yarn || npm i",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint src/* --mode production",
     "release": "./release.sh"
-  },
-  "bin": {
-    "fgen": "./bin/fgen"
   },
   "repository": {
     "type": "git",
@@ -32,43 +29,44 @@
     "form schema"
   ],
   "homepage": "https://vue-ele-form-generator.netlify.com/",
-  "dependencies": {
-    "chalk": "^3.0.0",
-    "commander": "^4.1.0",
-    "internal-ip": "^5.0.0",
-    "open": "^7.0.2",
-    "semver": "^7.1.3",
-    "serve-handler": "^6.1.2",
-    "update-notifier": "^4.0.0"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.9.0",
-    "@vue/cli-plugin-eslint": "^3.9.0",
-    "@vue/cli-service": "^3.9.0",
-    "@vue/eslint-config-standard": "^4.0.0",
-    "async-validator": "^3.2.3",
-    "babel-eslint": "^10.0.1",
+    "@types/crypto-js": "^3.1.43",
+    "@types/lodash-es": "^4.17.3",
+    "@types/lz-string": "^1.3.33",
+    "@types/serialize-javascript": "^1.5.0",
+    "@typescript-eslint/eslint-plugin": "^2.18.0",
+    "@typescript-eslint/parser": "^2.18.0",
+    "@vue/cli-plugin-babel": "^4.2.0",
+    "@vue/cli-plugin-eslint": "^4.2.0",
+    "@vue/cli-plugin-typescript": "^4.2.0",
+    "@vue/cli-service": "^4.2.0",
+    "@vue/composition-api": "^0.3.4",
+    "@vue/eslint-config-prettier": "^6.0.0",
+    "@vue/eslint-config-typescript": "^5.0.1",
     "babel-plugin-lodash": "^3.3.4",
     "clipboard-copy": "^3.1.0",
     "commitizen": "^4.0.3",
-    "core-js": "2.6.5",
+    "core-js": "^3.6.4",
     "cz-conventional-changelog": "^3.0.2",
-    "ducker-model": "^1.2.6",
     "element-ui": "^2.13.0",
-    "eslint": "^5.16.0",
-    "eslint-plugin-vue": "^5.0.0",
-    "github-release-notes": "^0.17.1",
-    "lint-staged": "^8.1.5",
+    "eslint": "^6.7.2",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-vue": "^6.1.2",
+    "lint-staged": "^9.5.0",
     "lodash-es": "^4.17.15",
-    "mockjs": "^1.1.0",
+    "node-sass": "^4.12.0",
     "normalize.css": "^8.0.1",
+    "prettier": "^1.19.1",
+    "sass-loader": "^8.0.2",
     "secure-ls": "^1.2.6",
     "serialize-javascript": "^2.1.2",
     "standard-version": "^7.0.1",
-    "vue": "^2.6.10",
-    "vue-ele-form": "^0.8.11",
+    "typescript": "~3.7.5",
+    "vue": "^2.6.11",
+    "vue-ele-form": "^0.8.14",
     "vue-ele-form-bmap": "^0.1.0",
-    "vue-ele-form-codemirror": "^0.1.0",
+    "vue-ele-form-codemirror": "^0.1.1",
     "vue-ele-form-dynamic": "^0.4.0",
     "vue-ele-form-gallery": "^0.1.1",
     "vue-ele-form-image-uploader": "^0.1.4",
@@ -80,10 +78,10 @@
     "vue-ele-form-upload-file": "0.0.5",
     "vue-ele-form-video-uploader": "^0.1.3",
     "vue-multipane": "^0.9.5",
-    "vue-template-compiler": "^2.6.10",
+    "vue-template-compiler": "^2.6.11",
     "vuedraggable": "^2.23.0",
     "vuex": "^3.1.2",
-    "vuex-persistedstate": "^2.7.0"
+    "vuex-persistedstate": "^2.7.1"
   },
   "config": {
     "commitizen": {
@@ -93,12 +91,9 @@
   "gitHooks": {
     "pre-commit": "lint-staged"
   },
-  "engines": {
-    "node": ">=8.9.4"
-  },
   "lint-staged": {
-    "src/*.{js,vue}": [
-      "npm run lint",
+    "*.{js,jsx,vue,ts,tsx}": [
+      "vue-cli-service lint src/* --mode production",
       "git add"
     ]
   }

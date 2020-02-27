@@ -8,8 +8,8 @@
     width="90%"
   >
     <ele-form
-      :formDesc="formDesc"
-      v-model="formData"
+      :formDesc="computedFormDesc"
+      :formData="{}"
       :request-fn="handleRequest"
       @request-success="handleRequestSuccess"
       v-bind="formAttr"
@@ -17,38 +17,42 @@
   </el-dialog>
 </template>
 
-<script>
-import { mapState } from 'vuex'
+<script lang="ts">
+import _ from "lodash-es";
+import { createComponent, toRefs, computed } from "@vue/composition-api";
 
-export default {
-  name: 'previewDialog',
+export default createComponent({
+  name: "previewDialog",
   props: {
+    formDesc: {
+      type: Object,
+      default: () => ({})
+    },
+    formAttr: {
+      type: Object,
+      default: () => ({})
+    },
     visible: {
       type: Boolean,
       default: false
-    },
-    formDesc: {
-      type: Object,
-      default: () => {}
     }
   },
-  data() {
+  setup(props) {
+    const { formDesc } = toRefs(props);
     return {
-      formData: {}
-    }
-  },
-  computed: {
-    ...mapState(['formAttr', 'list'])
+      // 需要加一层 clone, 因为 ele-form会修改内部属性
+      computedFormDesc: computed(() => _.cloneDeep(formDesc.value))
+    };
   },
   methods: {
     handleRequest(data) {
       // eslint-disable-next-line no-console
-      console.log(data)
-      return Promise.resolve(data)
+      console.log(data);
+      return Promise.resolve(data);
     },
-    handleRequestSuccess(data) {
-      this.$message.success('发送成功')
+    handleRequestSuccess() {
+      this.$message.success("发送成功");
     }
   }
-}
+});
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="app-main-left">
     <div class="search-comps">
       <el-input
         clearable
@@ -7,108 +7,99 @@
         v-model.trim="searchValue"
       ></el-input>
     </div>
-    <div v-if="filteredComps.length === 0">
-      <p class="no-comps-text">未找到相关组件~</p>
-    </div>
-    <div class="app-main-content">
-      <el-card
-        :body-style="{ padding: '10px' }"
-        :header="comp.title"
-        :key="comp.title"
-        shadow="never"
-        style="border: none;"
-        v-for="comp of filteredComps"
+    <div class="app-main-content" style="padding-top: 10px;">
+      <draggable
+        :clone="handleAddFormItem"
+        :group="{ name: 'form', pull: 'clone', put: false }"
+        :list="filteredComps"
+        :sort="false"
       >
-        <draggable
-          :clone="addFormItem"
-          :group="{ name: 'form', pull: 'clone', put: false }"
-          :list="comp.comps"
-          :sort="false"
-        >
-          <template v-for="item of comp.comps">
-            <div :key="item.type" class="type-item">
-              <div class="type-item-title">{{ item.type }}</div>
-              <div>{{ item.label }}</div>
-            </div>
-          </template>
-        </draggable>
-      </el-card>
+        <template v-for="item of filteredComps">
+          <div :key="item.type" class="comp-item">
+            <div class="comp-item-title">{{ item.type }}</div>
+            <div>{{ item.label }}</div>
+          </div>
+        </template>
+      </draggable>
     </div>
   </div>
 </template>
 
-<script>
-import comps from '@/comps'
-import { addFormItem } from '@/tool.js'
-import draggable from 'vuedraggable'
-import _ from 'lodash-es'
+<script lang="ts">
+import comps from "@/helpers/comps";
+import draggable from "vuedraggable";
+import { addFormItem } from "@/helpers/tool";
+import { createComponent, ref, computed } from "@vue/composition-api";
+import { Comp } from "@/types/comp";
 
-export default {
-  name: 'AppMainLeft',
+export default createComponent({
+  name: "AppMainLeft",
   components: {
     draggable
   },
-  data() {
+  setup() {
+    // 搜索
+    const search = () => {
+      const searchValue = ref("");
+      const filteredComps = computed(() => {
+        const keyword = searchValue.value.toLowerCase();
+        if (!keyword) {
+          return comps;
+        } else {
+          return comps.filter(
+            item => item.type.includes(keyword) || item.label.includes(keyword)
+          );
+        }
+      });
+      return {
+        searchValue,
+        filteredComps
+      };
+    };
+
+    const { searchValue, filteredComps } = search();
     return {
-      searchValue: ''
-    }
-  },
-  computed: {
-    filteredComps() {
-      const keyword = _.toLower(this.searchValue)
-      if (!keyword) {
-        return comps
-      } else {
-        let newComps = comps.map(x => {
-          // 匹配 type 或者 label，匹配上就返回该项
-          let newInnerComps = _.filter(
-            x.comps,
-            x => x.type.includes(keyword) || x.type.includes(keyword)
-          )
-          return { ...x, comps: newInnerComps }
-        })
-        return newComps.filter(x => x.comps.length > 0)
-      }
-    }
+      searchValue,
+      filteredComps
+    };
   },
   methods: {
-    // 拖拽后的数据
-    addFormItem({ label, type }) {
-      return addFormItem({ label, type, field: 'key_' + Date.now() })
+    handleAddFormItem({ label, type }: Comp) {
+      return addFormItem({ label, type, field: "key_" + Date.now() });
     }
   }
-}
+});
 </script>
 
-<style>
-.search-comps {
-  padding: 10px;
-  border-bottom: 1px solid #eee;
-}
-.type-item {
-  width: 120px;
-  color: #606266;
-  cursor: move;
-  border: 1px solid #ebeef5;
-  overflow: hidden;
-  white-space: nowrap;
-  display: inline-block;
-  text-overflow: ellipsis;
-  border-radius: 3px;
-  padding: 6px 8px;
-  box-sizing: border-box;
-  margin: 5px;
-  font-size: 12px;
-}
+<style lang="scss">
+.app-main-left {
+  line-height: 1.5em;
+  height: 100%;
 
-.type-item-title {
-  font-weight: bold;
-  color: #222;
-}
-.no-comps-text {
-  text-align: center;
-  color: #409eff;
-  padding-top: 50px;
-  font-size: 14px;
+  .search-comps {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .comp-item {
+    width: 120px;
+    color: #606266;
+    cursor: move;
+    border: 1px solid #ebeef5;
+    overflow: hidden;
+    white-space: nowrap;
+    display: inline-block;
+    text-overflow: ellipsis;
+    border-radius: 3px;
+    padding: 6px 8px;
+    box-sizing: border-box;
+    margin: 5px;
+    font-size: 12px;
+
+    .comp-item-title {
+      font-weight: bold;
+      color: #222;
+    }
+  }
 }
 </style>

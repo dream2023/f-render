@@ -21,32 +21,34 @@
   </div>
 </template>
 
-<script>
-import { mapGetters } from 'vuex'
-import configList from '@/config'
-import { changeFormLabel } from '@/tool.js'
-import SearchMixin from './components/searchMixin'
-import AttrsHeader from './components/attrs-header'
+<script lang="ts">
+import store from "@/store";
+import configList from "@/config";
+import { changeFormLabel } from "@/helpers/tool";
+import searchMixin from "./components/searchMixin";
+import AttrsHeader from "./components/attrs-header.vue";
+import { createComponent, computed, toRefs } from "@vue/composition-api";
 
-export default {
-  name: 'AppFormItemAttrs',
-  mixins: [SearchMixin],
+export default createComponent({
+  name: "AppFormItemAttrs",
   components: { AttrsHeader },
-  computed: {
-    ...mapGetters(['currentFormItem']),
-    isShow() {
-      return this.currentFormItem && this.currentFormItem.attrs
-    },
-    config() {
-      return configList[this.currentFormItem.type]
-    },
-    attrLink() {
-      return this.config.url
-    },
-    formDesc() {
-      const formDesc = this.config.attrs || {}
-      return changeFormLabel(formDesc, this.config.assistProperty)
-    }
+  setup() {
+    const { currentFormItem } = toRefs(store.getters);
+    const isShow = computed(
+      () => currentFormItem.value && currentFormItem.value.attrs
+    );
+    const config = computed(() => configList[currentFormItem.value.type]);
+    const formDesc = computed(() => {
+      const formDesc = config.value.attrs || {};
+      return changeFormLabel(formDesc, config.value.assistProperty);
+    });
+
+    return {
+      currentFormItem,
+      ...searchMixin(formDesc),
+      isShow,
+      attrLink: computed(() => config.value.url)
+    };
   }
-}
+});
 </script>

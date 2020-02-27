@@ -39,18 +39,24 @@ vue-ele-form-generator 是专为 [vue-ele-form](https://github.com/dream2023/vue
 
 ```bash
 # 安装
-npm install -g vue-ele-form-generator # yarn global add vue-ele-form-generator
+yarn global add fgen-cli # 或 npm install -g fgen-cli
 ```
 
 ```bash
-# 使用
-fgen # fgen -p 端口号
+# 基本使用
+fgen
+```
+
+```bash
+# 指定端口
+fgen -p 8080
 ```
 
 ```bash
 # 更新
-npm update -g vue-ele-form-generator
+yarn global add fgen-cli # 或 npm update -g fgen-cli
 ```
+
 
 #### 第三种方式: vscode 插件
 
@@ -62,6 +68,7 @@ npm update -g vue-ele-form-generator
 | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------ |
 | [vue-ele-form](https://github.com/dream2023/vue-ele-form)                                        | [![npm](https://img.shields.io/npm/v/vue-ele-form)](https://github.com/dream2023/vue-ele-form)                                 | 接基于 ElementUI 的数据驱动表单            |
 | [vue-ele-form-generator](https://github.com/dream2023/vue-ele-form-generator)                    | [![npm](https://img.shields.io/npm/v/vue-ele-form-generator)](https://github.com/dream2023/vue-ele-form-generator)             | 专为 vue-ele-form 开发的可视化表单设计工具 |
+| [fgen-cli](https://github.com/dream2023/fgen-cli)                    | [![npm](https://img.shields.io/npm/v/fgen-cli)](https://github.com/dream2023/fgen-cli)             | 本地启动vue-ele-form-generator的cli工具 |
 | [fgen-for-vscode](https://marketplace.visualstudio.com/items?itemName=dream2023.fgen-for-vscode) | ![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/dream2023.fgen-for-vscode)             | vue-ele-form-generator 的 vscode 扩展      |
 | [vue-ele-form-json-editor](https://github.com/dream2023/vue-ele-form-json-editor)                | [![npm](https://img.shields.io/npm/v/vue-ele-form-json-editor)](https://github.com/dream2023/vue-ele-form-json-editor)         | JSON 编辑器(vue-ele-form 扩展)             |
 | [vue-ele-form-upload-file](https://github.com/dream2023/vue-ele-form-upload-file)                | [![npm](https://img.shields.io/npm/v/vue-ele-form-upload-file)](https://github.com/dream2023/vue-ele-form-upload-file)         | upload 文件上传组件(vue-ele-form 扩展)     |

@@ -14,12 +14,14 @@
   </el-dialog>
 </template>
 
-<script>
-const serialize = require('serialize-javascript')
-const copy = require('clipboard-copy')
+<script lang="ts">
+import copy from "clipboard-copy";
+import { Message } from "element-ui";
+import serialize from "serialize-javascript";
+import { createComponent, computed, toRefs } from "@vue/composition-api";
 
-export default {
-  name: 'exportDialog',
+export default createComponent({
+  name: "exportDialog",
   props: {
     visible: {
       type: Boolean,
@@ -27,27 +29,28 @@ export default {
     },
     formDesc: {
       type: Object,
-      default: () => {}
+      default: () => ({})
     },
     formAttr: {
       type: Object,
-      default: () => {}
+      default: () => ({})
     }
   },
-  computed: {
-    // 数据
-    codeData() {
-      return Object.assign({}, this.formAttr, {
-        formDesc: this.formDesc
-      })
-    }
-  },
-  methods: {
-    // 复制数据
-    handleCopyData() {
-      copy(serialize(this.codeData, { space: 2 }))
-      this.$message.success('复制成功!')
-    }
+  setup(props) {
+    const { formAttr, formDesc } = toRefs(props);
+    const codeData = computed(() => {
+      return Object.assign({}, formAttr.value, {
+        formDesc: formDesc.value
+      });
+    });
+    const handleCopyData = () => {
+      copy(serialize(codeData.value, { space: 2 }));
+      Message.success("复制成功!");
+    };
+    return {
+      codeData,
+      handleCopyData
+    };
   }
-}
+});
 </script>

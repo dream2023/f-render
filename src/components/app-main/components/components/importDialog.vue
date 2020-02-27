@@ -43,121 +43,133 @@
   </el-dialog>
 </template>
 
-<script>
-import _ from 'lodash-es'
-import formAttrDefault from '@/store/formAttrDefault'
-import { mapMutations } from 'vuex'
+<script lang="ts">
+import _ from "lodash-es";
+import store from "@/store";
+import { Message } from "element-ui";
+import formAttrDefault from "@/store/formAttrDefault";
+import {
+  createComponent,
+  ref,
+  computed,
+  watch,
+  toRefs
+} from "@vue/composition-api";
 
-export default {
-  name: 'importDialog',
+export default createComponent({
+  name: "importDialog",
   props: {
     visible: {
       type: Boolean,
       default: false
     }
   },
-  data() {
-    return {
-      isShowPreview: false,
-      formDesc: {},
-      formAttr: {},
-      jsonData: {},
-      jsonStr: '{\n  formDesc: {\n   \n  }\n}',
-      isError: false
-    }
-  },
-  computed: {
-    importDisabled() {
-      return !this.jsonData || Object.keys(this.jsonData).length === 0
-    }
-  },
-  watch: {
-    visible() {
-      this.isShowPreview = false
-      this.jsonData = {}
-      this.formDesc = {}
-    }
-  },
-  methods: {
-    ...mapMutations([
-      'clearForm',
-      'updateList',
-      'updateFormAttr',
-      'updateSelectIndex'
-    ]),
-    // 处理数据
-    handleChange(json) {
-      if (this.handleChangeFn) {
-        this.handleChangeFn(json)
-      } else {
-        this.handleChangeFn = _.debounce(json => {
-          try {
-            json = eval('(' + json + ')')
-            if (typeof json === 'object') {
-              this.jsonData = _.cloneDeep(json)
-              this.formDesc = this.jsonData.formDesc
-              this.isError = false
-            } else {
-              this.isError = true
-            }
-          } catch (err) {
-            this.isError = true
-          }
-        }, 200)
+  setup(props, context) {
+    const isShowPreview = ref(false);
+    const formDesc = ref({});
+    const formAttr = ref({});
+    const jsonData = ref({} as AnyObj);
+    const jsonStr = ref("{}");
+    const isError = ref(false);
+
+    // 无数据时, 禁用按钮
+    const importDisabled = computed(() => {
+      return !jsonData.value || Object.keys(jsonData.value).length === 0;
+    });
+
+    // 当隐藏时, 清空数据
+    const { visible } = toRefs(props);
+    watch(visible, () => {
+      isShowPreview.value = false;
+      jsonData.value = {};
+      formDesc.value = {};
+      jsonStr.value = "{}";
+    });
+
+    // 代码输入事件
+    const handleChange = _.debounce(json => {
+      try {
+        json = eval("(" + json + ")");
+        if (typeof json === "object") {
+          jsonData.value = _.cloneDeep(json);
+          formDesc.value = jsonData.value.formDesc;
+          isError.value = false;
+        } else {
+          isError.value = true;
+        }
+      } catch (err) {
+        isError.value = true;
       }
-    },
+    }, 200);
+
     // 处理粘贴的json
-    handleImport() {
-      if (typeof this.jsonData !== 'object' || this.isError) {
-        this.$message.error('请输入正确的 JSON 格式！')
-        return false
+    const handleImport = () => {
+      if (typeof jsonData.value !== "object" || isError.value) {
+        Message.error("请输入正确的 JSON 格式！");
+        return false;
       }
 
-      if (this.jsonData && this.jsonData.formDesc) {
-        let keys = Object.keys(formAttrDefault)
-        this.formAttr = Object.assign(
+      if (jsonData.value && jsonData.value.formDesc) {
+        const keys = Object.keys(formAttrDefault);
+        formAttr.value = Object.assign(
           formAttrDefault,
-          _.pick(this.jsonData, keys)
-        )
+          _.pick(jsonData.value, keys)
+        );
 
         // 临时预览的 formAttr
-        this.isShowPreview = true
+        isShowPreview.value = true;
       } else {
-        this.$message.error('数据必须有 "formDesc" 属性！')
-        return false
+        Message.error('数据必须有 "formDesc" 属性！');
+        return false;
       }
-    },
-    // 确认生成表单
-    confirmGen() {
-      this.json2Form()
-      this.$emit('update:visible', false)
-    },
+    };
+
     // 处理json数据，将json 映射到操作面板 （list)
-    json2Form() {
+    function json2Form() {
       // 清空原有list （待优化）
-      this.clearForm()
+      store.commit("clearForm");
       // 1.分离 formAttr （表单配置数据）
-      this.updateFormAttr(this.formAttr)
+      store.commit("updateFormAttr", formAttr.value);
       // 2.更新 formDesc（组件通用配置数据）
       // 3.处理 formDesc.attr（组件属性配置数据）
-      let list = Object.entries(this.formDesc).map(([key, val]) => ({
-        attrs: val.attrs || {},
-        field: key,
-        ...val
-      }))
+      const list = Object.entries(formDesc.value).map(([key, val]) => ({
+        ...(val as object),
+        attrs: (val as { attrs: AnyObj }).attrs || {},
+        field: key
+      }));
       // 更新 list
-      this.updateList(list)
+      store.commit("updateList", list);
       // 更新 selectIndex
-      this.updateSelectIndex(0)
-    },
+      store.commit("updateSelectIndex", 0);
+    }
+
+    // 确认生成表单
+    function confirmGen() {
+      json2Form();
+      context.emit("update:visible", false);
+    }
+    return {
+      confirmGen,
+      handleImport,
+      handleChange,
+      importDisabled,
+      isShowPreview,
+      formDesc,
+      formAttr,
+      jsonData,
+      jsonStr,
+      isError
+    };
+  },
+  methods: {
     handleRequest(data) {
-      return Promise.resolve()
-    },
-    handleRequestSuccess(data) {
       // eslint-disable-next-line no-console
-      console.log('data')
-      this.$message.success('发送成功')
+      console.log(data);
+      return Promise.resolve();
+    },
+    handleRequestSuccess() {
+      this.$message.success("发送成功");
     }
   }
-}
+});
 </script>
