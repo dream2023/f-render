@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/dream2023/vue-ele-form-generator/compare/v1.10.1...v2.0.0) (2020-02-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* 用ts重构 & 修复若干问题
+
+### Bug Fixes
+
+* release 脚本错误 ([551d51d](https://github.com/dream2023/vue-ele-form-generator/commit/551d51d7eebda6663464616383af1df7b3ad28ae))
+
+
+* 用ts重构 & 修复若干问题 ([e8ca828](https://github.com/dream2023/vue-ele-form-generator/commit/e8ca828114ab6be693732b22454daf50048096c2))
+
 ### [1.10.1](https://github.com/dream2023/vue-ele-form-generator/compare/v1.10.0...v1.10.1) (2020-02-14)
 
 ### Bug Fixes
