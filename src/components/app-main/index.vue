@@ -31,7 +31,7 @@ export default createComponent({
     MultipaneResizer
   },
   setup() {
-    const defaultWidth = "300px";
+    const defaultWidth = "260px";
     let leftWidth = defaultWidth;
     if (!isVscode) {
       leftWidth = localStorage.getItem("app-main-left") || defaultWidth;

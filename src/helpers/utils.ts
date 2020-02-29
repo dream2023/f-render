@@ -21,3 +21,16 @@ export function keyBy(list: any[], key: string): object {
   const deleteKey = (obj: object) => _.omit(obj, key);
   return _.mapValues(obj, deleteKey);
 }
+
+// 过滤对象属性
+export function filterObjBy<T extends AnyObj>(
+  obj: T,
+  fn: AnyFunction
+): Partial<T> {
+  return Object.keys(obj).reduce((acc: AnyObj, key: string) => {
+    if (fn(obj[key], key)) {
+      acc[key] = obj[key];
+    }
+    return acc;
+  }, {});
+}

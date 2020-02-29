@@ -16,17 +16,26 @@ export function changeFormLabel(
   obj: FormDesc,
   exceptFields: string[] = []
 ): FormDesc {
-  const changeLabel = (val: FormDescData, key: string) => {
+  function deepChangeLabel(obj: FormDesc, parentKey?: string) {
+    // eslint-disable-next-line @typescript-eslint/no-use-before-define
+    return _.mapValues(obj, (o, key) => changeLabel(o, key, parentKey));
+  }
+
+  function changeLabel(obj: FormDescData, key: string, parentKey?: string) {
     if (!exceptFields.includes(key)) {
-      val.attrs = {
-        ...val.attrs,
-        placeholder: val.label
-      };
-      val.label = `${key}: ${val.label}`;
+      if (obj.children) {
+        obj.children = deepChangeLabel(obj.children, key);
+      } else {
+        obj.attrs = {
+          ...obj.attrs,
+          placeholder: obj.label
+        };
+        obj.label = `${parentKey ? parentKey + "." : ""}${key}: ${obj.label}`;
+      }
     }
-    return val;
-  };
-  return _.mapValues(_.cloneDeep(obj), changeLabel);
+    return obj;
+  }
+  return deepChangeLabel(_.cloneDeep(obj));
 }
 
 /**

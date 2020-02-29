@@ -65,7 +65,7 @@
     "standard-version": "^7.0.1",
     "typescript": "~3.7.5",
     "vue": "^2.6.11",
-    "vue-ele-form": "^0.8.16",
+    "vue-ele-form": "^0.8.17",
     "vue-ele-form-bmap": "^0.1.0",
     "vue-ele-form-codemirror": "^0.1.1",
     "vue-ele-form-dynamic": "^0.4.0",

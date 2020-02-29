@@ -11819,10 +11819,10 @@ vue-ele-form-video-uploader@^0.1.3:
   dependencies:
     vue-ele-upload-video "^2.0.5"
 
-vue-ele-form@^0.8.16:
-  version "0.8.16"
-  resolved "https://registry.npm.taobao.org/vue-ele-form/download/vue-ele-form-0.8.16.tgz#b6d48d4a283d2eaebf94fa70becdd468ecc35a31"
-  integrity sha1-ttSNSig9Lq6/lPpwvs3UaOzDWjE=
+vue-ele-form@^0.8.17:
+  version "0.8.17"
+  resolved "https://registry.npm.taobao.org/vue-ele-form/download/vue-ele-form-0.8.17.tgz#c3a248ae01614fcb9a3a8b45af6780cf40d95209"
+  integrity sha1-w6JIrgFhT8uaOotFr2eAz0DZUgk=
   dependencies:
     dayjs "^1.8.20"
     is-number "^7.0.0"
