@@ -65,7 +65,7 @@ export default createComponent({
   },
   methods: {
     handleAddFormItem({ label, type }: Comp) {
-      return addFormItem({ label, type, field: "key_" + Date.now() });
+      return addFormItem(type, { label });
     }
   }
 });

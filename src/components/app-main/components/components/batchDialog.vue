@@ -149,7 +149,9 @@ export default createComponent({
 
     function handleAdd({ data }: { data: AnyObj }) {
       if (Array.isArray(data) && data.length) {
-        const newFormItems = data.map(item => addFormItem(item));
+        const newFormItems = data.map(item =>
+          addFormItem(item.type, { field: item.field, label: item.label })
+        );
         updateList(list.value.concat(newFormItems));
         Message.success("添加成功");
         formData.value = {

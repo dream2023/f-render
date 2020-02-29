@@ -3,6 +3,7 @@
 /******************/
 
 import _ from "lodash-es";
+import comps from "./comps";
 import configList from "@/config";
 import { FormDescData, FormDesc } from "@/types/formList";
 
@@ -52,11 +53,11 @@ type formItem = {
  */
 import { FormDescListItem } from "@/types/formList";
 
-export function addFormItem({
-  type,
-  label,
-  field
-}: formItem): FormDescListItem {
+export function addFormItem(
+  type: string,
+  common: AnyObj = {},
+  attrs?: AnyObj
+): FormDescListItem {
   const {
     attrsData = {},
     attrsDefaultData = {},
@@ -64,16 +65,19 @@ export function addFormItem({
     commonDefaultData = {}
   } = configList[type] || {};
 
+  common.field = common.field || "key_" + Date.now();
+  common.label = common.label || _.find(comps, { type: "input" })?.label;
+
   return Object.assign(
     {},
     _.cloneDeep(commonDefaultData),
     _.cloneDeep(commonData),
     {
-      field: field,
-      label,
+      ...(common as { field: string }),
       type,
       // 组件属性
       attrs: {
+        ...attrs,
         ..._.cloneDeep(attrsDefaultData),
         ..._.cloneDeep(attrsData)
       }
