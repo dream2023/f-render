@@ -21,3 +21,32 @@ export function keyBy(list: any[], key: string): object {
   const deleteKey = (obj: object) => _.omit(obj, key);
   return _.mapValues(obj, deleteKey);
 }
+
+// 过滤对象属性
+export function filterObjBy<T extends AnyObj>(
+  obj: T,
+  fn: AnyFunction
+): Partial<T> {
+  return Object.keys(obj).reduce((acc: AnyObj, key: string) => {
+    if (fn(obj[key], key)) {
+      acc[key] = obj[key];
+    }
+    return acc;
+  }, {});
+}
+
+// 深度去除默认值
+export function filterObjByDefault(
+  obj: AnyObj = {},
+  defaultObj: AnyObj = {}
+): AnyObj {
+  const filterDefault = (val: any, key: string) => defaultObj[key] !== val;
+  return filterObjBy(obj, (v, k) => {
+    if (_.isPlainObject(v)) {
+      obj[k] = filterObjByDefault(v, defaultObj[k]);
+      return Object.keys(obj[k]).length;
+    } else {
+      return filterDefault(v, k);
+    }
+  });
+}
