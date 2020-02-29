@@ -58,6 +58,7 @@
 import _ from "lodash-es";
 import store from "@/store";
 import configList from "@/config";
+import { filterObjByDefault } from "@/helpers/utils";
 import htmlDialog from "./components/htmlDialog.vue";
 import batchDialog from "./components/batchDialog.vue";
 import importDialog from "./components/importDialog.vue";
@@ -85,12 +86,11 @@ export default createComponent({
       assistProperty: string[] = [],
       formatterObj: AnyObj = {}
     ): AnyObj => {
-      // 删除默认值 & 无值的 & 辅助属性 & 私有属性
+      // 删除默认值
+      obj = filterObjByDefault(obj, defaultObj);
+      // 无值的 & 辅助属性 & 私有属性
       const isShouldDelete = (val: any, key: string) =>
-        _.isEqual(val, defaultObj[key]) ||
-        _.isNil(val) ||
-        assistProperty.includes(key) ||
-        key.startsWith("_");
+        _.isNil(val) || assistProperty.includes(key) || key.startsWith("_");
       obj = _.omitBy(_.cloneDeep(obj), isShouldDelete);
 
       // 对数据做自定义处理

@@ -53,10 +53,6 @@ const config: Config = {
       type: "input",
       label: "DatePicker 下拉框的类名"
     },
-    pickerOptions: {
-      type: "json-editor",
-      label: "当前时间日期选择器特有的选项"
-    },
     prefixIcon: {
       type: "input",
       label: "自定义头部图标的类名"
@@ -83,7 +79,6 @@ const config: Config = {
     clearable: true,
     align: "left",
     size: null,
-    pickerOptions: {},
     rangeSeparator: "-",
     prefixIcon: "el-icon-date",
     clearIcon: "el-icon-circle-close"

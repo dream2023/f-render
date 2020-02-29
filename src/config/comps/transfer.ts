@@ -36,7 +36,11 @@ const config: Config = {
   },
   attrsData: {},
   attrsDefaultData: {
-    format: { noChecked: "", hasChecked: "" },
+    format: {
+      noChecked: "",
+      hasChecked: ""
+    },
+    props: {},
     titles: ["列表 1", "列表 2"],
     targetOrder: "original",
     filterable: false,
