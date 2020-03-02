@@ -34,3 +34,19 @@ export function filterObjBy<T extends AnyObj>(
     return acc;
   }, {});
 }
+
+// 深度去除默认值
+export function filterObjByDefault(
+  obj: AnyObj = {},
+  defaultObj: AnyObj = {}
+): AnyObj {
+  const filterDefault = (val: any, key: string) => defaultObj[key] !== val;
+  return filterObjBy(obj, (v, k) => {
+    if (_.isPlainObject(v)) {
+      obj[k] = filterObjByDefault(v, defaultObj[k]);
+      return Object.keys(obj[k]).length;
+    } else {
+      return filterDefault(v, k);
+    }
+  });
+}

@@ -3,10 +3,6 @@ import { Config } from "@/types/config";
 const config: Config = {
   url: "https://element.eleme.cn/#/zh-CN/component/cascader",
   attrs: {
-    props: {
-      type: "json-editor",
-      label: "配置选项"
-    },
     showAllLevels: {
       type: "switch",
       label: "输入框中是否显示选中值的完整路径"
@@ -48,6 +44,59 @@ const config: Config = {
         step: 100
       }
     },
+    props: {
+      children: {
+        expandTrigger: {
+          options: ["click", "hover"],
+          label: "次级菜单的展开方式",
+          type: "radio",
+          default: "click"
+        },
+        multiple: {
+          label: "是否多选",
+          type: "switch"
+        },
+        checkStrictly: {
+          label: "是否严格的遵守父子节点不互相关联",
+          type: "switch"
+        },
+        emitPath: {
+          label:
+            "在选中节点改变时，是否返回由该节点所在的各级菜单的值所组成的数组，若设置 false，则只返回该节点的值",
+          type: "switch",
+          default: true
+        },
+        lazy: {
+          label: "是否动态加载子节点，需与 lazyLoad 方法结合使用",
+          type: "switch"
+        },
+        value: {
+          label: "指定选项的值为选项对象的某个属性值",
+          type: "input",
+          default: "value"
+        },
+        label: {
+          label: "指定选项标签为选项对象的某个属性值",
+          type: "input",
+          default: "label"
+        },
+        children: {
+          label: "指定选项的子选项为选项对象的某个属性值",
+          type: "input",
+          default: "children"
+        },
+        disabled: {
+          label: "指定选项的禁用为选项对象的某个属性值",
+          type: "input",
+          default: "disabled"
+        },
+        leaf: {
+          label: "指定选项的叶子节点的标志位为选项对象的某个属性值",
+          type: "input",
+          default: "leaf"
+        }
+      }
+    },
     popperClass: {
       type: "input",
       label: "自定义浮层类名"
@@ -55,14 +104,22 @@ const config: Config = {
   },
   attrsData: {},
   attrsDefaultData: {
-    props: {},
     size: null,
     clearable: false,
     showAllLevels: true,
     collapseTags: false,
     separator: "/",
     filterable: false,
-    debounce: 300
+    debounce: 300,
+    props: {
+      expandTrigger: "click",
+      emitPath: true,
+      value: "value",
+      label: "label",
+      children: "children",
+      disabled: "disabled",
+      leaf: "leaf"
+    }
   },
   common: {
     default: {
