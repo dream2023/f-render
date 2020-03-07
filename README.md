@@ -131,12 +131,12 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="http://dream2023.github.io"><img src="https://avatars0.githubusercontent.com/u/19297757?v=4" width="100px;" alt=""/><br /><sub><b>张超杰</b></sub></a><br /><a href="https://github.com/dream2023/vue-ele-form-generator/commits?author=dream2023" title="Documentation">📖</a> <a href="https://github.com/dream2023/vue-ele-form-generator/commits?author=dream2023" title="Code">💻</a> <a href="#ideas-dream2023" title="Ideas, Planning, & Feedback">🤔</a></td>
     <td align="center"><a href="https://github.com/Wisenl"><img src="https://avatars0.githubusercontent.com/u/17942052?v=4" width="100px;" alt=""/><br /><sub><b>Wisen</b></sub></a><br /><a href="https://github.com/dream2023/vue-ele-form-generator/commits?author=Wisenl" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/IWANABETHATGUY"><img src="https://avatars1.githubusercontent.com/u/17974631?v=4" width="100px;" alt=""/><br /><sub><b>IWANABETHATGUY</b></sub></a><br /><a href="https://github.com/dream2023/vue-ele-form-generator/commits?author=IWANABETHATGUY" title="Code">💻</a></td>
   </tr>
 </table>
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
-
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
