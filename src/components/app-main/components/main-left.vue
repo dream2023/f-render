@@ -60,7 +60,11 @@ export default createComponent({
       };
     };
 
-    return search();
+    const { searchValue, filteredComps } = search();
+    return {
+      searchValue,
+      filteredComps
+    };
   },
   methods: {
     handleAddFormItem({ label, type }: Comp) {
