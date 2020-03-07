@@ -50,3 +50,19 @@ export function filterObjByDefault(
     }
   });
 }
+
+export function fuzzySearch(searcher: string, target: string): boolean {
+  if (target.length > searcher.length) return false;
+  let i = 0;
+  let j = 0;
+  outer: while (i < target.length) {
+    while (j < searcher.length && searcher[j] !== target[i]) {
+      j++;
+    }
+    if (j === searcher.length) {
+      break outer;
+    }
+    i++;
+  }
+  return i === target.length;
+}

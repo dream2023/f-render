@@ -31,6 +31,7 @@ import draggable from "vuedraggable";
 import { addFormItem } from "@/helpers/tool";
 import { createComponent, ref, computed } from "@vue/composition-api";
 import { Comp } from "@/types/comp";
+import { fuzzySearch } from "../../../helpers/utils";
 
 export default createComponent({
   name: "AppMainLeft",
@@ -47,7 +48,9 @@ export default createComponent({
           return comps;
         } else {
           return comps.filter(
-            item => item.type.includes(keyword) || item.label.includes(keyword)
+            item =>
+              fuzzySearch(item.type, keyword) ||
+              fuzzySearch(item.label, keyword)
           );
         }
       });
