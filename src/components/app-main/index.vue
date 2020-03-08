@@ -1,6 +1,18 @@
 <template>
   <multipane @paneResizeStop="handlePaneresize" class="app-main">
-    <app-main-left :style="{ width: leftWidth }" />
+    <el-menu @select="handleChangeMenu" default-active="components">
+      <el-menu-item
+        v-for="item of menus"
+        :index="item.componentName"
+        :key="item.componentName"
+      >
+        <i :class="item.icon"></i>
+      </el-menu-item>
+    </el-menu>
+    <component
+      :is="'app-main-left-' + activeComponent"
+      :style="{ width: leftWidth }"
+    />
     <multipane-resizer></multipane-resizer>
     <div class="app-main-container">
       <app-main-header />
@@ -12,23 +24,25 @@
 </template>
 
 <script lang="ts">
-import AppMainHeader from "./components/main-header.vue";
-import AppMainLeft from "./components/main-left.vue";
-import AppMainCenter from "./components/main-center.vue";
-import AppMainRight from "./components/main-right/index.vue";
-import { Multipane, MultipaneResizer } from "vue-multipane";
-import { createComponent } from "@vue/composition-api";
 import { isVscode } from "@/helpers/tool";
+import AppMainHeader from "./components/main-header.vue";
+import AppMainCenter from "./components/main-center.vue";
+import { Multipane, MultipaneResizer } from "vue-multipane";
+import { createComponent, ref } from "@vue/composition-api";
+import AppMainRight from "./components/main-right/index.vue";
+import AppMainLeftProjects from "./components/main-left-projects.vue";
+import AppMainLeftComponents from "./components/main-left-components.vue";
 
 export default createComponent({
   name: "AppMain",
   components: {
-    AppMainLeft,
     AppMainCenter,
     AppMainHeader,
     AppMainRight,
     Multipane,
-    MultipaneResizer
+    MultipaneResizer,
+    AppMainLeftComponents,
+    AppMainLeftProjects
   },
   setup() {
     const defaultWidth = "260px";
@@ -43,8 +57,28 @@ export default createComponent({
         localStorage.setItem("app-main-left", el.style.width);
       }
     }
+
+    // 改变菜单
+    const activeComponent = ref("components");
+    function handleChangeMenu(componentName: string) {
+      activeComponent.value = componentName;
+    }
+
+    const menus = [
+      {
+        icon: "el-icon-document",
+        componentName: "components"
+      },
+      {
+        icon: "el-icon-menu",
+        componentName: "projects"
+      }
+    ];
     return {
       leftWidth,
+      menus,
+      activeComponent,
+      handleChangeMenu,
       handlePaneresize
     };
   }
@@ -56,7 +90,9 @@ export default createComponent({
   height: calc(100vh - 60px);
   overflow: hidden;
   margin-top: 2px;
-
+  .el-menu-item {
+    padding: 0 15px;
+  }
   .app-main-content {
     height: calc(100% - 60px);
     overflow: scroll;
