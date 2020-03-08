@@ -49,7 +49,7 @@ import searchMixin from "./components/searchMixin";
 import AttrsHeader from "./components/attrs-header.vue";
 import FormItemRules from "./components/form-item-rules.vue";
 import { createComponent, toRefs, computed, ref } from "@vue/composition-api";
-import { FormDesc, FormDescListItem } from "@/types/formList";
+import { FormDesc, FormItemList } from "@/types/project";
 
 export default createComponent({
   name: "AppFormItemConfig",
@@ -58,10 +58,10 @@ export default createComponent({
     FormItemRules
   },
   setup() {
-    const { list } = toRefs(store.state);
+    const { currentFormItemList: list } = toRefs(store.getters);
 
     const { currentFormItem } = toRefs(store.getters);
-    const updateCurrentItem = (data: FormDescListItem) =>
+    const updateCurrentItem = (data: FormItemList) =>
       store.commit("updateCurrentItem", data);
     const countObj = computed(() => _.countBy(list.value, (o: any) => o.field));
     const config: FormDesc = {

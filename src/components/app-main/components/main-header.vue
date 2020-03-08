@@ -95,7 +95,7 @@ import importDialog from "./components/importDialog.vue";
 import exportDialog from "./components/exportDialog.vue";
 import previewDialog from "./components/previewDialog.vue";
 import { createComponent, toRefs, computed } from "@vue/composition-api";
-import { FormDescListItem } from "@/types/formList";
+import { FormItemList } from "@/types/project";
 import { getRemoteConfig } from "@/helpers/remoteConfig";
 import serialize from "serialize-javascript";
 import { Message } from "element-ui";
@@ -112,7 +112,10 @@ export default createComponent({
   },
   setup() {
     const { saveType } = toRefs(store.state);
-    const { formDesc: originFormDesc, filterFormAttr } = toRefs(store.getters);
+    const {
+      currentFormDesc: originFormDesc,
+      currentFormAttr: filterFormAttr
+    } = toRefs(store.getters);
 
     // 处理数据, 主要是删除默认值和对值进行 formatter
     const processData = (
@@ -145,7 +148,7 @@ export default createComponent({
         const { commonDefaultData, attrsDefaultData, assistProperty, attrs } =
           configList[formItem.type as string] || {};
 
-        formItem = processData(formItem, commonDefaultData as FormDescListItem);
+        formItem = processData(formItem, commonDefaultData as FormItemList);
 
         // 组件自身属性
         if (formItem.attrs) {
@@ -191,7 +194,7 @@ export default createComponent({
       formDesc,
       filterFormAttr,
       handleSaveData,
-      clearForm: () => store.commit("clearForm"),
+      clearForm: () => store.commit("clearCurrentForm"),
       isShowExportData: false,
       isShowHtmlCode: false,
       isPreview: false,

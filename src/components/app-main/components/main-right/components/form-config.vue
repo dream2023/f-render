@@ -24,14 +24,13 @@ import { changeFormLabel } from "@/helpers/tool";
 import searchMixin from "./components/searchMixin";
 import AttrsHeader from "./components/attrs-header.vue";
 import { createComponent, toRefs, computed } from "@vue/composition-api";
-import { FormDesc } from "@/types/formList";
+import { FormDesc } from "@/types/project";
 
 export default createComponent({
   name: "AppFormConfig",
   components: { AttrsHeader },
   setup() {
-    const { formAttr } = toRefs(store.state);
-
+    const { currentFormAttr: formAttr } = toRefs(store.getters);
     const originDesc: FormDesc = {
       inline: {
         type: "radio",
@@ -166,10 +165,14 @@ export default createComponent({
     };
 
     const formDesc = computed(() => changeFormLabel(originDesc));
+    const { filterFormDesc, keyword } = searchMixin(formDesc);
     return {
-      updateFormAttr: (data: AnyObj) => store.commit("updateFormAttr", data),
+      updateFormAttr: (data: AnyObj) => {
+        store.commit("updateCurrentFormAttr", data);
+      },
       formAttr,
-      ...searchMixin(formDesc)
+      filterFormDesc,
+      keyword
     };
   }
 });

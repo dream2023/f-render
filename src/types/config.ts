@@ -1,4 +1,4 @@
-import { FormDesc } from "@/types/formList";
+import { FormDesc } from "@/types/project";
 
 // 配置
 export interface Config {
