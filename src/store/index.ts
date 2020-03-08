@@ -4,29 +4,58 @@ import _ from "lodash-es";
 import { keyBy } from "@/helpers/utils";
 import listDefault from "./listDefault";
 import persistedstate from "./persistedstate";
-import formAttrDefault from "./formAttrDefault";
+import formAttrsDefault from "./formAttrsDefault";
 import { FormDescList, FormDescListItem } from "@/types/formList";
+import { getRemoteConfig } from "@/helpers/remoteConfig";
+import { Message } from "element-ui";
 
 Vue.use(Vuex);
 
+const remoteConfig = getRemoteConfig();
+
+interface Form {
+  id?: string | number;
+  name: string;
+  formAttrs: AnyObj;
+  formDescArr: FormDescList;
+  currentFormItemIndex: number | null;
+}
+
+interface Project {
+  id?: string | number;
+  name: string;
+  formList: Form[];
+}
+
 interface StateData {
   [key: string]: any;
-  formAttr: AnyObj;
-  list: FormDescList;
-  selectIndex: number | null;
+  ProjectList: Project[];
+  currentProjectIndex: number;
+  saveType: "local" | "remote";
 }
 
 // 状态
 const state: StateData = {
-  // 表单属性
-  formAttr: formAttrDefault,
-  // 表单项列表
-  list: listDefault,
-  // 当前表单项索引
-  selectIndex: null
+  // 工程列表
+  ProjectList: [
+    {
+      name: "默认工程",
+      formList: [
+        {
+          name: "示例表单",
+          formAttrs: formAttrsDefault,
+          formDescArr: listDefault,
+          currentFormItemIndex: null
+        }
+      ]
+    }
+  ],
+  // 当前工程 index
+  currentProjectIndex: 0,
+  // 保存数据方式
+  saveType: "local"
 };
-
-export default new Vuex.Store({
+const store = new Vuex.Store({
   state: state,
   getters: {
     // 当前表单项
@@ -46,6 +75,10 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    // 更新所有
+    updateAll(state, data: StateData) {
+      state = data;
+    },
     // 更新表单项
     updateCurrentItem(state: StateData, item: FormDescListItem) {
       if (state.selectIndex !== null) {
@@ -73,7 +106,45 @@ export default new Vuex.Store({
     // 修改列表
     updateList(state: StateData, newList: FormDescList) {
       state.list = newList;
+    },
+    // 更新 saveType
+    updateSaveType(state, type) {
+      state.saveType = type;
     }
   },
-  plugins: [].concat(persistedstate())
+  actions: {
+    updateStateFromRemote({ commit }) {
+      if (remoteConfig) {
+        commit("updateSaveType", "remote");
+
+        fetch(
+          new Request(remoteConfig.getUrl, {
+            method: remoteConfig.getMethod
+          })
+        )
+          .then(res => res.text())
+          .then(res => {
+            try {
+              return eval("(" + res + ")");
+            } catch {
+              throw new TypeError("返回数据格式不正确: " + res);
+            }
+          })
+          .then((res: StateData) => {
+            commit("updateAll", res);
+            commit("updateSaveType", "remote");
+          })
+          .catch(error => {
+            Message.error("从服务器获取数据失败: " + error.message);
+          });
+      }
+    }
+  },
+  plugins: persistedstate()
 });
+
+if (remoteConfig) {
+  store.dispatch("updateStateFromRemote");
+}
+
+export default store;
