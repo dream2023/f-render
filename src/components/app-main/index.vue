@@ -103,6 +103,7 @@ export default createComponent({
   .app-main-container {
     flex-grow: 1;
     flex: 1;
+    min-width: 730px;
   }
 
   & > .multipane-resizer {

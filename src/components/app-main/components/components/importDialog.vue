@@ -12,7 +12,7 @@
       <el-card header="表单预览" shadow="hover" class="box-card">
         <ele-form
           :form-desc="formDesc"
-          :formData="{}"
+          :formData="formData"
           :request-fn="handleRequest"
           @request-success="handleRequestSuccess"
           v-bind="formAttr"
@@ -149,6 +149,7 @@ export default createComponent({
       context.emit("update:visible", false);
     }
     return {
+      formData: ref({}),
       confirmGen,
       handleImport,
       handleChange,

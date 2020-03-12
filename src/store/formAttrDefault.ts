@@ -1,6 +1,7 @@
 const formAttrDefault: AnyObj = {
-  disabled: false,
   inline: false,
+  disabled: false,
+  readonly: false,
   isShowLabel: true,
   isDialog: false,
   isShowSubmitBtn: true,

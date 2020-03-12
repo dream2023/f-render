@@ -104,7 +104,7 @@ const config: Config = {
     }
   },
   attrsData: {
-    action: "https://jsonplaceholder.typicode.com/posts"
+    action: "https://www.mocky.io/v2/5cc8019d300000980a055e76"
   },
   attrsDefaultData: {
     fontSize: "15px",

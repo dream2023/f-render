@@ -94,7 +94,7 @@ import batchDialog from "./components/batchDialog.vue";
 import importDialog from "./components/importDialog.vue";
 import exportDialog from "./components/exportDialog.vue";
 import previewDialog from "./components/previewDialog.vue";
-import { createComponent, toRefs, computed } from "@vue/composition-api";
+import { createComponent, toRefs, computed, ref } from "@vue/composition-api";
 import { FormItemList } from "@/types/project";
 import { getRemoteConfig } from "@/helpers/remoteConfig";
 import serialize from "serialize-javascript";
@@ -197,7 +197,7 @@ export default createComponent({
       clearForm: () => store.commit("clearCurrentForm"),
       isShowExportData: false,
       isShowHtmlCode: false,
-      isPreview: false,
+      isPreview: ref(false),
       isShowBatchDialog: false,
       isShowImportDialog: false,
       isShowremoteConfig: false,

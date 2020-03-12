@@ -102,7 +102,8 @@ export default createComponent({
 
     // 删除工程
     const deleteProject = (data: any) => {
-      // TODO
+      // eslint-disable-next-line no-console
+      console.log(data);
     };
 
     return {

@@ -14,10 +14,10 @@ import "element-ui/lib/theme-chalk/index.css";
 // 插件
 Vue.use(EleForm, {
   upload: {
-    action: "https://jsonplaceholder.typicode.com/posts/", // 请求地址,
-    data: { token: "xxx" }, // 附带的参数,
-    responseFn(response: any, file: AnyObj) {
-      return file.url;
+    action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
+    responseFn(response: any) {
+      // 因为是 mock 地址, 所以, 总是返回同一张图片的URL, 正常使用的时候不会
+      return response.url;
     }
   },
   "upload-file": {

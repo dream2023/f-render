@@ -19,6 +19,7 @@
 </template>
 
 <script lang="ts">
+import _ from "lodash-es";
 import store from "@/store";
 import { changeFormLabel } from "@/helpers/tool";
 import searchMixin from "./components/searchMixin";
@@ -30,7 +31,10 @@ export default createComponent({
   name: "AppFormConfig",
   components: { AttrsHeader },
   setup() {
-    const { currentFormAttr: formAttr } = toRefs(store.getters);
+    const { currentFormAttr } = toRefs(store.getters);
+    const formAttr = computed(() => _.cloneDeep(currentFormAttr.value));
+    const updateFormAttr = (data: AnyObj) =>
+      store.commit("updateCurrentFormAttr", data);
     const originDesc: FormDesc = {
       inline: {
         type: "radio",
@@ -43,7 +47,9 @@ export default createComponent({
         on: {
           change: (val: any) => {
             if (!val) {
-              formAttr.value.isResponsive = true;
+              updateFormAttr(
+                Object.assign({}, formAttr.value, { isResponsive: true })
+              );
             }
           }
         }
@@ -107,6 +113,10 @@ export default createComponent({
         type: "switch",
         label: "全局禁用表单"
       },
+      readonly: {
+        type: "switch",
+        label: "全局只读表单"
+      },
       isShowSubmitBtn: {
         type: "radio",
         label: "提交按钮",
@@ -167,9 +177,7 @@ export default createComponent({
     const formDesc = computed(() => changeFormLabel(originDesc));
     const { filterFormDesc, keyword } = searchMixin(formDesc);
     return {
-      updateFormAttr: (data: AnyObj) => {
-        store.commit("updateCurrentFormAttr", data);
-      },
+      updateFormAttr,
       formAttr,
       filterFormDesc,
       keyword

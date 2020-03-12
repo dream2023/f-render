@@ -1,7 +1,7 @@
 <template>
   <div class="app-main-center">
     <ele-form
-      :formData="{}"
+      v-model="formData"
       :form-desc="currentFormDesc"
       :request-fn="handleSubmit"
       @request-success="handleSuccess"
@@ -144,6 +144,7 @@ export default createComponent({
       updateSelectIndex(index);
     }
     return {
+      formData: ref({}),
       list,
       handleDelete,
       handleMoveStart,
