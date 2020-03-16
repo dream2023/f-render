@@ -1,6 +1,10 @@
 <template>
   <multipane @paneResizeStop="handlePaneresize" class="app-main">
-    <el-menu @select="handleChangeMenu" default-active="components">
+    <el-menu
+      @select="handleChangeMenu"
+      v-once
+      :default-active="activeComponent"
+    >
       <el-menu-item
         v-for="item of menus"
         :index="item.componentName"
@@ -14,21 +18,30 @@
       :style="{ width: leftWidth }"
     />
     <multipane-resizer></multipane-resizer>
-    <div class="app-main-container">
-      <app-main-header />
-      <app-main-center class="app-main-content" />
-    </div>
-    <multipane-resizer></multipane-resizer>
-    <app-main-right />
+
+    <template v-if="isShowRight">
+      <div class="app-main-container">
+        <app-main-header />
+        <app-main-center class="app-main-content" />
+      </div>
+      <multipane-resizer></multipane-resizer>
+      <app-main-right />
+    </template>
+    <template v-else>
+      <div class="app-main-container not-selected">
+        请先选择表单
+      </div>
+    </template>
   </multipane>
 </template>
 
 <script lang="ts">
+import store from "@/store";
 import { isVscode } from "@/helpers/tool";
 import AppMainHeader from "./components/main-header.vue";
 import AppMainCenter from "./components/main-center.vue";
 import { Multipane, MultipaneResizer } from "vue-multipane";
-import { createComponent, ref } from "@vue/composition-api";
+import { createComponent, ref, toRefs, computed } from "@vue/composition-api";
 import AppMainRight from "./components/main-right/index.vue";
 import AppMainLeftProjects from "./components/main-left-projects.vue";
 import AppMainLeftComponents from "./components/main-left-components.vue";
@@ -50,6 +63,7 @@ export default createComponent({
     if (!isVscode) {
       leftWidth = localStorage.getItem("app-main-left") || defaultWidth;
     }
+    const { currentProjectIndex, currentFormIndex } = toRefs(store.state);
 
     // panel 拖拉变化
     function handlePaneresize(el: HTMLElement) {
@@ -59,7 +73,11 @@ export default createComponent({
     }
 
     // 改变菜单
-    const activeComponent = ref("components");
+    const isShowRight = computed(
+      () =>
+        currentProjectIndex.value !== null && currentFormIndex.value !== null
+    );
+    const activeComponent = ref(isShowRight.value ? "components" : "projects");
     function handleChangeMenu(componentName: string) {
       activeComponent.value = componentName;
     }
@@ -75,6 +93,7 @@ export default createComponent({
       }
     ];
     return {
+      isShowRight,
       leftWidth,
       menus,
       activeComponent,
@@ -104,6 +123,12 @@ export default createComponent({
     flex-grow: 1;
     flex: 1;
     min-width: 730px;
+    &.not-selected {
+      text-align: center;
+      color: #666;
+      font-size: 14px;
+      margin-top: 15%;
+    }
   }
 
   & > .multipane-resizer {

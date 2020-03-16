@@ -17,8 +17,8 @@ interface StateData {
   [key: string]: any;
   projectList: Project[];
   saveType: "local" | "remote";
-  currentProjectIndex: number;
-  currentFormIndex: number;
+  currentProjectIndex: number | null;
+  currentFormIndex: number | null;
   currentFormItemIndex: number | null; // 因为有可能当前未选中任何表单, 所以有可能为 null
 }
 
@@ -43,9 +43,9 @@ const store = new Vuex.Store<StateData>({
       }
     ],
     // 当前工程索引
-    currentProjectIndex: 0,
+    currentProjectIndex: null,
     // 当前表单索引
-    currentFormIndex: 0,
+    currentFormIndex: null,
     // 当前表单项索引
     currentFormItemIndex: null,
     // 保存数据方式
@@ -54,32 +54,42 @@ const store = new Vuex.Store<StateData>({
   getters: {
     // 当前 project
     currentProject(state) {
-      return state.projectList[state.currentProjectIndex];
+      return state.currentProjectIndex !== null
+        ? state.projectList[state.currentProjectIndex]
+        : null;
     },
     // 当前表单
     currentForm(state, getters) {
-      return getters.currentProject.formList[state.currentFormIndex];
+      return getters.currentProject && state.currentFormIndex !== null
+        ? getters.currentProject.formList[state.currentFormIndex]
+        : null;
     },
     // 当前表单项
     currentFormItem(state, getters) {
-      return state.currentFormItemIndex !== null
+      return getters.currentForm && state.currentFormItemIndex !== null
         ? getters.currentForm.formItemList[state.currentFormItemIndex]
         : null;
     },
     // 过滤掉空值和默认值后的 formAttr
     currentFormAttr(state, getters) {
-      // 判断是否为空或者是否和默认值相同
-      const isEmptyOrDefaultValue = (val: any, key: string) =>
-        _.isNil(val) || val === formAttrDefault[key];
-      return _.omitBy(getters.currentForm.formAttr, isEmptyOrDefaultValue);
+      if (getters.currentForm) {
+        // 判断是否为空或者是否和默认值相同
+        const isEmptyOrDefaultValue = (val: any, key: string) =>
+          _.isNil(val) || val === formAttrDefault[key];
+        return _.omitBy(getters.currentForm.formAttr, isEmptyOrDefaultValue);
+      } else {
+        return null;
+      }
     },
     // 当前 formItemList
     currentFormItemList(state, getters) {
-      return getters.currentForm.formItemList;
+      return getters.currentForm ? getters.currentForm.formItemList : null;
     },
     // 将数组转为对象
     currentFormDesc(state, getters) {
-      return keyBy(getters.currentFormItemList, "field");
+      return getters.currentFormItemList
+        ? keyBy(getters.currentFormItemList, "field")
+        : null;
     }
   },
   mutations: {
@@ -93,7 +103,7 @@ const store = new Vuex.Store<StateData>({
     },
     // 更新 form 索引
     updateFormIndex(state, index) {
-      state.currentFormItemIndex = index;
+      state.currentFormIndex = index;
     },
     // 更新 formItem 索引
     updateFormItemIndex(state, index) {
@@ -101,11 +111,13 @@ const store = new Vuex.Store<StateData>({
     },
     // 新增 project
     createProject(state, project) {
+      project.formList = [];
       state.projectList.push(project);
     },
     // 新增 form
     createForm(state, { projectIndex, form }) {
-      projectIndex = projectIndex || state.currentProjectIndex;
+      form.formItemList = [];
+      form.formAttr = formAttrDefault;
       state.projectList[projectIndex].formList.push(form);
     },
     // 新增 formItem
@@ -116,10 +128,25 @@ const store = new Vuex.Store<StateData>({
     },
     // 通过索引删除 project
     deleteProjectByIndex(state, index) {
+      // 置空索引
+      if (state.currentProjectIndex === index) {
+        state.currentProjectIndex = null;
+        state.currentFormIndex = null;
+        state.currentFormItemIndex = null;
+      }
+
+      // 删除
       state.projectList.splice(index, 1);
     },
     // 通过索引删除 form
     deleteFormByIndex(state, { projectIndex, formIndex }) {
+      // 置空索引
+      if (state.currentFormIndex == formIndex) {
+        state.currentFormIndex = null;
+        state.currentFormItemIndex = null;
+      }
+
+      // 删除
       state.projectList[projectIndex].formList.splice(formIndex, 1);
     },
     // 通过索引删除 formItem
@@ -147,12 +174,17 @@ const store = new Vuex.Store<StateData>({
     },
     // 更新当前表单
     updateCurrentForm(state, form) {
-      Object.assign(
-        state.projectList[state.currentProjectIndex].formList[
-          state.currentFormIndex
-        ],
-        form
-      );
+      if (
+        state.currentProjectIndex !== null &&
+        state.currentFormIndex !== null
+      ) {
+        Object.assign(
+          state.projectList[state.currentProjectIndex].formList[
+            state.currentFormIndex
+          ],
+          form
+        );
+      }
     },
     // 清空列表
     clearCurrentForm(state) {

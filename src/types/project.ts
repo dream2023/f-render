@@ -10,12 +10,14 @@ interface Form {
   id?: string | number;
   name: string;
   formAttr: AnyObj;
+  key?: string;
   formItemList: FormItem[];
 }
 
 interface Project {
   id?: string | number;
   name: string;
+  key?: string;
   formList: Form[];
 }
 
