@@ -11747,12 +11747,12 @@ vue-ele-form-gallery@^0.1.1:
   dependencies:
     vue-ele-gallery "^2.1.5"
 
-vue-ele-form-image-uploader@^0.1.4:
-  version "0.1.4"
-  resolved "https://registry.npm.taobao.org/vue-ele-form-image-uploader/download/vue-ele-form-image-uploader-0.1.4.tgz#3d934ce4d49e92c4129d47edb7688845dd565554"
-  integrity sha1-PZNM5NSeksQSnUftt2iIRd1WVVQ=
+vue-ele-form-image-uploader@^0.1.5:
+  version "0.1.5"
+  resolved "https://registry.npm.taobao.org/vue-ele-form-image-uploader/download/vue-ele-form-image-uploader-0.1.5.tgz#3e12c80da974c320f82f3b449ae22f93da2e56ac"
+  integrity sha1-PhLIDal0wyD4LztEmuIvk9ouVqw=
   dependencies:
-    vue-ele-upload-image "^2.0.8"
+    vue-ele-upload-image "^2.0.9"
 
 vue-ele-form-json-editor@^0.1.2:
   version "0.1.2"
@@ -11827,10 +11827,10 @@ vue-ele-upload-file@^0.0.4:
     ly-downloader "^1.0.5"
     pretty-bytes "^5.3.0"
 
-vue-ele-upload-image@^2.0.8:
-  version "2.0.8"
-  resolved "https://registry.npm.taobao.org/vue-ele-upload-image/download/vue-ele-upload-image-2.0.8.tgz#f7d1c0604ff1edaede4518fee27f71bea035f507"
-  integrity sha1-99HAYE/x7a7eRRj+4n9xvqA19Qc=
+vue-ele-upload-image@^2.0.9:
+  version "2.0.9"
+  resolved "https://registry.npm.taobao.org/vue-ele-upload-image/download/vue-ele-upload-image-2.0.9.tgz#f3c2686796fbe4158a97c8e9f5e634328b7e2983"
+  integrity sha1-88JoZ5b75BWKl8jp9eY0Mot+KYM=
   dependencies:
     vue-ele-gallery "^2.1.5"
     vue-image-crop-upload "^2.5.0"

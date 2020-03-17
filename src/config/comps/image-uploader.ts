@@ -55,10 +55,9 @@ const config: Config = {
       }
     },
     fileSize: {
-      type: "input",
+      type: "number",
       label: "文件大小限制(MB)",
       attrs: {
-        type: "number",
         min: 0
       }
     },
@@ -88,7 +87,8 @@ const config: Config = {
     },
     fileType: {
       type: "json-editor",
-      label: "文件类型, 例如['png', 'jpg', 'jpeg']"
+      label: '文件类型, 例如["png", "jpg", "jpeg"]',
+      tip: "因为这是JSON编辑器, 所以要用`双引号`"
     },
     data: {
       type: "json-editor",
@@ -103,6 +103,7 @@ const config: Config = {
     action: "https://www.mocky.io/v2/5cc8019d300000980a055e76"
   },
   attrsDefaultData: {
+    fileSize: 0,
     name: "file",
     crop: false,
     size: 150,

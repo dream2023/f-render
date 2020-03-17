@@ -27,7 +27,8 @@ const config: Config = {
     },
     fileType: {
       type: "json-editor",
-      label: "文件类型, 例如['png', 'jpg', 'jpeg']"
+      label: '文件类型, 例如["png", "jpg", "jpeg"]',
+      tip: "因为这是JSON编辑器, 所以要用`双引号`"
     },
     multiple: {
       type: "switch",

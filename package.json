@@ -69,7 +69,7 @@
     "vue-ele-form-codemirror": "^0.1.1",
     "vue-ele-form-dynamic": "^0.4.0",
     "vue-ele-form-gallery": "^0.1.1",
-    "vue-ele-form-image-uploader": "^0.1.4",
+    "vue-ele-form-image-uploader": "^0.1.5",
     "vue-ele-form-json-editor": "^0.1.2",
     "vue-ele-form-markdown-editor": "^0.1.2",
     "vue-ele-form-quill-editor": "^0.1.1",

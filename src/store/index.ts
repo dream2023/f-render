@@ -173,6 +173,23 @@ const store = new Vuex.Store<StateData>({
         store.commit("updateCurrentForm", { formItemList });
       }
     },
+    // 更新表单项数据
+    updateCurrentItemAttrs(state, attrs) {
+      const {
+        currentFormIndex,
+        currentFormItemIndex,
+        currentProjectIndex
+      } = state;
+      if (
+        currentFormIndex !== null &&
+        currentFormItemIndex !== null &&
+        currentProjectIndex !== null
+      ) {
+        state.projectList[currentProjectIndex].formList[
+          currentFormIndex
+        ].formItemList[currentFormItemIndex].attrs = attrs;
+      }
+    },
     // 更新当前表单
     updateCurrentForm(state, form) {
       if (

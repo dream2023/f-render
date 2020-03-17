@@ -9,6 +9,7 @@
       <ele-form
         :formData="currentFormItem.attrs"
         :formDesc="filterFormDesc"
+        @input="updateFormAttrs"
         :isShowBackBtn="false"
         :isShowSubmitBtn="false"
         :span="20"
@@ -43,7 +44,11 @@ export default defineComponent({
       return changeFormLabel(formDesc, config.value.assistProperty);
     });
 
+    const updateFormAttrs = (data: any) =>
+      store.commit("updateCurrentItemAttrs", data);
+
     return {
+      updateFormAttrs,
       currentFormItem,
       ...searchMixin(formDesc),
       isShow,

@@ -27,7 +27,7 @@ export const saveFormToServer = (
         }
       })
       .catch(err => {
-        Message.error("请求失败, 失败原因: " + err.message);
+        Message.error("保存数据失败, 失败原因: " + err.message);
       });
   }
 };
@@ -57,7 +57,7 @@ export const getFormFromServer = (): undefined | Promise<ResponseData> => {
         }
       })
       .catch(err => {
-        Message.error("请求失败, 失败原因: " + err.message);
+        Message.error("获取数据失败, 失败原因: " + err.message);
       });
   }
 };

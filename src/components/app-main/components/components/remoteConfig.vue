@@ -16,10 +16,15 @@
       title="警告"
       type="warning"
       v-if="formData.type === 'remote'"
-      description="浏览器会存在跨域的情况, 请做好跨域处理"
       show-icon
       style="margin-bottom: 40px"
     >
+      浏览器会存在跨域的情况, 请做好跨域处理, 接口等具体请参考
+      <a
+        target="_blank"
+        href="https://github.com/dream2023/vue-ele-form-generator/wiki/%E5%B0%86%E6%95%B0%E6%8D%AE%E5%AD%98%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8"
+        >文章</a
+      >
     </el-alert>
   </ele-form-dialog>
 </template>
