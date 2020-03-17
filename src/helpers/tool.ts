@@ -5,7 +5,7 @@
 import _ from "lodash-es";
 import comps from "./comps";
 import configList from "@/config";
-import { FormDescData, FormDesc } from "@/types/formList";
+import { FormDescData, FormDesc } from "@/types/project";
 
 /**
  * 修改label => key + label, 同时修改 attrs: { placeholder:  key + label } 更明确告知用户属性名
@@ -60,13 +60,13 @@ type formItem = {
  * 新增表单项
  * @param formItem 表单项
  */
-import { FormDescListItem } from "@/types/formList";
+import { FormItem } from "@/types/project";
 
 export function addFormItem(
   type: string,
   common: AnyObj = {},
   attrs?: AnyObj
-): FormDescListItem {
+): FormItem {
   const {
     attrsData = {},
     attrsDefaultData = {},

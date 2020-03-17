@@ -3,10 +3,10 @@ import Vue from "vue";
 import App from "./App.vue";
 import store from "./store";
 import ElementUI from "element-ui";
-import EleForm from "vue-ele-form";
+import EleForm from "vue-ele-form/lib/index.js";
 import codemirrorConfig from "./extend/codemirror";
 import VueCompositionAPI from "@vue/composition-api";
-
+import "@/helpers/api";
 // css样式
 import "normalize.css";
 import "element-ui/lib/theme-chalk/index.css";
@@ -14,10 +14,10 @@ import "element-ui/lib/theme-chalk/index.css";
 // 插件
 Vue.use(EleForm, {
   upload: {
-    action: "https://jsonplaceholder.typicode.com/posts/", // 请求地址,
-    data: { token: "xxx" }, // 附带的参数,
-    responseFn(response: any, file: AnyObj) {
-      return file.url;
+    action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
+    responseFn(response: any) {
+      // 因为是 mock 地址, 所以, 总是返回同一张图片的URL, 正常使用的时候不会
+      return response.url;
     }
   },
   "upload-file": {

@@ -27,7 +27,7 @@ import {
   createComponent,
   computed
 } from "@vue/composition-api";
-import { FormDescList, FormDesc } from "@/types/formList";
+import { FormItemList, FormDesc } from "@/types/project";
 
 export default createComponent({
   name: "batchDialog",
@@ -38,8 +38,9 @@ export default createComponent({
     }
   },
   setup(props, context) {
-    const { list } = toRefs(store.state);
-    const { formDesc: allFormDesc } = toRefs(store.getters);
+    const { currentFormDesc: allFormDesc, currentFormItemList: list } = toRefs(
+      store.getters
+    );
     const formData = ref({
       type: "dynamic",
       data: []
@@ -145,7 +146,8 @@ export default createComponent({
         }
       }
     };
-    const updateList = (data: FormDescList) => store.commit("updateList", data);
+    const updateList = (data: FormItemList) =>
+      store.commit("updateCurrentFormItemList", data);
 
     function handleAdd({ data }: { data: AnyObj }) {
       if (Array.isArray(data) && data.length) {

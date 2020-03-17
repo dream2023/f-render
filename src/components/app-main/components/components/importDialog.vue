@@ -12,7 +12,7 @@
       <el-card header="表单预览" shadow="hover" class="box-card">
         <ele-form
           :form-desc="formDesc"
-          :formData="{}"
+          :formData="formData"
           :request-fn="handleRequest"
           @request-success="handleRequestSuccess"
           v-bind="formAttr"
@@ -127,9 +127,9 @@ export default createComponent({
     // 处理json数据，将json 映射到操作面板 （list)
     function json2Form() {
       // 清空原有list （待优化）
-      store.commit("clearForm");
+      store.commit("clearCurrentForm");
       // 1.分离 formAttr （表单配置数据）
-      store.commit("updateFormAttr", formAttr.value);
+      store.commit("updateCurrentFormAttr", formAttr.value);
       // 2.更新 formDesc（组件通用配置数据）
       // 3.处理 formDesc.attr（组件属性配置数据）
       const list = Object.entries(formDesc.value).map(([key, val]) => ({
@@ -138,9 +138,9 @@ export default createComponent({
         field: key
       }));
       // 更新 list
-      store.commit("updateList", list);
+      store.commit("updateCurrentFormItemList", list);
       // 更新 selectIndex
-      store.commit("updateSelectIndex", 0);
+      store.commit("updateFormItemIndex", 0);
     }
 
     // 确认生成表单
@@ -149,6 +149,7 @@ export default createComponent({
       context.emit("update:visible", false);
     }
     return {
+      formData: ref({}),
       confirmGen,
       handleImport,
       handleChange,

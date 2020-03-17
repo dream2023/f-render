@@ -1,6 +1,6 @@
-import { FormDescList } from "@/types/formList";
+import { FormItemList } from "@/types/project";
 
-const list: FormDescList = [
+const list: FormItemList = [
   {
     field: "name",
     type: "input",

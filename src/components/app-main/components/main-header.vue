@@ -1,30 +1,56 @@
 <template>
   <div class="app-main-header">
-    <!-- 顶部按钮 -->
-    <el-button @click="isPreview = true" icon="el-icon-view" type="text"
-      >预览</el-button
-    >
-    <el-button
-      @click="isShowExportData = true"
-      icon="el-icon-upload2"
-      type="text"
-      >生成数据</el-button
-    >
-    <el-button @click="isShowHtmlCode = true" icon="el-icon-tickets" type="text"
-      >生成代码</el-button
-    >
-    <el-button
-      @click="isShowImportDialog = true"
-      icon="el-icon-download"
-      type="text"
-      >导入数据</el-button
-    >
-    <el-button @click="isShowBatchDialog = true" icon="el-icon-plus" type="text"
-      >批量添加</el-button
-    >
-    <el-button @click="clearForm" icon="el-icon-delete" type="text"
-      >清空表单</el-button
-    >
+    <div class="app-main-header-buttons">
+      <div>
+        <!-- 顶部按钮 -->
+        <el-button @click="isPreview = true" icon="el-icon-view" type="text"
+          >预览</el-button
+        >
+        <el-button
+          @click="handleSaveData"
+          icon="el-icon-upload"
+          type="text"
+          v-if="saveType === 'remote'"
+          >保存到服务器</el-button
+        >
+        <el-button
+          @click="isShowExportData = true"
+          icon="el-icon-upload2"
+          type="text"
+          >生成数据</el-button
+        >
+        <el-button
+          @click="isShowHtmlCode = true"
+          icon="el-icon-tickets"
+          type="text"
+          >生成代码</el-button
+        >
+        <el-button
+          @click="isShowImportDialog = true"
+          icon="el-icon-download"
+          type="text"
+          >导入数据</el-button
+        >
+        <el-button
+          @click="isShowBatchDialog = true"
+          icon="el-icon-plus"
+          type="text"
+          >批量添加</el-button
+        >
+        <el-button @click="clearForm" icon="el-icon-delete" type="text"
+          >清空表单</el-button
+        >
+      </div>
+      <div>
+        <el-button
+          @click="isShowremoteConfig = true"
+          icon="el-icon-setting"
+          type="text"
+          >保存设置</el-button
+        >
+      </div>
+    </div>
+
     <!-- 预览弹窗 -->
     <preview-dialog
       :formDesc="formDesc"
@@ -50,7 +76,10 @@
     />
 
     <!-- 批量添加 -->
-    <batch-dialog :visible.sync="isShowBatchDialog"></batch-dialog>
+    <batch-dialog :visible.sync="isShowBatchDialog" />
+
+    <!-- 保存配置 -->
+    <remote-config :visible.sync="isShowremoteConfig" />
   </div>
 </template>
 
@@ -59,25 +88,33 @@ import _ from "lodash-es";
 import store from "@/store";
 import configList from "@/config";
 import { filterObjByDefault } from "@/helpers/utils";
+import remoteConfig from "./components/remoteConfig.vue";
 import htmlDialog from "./components/htmlDialog.vue";
 import batchDialog from "./components/batchDialog.vue";
 import importDialog from "./components/importDialog.vue";
 import exportDialog from "./components/exportDialog.vue";
 import previewDialog from "./components/previewDialog.vue";
-import { createComponent, toRefs, computed } from "@vue/composition-api";
-import { FormDescListItem } from "@/types/formList";
+import { createComponent, toRefs, computed, ref } from "@vue/composition-api";
+import { FormItemList } from "@/types/project";
+import { saveFormToServer } from "@/helpers/api";
+import { Message } from "element-ui";
 
 export default createComponent({
   name: "AppMainHeader",
   components: {
+    remoteConfig,
+    htmlDialog,
     batchDialog,
     importDialog,
-    previewDialog,
     exportDialog,
-    htmlDialog
+    previewDialog
   },
   setup() {
-    const { formDesc: originFormDesc, filterFormAttr } = toRefs(store.getters);
+    const { saveType } = toRefs(store.state);
+    const {
+      currentFormDesc: originFormDesc,
+      currentFormAttr: filterFormAttr
+    } = toRefs(store.getters);
 
     // 处理数据, 主要是删除默认值和对值进行 formatter
     const processData = (
@@ -110,7 +147,7 @@ export default createComponent({
         const { commonDefaultData, attrsDefaultData, assistProperty, attrs } =
           configList[formItem.type as string] || {};
 
-        formItem = processData(formItem, commonDefaultData as FormDescListItem);
+        formItem = processData(formItem, commonDefaultData as FormItemList);
 
         // 组件自身属性
         if (formItem.attrs) {
@@ -129,15 +166,30 @@ export default createComponent({
       });
     });
 
+    // 保存数据
+    const handleSaveData = async () => {
+      const res = await saveFormToServer(store.state);
+      if (res) {
+        if (res.code === 0) {
+          Message.success("保存成功");
+        } else {
+          Message.error("保存失败, 失败原因: " + res.msg);
+        }
+      }
+    };
+
     return {
       formDesc,
       filterFormAttr,
-      clearForm: () => store.commit("clearForm"),
+      handleSaveData,
+      clearForm: () => store.commit("clearCurrentForm"),
       isShowExportData: false,
       isShowHtmlCode: false,
-      isPreview: false,
+      isPreview: ref(false),
       isShowBatchDialog: false,
-      isShowImportDialog: false
+      isShowImportDialog: false,
+      isShowremoteConfig: false,
+      saveType
     };
   }
 });
@@ -147,7 +199,11 @@ export default createComponent({
 .app-main-header {
   height: 60px;
   line-height: 60px;
-  padding-left: 20px;
+  padding: 0 15px;
   border-bottom: 1px solid #ebeef5;
+  .app-main-header-buttons {
+    display: flex;
+    justify-content: space-between;
+  }
 }
 </style>

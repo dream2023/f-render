@@ -2,6 +2,7 @@
 // 与业务无关的工具函数
 /******************/
 import _ from "lodash-es";
+import { onMounted, onUnmounted } from "@vue/composition-api";
 
 /**
  * 获取文件名
@@ -51,6 +52,21 @@ export function filterObjByDefault(
   });
 }
 
+// 阻止页面刷新
+export function preventReloadWindow() {
+  const handler = (e: BeforeUnloadEvent) => {
+    e.returnValue = "重新加载此网站？";
+    return e;
+  };
+  onMounted(() => {
+    window.addEventListener("beforeunload", handler);
+  });
+  onUnmounted(() => {
+    window.removeEventListener("beforeunload", handler);
+  });
+}
+
+// 模糊搜索
 export function fuzzySearch(searcher: string, target: string): boolean {
   if (target.length > searcher.length) return false;
   let i = 0;

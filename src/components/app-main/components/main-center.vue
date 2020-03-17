@@ -1,12 +1,12 @@
 <template>
   <div class="app-main-center">
     <ele-form
-      :formData="{}"
-      :form-desc="formDesc"
+      v-model="formData"
+      :form-desc="currentFormDesc"
       :request-fn="handleSubmit"
       @request-success="handleSuccess"
       ref="ele-form"
-      v-bind="filterFormAttr"
+      v-bind="currentFormAttr"
     >
       <template
         v-slot:form-content="{ props, formData, formDesc, formErrorObj }"
@@ -35,7 +35,7 @@
                 @click.native="handleFormItemClick(index)"
                 v-if="formItem._vif"
                 class="form-item"
-                :class="{ 'form-item-active': selectIndex === index }"
+                :class="{ 'form-item-active': currentFormItemIndex === index }"
               >
                 <el-form-item
                   :error="formErrorObj ? formErrorObj[field] : null"
@@ -71,7 +71,7 @@
                   size="mini"
                   style="border-radius: 0"
                   type="primary"
-                  v-if="selectIndex === index"
+                  v-if="currentFormItemIndex === index"
                 ></el-button>
               </el-col>
             </template>
@@ -94,8 +94,12 @@ export default createComponent({
     draggable
   },
   setup() {
-    const { formDesc, filterFormAttr } = toRefs(store.getters);
-    const { selectIndex, list } = toRefs(store.state);
+    const {
+      currentFormAttr,
+      currentFormDesc,
+      currentFormItemList: list
+    } = toRefs(store.getters);
+    const { currentFormItemIndex } = toRefs(store.state);
 
     // 确保渲染结束
     const isRenderFinish = ref(false);
@@ -107,11 +111,11 @@ export default createComponent({
 
     // 通过index删除
     const deleteItemByIndex = (index: number) =>
-      store.commit("deleteItemByIndex", index);
+      store.commit("deleteFormItemByIndex", index);
 
     // 通过index更新
     const updateSelectIndex = (index: number) =>
-      store.commit("updateSelectIndex", index);
+      store.commit("updateFormItemIndex", index);
 
     // 删除
     function handleDelete(index: number) {
@@ -140,15 +144,16 @@ export default createComponent({
       updateSelectIndex(index);
     }
     return {
+      formData: ref({}),
       list,
       handleDelete,
       handleMoveStart,
       handleFormItemClick,
       handleMoveEnd,
       handleAdd,
-      filterFormAttr,
-      formDesc,
-      selectIndex,
+      currentFormAttr,
+      currentFormDesc,
+      currentFormItemIndex,
       isRenderFinish
     };
   },

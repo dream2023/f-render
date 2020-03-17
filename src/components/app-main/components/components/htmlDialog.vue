@@ -21,7 +21,7 @@ import copy from "clipboard-copy";
 import { Message } from "element-ui";
 import serialize from "serialize-javascript";
 import { createComponent, computed, toRefs } from "@vue/composition-api";
-import { FormDesc } from "@/types/formList";
+import { FormDesc } from "@/types/project";
 
 export default createComponent({
   name: "htmlDialog",

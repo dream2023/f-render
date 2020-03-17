@@ -27,7 +27,7 @@ import {
   ref,
   watch
 } from "@vue/composition-api";
-import { FormDescListItem, FormDesc } from "@/types/formList";
+import { FormItemList, FormDesc } from "@/types/project";
 import { CreateElement } from "vue";
 
 export default createComponent({
@@ -151,7 +151,7 @@ export default createComponent({
       }
     };
     const { currentFormItem } = toRefs(store.getters);
-    const updateCurrentItem = (data: FormDescListItem) =>
+    const updateCurrentItem = (data: FormItemList) =>
       store.commit("updateCurrentItem", data);
     const formData = ref({});
     const computedFormDesc = computed(() => changeFormLabel(formDesc));

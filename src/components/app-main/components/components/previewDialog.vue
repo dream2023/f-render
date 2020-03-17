@@ -1,15 +1,16 @@
 <template>
   <el-dialog
-    :visible="visible"
     append-to-body
-    title="预览"
+    :visible="visible"
     @update:visible="$emit('update:visible', $event)"
-    v-if="visible"
+    title="预览"
     width="90%"
   >
     <ele-form
       :formDesc="computedFormDesc"
-      :formData="{}"
+      :formData="formData"
+      :visible="visible"
+      @update:visible="$emit('update:visible', $event)"
       :request-fn="handleRequest"
       @request-success="handleRequestSuccess"
       v-bind="formAttr"
@@ -19,7 +20,7 @@
 
 <script lang="ts">
 import _ from "lodash-es";
-import { createComponent, toRefs, computed } from "@vue/composition-api";
+import { createComponent, toRefs, computed, ref } from "@vue/composition-api";
 
 export default createComponent({
   name: "previewDialog",
@@ -38,8 +39,10 @@ export default createComponent({
     }
   },
   setup(props) {
+    const formData = ref({});
     const { formDesc } = toRefs(props);
     return {
+      formData,
       // 需要加一层 clone, 因为 ele-form会修改内部属性
       computedFormDesc: computed(() => _.cloneDeep(formDesc.value))
     };

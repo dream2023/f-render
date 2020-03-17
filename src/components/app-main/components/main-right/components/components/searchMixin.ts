@@ -1,6 +1,6 @@
 import _ from "lodash-es";
 import { ref, computed, Ref } from "@vue/composition-api";
-import { FormDesc } from "@/types/formList";
+import { FormDesc } from "@/types/project";
 import { filterObjBy, fuzzySearch } from "@/helpers/utils";
 
 export default function(formDesc: Ref<FormDesc>) {
