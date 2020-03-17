@@ -2,6 +2,7 @@
 // 与业务无关的工具函数
 /******************/
 import _ from "lodash-es";
+import { onMounted, onUnmounted } from "@vue/composition-api";
 
 /**
  * 获取文件名
@@ -50,3 +51,16 @@ export function filterObjByDefault(
     }
   });
 }
+
+export const preventReloadWindow = () => {
+  const handler = (e: BeforeUnloadEvent) => {
+    e.returnValue = "重新加载此网站？";
+    return e;
+  };
+  onMounted(() => {
+    window.addEventListener("beforeunload", handler);
+  });
+  onUnmounted(() => {
+    window.removeEventListener("beforeunload", handler);
+  });
+};
