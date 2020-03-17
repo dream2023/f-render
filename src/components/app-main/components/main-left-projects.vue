@@ -66,14 +66,14 @@ import store from "@/store";
 import {
   ref,
   toRefs,
-  createComponent,
+  defineComponent,
   watch,
   computed
 } from "@vue/composition-api";
 import { Message, MessageBox } from "element-ui";
 import _ from "lodash-es";
 
-export default createComponent({
+export default defineComponent({
   name: "AppMainLeftProjects",
   setup() {
     // tree的level

@@ -24,12 +24,12 @@ import {
   toRefs,
   ref,
   createElement,
-  createComponent,
+  defineComponent,
   computed
 } from "@vue/composition-api";
 import { FormItemList, FormDesc } from "@/types/project";
 
-export default createComponent({
+export default defineComponent({
   name: "batchDialog",
   props: {
     visible: {

@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import { createComponent, ref, watch, toRefs } from "@vue/composition-api";
+import { defineComponent, ref, watch, toRefs } from "@vue/composition-api";
 import { Message } from "element-ui";
 import {
   getRemoteConfig,
@@ -35,7 +35,7 @@ import {
 import { isVscode } from "../../../../helpers/tool";
 import store from "../../../../store";
 
-export default createComponent({
+export default defineComponent({
   name: "remoteConfig",
   props: {
     visible: {

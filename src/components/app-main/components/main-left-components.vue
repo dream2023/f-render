@@ -29,11 +29,11 @@
 import comps from "@/helpers/comps";
 import draggable from "vuedraggable";
 import { addFormItem } from "@/helpers/tool";
-import { createComponent, ref, computed } from "@vue/composition-api";
+import { defineComponent, ref, computed } from "@vue/composition-api";
 import { Comp } from "@/types/comp";
 import { fuzzySearch } from "@/helpers/utils";
 
-export default createComponent({
+export default defineComponent({
   name: "AppMainLeftComponents",
   components: {
     draggable

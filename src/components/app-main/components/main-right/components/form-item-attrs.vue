@@ -27,9 +27,9 @@ import configList from "@/config";
 import { changeFormLabel } from "@/helpers/tool";
 import searchMixin from "./components/searchMixin";
 import AttrsHeader from "./components/attrs-header.vue";
-import { createComponent, computed, toRefs } from "@vue/composition-api";
+import { defineComponent, computed, toRefs } from "@vue/composition-api";
 
-export default createComponent({
+export default defineComponent({
   name: "AppFormItemAttrs",
   components: { AttrsHeader },
   setup() {

@@ -17,8 +17,8 @@
 import AppFormConfig from "./components/form-config.vue";
 import AppFormItemAttrs from "./components/form-item-attrs.vue";
 import AppFormItemConfig from "./components/form-item-config.vue";
-import { createComponent } from "@vue/composition-api";
-export default createComponent({
+import { defineComponent } from "@vue/composition-api";
+export default defineComponent({
   name: "AppMainRight",
   components: {
     AppFormConfig,

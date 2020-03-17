@@ -41,12 +41,12 @@ import { isVscode } from "@/helpers/tool";
 import AppMainHeader from "./components/main-header.vue";
 import AppMainCenter from "./components/main-center.vue";
 import { Multipane, MultipaneResizer } from "vue-multipane";
-import { createComponent, ref, toRefs, computed } from "@vue/composition-api";
+import { defineComponent, ref, toRefs, computed } from "@vue/composition-api";
 import AppMainRight from "./components/main-right/index.vue";
 import AppMainLeftProjects from "./components/main-left-projects.vue";
 import AppMainLeftComponents from "./components/main-left-components.vue";
 
-export default createComponent({
+export default defineComponent({
   name: "AppMain",
   components: {
     AppMainCenter,

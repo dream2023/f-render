@@ -20,9 +20,9 @@
 
 <script lang="ts">
 import _ from "lodash-es";
-import { createComponent, toRefs, computed, ref } from "@vue/composition-api";
+import { defineComponent, toRefs, computed, ref } from "@vue/composition-api";
 
-export default createComponent({
+export default defineComponent({
   name: "previewDialog",
   props: {
     formDesc: {

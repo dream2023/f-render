@@ -9,10 +9,10 @@
 import store from "@/store";
 import AppHeader from "./components/app-header.vue";
 import AppMain from "./components/app-main/index.vue";
-import { createComponent, toRefs, watch } from "@vue/composition-api";
+import { defineComponent, toRefs, watch } from "@vue/composition-api";
 import { preventReloadWindow } from "@/helpers/utils";
 
-export default createComponent({
+export default defineComponent({
   name: "App",
   components: {
     AppHeader,
@@ -26,7 +26,7 @@ export default createComponent({
     const appName = "表单生成器";
     const { currentForm } = toRefs(store.getters);
     watch(currentForm, () => {
-      if (currentForm) {
+      if (currentForm.value) {
         document.title = currentForm.value.name + " | " + appName;
       } else {
         document.title = appName;

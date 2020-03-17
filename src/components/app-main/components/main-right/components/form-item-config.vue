@@ -48,10 +48,10 @@ import serialize from "serialize-javascript";
 import searchMixin from "./components/searchMixin";
 import AttrsHeader from "./components/attrs-header.vue";
 import FormItemRules from "./components/form-item-rules.vue";
-import { createComponent, toRefs, computed, ref } from "@vue/composition-api";
+import { defineComponent, toRefs, computed, ref } from "@vue/composition-api";
 import { FormDesc, FormItemList } from "@/types/project";
 
-export default createComponent({
+export default defineComponent({
   name: "AppFormItemConfig",
   components: {
     AttrsHeader,

@@ -94,12 +94,12 @@ import batchDialog from "./components/batchDialog.vue";
 import importDialog from "./components/importDialog.vue";
 import exportDialog from "./components/exportDialog.vue";
 import previewDialog from "./components/previewDialog.vue";
-import { createComponent, toRefs, computed, ref } from "@vue/composition-api";
+import { defineComponent, toRefs, computed, ref } from "@vue/composition-api";
 import { FormItemList } from "@/types/project";
 import { saveFormToServer } from "@/helpers/api";
 import { Message } from "element-ui";
 
-export default createComponent({
+export default defineComponent({
   name: "AppMainHeader",
   components: {
     remoteConfig,

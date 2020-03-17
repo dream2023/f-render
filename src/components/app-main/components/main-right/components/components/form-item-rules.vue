@@ -21,7 +21,7 @@ import store from "@/store";
 import { changeFormLabel } from "@/helpers/tool";
 import { Message } from "element-ui";
 import {
-  createComponent,
+  defineComponent,
   computed,
   toRefs,
   ref,
@@ -30,7 +30,7 @@ import {
 import { FormItemList, FormDesc } from "@/types/project";
 import { CreateElement } from "vue";
 
-export default createComponent({
+export default defineComponent({
   name: "FormItemRules",
   props: {
     visible: {

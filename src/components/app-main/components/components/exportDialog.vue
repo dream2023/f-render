@@ -18,9 +18,9 @@
 import copy from "clipboard-copy";
 import { Message } from "element-ui";
 import serialize from "serialize-javascript";
-import { createComponent, computed, toRefs } from "@vue/composition-api";
+import { defineComponent, computed, toRefs } from "@vue/composition-api";
 
-export default createComponent({
+export default defineComponent({
   name: "exportDialog",
   props: {
     visible: {

@@ -86,9 +86,9 @@
 import Vue from "vue";
 import store from "@/store";
 import draggable from "vuedraggable";
-import { createComponent, toRefs, ref, onMounted } from "@vue/composition-api";
+import { defineComponent, toRefs, ref, onMounted } from "@vue/composition-api";
 
-export default createComponent({
+export default defineComponent({
   name: "AppMainCenter",
   components: {
     draggable

@@ -24,10 +24,10 @@ import store from "@/store";
 import { changeFormLabel } from "@/helpers/tool";
 import searchMixin from "./components/searchMixin";
 import AttrsHeader from "./components/attrs-header.vue";
-import { createComponent, toRefs, computed } from "@vue/composition-api";
+import { defineComponent, toRefs, computed } from "@vue/composition-api";
 import { FormDesc } from "@/types/project";
 
-export default createComponent({
+export default defineComponent({
   name: "AppFormConfig",
   components: { AttrsHeader },
   setup() {

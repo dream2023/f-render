@@ -49,14 +49,14 @@ import store from "@/store";
 import { Message } from "element-ui";
 import formAttrDefault from "@/store/formAttrDefault";
 import {
-  createComponent,
+  defineComponent,
   ref,
   computed,
   watch,
   toRefs
 } from "@vue/composition-api";
 
-export default createComponent({
+export default defineComponent({
   name: "importDialog",
   props: {
     visible: {

@@ -20,10 +20,10 @@ import _ from "lodash-es";
 import copy from "clipboard-copy";
 import { Message } from "element-ui";
 import serialize from "serialize-javascript";
-import { createComponent, computed, toRefs } from "@vue/composition-api";
+import { defineComponent, computed, toRefs } from "@vue/composition-api";
 import { FormDesc } from "@/types/project";
 
-export default createComponent({
+export default defineComponent({
   name: "htmlDialog",
   props: {
     visible: {
