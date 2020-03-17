@@ -52,7 +52,8 @@ export function filterObjByDefault(
   });
 }
 
-export const preventReloadWindow = () => {
+// 阻止页面刷新
+export function preventReloadWindow() {
   const handler = (e: BeforeUnloadEvent) => {
     e.returnValue = "重新加载此网站？";
     return e;
@@ -63,4 +64,21 @@ export const preventReloadWindow = () => {
   onUnmounted(() => {
     window.removeEventListener("beforeunload", handler);
   });
-};
+}
+
+// 模糊搜索
+export function fuzzySearch(searcher: string, target: string): boolean {
+  if (target.length > searcher.length) return false;
+  let i = 0;
+  let j = 0;
+  outer: while (i < target.length) {
+    while (j < searcher.length && searcher[j] !== target[i]) {
+      j++;
+    }
+    if (j === searcher.length) {
+      break outer;
+    }
+    i++;
+  }
+  return i === target.length;
+}
