@@ -3346,11 +3346,6 @@ crypto-browserify@^3.11.0:
     randombytes "^2.0.0"
     randomfill "^1.0.3"
 
-crypto-js@^3.1.6:
-  version "3.2.0"
-  resolved "https://registry.npm.taobao.org/crypto-js/download/crypto-js-3.2.0.tgz?cache=0&sync_timestamp=1581415844633&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fcrypto-js%2Fdownload%2Fcrypto-js-3.2.0.tgz#abe124867e49d2695e20fea091728276a9f761c0"
-  integrity sha1-q+Ekhn5J0mleIP6gkXKCdqn3YcA=
-
 crypto-random-string@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npm.taobao.org/crypto-random-string/download/crypto-random-string-1.0.0.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fcrypto-random-string%2Fdownload%2Fcrypto-random-string-1.0.0.tgz#a230f64f568310e1498009940790ec99545bca7e"
@@ -7185,11 +7180,6 @@ ly-downloader@^1.0.5:
   resolved "https://registry.npm.taobao.org/ly-downloader/download/ly-downloader-1.0.5.tgz#fba9a6e4575cc5b8e82fa7328bf8629ea62bbc36"
   integrity sha1-+6mm5FdcxbjoL6cyi/hinqYrvDY=
 
-lz-string@^1.4.4:
-  version "1.4.4"
-  resolved "https://registry.npm.taobao.org/lz-string/download/lz-string-1.4.4.tgz#c0d8eaf36059f705796e1e344811cf4c498d3a26"
-  integrity sha1-wNjq82BZ9wV5bh40SBHPTEmNOiY=
-
 make-dir@^1.0.0:
   version "1.3.0"
   resolved "https://registry.npm.taobao.org/make-dir/download/make-dir-1.3.0.tgz?cache=0&sync_timestamp=1581538804263&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fmake-dir%2Fdownload%2Fmake-dir-1.3.0.tgz#79c1033b80515bd6d24ec9933e860ca75ee27f0c"
@@ -10169,14 +10159,6 @@ scss-tokenizer@^0.2.3:
   dependencies:
     js-base64 "^2.1.8"
     source-map "^0.4.2"
-
-secure-ls@^1.2.6:
-  version "1.2.6"
-  resolved "https://registry.npm.taobao.org/secure-ls/download/secure-ls-1.2.6.tgz#0c54a4c7fa8317c3c101accbf6bb38d8d2072e46"
-  integrity sha1-DFSkx/qDF8PBAazL9rs42NIHLkY=
-  dependencies:
-    crypto-js "^3.1.6"
-    lz-string "^1.4.4"
 
 select-hose@^2.0.0:
   version "2.0.0"

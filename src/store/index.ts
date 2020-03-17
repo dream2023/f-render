@@ -7,6 +7,7 @@ import listDefault from "./listDefault";
 import { Project } from "@/types/project";
 import persistedstate from "./persistedstate";
 import formAttrDefault from "./formAttrDefault";
+import { getFormFromServer } from "@/helpers/api";
 import { getRemoteConfig } from "@/helpers/remoteConfig";
 
 Vue.use(Vuex);
@@ -19,7 +20,7 @@ interface StateData {
   saveType: "local" | "remote";
   currentProjectIndex: number | null;
   currentFormIndex: number | null;
-  currentFormItemIndex: number | null; // 因为有可能当前未选中任何表单, 所以有可能为 null
+  currentFormItemIndex: number | null;
 }
 
 const store = new Vuex.Store<StateData>({
@@ -208,30 +209,14 @@ const store = new Vuex.Store<StateData>({
     }
   },
   actions: {
-    updateStateFromRemote({ commit }) {
-      if (remoteConfig) {
-        commit("updateSaveType", "remote");
-
-        fetch(
-          new Request(remoteConfig.getUrl, {
-            method: remoteConfig.getMethod
-          })
-        )
-          .then(res => res.text())
-          .then(res => {
-            try {
-              return eval("(" + res + ")");
-            } catch {
-              throw new TypeError("返回数据格式不正确: " + res);
-            }
-          })
-          .then((res: StateData) => {
-            commit("updateAll", res);
-            commit("updateSaveType", "remote");
-          })
-          .catch(error => {
-            Message.error("从服务器获取数据失败: " + error.message);
-          });
+    async updateStateFromRemote({ commit }) {
+      const res = await getFormFromServer();
+      if (res) {
+        if (res.code === 0) {
+          commit("updateAll", res.data);
+        } else {
+          Message.error("获取数据失败, 失败原因: " + res.msg);
+        }
       }
     }
   },

@@ -60,7 +60,6 @@
     "normalize.css": "^8.0.1",
     "prettier": "^1.19.1",
     "sass-loader": "^8.0.2",
-    "secure-ls": "^1.2.6",
     "serialize-javascript": "^2.1.2",
     "standard-version": "^7.0.1",
     "typescript": "~3.7.5",

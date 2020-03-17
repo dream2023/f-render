@@ -7,7 +7,7 @@ interface RemoteConfig {
   updateUrl: string;
 }
 
-const saveKey = "remoteConfig";
+const saveKey = "remote-config";
 
 // 获取remoteConfig
 export function getRemoteConfig(): RemoteConfig | null {

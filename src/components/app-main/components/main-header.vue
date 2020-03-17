@@ -96,8 +96,7 @@ import exportDialog from "./components/exportDialog.vue";
 import previewDialog from "./components/previewDialog.vue";
 import { createComponent, toRefs, computed, ref } from "@vue/composition-api";
 import { FormItemList } from "@/types/project";
-import { getRemoteConfig } from "@/helpers/remoteConfig";
-import serialize from "serialize-javascript";
+import { saveFormToServer } from "@/helpers/api";
 import { Message } from "element-ui";
 
 export default createComponent({
@@ -167,26 +166,15 @@ export default createComponent({
       });
     });
 
-    const handleSaveData = () => {
-      const remoteConfig = getRemoteConfig();
-      if (remoteConfig) {
-        fetch(remoteConfig.updateUrl, {
-          method: remoteConfig.updateMethod,
-          body: serialize({
-            formData: store.state
-          }),
-          headers: new Headers({
-            "Content-Type": "application/json; charset=utf-8"
-          })
-        })
-          .then(() => {
-            Message.success("保存成功");
-          })
-          .catch((error: Error) => {
-            Message.error("保存数据失败: " + error.message);
-            // eslint-disable-next-line no-console
-            console.error(error);
-          });
+    // 保存数据
+    const handleSaveData = async () => {
+      const res = await saveFormToServer(store.state);
+      if (res) {
+        if (res.code === 0) {
+          Message.success("保存成功");
+        } else {
+          Message.error("保存失败, 失败原因: " + res.msg);
+        }
       }
     };
 

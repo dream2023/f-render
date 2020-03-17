@@ -6,7 +6,7 @@ import ElementUI from "element-ui";
 import EleForm from "vue-ele-form/lib/index.js";
 import codemirrorConfig from "./extend/codemirror";
 import VueCompositionAPI from "@vue/composition-api";
-
+import "@/helpers/api";
 // css样式
 import "normalize.css";
 import "element-ui/lib/theme-chalk/index.css";
