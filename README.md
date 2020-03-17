@@ -10,7 +10,7 @@
 
 vue-ele-form-generator 是专为 [vue-ele-form](https://github.com/dream2023/vue-ele-form) 开发的可视化表单设计工具, 并且支持[vscode 插件](https://marketplace.visualstudio.com/items?itemName=dream2023.fgen-for-vscode)、[cli 本地启动](https://github.com/dream2023/fgen-cli)、[在线设计](https://vue-ele-form-generator.netlify.com/)多种方式, 让表单开发的效率更上一层楼!
 
-[![vue-ele-form-generator 演示图](https://s2.ax1x.com/2020/01/14/lb1PL6.gif)](https://vue-ele-form-generator.netlify.com/)
+[![vue-ele-form-generator 演示图](https://s1.ax1x.com/2020/03/17/8UJqhT.gif)](https://vue-ele-form-generator.netlify.com/)
 
 ## 特性
 
@@ -19,6 +19,8 @@ vue-ele-form-generator 是专为 [vue-ele-form](https://github.com/dream2023/vue
 - 提供 `vue-ele-form` 全部基础组件 和 全部扩展组件
 - 支持组件属性点选配置
 - 支持本地启动, 告别被墙的痛苦
+- 服务器保存, 应用到项目
+- 基于项目的多表单管理, 省去二次开发
 - 数据持久化(刷新依然存在)
 - 一键生成配置 json 数据
 - 一键生成.vue 格式内容

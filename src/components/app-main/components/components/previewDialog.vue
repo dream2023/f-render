@@ -8,7 +8,7 @@
   >
     <ele-form
       :formDesc="computedFormDesc"
-      :formData="formData"
+      v-model="formData"
       :visible="visible"
       @update:visible="$emit('update:visible', $event)"
       :request-fn="handleRequest"

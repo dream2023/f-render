@@ -12,7 +12,7 @@
       <el-card header="表单预览" shadow="hover" class="box-card">
         <ele-form
           :form-desc="formDesc"
-          :formData="formData"
+          v-model="formData"
           :request-fn="handleRequest"
           @request-success="handleRequestSuccess"
           v-bind="formAttr"
