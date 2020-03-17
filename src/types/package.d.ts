@@ -13,4 +13,3 @@ declare module "vue-ele-form-table-editor";
 declare module "vue-ele-form-image-uploader";
 declare module "vue-ele-form-video-uploader";
 declare module "vue-ele-form-markdown-editor";
-declare module "vue-ele-form/lib/index.js";

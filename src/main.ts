@@ -3,7 +3,7 @@ import Vue from "vue";
 import App from "./App.vue";
 import store from "./store";
 import ElementUI from "element-ui";
-import EleForm from "vue-ele-form/lib/index.js";
+import EleForm from "vue-ele-form";
 import codemirrorConfig from "./extend/codemirror";
 import VueCompositionAPI from "@vue/composition-api";
 import "@/helpers/api";

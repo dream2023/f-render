@@ -44,9 +44,9 @@ const store = new Vuex.Store<StateData>({
       }
     ],
     // 当前工程索引
-    currentProjectIndex: null,
+    currentProjectIndex: 0,
     // 当前表单索引
-    currentFormIndex: null,
+    currentFormIndex: 0,
     // 当前表单项索引
     currentFormItemIndex: null,
     // 保存数据方式
