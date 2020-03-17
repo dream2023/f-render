@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/dream2023/vue-ele-form-generator/compare/v2.0.2...v2.1.0) (2020-03-17)
+
+
+### Features
+
+* fuzzySearch ([7447009](https://github.com/dream2023/vue-ele-form-generator/commit/7447009c62637f87e9ae8e9640fbed056470980b))
+* 右侧搜索 ([242d34e](https://github.com/dream2023/vue-ele-form-generator/commit/242d34edb53cec250906c24c3b54f07c64303716))
+* 完成多页面 & 保存到服务器 ([#26](https://github.com/dream2023/vue-ele-form-generator/issues/26)) ([4e22b26](https://github.com/dream2023/vue-ele-form-generator/commit/4e22b26f549e4ca793bc9dabafb05f6ebf975802))
+* 完成深度对象的搜索和设置label ([367acb8](https://github.com/dream2023/vue-ele-form-generator/commit/367acb847617a023f9e9f272497f7ecc448a0678))
+* 扩展新增函数 ([41a78b2](https://github.com/dream2023/vue-ele-form-generator/commit/41a78b2896f055a4e4b298e5d43676e839422cce))
+
+
+### Bug Fixes
+
+* 修复若干组件属性 ([c5e4765](https://github.com/dream2023/vue-ele-form-generator/commit/c5e47650e4f880f38c4f9d3faf73bcae307ab53f))
+* 修改store默认值 ([57c2af7](https://github.com/dream2023/vue-ele-form-generator/commit/57c2af7f4cf42989378b6fef4b41a4837c7817d9))
+* 升级依赖 & 解决BUG ([259a8d1](https://github.com/dream2023/vue-ele-form-generator/commit/259a8d1f85374cf83a7e0044dabb295f62eb2bf7))
+* 解决弹窗预览BUG ([c34dfc8](https://github.com/dream2023/vue-ele-form-generator/commit/c34dfc877bd0718e46759898668bd2a8f37d5046))
+
 ### [2.0.2](https://github.com/dream2023/vue-ele-form-generator/compare/v2.0.1...v2.0.2) (2020-03-02)
 
 
