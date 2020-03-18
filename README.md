@@ -117,6 +117,12 @@ yarn global add fgen-cli # 或 npm update -g fgen-cli
           <div>damonnie</div>
         </a>
       </td>
+      <td align="center" valign="middle">
+        <a href="https://github.com/xzusoft" target="_blank">
+          <img width="200px" src="https://avatars3.githubusercontent.com/u/12249515?s=460&v=4">
+          <div>xzusoft</div>
+        </a>
+      </td>
     </tr><tr></tr>
   </tbody>
 </table>
