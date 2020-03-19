@@ -35,7 +35,8 @@ vue-ele-form-generator 是专为 [vue-ele-form](https://github.com/dream2023/vue
 
 #### 第一种方式: 在线设计地址(有点慢, 请耐心)
 
-[https://vue-ele-form-generator.netlify.com/](https://vue-ele-form-generator.netlify.com/)
+- 中国: [https://dream2023.gitee.io/vue-ele-form-generator/](https://dream2023.gitee.io/vue-ele-form-generator/)
+- 其它地区: [https://vue-ele-form-generator.netlify.com/](https://vue-ele-form-generator.netlify.com/)
 
 #### 第二种方式: 本地启动
 
