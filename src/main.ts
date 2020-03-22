@@ -1,5 +1,5 @@
 import "./extend";
-import Vue from "vue";
+import Vue, { CreateElement } from "vue";
 import App from "./App.vue";
 import store from "./store";
 import ElementUI from "element-ui";
@@ -41,7 +41,15 @@ Vue.use(VueCompositionAPI);
 Vue.config.productionTip = false;
 
 // 实例化
-new Vue({
+const appVueOptions = {
   store,
-  render: h => h(App)
-}).$mount("#app");
+  render: (h: CreateElement) => h(App)
+};
+
+const isLab = process.env.VUE_APP_IS_LAB;
+if (!isLab) {
+  new Vue(appVueOptions).$mount("#app");
+}
+
+// 支持Vue组件形式导出整个应用
+export default appVueOptions;

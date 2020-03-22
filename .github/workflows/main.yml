@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - master
+    paths:
+      - src/*
+      - vue.config.js
 
 jobs:
   build-deploy:

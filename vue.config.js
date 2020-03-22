@@ -5,6 +5,9 @@ module.exports = {
     proxy: "http://localhost:8000"
   },
   configureWebpack: {
+    output: {
+      libraryExport: "default"
+    },
     resolve: {
       extensions: [".js", ".ts", ".tsx", ".vue"]
     }

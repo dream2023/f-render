@@ -2,15 +2,14 @@
 
 [![MIT](https://img.shields.io/github/license/dream2023/vue-ele-form-generator)](https://github.com/dream2023/vue-ele-form-generator)
 ![npm](https://img.shields.io/npm/dt/vue-ele-form-generator)
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/7a45ab0a-0a6b-4d27-b130-54de40296859/deploy-status)](https://app.netlify.com/sites/vue-ele-form-generator/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/4c2ddffb-26b2-4e64-8b22-25678db57483/deploy-status)](https://app.netlify.com/sites/vue-ele-form-generator/deploys)
 [![Star on GitHub](https://img.shields.io/github/stars/dream2023/vue-ele-form-generator.svg?style=social)](https://github.com/dream2023/vue-ele-form-generator/stargazers)
 
 ## 介绍
 
-vue-ele-form-generator 是专为 [vue-ele-form](https://github.com/dream2023/vue-ele-form) 开发的可视化表单设计工具, 并且支持[vscode 插件](https://marketplace.visualstudio.com/items?itemName=dream2023.fgen-for-vscode)、[cli 本地启动](https://github.com/dream2023/fgen-cli)、[在线设计](https://vue-ele-form-generator.netlify.com/)多种方式, 让表单开发的效率更上一层楼!
+vue-ele-form-generator 是专为 [vue-ele-form](https://github.com/dream2023/vue-ele-form) 开发的可视化表单设计工具, 并且支持[vscode 插件](https://marketplace.visualstudio.com/items?itemName=dream2023.fgen-for-vscode)、[cli 本地启动](https://github.com/dream2023/fgen-cli)、[在线设计](https://dream2023.gitee.io/vue-ele-form-generator/)多种方式, 让表单开发的效率更上一层楼!
 
-[![vue-ele-form-generator 演示图](https://s1.ax1x.com/2020/03/17/8UJqhT.gif)](https://vue-ele-form-generator.netlify.com/)
+[![vue-ele-form-generator 演示图](https://s1.ax1x.com/2020/03/17/8UJqhT.gif)](https://dream2023.gitee.io/vue-ele-form-generator/)
 
 ## 特性
 
@@ -25,6 +24,12 @@ vue-ele-form-generator 是专为 [vue-ele-form](https://github.com/dream2023/vue
 - 一键生成配置 json 数据
 - 一键生成.vue 格式内容
 
+## 帮助文章 Wiki
+
+**[如何将将数据存到服务器](https://github.com/dream2023/vue-ele-form-generator/wiki/%E5%B0%86%E6%95%B0%E6%8D%AE%E5%AD%98%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8)**
+
+**[如何以守护进程的方式启动 cli 工具](https://github.com/dream2023/fgen-cli/wiki/%E5%A6%82%E4%BD%95%E4%BB%A5%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B%E6%96%B9%E5%BC%8F%E5%90%AF%E5%8A%A8fgen-cli)**
+
 ## 安装 和 使用
 
 ### 第一步: 项目安装 vue-ele-form
@@ -36,7 +41,7 @@ vue-ele-form-generator 是专为 [vue-ele-form](https://github.com/dream2023/vue
 #### 第一种方式: 在线设计地址(有点慢, 请耐心)
 
 - 中国: [https://dream2023.gitee.io/vue-ele-form-generator/](https://dream2023.gitee.io/vue-ele-form-generator/)
-- 其它地区: [https://vue-ele-form-generator.netlify.com/](https://vue-ele-form-generator.netlify.com/)
+- 其它地区(online): [https://vue-ele-form-generator.netlify.com/](https://vue-ele-form-generator.netlify.com/)
 
 #### 第二种方式: 本地启动
 
@@ -60,19 +65,9 @@ fgen -p 8080
 yarn global add fgen-cli # 或 npm update -g fgen-cli
 ```
 
-**守护进程启动**
-
-[私有化部署之守护进程的方式启动](https://github.com/dream2023/fgen-cli/wiki/%E5%A6%82%E4%BD%95%E4%BB%A5%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B%E6%96%B9%E5%BC%8F%E5%90%AF%E5%8A%A8fgen-cli)
-
 #### 第三种方式: vscode 插件
 
 插件市场搜索: `fgen-for-vscode`, 或者点击[链接](https://marketplace.visualstudio.com/items?itemName=dream2023.fgen-for-vscode&ssr=false#review-details)
-
-## 其它
-
-**将数据存到服务器**
-
-[如何将将数据存到服务器](https://github.com/dream2023/vue-ele-form-generator/wiki/%E5%B0%86%E6%95%B0%E6%8D%AE%E5%AD%98%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8)
 
 ## 生态
 
