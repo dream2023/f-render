@@ -26,9 +26,13 @@ vue-ele-form-generator 是专为 [vue-ele-form](https://github.com/dream2023/vue
 
 ## 帮助文章 Wiki
 
-**[如何将将数据存到服务器](https://github.com/dream2023/vue-ele-form-generator/wiki/%E5%B0%86%E6%95%B0%E6%8D%AE%E5%AD%98%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8)**
+[二次开发简单指导](https://github.com/dream2023/vue-ele-form-generator/wiki/%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91%E7%AE%80%E5%8D%95%E6%8C%87%E5%AF%BC)
 
-**[如何以守护进程的方式启动 cli 工具](https://github.com/dream2023/fgen-cli/wiki/%E5%A6%82%E4%BD%95%E4%BB%A5%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B%E6%96%B9%E5%BC%8F%E5%90%AF%E5%8A%A8fgen-cli)**
+[如何将 vue form generator 集成到已有项目](https://github.com/dream2023/vue-ele-form-generator/wiki/%E5%A6%82%E4%BD%95%E5%B0%86vue-form-generator%E9%9B%86%E6%88%90%E5%88%B0%E5%B7%B2%E6%9C%89%E9%A1%B9%E7%9B%AE)
+
+[如何将数据存到服务器](https://github.com/dream2023/vue-ele-form-generator/wiki/%E5%B0%86%E6%95%B0%E6%8D%AE%E5%AD%98%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8)
+
+[如何以守护进程的方式启动 cli 工具](https://github.com/dream2023/vue-ele-form-generator/wiki/%E5%A6%82%E4%BD%95%E4%BB%A5%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B%E6%96%B9%E5%BC%8F%E5%90%AF%E5%8A%A8fgen-cli)
 
 ## 安装 和 使用
 
