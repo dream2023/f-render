@@ -10,6 +10,15 @@
     <codemirror :value="codeHtml"></codemirror>
     <div style="text-align: center;margin-top: 20px">
       <el-button @click="handleCopyHtml" type="primary">复制代码</el-button>
+      <el-button type="primary"
+        ><el-link
+          :href="fileURL"
+          style="color: white;"
+          :underline="false"
+          :download="fileName + '.vue'"
+          >下载文件</el-link
+        ></el-button
+      >
     </div>
   </el-dialog>
 </template>
@@ -22,6 +31,7 @@ import { Message } from "element-ui";
 import serialize from "serialize-javascript";
 import { defineComponent, computed, toRefs } from "@vue/composition-api";
 import { FormDesc } from "@/types/project";
+import store from "../../../../store";
 
 export default defineComponent({
   name: "htmlDialog",
@@ -41,6 +51,7 @@ export default defineComponent({
   },
   setup(props) {
     const { formDesc, formAttr } = toRefs(props);
+    const { currentForm } = toRefs(store.getters);
     const codeHtml = computed(() => {
       // 获取 FormAttr 的字符串
       const getFormAttrStr = (formAttr: AnyObj) => {
@@ -73,12 +84,18 @@ export default defineComponent({
         .replace("%2", getFormDescStr(formDesc.value));
     });
 
+    const fileURL = computed(() => {
+      const blob = new Blob([codeHtml.value]);
+      return URL.createObjectURL(blob);
+    });
     const handleCopyHtml = () => {
       copy(codeHtml.value);
       Message.success("复制成功!");
     };
 
     return {
+      fileName: currentForm.value.name,
+      fileURL,
       codeHtml,
       handleCopyHtml
     };
