@@ -4,7 +4,6 @@ npm run build
 npx standard-version
 npm publish --registry http://registry.npmjs.org
 git push
-git checkout master
-git merge develop
 git push --follow-tags origin master
+git push gitee
 npx gren release --override

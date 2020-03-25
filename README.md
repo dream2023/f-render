@@ -3,6 +3,7 @@
 [![MIT](https://img.shields.io/github/license/dream2023/vue-ele-form-generator)](https://github.com/dream2023/vue-ele-form-generator)
 ![npm](https://img.shields.io/npm/dt/vue-ele-form-generator)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/4c2ddffb-26b2-4e64-8b22-25678db57483/deploy-status)](https://app.netlify.com/sites/vue-ele-form-generator/deploys)
+![gitub pages](https://github.com/dream2023/vue-ele-form-generator/workflows/gitub%20pages/badge.svg)
 [![Star on GitHub](https://img.shields.io/github/stars/dream2023/vue-ele-form-generator.svg?style=social)](https://github.com/dream2023/vue-ele-form-generator/stargazers)
 
 ## 介绍
