@@ -5,6 +5,7 @@
     labelPosition="left"
     width="800px"
     :dialogAttrs="{
+      'close-on-click-modal': false,
       'append-to-body': true
     }"
     :request-fn="handleAdd"
