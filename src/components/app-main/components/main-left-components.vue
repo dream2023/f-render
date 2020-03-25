@@ -26,12 +26,12 @@
 </template>
 
 <script lang="ts">
-import comps from "@/helpers/comps";
 import draggable from "vuedraggable";
 import { addFormItem } from "@/helpers/tool";
-import { defineComponent, ref, computed } from "@vue/composition-api";
+import { defineComponent, ref, computed, toRefs } from "@vue/composition-api";
 import { Comp } from "@/types/comp";
 import { fuzzySearch } from "@/helpers/utils";
+import store from "../../../store";
 
 export default defineComponent({
   name: "AppMainLeftComponents",
@@ -39,16 +39,18 @@ export default defineComponent({
     draggable
   },
   setup() {
+    const { sortedComps: comps } = toRefs(store.getters);
+
     // 搜索
     const search = () => {
       const searchValue = ref("");
       const filteredComps = computed(() => {
         const keyword = searchValue.value.toLowerCase();
         if (!keyword) {
-          return comps;
+          return comps.value;
         } else {
-          return comps.filter(
-            item =>
+          return comps.value.filter(
+            (item: Comp) =>
               fuzzySearch(item.type, keyword) ||
               fuzzySearch(item.label, keyword)
           );

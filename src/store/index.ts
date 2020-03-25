@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import _ from "lodash-es";
+import comps from "@/helpers/comps";
 import { Message } from "element-ui";
 import { keyBy } from "@/helpers/utils";
 import listDefault from "./listDefault";
@@ -9,6 +10,7 @@ import persistedstate from "./persistedstate";
 import formAttrDefault from "./formAttrDefault";
 import { getFormFromServer } from "@/helpers/api";
 import { getRemoteConfig } from "@/helpers/remoteConfig";
+import { Comp } from "@/types/comp";
 
 Vue.use(Vuex);
 
@@ -21,6 +23,7 @@ interface StateData {
   currentProjectIndex: number | null;
   currentFormIndex: number | null;
   currentFormItemIndex: number | null;
+  comps: Comp[];
 }
 
 const store = new Vuex.Store<StateData>({
@@ -50,9 +53,15 @@ const store = new Vuex.Store<StateData>({
     // 当前表单项索引
     currentFormItemIndex: null,
     // 保存数据方式
-    saveType: "local"
+    saveType: "local",
+    // 右侧组件列表
+    comps: comps
   },
   getters: {
+    // 根据使用的次数排序
+    sortedComps(state) {
+      return _.cloneDeep(_.sortBy(state.comps, "count")).reverse();
+    },
     // 当前 project
     currentProject(state) {
       return state.currentProjectIndex !== null
@@ -94,6 +103,17 @@ const store = new Vuex.Store<StateData>({
     }
   },
   mutations: {
+    // 更新组件使用次数
+    updateCompCount(state, compType) {
+      const compIndex = state.comps.findIndex(item => item.type === compType);
+      if (compIndex > -1) {
+        Vue.set(
+          state.comps[compIndex],
+          "count",
+          state.comps[compIndex].count + 1
+        );
+      }
+    },
     // 更新所有
     updateAll(state, data) {
       Object.assign(state, data);

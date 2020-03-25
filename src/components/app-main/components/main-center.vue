@@ -130,6 +130,7 @@ export default defineComponent({
     // 新增
     function handleAdd(res: AnyObj) {
       updateSelectIndex(res.newIndex);
+      store.commit("updateCompCount", list.value[res.newIndex].type);
     }
     // 移动开始
     function handleMoveStart(res: AnyObj) {

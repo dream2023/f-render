@@ -18,7 +18,6 @@
 <script lang="ts">
 import _ from "lodash-es";
 import store from "@/store";
-import comps from "@/helpers/comps";
 import { Message } from "element-ui";
 import { addFormItem } from "@/helpers/tool";
 import {
@@ -29,6 +28,7 @@ import {
   computed
 } from "@vue/composition-api";
 import { FormItemList, FormDesc } from "@/types/project";
+import { Comp } from "../../../../types/comp";
 
 export default defineComponent({
   name: "batchDialog",
@@ -39,9 +39,11 @@ export default defineComponent({
     }
   },
   setup(props, context) {
-    const { currentFormDesc: allFormDesc, currentFormItemList: list } = toRefs(
-      store.getters
-    );
+    const {
+      currentFormDesc: allFormDesc,
+      currentFormItemList: list,
+      sortedComps: comps
+    } = toRefs(store.getters);
     const formData = ref({
       type: "dynamic",
       data: []
@@ -90,7 +92,7 @@ export default defineComponent({
               valueKey: "type",
               slots: {
                 default(h: typeof createElement) {
-                  return comps.map(item =>
+                  return comps.value.map((item: Comp) =>
                     h("el-option", {
                       attrs: {
                         label: `${item.type} - ${item.label}`,
@@ -161,6 +163,11 @@ export default defineComponent({
           type: "dynamic",
           data: []
         };
+
+        // 更新type使用次数
+        newFormItems.forEach(item =>
+          store.commit("updateCompCount", item.type)
+        );
 
         context.emit("update:visible", false);
       }

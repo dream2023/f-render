@@ -74,7 +74,7 @@
     "vue-ele-form-json-editor": "^0.1.2",
     "vue-ele-form-markdown-editor": "^0.1.2",
     "vue-ele-form-quill-editor": "^0.1.1",
-    "vue-ele-form-table-editor": "^0.1.2",
+    "vue-ele-form-table-editor": "^0.1.3",
     "vue-ele-form-tree-select": "^0.1.1",
     "vue-ele-form-upload-file": "0.0.5",
     "vue-ele-form-video-uploader": "^0.1.3",
