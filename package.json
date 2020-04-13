@@ -1,6 +1,6 @@
 {
   "name": "vue-ele-form-generator",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "vue-ele-form-generator是专为vue-ele-form开发的可视化表单设计工具, 让表单开发的效率更上一层楼",
   "private": false,
   "license": "MIT",
