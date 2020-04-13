@@ -1,0 +1,29 @@
+<template>
+  <ele-form<% for(let item of formAttr) { %>
+    <%- item.key %>="<%= item.value %>"<% } %>
+    :formDesc="formDesc"
+    v-model="formData"
+    :request-fn="handleRequest"
+    @request-success="handleRequestSuccess"
+  />
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      formData: {},
+      formDesc: <%- formDesc %>
+    };
+  },
+  methods: {
+    handleRequest(data) {
+      console.log(data);
+      return Promise.resolve();
+    },
+    handleRequestSuccess() {
+      this.$message.success("发送成功");
+    }
+  }
+};
+</script>

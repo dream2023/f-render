@@ -24,13 +24,13 @@
 </template>
 
 <script lang="ts">
-import tpl from "@/helpers/tpl";
-import _ from "lodash-es";
+import tpl from "./tpl.ejs";
 import copy from "clipboard-copy";
+import ejs from "ejs";
 import { Message } from "element-ui";
+import _ from "lodash-es";
 import serialize from "serialize-javascript";
 import { defineComponent, computed, toRefs } from "@vue/composition-api";
-import { FormDesc } from "@/types/project";
 import store from "../../../../store";
 
 export default defineComponent({
@@ -52,36 +52,38 @@ export default defineComponent({
   setup(props) {
     const { formDesc, formAttr } = toRefs(props);
     const { currentForm } = toRefs(store.getters);
+
+    // 渲染模板
     const codeHtml = computed(() => {
-      // 获取 FormAttr 的字符串
-      const getFormAttrStr = (formAttr: AnyObj) => {
-        // 如果是字符串属性值和其它属性值, 一个有 : , 一个没有
-        // 例如 {name: 'jack', age: 10} => ['name="jack"', ':age="10"']
-        let htmlFormAttr = Object.entries(formAttr)
-          .map(
-            ([key, val]) =>
-              (typeof val === "string" ? "" : ":") + `${key}="${val}"`
-          )
-          .join("\n    ");
-
-        if (htmlFormAttr.length) {
-          htmlFormAttr = htmlFormAttr + "\n    ";
-        }
-        return htmlFormAttr;
-      };
-
-      // 获取 formDesc 的字符串
-      const getFormDescStr = (formDesc: FormDesc) => {
+      // 将  formDesc 转为 字符串
+      const getFormDescStr = (formDesc: any) => {
         if (_.isEmpty(formDesc)) return "{}";
-        return serialize(formDesc, { space: 2 })
-          .replace(/"(\w+)":/g, "$1:")
-          .replace(/(\s\s)(\S)/g, "      $1$2")
-          .replace(/}$/, "      }");
+
+        return (
+          serialize(formDesc, { space: 2 })
+            // 增加空格, {\n   'name': 'zhang'} -> {\n\t  'name': 'zhang'} 保持缩进好看
+            .replace(/\n/g, "\n\t  ")
+            // 将 key 的引号去掉: '{"name": "zhang"}' -> '{name: "zhang"}'
+            .replace(/"(\w+)":/g, "$1:")
+        );
       };
 
-      return tpl
-        .replace("%1", getFormAttrStr(formAttr.value))
-        .replace("%2", getFormDescStr(formDesc.value));
+      const getFormAttrObj = (formAttr: any) => {
+        return Object.entries(formAttr).map(([key, value]) => {
+          // 将 [['name', 'zhang'], ['age', 10]] => [{name: 'zhang', ':age': 10}]
+          // 因为 vue 模板 非字符串前需要加 : 表示变量
+          key = typeof value === "string" ? key : `:${key}`;
+          return {
+            key,
+            value
+          };
+        });
+      };
+
+      return ejs.render(tpl, {
+        formAttr: getFormAttrObj(formAttr.value),
+        formDesc: getFormDescStr(formDesc.value)
+      });
     });
 
     const fileURL = computed(() => {

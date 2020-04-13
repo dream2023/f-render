@@ -31,8 +31,8 @@ export default defineComponent({
   name: "AppFormConfig",
   components: { AttrsHeader },
   setup() {
-    const { currentFormAttr } = toRefs(store.getters);
-    const formAttr = computed(() => _.cloneDeep(currentFormAttr.value));
+    const { currerntOriginFormAttr } = toRefs(store.getters);
+    const formAttr = computed(() => _.cloneDeep(currerntOriginFormAttr.value));
     const updateFormAttr = (data: AnyObj) =>
       store.commit("updateCurrentFormAttr", data);
     const originDesc: FormDesc = {

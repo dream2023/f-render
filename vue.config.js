@@ -10,6 +10,14 @@ module.exports = {
     },
     resolve: {
       extensions: [".js", ".ts", ".tsx", ".vue"]
+    },
+    module: {
+      rules: [
+        {
+          test: /\.ejs$/,
+          use: "raw-loader"
+        }
+      ]
     }
   }
 };

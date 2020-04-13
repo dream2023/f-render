@@ -80,6 +80,14 @@ const store = new Vuex.Store<StateData>({
         ? getters.currentForm.formItemList[state.currentFormItemIndex]
         : null;
     },
+    // 为经过过滤的 formAttr
+    currerntOriginFormAttr(state, getters) {
+      if (getters.currentForm) {
+        return getters.currentForm.formAttr;
+      } else {
+        return {};
+      }
+    },
     // 过滤掉空值和默认值后的 formAttr
     currentFormAttr(state, getters) {
       if (getters.currentForm) {
