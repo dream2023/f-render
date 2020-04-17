@@ -64,15 +64,11 @@
                 </el-form-item>
 
                 <!-- 删除按钮 -->
-                <el-button
+                <i
                   @click.stop="handleDelete(index)"
-                  class="form-item-delete-btn"
-                  icon="el-icon-delete"
-                  size="mini"
-                  style="border-radius: 0"
-                  type="primary"
+                  class="el-icon-delete form-item-delete-btn"
                   v-if="currentFormItemIndex === index"
-                ></el-button>
+                ></i>
               </el-col>
             </template>
           </template>
@@ -217,6 +213,10 @@ export default defineComponent({
       right: 0;
       bottom: 0;
       z-index: 3;
+      cursor: pointer;
+      padding: 7px 15px;
+      color: white;
+      background: #409eff;
     }
   }
 }

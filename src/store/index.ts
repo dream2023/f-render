@@ -39,7 +39,7 @@ const store = new Vuex.Store<StateData>({
             // 表单名称
             name: "示例表单",
             // 表单属性
-            formAttr: formAttrDefault,
+            formAttr: _.cloneDeep(formAttrDefault),
             // 表单项列表
             formItemList: listDefault
           }
@@ -146,7 +146,7 @@ const store = new Vuex.Store<StateData>({
     // 新增 form
     createForm(state, { projectIndex, form }) {
       form.formItemList = [];
-      form.formAttr = formAttrDefault;
+      form.formAttr = _.cloneDeep(formAttrDefault);
       state.projectList[projectIndex].formList.push(form);
     },
     // 新增 formItem
@@ -236,7 +236,7 @@ const store = new Vuex.Store<StateData>({
     clearCurrentForm(state) {
       store.commit("updateCurrentForm", {
         formItemList: [],
-        formAttr: formAttrDefault
+        formAttr: _.cloneDeep(formAttrDefault)
       });
       state.currentFormItemIndex = null;
     },

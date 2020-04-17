@@ -112,6 +112,7 @@ export default defineComponent({
       if (jsonData.value && jsonData.value.formDesc) {
         const keys = Object.keys(formAttrDefault);
         formAttr.value = Object.assign(
+          {},
           formAttrDefault,
           _.pick(jsonData.value, keys)
         );
