@@ -12,6 +12,10 @@ vue-ele-form-generator 是专为 [vue-ele-form](https://github.com/dream2023/vue
 
 [![vue-ele-form-generator 演示图](https://s1.ax1x.com/2020/03/17/8UJqhT.gif)](https://dream2023.gitee.io/vue-ele-form-generator/)
 
+## 注意
+
+注意，此设计器不是独立存在的，是依托于 [vue-ele-form](https://github.com/dream2023/vue-ele-form)，在使用前请务必阅读 [vue-ele-form 的文档](https://www.yuque.com/chaojie-vjiel/vbwzgu/xl46cd)。
+
 ## 特性
 
 - 提供[vscode 插件](https://marketplace.visualstudio.com/items?itemName=dream2023.fgen-for-vscode)更贴近日常开发
@@ -25,15 +29,23 @@ vue-ele-form-generator 是专为 [vue-ele-form](https://github.com/dream2023/vue
 - 一键生成配置 json 数据
 - 一键生成.vue 格式内容
 
-## 帮助文章 Wiki
+## QA & Wiki
+
+### 如何部署到服务器？
+
+请参考文章 [部署到服务器](https://github.com/dream2023/vue-ele-form-generator/wiki/%E9%83%A8%E7%BD%B2%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8)
+
+- [如何以守护进程的方式启动 cli 工具](https://github.com/dream2023/vue-ele-form-generator/wiki/%E5%A6%82%E4%BD%95%E4%BB%A5%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B%E6%96%B9%E5%BC%8F%E5%90%AF%E5%8A%A8fgen-cli)
+
+### 二次开发
 
 - [二次开发简单指导](https://github.com/dream2023/vue-ele-form-generator/wiki/%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91%E7%AE%80%E5%8D%95%E6%8C%87%E5%AF%BC)
 
-- [如何将 vue form generator 集成到已有项目](https://github.com/dream2023/vue-ele-form-generator/wiki/%E5%A6%82%E4%BD%95%E5%B0%86vue-form-generator%E9%9B%86%E6%88%90%E5%88%B0%E5%B7%B2%E6%9C%89%E9%A1%B9%E7%9B%AE)
+### 项目集成
+
+- [如何将 vue-ele-form-generator 集成到已有项目](https://github.com/dream2023/vue-ele-form-generator/wiki/%E5%A6%82%E4%BD%95%E5%B0%86vue-form-generator%E9%9B%86%E6%88%90%E5%88%B0%E5%B7%B2%E6%9C%89%E9%A1%B9%E7%9B%AE)
 
 - [如何将数据存到服务器](https://github.com/dream2023/vue-ele-form-generator/wiki/%E5%B0%86%E6%95%B0%E6%8D%AE%E5%AD%98%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8)
-
-- [如何以守护进程的方式启动 cli 工具](https://github.com/dream2023/vue-ele-form-generator/wiki/%E5%A6%82%E4%BD%95%E4%BB%A5%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B%E6%96%B9%E5%BC%8F%E5%90%AF%E5%8A%A8fgen-cli)
 
 ## 安装 和 使用
 
@@ -70,9 +82,12 @@ fgen -p 8080
 yarn global add fgen-cli # 或 npm update -g fgen-cli
 ```
 
-#### 第三种方式: vscode 插件
+#### 第三种方式: Docker 启动
 
-插件市场搜索: `fgen-for-vscode`, 或者点击[链接](https://marketplace.visualstudio.com/items?itemName=dream2023.fgen-for-vscode&ssr=false#review-details)
+```bash
+docker pull chaojie1234/fgen
+docker run -d --name=fgen -p 54321:80 chaojie1234/fgen
+```
 
 ## 生态
 
