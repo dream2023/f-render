@@ -9,7 +9,7 @@ module.exports = {
       libraryExport: "default"
     },
     resolve: {
-      extensions: [".js", ".ts", ".tsx", ".vue"]
+      extensions: [".js", ".json", ".vue"]
     },
     module: {
       rules: [

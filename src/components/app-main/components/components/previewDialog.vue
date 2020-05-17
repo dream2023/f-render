@@ -18,11 +18,10 @@
   </el-dialog>
 </template>
 
-<script lang="ts">
-import _ from "lodash-es";
-import { defineComponent, toRefs, computed, ref } from "@vue/composition-api";
+<script>
+import _ from "lodash";
 
-export default defineComponent({
+export default {
   name: "previewDialog",
   props: {
     formDesc: {
@@ -38,14 +37,16 @@ export default defineComponent({
       default: false
     }
   },
-  setup(props) {
-    const formData = ref({});
-    const { formDesc } = toRefs(props);
+  data() {
     return {
-      formData,
-      // 需要加一层 clone, 因为 ele-form会修改内部属性
-      computedFormDesc: computed(() => _.cloneDeep(formDesc.value))
+      formData: {}
     };
+  },
+  computed: {
+    // 需要加一层 clone, 因为 ele-form会修改内部属性
+    computedFormDesc() {
+      return _.cloneDeep(this.formDesc);
+    }
   },
   methods: {
     handleRequest(data) {
@@ -57,5 +58,5 @@ export default defineComponent({
       this.$message.success("发送成功");
     }
   }
-});
+};
 </script>

@@ -13,29 +13,29 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import AppFormConfig from "./components/form-config.vue";
 import AppFormItemAttrs from "./components/form-item-attrs.vue";
 import AppFormItemConfig from "./components/form-item-config.vue";
-import { defineComponent } from "@vue/composition-api";
-export default defineComponent({
+
+export default {
   name: "AppMainRight",
   components: {
     AppFormConfig,
     AppFormItemAttrs,
     AppFormItemConfig
   },
-  setup() {
+  data() {
     return {
       activeTab: "item-config"
     };
   }
-});
+};
 </script>
 
 <style lang="scss">
 .app-main-right {
-  width: 315px;
+  width: 310px;
   margin-top: 21px;
   height: 100%;
 

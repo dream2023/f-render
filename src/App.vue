@@ -5,35 +5,38 @@
   </div>
 </template>
 
-<script lang="ts">
-import store from "@/store";
+<script>
 import AppHeader from "./components/app-header.vue";
 import AppMain from "./components/app-main/index.vue";
-import { defineComponent, toRefs, watch } from "@vue/composition-api";
-import { preventReloadWindow } from "@/helpers/utils";
+import { mapGetters } from "vuex";
+import BlockRefresh from "@/mixins/block-refresh";
 
-export default defineComponent({
+export default {
   name: "App",
+  mixins: [BlockRefresh],
   components: {
     AppHeader,
     AppMain
   },
-  setup() {
-    // 阻止页面刷新
-    preventReloadWindow();
-
-    // 设置 title
-    const appName = "表单生成器";
-    const { currentForm } = toRefs(store.getters);
-    watch(currentForm, () => {
-      if (currentForm.value) {
-        document.title = currentForm.value.name + " | " + appName;
+  data() {
+    return {
+      appName: "表单生成器"
+    };
+  },
+  computed: {
+    ...mapGetters(["currentForm"])
+  },
+  watch: {
+    currentForm(currentForm) {
+      const appName = "表单生成器";
+      if (currentForm && currentForm.name) {
+        document.title = currentForm.name + " | " + appName;
       } else {
         document.title = appName;
       }
-    });
+    }
   }
-});
+};
 </script>
 
 <style>

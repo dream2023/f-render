@@ -7,20 +7,21 @@
     v-if="visible"
     width="600px"
   >
-    <json-editor :value="codeData"></json-editor>
-    <div style="text-align: center;margin-top: 20px">
-      <el-button @click="handleCopyData" type="primary">复制数据</el-button>
-    </div>
+    <ele-form :formData="{ code: codeData }" :formDesc="codeFormDesc">
+      <template v-slot:form-btn>
+        <div style="text-align: center;">
+          <el-button @click="handleCopyData" type="primary">复制数据</el-button>
+        </div>
+      </template>
+    </ele-form>
   </el-dialog>
 </template>
 
-<script lang="ts">
+<script>
 import copy from "clipboard-copy";
-import { Message } from "element-ui";
 import serialize from "serialize-javascript";
-import { defineComponent, computed, toRefs } from "@vue/composition-api";
 
-export default defineComponent({
+export default {
   name: "exportDialog",
   props: {
     visible: {
@@ -36,21 +37,33 @@ export default defineComponent({
       default: () => ({})
     }
   },
-  setup(props) {
-    const { formAttr, formDesc } = toRefs(props);
-    const codeData = computed(() => {
-      return Object.assign({}, formAttr.value, {
-        formDesc: formDesc.value
-      });
-    });
-    const handleCopyData = () => {
-      copy(serialize(codeData.value, { space: 2 }));
-      Message.success("复制成功!");
-    };
+  data() {
     return {
-      codeData,
-      handleCopyData
+      codeFormData: {},
+      codeFormDesc: {
+        code: {
+          type: "json-editor",
+          attrs: {
+            options: {
+              mode: "preview"
+            }
+          }
+        }
+      }
     };
+  },
+  computed: {
+    codeData() {
+      return Object.assign({}, this.formAttr, {
+        formDesc: this.formDesc
+      });
+    }
+  },
+  methods: {
+    handleCopyData() {
+      copy(serialize(this.codeData, { space: 2 }));
+      this.$message.success("复制成功!");
+    }
   }
-});
+};
 </script>

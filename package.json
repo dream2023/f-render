@@ -1,6 +1,6 @@
 {
   "name": "vue-ele-form-generator",
-  "version": "2.2.2",
+  "version": "3.0.0",
   "description": "vue-ele-form-generator是专为vue-ele-form开发的可视化表单设计工具, 让表单开发的效率更上一层楼",
   "private": false,
   "license": "MIT",
@@ -8,14 +8,15 @@
     "bootstrap": "yarn || npm i",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "build:lib": "vue-cli-service build --mode=lib --target lib --name vue-ele-form-generator --dest ./lib/ ./src/main.ts",
-    "lint": "vue-cli-service lint src/* --mode production",
+    "build:lib": "vue-cli-service build --mode=lib --target lib --name vue-ele-form-generator --dest ./lib/ ./src/main.js",
+    "lint": "vue-cli-service lint src/*.{vue,js} --mode production",
     "release": "./release.sh"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/dream2023/vue-ele-form-generator"
   },
+  "dependencies": {},
   "keywords": [
     "vue-ele-form",
     "vue-ele-form-generator",
@@ -30,35 +31,26 @@
     "form schema"
   ],
   "homepage": "https://vue-ele-form-generator.netlify.com/",
-  "dependencies": {},
   "devDependencies": {
-    "@types/crypto-js": "^3.1.43",
-    "@types/ejs": "^3.0.2",
-    "@types/lodash-es": "^4.17.3",
-    "@types/lz-string": "^1.3.33",
-    "@types/serialize-javascript": "^1.5.0",
-    "@typescript-eslint/eslint-plugin": "^2.24.0",
-    "@typescript-eslint/parser": "^2.24.0",
-    "@vue/cli-plugin-babel": "^4.2.3",
-    "@vue/cli-plugin-eslint": "^4.2.3",
-    "@vue/cli-plugin-typescript": "^4.2.3",
-    "@vue/cli-service": "^4.2.3",
-    "@vue/composition-api": "^0.4.0",
+    "@vue/cli-plugin-babel": "~4.3.0",
+    "@vue/cli-plugin-eslint": "~4.3.0",
+    "@vue/cli-plugin-vuex": "~4.3.0",
+    "@vue/cli-service": "~4.3.0",
     "@vue/eslint-config-prettier": "^6.0.0",
-    "@vue/eslint-config-typescript": "^5.0.2",
+    "babel-eslint": "^10.1.0",
     "babel-plugin-lodash": "^3.3.4",
     "clipboard-copy": "^3.1.0",
     "commitizen": "^4.0.3",
     "core-js": "^3.6.4",
     "cz-conventional-changelog": "^3.0.2",
-    "ejs": "^3.0.2",
-    "element-ui": "^2.13.0",
+    "ejs": "^3.1.2",
+    "element-ui": "^2.13.1",
     "eslint": "^6.7.2",
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-vue": "^6.2.2",
     "github-release-notes": "^0.17.1",
     "lint-staged": "^9.5.0",
-    "lodash-es": "^4.17.15",
+    "lodash": "^4.17.15",
     "normalize.css": "^8.0.1",
     "prettier": "^1.19.1",
     "raw-loader": "^4.0.0",
@@ -66,38 +58,32 @@
     "sass-loader": "^8.0.2",
     "serialize-javascript": "^2.1.2",
     "standard-version": "^7.0.1",
-    "typescript": "~3.7.5",
     "vue": "^2.6.11",
-    "vue-ele-form": "^0.8.24",
+    "vue-ele-form": "^0.8.25",
     "vue-ele-form-bmap": "^0.1.0",
     "vue-ele-form-codemirror": "^0.1.1",
     "vue-ele-form-dynamic": "^0.4.0",
     "vue-ele-form-gallery": "^0.1.1",
-    "vue-ele-form-image-uploader": "^0.1.5",
-    "vue-ele-form-json-editor": "^0.1.2",
+    "vue-ele-form-image-uploader": "^0.1.6",
+    "vue-ele-form-json-editor": "^0.1.3",
     "vue-ele-form-markdown-editor": "^0.1.2",
-    "vue-ele-form-quill-editor": "^0.1.1",
+    "vue-ele-form-quill-editor": "^0.1.4",
     "vue-ele-form-table-editor": "^0.1.3",
     "vue-ele-form-tree-select": "^0.1.1",
-    "vue-ele-form-upload-file": "0.0.5",
+    "vue-ele-form-upload-file": "^0.0.5",
     "vue-ele-form-video-uploader": "^0.1.3",
     "vue-multipane": "^0.9.5",
     "vue-template-compiler": "^2.6.11",
-    "vuedraggable": "^2.23.0",
+    "vuedraggable": "^2.23.2",
     "vuex": "^3.1.3",
-    "vuex-persistedstate": "^2.7.1"
-  },
-  "config": {
-    "commitizen": {
-      "path": "node_modules/cz-conventional-changelog"
-    }
+    "vuex-persistedstate": "^3.0.1"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
   },
   "lint-staged": {
-    "*.{js,jsx,vue,ts,tsx}": [
-      "vue-cli-service lint src/* --mode production",
+    "*.{js,jsx,vue}": [
+      "vue-cli-service lint",
       "git add"
     ]
   }

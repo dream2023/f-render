@@ -15,7 +15,7 @@
           :href="fileURL"
           style="color: white;"
           :underline="false"
-          :download="fileName + '.vue'"
+          :download="currentForm.name + '.vue'"
           >下载文件</el-link
         ></el-button
       >
@@ -23,17 +23,15 @@
   </el-dialog>
 </template>
 
-<script lang="ts">
+<script>
 import tpl from "./tpl.ejs";
 import copy from "clipboard-copy";
-import ejs from "ejs";
-import { Message } from "element-ui";
-import _ from "lodash-es";
+import _ from "lodash";
 import serialize from "serialize-javascript";
-import { defineComponent, computed, toRefs } from "@vue/composition-api";
-import store from "../../../../store";
+import { mapGetters } from "vuex";
+const ejs = require("ejs");
 
-export default defineComponent({
+export default {
   name: "htmlDialog",
   props: {
     visible: {
@@ -49,14 +47,12 @@ export default defineComponent({
       default: () => ({})
     }
   },
-  setup(props) {
-    const { formDesc, formAttr } = toRefs(props);
-    const { currentForm } = toRefs(store.getters);
-
+  computed: {
+    ...mapGetters(["currentForm"]),
     // 渲染模板
-    const codeHtml = computed(() => {
+    codeHtml() {
       // 将  formDesc 转为 字符串
-      const getFormDescStr = (formDesc: any) => {
+      const getFormDescStr = formDesc => {
         if (_.isEmpty(formDesc)) return "{}";
 
         return (
@@ -68,7 +64,7 @@ export default defineComponent({
         );
       };
 
-      const getFormAttrObj = (formAttr: any) => {
+      const getFormAttrObj = formAttr => {
         return Object.entries(formAttr).map(([key, value]) => {
           // 将 [['name', 'zhang'], ['age', 10]] => [{name: 'zhang', ':age': 10}]
           // 因为 vue 模板 非字符串前需要加 : 表示变量
@@ -79,28 +75,21 @@ export default defineComponent({
           };
         });
       };
-
       return ejs.render(tpl, {
-        formAttr: getFormAttrObj(formAttr.value),
-        formDesc: getFormDescStr(formDesc.value)
+        formAttr: getFormAttrObj(this.formAttr),
+        formDesc: getFormDescStr(this.formDesc)
       });
-    });
-
-    const fileURL = computed(() => {
-      const blob = new Blob([codeHtml.value]);
+    },
+    fileURL() {
+      const blob = new Blob([this.codeHtml]);
       return URL.createObjectURL(blob);
-    });
-    const handleCopyHtml = () => {
-      copy(codeHtml.value);
-      Message.success("复制成功!");
-    };
-
-    return {
-      fileName: currentForm.value.name,
-      fileURL,
-      codeHtml,
-      handleCopyHtml
-    };
+    }
+  },
+  methods: {
+    handleCopyHtml() {
+      copy(this.codeHtml);
+      this.$message.success("复制成功!");
+    }
   }
-});
+};
 </script>

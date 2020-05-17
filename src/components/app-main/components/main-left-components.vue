@@ -25,55 +25,46 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import draggable from "vuedraggable";
 import { addFormItem } from "@/helpers/tool";
-import { defineComponent, ref, computed, toRefs } from "@vue/composition-api";
-import { Comp } from "@/types/comp";
 import { fuzzySearch } from "@/helpers/utils";
-import store from "../../../store";
+import { mapGetters } from "vuex";
 
-export default defineComponent({
+export default {
   name: "AppMainLeftComponents",
   components: {
     draggable
   },
-  setup() {
-    const { sortedComps: comps } = toRefs(store.getters);
-
-    // 搜索
-    const search = () => {
-      const searchValue = ref("");
-      const filteredComps = computed(() => {
-        const keyword = searchValue.value.toLowerCase();
-        if (!keyword) {
-          return comps.value;
-        } else {
-          return comps.value.filter(
-            (item: Comp) =>
-              fuzzySearch(item.type, keyword) ||
-              fuzzySearch(item.label, keyword)
-          );
-        }
-      });
-      return {
-        searchValue,
-        filteredComps
-      };
-    };
-
-    const { searchValue, filteredComps } = search();
+  computed: {
+    ...mapGetters(["sortedComps"]),
+    // 根据搜索词过滤组件
+    filteredComps() {
+      const comps = this.sortedComps;
+      const keyword = this.searchValue.toLowerCase();
+      if (!keyword) {
+        return comps;
+      } else {
+        // 匹配，标签 和 type 其一即可
+        return comps.filter(
+          item =>
+            fuzzySearch(item.type, keyword) || fuzzySearch(item.label, keyword)
+        );
+      }
+    }
+  },
+  data() {
     return {
-      searchValue,
-      filteredComps
+      searchValue: ""
     };
   },
   methods: {
-    handleAddFormItem({ label, type }: Comp) {
+    // 拖拽后新增表单项
+    handleAddFormItem({ label, type }) {
       return addFormItem(type, { label });
     }
   }
-});
+};
 </script>
 
 <style lang="scss">
@@ -87,7 +78,7 @@ export default defineComponent({
   }
 
   .comp-item {
-    width: 120px;
+    width: 115px;
     color: #606266;
     cursor: move;
     border: 1px solid #ebeef5;

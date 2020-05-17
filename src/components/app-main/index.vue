@@ -1,10 +1,6 @@
 <template>
   <multipane @paneResizeStop="handlePaneresize" class="app-main">
-    <el-menu
-      @select="handleChangeMenu"
-      v-once
-      :default-active="activeComponent"
-    >
+    <el-menu @select="handleChangeMenu" :default-active="activeMenu">
       <el-menu-item
         v-for="item of menus"
         :index="item.componentName"
@@ -13,13 +9,19 @@
         <i :class="item.icon"></i>
       </el-menu-item>
     </el-menu>
-    <component
-      :is="'app-main-left-' + activeComponent"
-      :style="{ width: leftWidth }"
-    />
-    <multipane-resizer></multipane-resizer>
+    <transition name="el-fade-in-linear">
+      <component
+        :is="'app-main-left-' + activeMenu"
+        :style="{ width: leftWidth }"
+        key="menu"
+        v-show="isShowMenu"
+      />
+    </transition>
+    <transition name="el-fade-in-linear">
+      <multipane-resizer v-show="isShowMenu" key="resizer"></multipane-resizer>
+    </transition>
 
-    <template v-if="isShowRight">
+    <template v-if="isSelectedForm">
       <div class="app-main-container">
         <app-main-header />
         <app-main-center class="app-main-content" />
@@ -35,18 +37,16 @@
   </multipane>
 </template>
 
-<script lang="ts">
-import store from "@/store";
-import { isVscode } from "@/helpers/tool";
+<script>
 import AppMainHeader from "./components/main-header.vue";
 import AppMainCenter from "./components/main-center.vue";
 import { Multipane, MultipaneResizer } from "vue-multipane";
-import { defineComponent, ref, toRefs, computed } from "@vue/composition-api";
 import AppMainRight from "./components/main-right/index.vue";
 import AppMainLeftProjects from "./components/main-left-projects.vue";
 import AppMainLeftComponents from "./components/main-left-components.vue";
+import { mapState } from "vuex";
 
-export default defineComponent({
+export default {
   name: "AppMain",
   components: {
     AppMainCenter,
@@ -57,51 +57,78 @@ export default defineComponent({
     AppMainLeftComponents,
     AppMainLeftProjects
   },
-  setup() {
-    const defaultWidth = "260px";
-    let leftWidth = defaultWidth;
-    if (!isVscode) {
-      leftWidth = localStorage.getItem("app-main-left") || defaultWidth;
-    }
-    const { currentProjectIndex, currentFormIndex } = toRefs(store.state);
-
-    // panel 拖拉变化
-    function handlePaneresize(el: HTMLElement) {
-      if (!isVscode && el.className === "app-main-left") {
-        localStorage.setItem("app-main-left", el.style.width);
-      }
-    }
-
-    // 改变菜单
-    const isShowRight = computed(
-      () =>
-        currentProjectIndex.value !== null && currentFormIndex.value !== null
-    );
-    const activeComponent = ref(isShowRight.value ? "components" : "projects");
-    function handleChangeMenu(componentName: string) {
-      activeComponent.value = componentName;
-    }
-
-    const menus = [
-      {
-        icon: "el-icon-document",
-        componentName: "components"
-      },
-      {
-        icon: "el-icon-menu",
-        componentName: "projects"
-      }
-    ];
+  data() {
     return {
-      isShowRight,
-      leftWidth,
-      menus,
-      activeComponent,
-      handleChangeMenu,
-      handlePaneresize
+      leftWidth: "260px",
+      activeMenu: "projects",
+      isShowMenu: true,
+      menus: [
+        {
+          icon: "el-icon-document",
+          componentName: "components"
+        },
+        {
+          icon: "el-icon-menu",
+          componentName: "projects"
+        }
+      ]
     };
+  },
+  computed: {
+    ...mapState(["currentProjectIndex", "currentFormIndex"]),
+    // 是否有选中的表单
+    isSelectedForm() {
+      // 如果当前工程索引和表单索引不为空，则表示当前选中某个表单
+      return (
+        this.currentProjectIndex !== null && this.currentFormIndex !== null
+      );
+    }
+  },
+  methods: {
+    // panel 拖拉变化
+    handlePaneresize(el) {
+      // 因为中间部分也可以拖拽，所以需要判断是否为左侧拖拽产生的变化
+      if (el.className.startsWith("app-main-left")) {
+        localStorage.setItem("menu-width", el.style.width);
+      }
+    },
+    // 改变菜单
+    handleChangeMenu(menuName) {
+      // 点击菜单和当前菜单相同，且当前为显示模式，则隐藏
+      // 否则则显示
+      if (menuName === this.activeMenu && this.isShowMenu) {
+        this.isShowMenu = false;
+      } else {
+        this.activeMenu = menuName;
+        this.isShowMenu = true;
+      }
+
+      // 将当前激活的菜单，存储到 localStorage
+      localStorage.setItem("active-menu", menuName);
+    },
+
+    // 初始化左侧带单宽度
+    initMenuWidth() {
+      if (localStorage.getItem("menu-width")) {
+        this.leftWidth = localStorage.getItem("menu-width");
+      }
+    },
+    // 初始化当前激活的 menu
+    initActiveMenu() {
+      // 如果没有任何选择的表单，则菜单选择 projects
+      if (!this.isSelectedForm) {
+        this.activeMenu = "projects";
+        // 否则从 localStorage 获取
+      } else if (localStorage.getItem("active-menu")) {
+        this.activeMenu = localStorage.getItem("active-menu");
+      }
+    }
+  },
+  mounted() {
+    this.initMenuWidth();
+    this.initActiveMenu();
   }
-});
+};
 </script>
 
 <style lang="scss">
@@ -117,12 +144,14 @@ export default defineComponent({
     overflow: scroll;
     padding-bottom: 20px;
     box-sizing: border-box;
+    &::-webkit-scrollbar {
+      width: 0;
+    }
   }
 
   .app-main-container {
     flex-grow: 1;
     flex: 1;
-    min-width: 730px;
     &.not-selected {
       text-align: center;
       color: #666;

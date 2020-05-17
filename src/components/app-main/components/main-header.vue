@@ -54,7 +54,7 @@
     <!-- 预览弹窗 -->
     <preview-dialog
       :formDesc="formDesc"
-      :formAttr="filterFormAttr"
+      :formAttr="currentFormAttr"
       :visible.sync="isPreview"
     />
 
@@ -64,14 +64,14 @@
     <!-- 导出数据弹框 -->
     <export-dialog
       :formDesc="formDesc"
-      :formAttr="filterFormAttr"
+      :formAttr="currentFormAttr"
       :visible.sync="isShowExportData"
     />
 
     <!-- 生成代码弹框 -->
     <html-dialog
       :formDesc="formDesc"
-      :formAttr="filterFormAttr"
+      :formAttr="currentFormAttr"
       :visible.sync="isShowHtmlCode"
     />
 
@@ -83,9 +83,8 @@
   </div>
 </template>
 
-<script lang="ts">
-import _ from "lodash-es";
-import store from "@/store";
+<script>
+import _ from "lodash";
 import configList from "@/config";
 import { filterObjByDefault } from "@/helpers/utils";
 import remoteConfig from "./components/remoteConfig.vue";
@@ -94,12 +93,10 @@ import batchDialog from "./components/batchDialog.vue";
 import importDialog from "./components/importDialog.vue";
 import exportDialog from "./components/exportDialog.vue";
 import previewDialog from "./components/previewDialog.vue";
-import { defineComponent, toRefs, computed, ref } from "@vue/composition-api";
-import { FormItemList } from "@/types/project";
 import { saveFormToServer } from "@/helpers/api";
-import { Message } from "element-ui";
+import { mapState, mapGetters } from "vuex";
 
-export default defineComponent({
+export default {
   name: "AppMainHeader",
   components: {
     remoteConfig,
@@ -109,49 +106,21 @@ export default defineComponent({
     exportDialog,
     previewDialog
   },
-  setup() {
-    const { saveType } = toRefs(store.state);
-    const {
-      currentFormDesc: originFormDesc,
-      currentFormAttr: filterFormAttr
-    } = toRefs(store.getters);
-
-    // 处理数据, 主要是删除默认值和对值进行 formatter
-    const processData = (
-      obj: AnyObj,
-      defaultObj: AnyObj = {},
-      assistProperty: string[] = [],
-      formatterObj: AnyObj = {}
-    ): AnyObj => {
-      // 删除默认值
-      obj = filterObjByDefault(obj, defaultObj);
-      // 无值的 & 辅助属性 & 私有属性
-      const isShouldDelete = (val: any, key: string) =>
-        _.isNil(val) || assistProperty.includes(key) || key.startsWith("_");
-      obj = _.omitBy(_.cloneDeep(obj), isShouldDelete);
-
-      // 对数据做自定义处理
-      const formatterValue = (val: any, key: string) =>
-        formatterObj[key]?.valueFormatter
-          ? formatterObj[key].valueFormatter(val)
-          : val;
-      obj = _.mapValues(obj, formatterValue);
-
-      return obj;
-    };
-
-    const formDesc = computed(() => {
+  computed: {
+    ...mapState(["saveType"]),
+    ...mapGetters(["currentFormDesc", "currentFormAttr"]),
+    formDesc() {
       // 对formDesc每一项进一步处理:
       // 1.删除无用属性 2.自定义formatter函数
-      return _.mapValues(_.cloneDeep(originFormDesc.value), (formItem: any) => {
+      return _.mapValues(_.cloneDeep(this.currentFormDesc), formItem => {
         const { commonDefaultData, attrsDefaultData, assistProperty, attrs } =
-          configList[formItem.type as string] || {};
+          configList[formItem.type] || {};
 
-        formItem = processData(formItem, commonDefaultData as FormItemList);
+        formItem = this.processData(formItem, commonDefaultData);
 
         // 组件自身属性
         if (formItem.attrs) {
-          formItem.attrs = processData(
+          formItem.attrs = this.processData(
             formItem.attrs,
             attrsDefaultData,
             assistProperty,
@@ -164,35 +133,54 @@ export default defineComponent({
 
         return formItem;
       });
-    });
-
-    // 保存数据
-    const handleSaveData = async () => {
-      const res = await saveFormToServer(store.state);
-      if (res) {
-        if (res.code === 0) {
-          Message.success("保存成功");
-        } else {
-          Message.error("保存失败, 失败原因: " + res.msg);
-        }
-      }
-    };
-
+    }
+  },
+  data() {
     return {
-      formDesc,
-      filterFormAttr,
-      handleSaveData,
-      clearForm: () => store.commit("clearCurrentForm"),
+      isPreview: false,
       isShowExportData: false,
       isShowHtmlCode: false,
-      isPreview: ref(false),
       isShowBatchDialog: false,
       isShowImportDialog: false,
-      isShowremoteConfig: false,
-      saveType
+      isShowremoteConfig: false
     };
+  },
+  methods: {
+    clearForm() {
+      this.$store.commit("clearCurrentForm");
+    },
+
+    // 保存数据
+    async handleSaveData() {
+      const res = await saveFormToServer(this.$store.state);
+      if (res) {
+        if (res.code === 0) {
+          this.$message.success("保存成功");
+        } else {
+          this.$message.error("保存失败, 失败原因: " + res.msg);
+        }
+      }
+    },
+    // 处理数据, 主要是删除默认值和对值进行 formatter
+    processData(obj, defaultObj = {}, assistProperty = [], formatterObj = {}) {
+      // 删除默认值
+      obj = filterObjByDefault(obj, defaultObj);
+      // 无值的 & 辅助属性 & 私有属性
+      const isShouldDelete = (val, key) =>
+        _.isNil(val) || assistProperty.includes(key) || key.startsWith("_");
+      obj = _.omitBy(_.cloneDeep(obj), isShouldDelete);
+
+      // 对数据做自定义处理
+      const formatterValue = (val, key) =>
+        formatterObj[key]?.valueFormatter
+          ? formatterObj[key].valueFormatter(val)
+          : val;
+      obj = _.mapValues(obj, formatterValue);
+
+      return obj;
+    }
   }
-});
+};
 </script>
 
 <style lang="scss">

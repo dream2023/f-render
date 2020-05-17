@@ -15,7 +15,7 @@
           :animation="200"
           v-if="isRenderFinish"
           :disabled="false"
-          :list="list"
+          :list="currentFormItemList"
           @add="handleAdd"
           @end="handleMoveEnd"
           @start="handleMoveStart"
@@ -24,7 +24,10 @@
           style="padding-bottom: 80px;"
         >
           <!-- 当为空时 -->
-          <div class="form-area-placeholder" v-if="list.length === 0">
+          <div
+            class="form-area-placeholder"
+            v-if="currentFormItemList.length === 0"
+          >
             从左侧拖拽来添加表单项
           </div>
           <template v-else>
@@ -78,85 +81,73 @@
   </div>
 </template>
 
-<script lang="ts">
-import Vue from "vue";
-import store from "@/store";
+<script>
 import draggable from "vuedraggable";
-import { defineComponent, toRefs, ref, onMounted } from "@vue/composition-api";
+import { mapState, mapGetters } from "vuex";
 
-export default defineComponent({
+export default {
   name: "AppMainCenter",
   components: {
     draggable
   },
-  setup() {
-    const {
-      currentFormAttr,
-      currentFormDesc,
-      currentFormItemList: list
-    } = toRefs(store.getters);
-    const { currentFormItemIndex } = toRefs(store.state);
-
+  computed: {
+    ...mapState(["currentFormItemIndex"]),
+    ...mapGetters(["currentFormAttr", "currentFormDesc", "currentFormItemList"])
+  },
+  data() {
+    return {
+      formData: {},
+      isRenderFinish: false
+    };
+  },
+  mounted() {
     // 确保渲染结束
-    const isRenderFinish = ref(false);
-    onMounted(() => {
-      Vue.nextTick(() => {
-        isRenderFinish.value = true;
-      });
+    this.$nextTick(() => {
+      this.isRenderFinish = true;
     });
-
+  },
+  methods: {
     // 通过index删除
-    const deleteItemByIndex = (index: number) =>
-      store.commit("deleteFormItemByIndex", index);
+    deleteItemByIndex(index) {
+      this.$store.commit("deleteFormItemByIndex", index);
+    },
 
     // 通过index更新
-    const updateSelectIndex = (index: number) =>
-      store.commit("updateFormItemIndex", index);
-
+    updateSelectIndex(index) {
+      this.$store.commit("updateFormItemIndex", index);
+    },
     // 删除
-    function handleDelete(index: number) {
-      deleteItemByIndex(index);
+    handleDelete(index) {
+      this.deleteItemByIndex(index);
 
       // 因为如果删除最后一个, 界面则无选中效果
       // 所以这里删除最后一个后, 重新选择最后一个
-      if (index >= list.value.length) {
-        updateSelectIndex(list.value.length - 1);
+      if (index >= this.currentFormItemList.length) {
+        this.updateSelectIndex(this.currentFormItemList.length - 1);
       }
-    }
+    },
     // 新增
-    function handleAdd(res: AnyObj) {
-      updateSelectIndex(res.newIndex);
-      store.commit("updateCompCount", list.value[res.newIndex].type);
-    }
+    handleAdd(res) {
+      this.updateSelectIndex(res.newIndex);
+      this.$store.commit(
+        "updateCompCount",
+        this.currentFormItemList[res.newIndex].type
+      );
+    },
     // 移动开始
-    function handleMoveStart(res: AnyObj) {
-      updateSelectIndex(res.oldIndex);
-    }
+    handleMoveStart(res) {
+      this.updateSelectIndex(res.oldIndex);
+    },
     // 移动结束
-    function handleMoveEnd(res: AnyObj) {
-      updateSelectIndex(res.newIndex);
-    }
+    handleMoveEnd(res) {
+      this.updateSelectIndex(res.newIndex);
+    },
     // 点击选中
-    function handleFormItemClick(index: number) {
-      updateSelectIndex(index);
-    }
-    return {
-      formData: ref({}),
-      list,
-      handleDelete,
-      handleMoveStart,
-      handleFormItemClick,
-      handleMoveEnd,
-      handleAdd,
-      currentFormAttr,
-      currentFormDesc,
-      currentFormItemIndex,
-      isRenderFinish
-    };
-  },
-  methods: {
+    handleFormItemClick(index) {
+      this.updateSelectIndex(index);
+    },
     // 表单提交
-    handleSubmit(data: any) {
+    handleSubmit(data) {
       // eslint-disable-next-line no-console
       console.log(data);
       return Promise.resolve();
@@ -166,7 +157,7 @@ export default defineComponent({
       this.$message.success("创建成功");
     }
   }
-});
+};
 </script>
 
 <style lang="scss">

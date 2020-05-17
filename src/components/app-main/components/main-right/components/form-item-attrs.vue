@@ -10,6 +10,7 @@
         :formData="currentFormItem.attrs"
         :formDesc="filterFormDesc"
         @input="updateFormAttrs"
+        :formAttrs="{ size: 'small' }"
         :isShowBackBtn="false"
         :isShowSubmitBtn="false"
         :span="20"
@@ -22,38 +23,40 @@
   </div>
 </template>
 
-<script lang="ts">
-import store from "@/store";
+<script>
 import configList from "@/config";
 import { changeFormLabel } from "@/helpers/tool";
 import searchMixin from "./components/searchMixin";
 import AttrsHeader from "./components/attrs-header.vue";
-import { defineComponent, computed, toRefs } from "@vue/composition-api";
+import { mapGetters } from "vuex";
 
-export default defineComponent({
+export default {
   name: "AppFormItemAttrs",
+  mixins: [searchMixin],
   components: { AttrsHeader },
-  setup() {
-    const { currentFormItem } = toRefs(store.getters);
-    const isShow = computed(
-      () => currentFormItem.value && currentFormItem.value.attrs
-    );
-    const config = computed(() => configList[currentFormItem.value.type]);
-    const formDesc = computed(() => {
-      const formDesc = config.value.attrs || {};
-      return changeFormLabel(formDesc, config.value.assistProperty);
-    });
-
-    const updateFormAttrs = (data: any) =>
-      store.commit("updateCurrentItemAttrs", data);
-
-    return {
-      updateFormAttrs,
-      currentFormItem,
-      ...searchMixin(formDesc),
-      isShow,
-      attrLink: computed(() => config.value.url)
-    };
+  data() {
+    return {};
+  },
+  computed: {
+    ...mapGetters(["currentFormItem"]),
+    formDesc() {
+      const formDesc = this.config.attrs || {};
+      return changeFormLabel(formDesc, this.config.assistProperty);
+    },
+    isShow() {
+      return this.currentFormItem && this.currentFormItem.attrs;
+    },
+    config() {
+      return configList[this.currentFormItem.type];
+    },
+    attrLink() {
+      return this.config.url;
+    }
+  },
+  methods: {
+    updateFormAttrs(data) {
+      this.$store.commit("updateCurrentItemAttrs", data);
+    }
   }
-});
+};
 </script>

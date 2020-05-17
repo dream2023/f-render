@@ -30,17 +30,13 @@
 </template>
 
 <script>
-import { defineComponent, ref, watch, toRefs } from "@vue/composition-api";
-import { Message } from "element-ui";
 import {
   getRemoteConfig,
   setRemoteConfig,
   removeRemoteConfig
 } from "@/helpers/remoteConfig";
-import { isVscode } from "../../../../helpers/tool";
-import store from "../../../../store";
 
-export default defineComponent({
+export default {
   name: "remoteConfig",
   props: {
     visible: {
@@ -48,37 +44,27 @@ export default defineComponent({
       default: false
     }
   },
-  setup(props, context) {
-    const methods = ["GET", "POST", "PUT"];
-    const formData = ref({});
-    const { visible } = toRefs(props);
-    watch(visible, val => {
+  watch: {
+    visible(val) {
       if (val && getRemoteConfig()) {
-        formData.value = getRemoteConfig();
+        this.formData = getRemoteConfig();
       } else {
-        formData.value = {};
+        this.formData = {};
       }
-    });
-    const handleAdd = data => {
-      if (data.type === "remote") {
-        setRemoteConfig(data);
-      } else {
-        removeRemoteConfig();
-      }
-      store.commit("updateSaveType", data.type);
-      context.emit("update:visible", false);
-      Message.success("设置保存成功");
-    };
+    }
+  },
+  data() {
+    const methods = ["GET", "POST", "PUT"];
     return {
-      formData,
+      formData: {},
       formDesc: {
         type: {
           type: "radio",
           label: "保存方式",
-          default: isVscode ? null : "local",
+          default: "local",
           isShowLabel: true,
           options: [
-            { text: "本地", value: "local", disabled: isVscode },
+            { text: "本地", value: "local" },
             { text: "服务器", value: "remote" }
           ]
         },
@@ -113,9 +99,20 @@ export default defineComponent({
           label: "更新表单数据的URL",
           required: true
         }
-      },
-      handleAdd
+      }
     };
+  },
+  methods: {
+    handleAdd(data) {
+      if (data.type === "remote") {
+        setRemoteConfig(data);
+      } else {
+        removeRemoteConfig();
+      }
+      this.$store.commit("updateSaveType", data.type);
+      this.$emit("update:visible", false);
+      this.$message.success("设置保存成功");
+    }
   }
-});
+};
 </script>

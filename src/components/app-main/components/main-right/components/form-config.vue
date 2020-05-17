@@ -9,6 +9,7 @@
       :formData="formAttr"
       @input="updateFormAttr"
       :form-desc="filterFormDesc"
+      :formAttrs="{ size: 'small' }"
       :isShowBackBtn="false"
       :isShowSubmitBtn="false"
       :span="20"
@@ -18,170 +19,172 @@
   </div>
 </template>
 
-<script lang="ts">
-import _ from "lodash-es";
-import store from "@/store";
+<script>
+import _ from "lodash";
 import { changeFormLabel } from "@/helpers/tool";
 import searchMixin from "./components/searchMixin";
 import AttrsHeader from "./components/attrs-header.vue";
-import { defineComponent, toRefs, computed } from "@vue/composition-api";
-import { FormDesc } from "@/types/project";
+import { mapGetters } from "vuex";
 
-export default defineComponent({
+export default {
   name: "AppFormConfig",
   components: { AttrsHeader },
-  setup() {
-    const { currerntOriginFormAttr } = toRefs(store.getters);
-    const formAttr = computed(() => _.cloneDeep(currerntOriginFormAttr.value));
-    const updateFormAttr = (data: AnyObj) =>
-      store.commit("updateCurrentFormAttr", data);
-    const originDesc: FormDesc = {
-      inline: {
-        type: "radio",
-        default: false,
-        label: "inline模式 / layout模式",
-        options: [
-          { text: "layout模式", value: false },
-          { text: "inline模式", value: true }
-        ],
-        on: {
-          change: (val: any) => {
-            if (!val) {
-              updateFormAttr(
-                Object.assign({}, formAttr.value, { isResponsive: true })
-              );
+  mixins: [searchMixin],
+  computed: {
+    ...mapGetters(["currerntOriginFormAttr"]),
+    formAttr() {
+      return _.cloneDeep(this.currerntOriginFormAttr);
+    },
+    formDesc() {
+      return changeFormLabel(this.originDesc);
+    }
+  },
+  methods: {
+    updateFormAttr(data) {
+      this.$store.commit("updateCurrentFormAttr", data);
+    }
+  },
+  data() {
+    return {
+      originDesc: {
+        inline: {
+          type: "radio",
+          default: false,
+          label: "inline模式 / layout模式",
+          options: [
+            { text: "layout模式", value: false },
+            { text: "inline模式", value: true }
+          ],
+          on: {
+            change: val => {
+              if (!val) {
+                this.updateFormAttr(
+                  Object.assign({}, this.formAttr, { isResponsive: true })
+                );
+              }
             }
           }
-        }
-      },
-      isResponsive: {
-        type: "switch",
-        label: "是否响应式",
-        vif: (data: AnyObj) => !data.inline,
-        options: [
-          { text: "是", value: true },
-          { text: "否", value: false }
-        ]
-      },
-      labelPosition: {
-        type: "select",
-        label: "标签位置",
-        options(data: AnyObj) {
-          const options: any[] = ["left", "right", "top"];
-          if (data.isResponsive && !data.inline) {
-            options.unshift({ text: "响应式", value: null });
-          }
-          return options;
-        }
-      },
-      span: {
-        type: "select",
-        label: "表单宽度",
-        vif: (data: AnyObj) => !data.inline,
-        options(data: AnyObj) {
-          const options: any[] = Array.from({ length: 24 }, (v, i) => {
-            return { text: `${24 - i} / 24`, value: 24 - i };
-          });
-          if (data.isResponsive) {
-            options.unshift({ text: "响应式", value: null });
-          }
-          return options;
         },
-        style: {
-          width: "100%"
-        }
-      },
-      isDialog: {
-        type: "switch",
-        label: "是否为弹窗"
-      },
-      isShowLabel: {
-        type: "switch",
-        label: "是否显示标签"
-      },
-      labelWidth: {
-        type: "input",
-        label: "标签宽度",
-        attrs: {
-          type: "number",
-          min: 0,
-          step: 10
+        isResponsive: {
+          type: "switch",
+          label: "是否响应式",
+          vif: data => !data.inline,
+          options: [
+            { text: "是", value: true },
+            { text: "否", value: false }
+          ]
         },
-        tip: "默认值为auto"
-      },
-      disabled: {
-        type: "switch",
-        label: "全局禁用表单"
-      },
-      readonly: {
-        type: "switch",
-        label: "全局只读表单"
-      },
-      isShowSubmitBtn: {
-        type: "radio",
-        label: "提交按钮",
-        options: [
-          { text: "显示", value: true },
-          { text: "隐藏", value: false }
-        ]
-      },
-      isShowResetBtn: {
-        type: "radio",
-        label: "重置按钮",
-        options: [
-          { text: "显示", value: true },
-          { text: "隐藏", value: false }
-        ]
-      },
-      isShowBackBtn: {
-        type: "radio",
-        label: "返回按钮",
-        options: [
-          { text: "默认", value: null },
-          { text: "显示", value: true },
-          { text: "隐藏", value: false }
-        ]
-      },
-      isShowCancelBtn: {
-        type: "radio",
-        label: "取消按钮",
-        options: [
-          { text: "默认", value: null },
-          { text: "显示", value: true },
-          { text: "隐藏", value: false }
-        ]
-      },
-      formBtnSize: {
-        type: "select",
-        label: "表单按钮大小",
-        options: [{ text: "默认", value: null }, "medium", "small", "mini"]
-      },
-      submitBtnText: {
-        type: "input",
-        label: "提交按钮文字"
-      },
-      backBtnText: {
-        type: "input",
-        label: "返回按钮文字"
-      },
-      cancelBtnText: {
-        type: "input",
-        label: "取消按钮文字"
-      },
-      resetBtnText: {
-        type: "input",
-        label: "返回按钮文字"
+        labelPosition: {
+          type: "select",
+          label: "标签位置",
+          options(data) {
+            const options = ["left", "right", "top"];
+            if (data.isResponsive && !data.inline) {
+              options.unshift({ text: "响应式", value: null });
+            }
+            return options;
+          }
+        },
+        span: {
+          type: "select",
+          label: "表单宽度",
+          vif: data => !data.inline,
+          options(data) {
+            const options = Array.from({ length: 24 }, (v, i) => {
+              return { text: `${24 - i} / 24`, value: 24 - i };
+            });
+            if (data.isResponsive) {
+              options.unshift({ text: "响应式", value: null });
+            }
+            return options;
+          },
+          style: {
+            width: "100%"
+          }
+        },
+        isDialog: {
+          type: "switch",
+          label: "是否为弹窗"
+        },
+        isShowLabel: {
+          type: "switch",
+          label: "是否显示标签"
+        },
+        labelWidth: {
+          type: "input",
+          label: "标签宽度",
+          attrs: {
+            type: "number",
+            min: 0,
+            step: 10
+          },
+          tip: "默认值为auto"
+        },
+        disabled: {
+          type: "switch",
+          label: "全局禁用表单"
+        },
+        readonly: {
+          type: "switch",
+          label: "全局只读表单"
+        },
+        isShowSubmitBtn: {
+          type: "radio",
+          label: "提交按钮",
+          options: [
+            { text: "显示", value: true },
+            { text: "隐藏", value: false }
+          ]
+        },
+        isShowResetBtn: {
+          type: "radio",
+          label: "重置按钮",
+          options: [
+            { text: "显示", value: true },
+            { text: "隐藏", value: false }
+          ]
+        },
+        isShowBackBtn: {
+          type: "radio",
+          label: "返回按钮",
+          options: [
+            { text: "默认", value: null },
+            { text: "显示", value: true },
+            { text: "隐藏", value: false }
+          ]
+        },
+        isShowCancelBtn: {
+          type: "radio",
+          label: "取消按钮",
+          options: [
+            { text: "默认", value: null },
+            { text: "显示", value: true },
+            { text: "隐藏", value: false }
+          ]
+        },
+        formBtnSize: {
+          type: "select",
+          label: "表单按钮大小",
+          options: [{ text: "默认", value: null }, "medium", "small", "mini"]
+        },
+        submitBtnText: {
+          type: "input",
+          label: "提交按钮文字"
+        },
+        backBtnText: {
+          type: "input",
+          label: "返回按钮文字"
+        },
+        cancelBtnText: {
+          type: "input",
+          label: "取消按钮文字"
+        },
+        resetBtnText: {
+          type: "input",
+          label: "返回按钮文字"
+        }
       }
     };
-
-    const formDesc = computed(() => changeFormLabel(originDesc));
-    const { filterFormDesc, keyword } = searchMixin(formDesc);
-    return {
-      updateFormAttr,
-      formAttr,
-      filterFormDesc,
-      keyword
-    };
   }
-});
+};
 </script>

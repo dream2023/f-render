@@ -17,21 +17,19 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "@vue/composition-api";
-
-export default defineComponent({
+<script>
+export default {
   name: "attrs-header",
   props: {
     url: String,
     title: String
   },
-  setup() {
+  data() {
     return {
       keyword: ""
     };
   }
-});
+};
 </script>
 
 <style scoped>
