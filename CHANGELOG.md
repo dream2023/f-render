@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.1.0](https://github.com/dream2023/vue-ele-form-generator/compare/v2.2.2...v3.1.0) (2020-05-17)
+
+
+### Features
+
+* 将 ts & composition api 改为vue2 ([cff5ce4](https://github.com/dream2023/vue-ele-form-generator/commit/cff5ce40f1abe25d3501f314f360adbb8d0effb5))
+
 ### [2.2.2](https://github.com/dream2023/vue-ele-form-generator/compare/v2.2.1...v2.2.2) (2020-04-17)
 
 
