@@ -57,7 +57,7 @@
     "sass": "^1.26.3",
     "sass-loader": "^8.0.2",
     "serialize-javascript": "^2.1.2",
-    "standard-version": "^7.0.1",
+    "standard-version": "^8.0.1",
     "vue": "^2.6.11",
     "vue-ele-form": "^0.8.25",
     "vue-ele-form-bmap": "^0.1.0",
