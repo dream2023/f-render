@@ -61,10 +61,6 @@ export default {
             { value: "string", desc: "必须是 string" },
             { value: "number", desc: "必须是 number" },
             { value: "boolean", desc: "必须是 boolean" },
-            {
-              value: "regexp",
-              desc: "必须是正则或者是在调用 new RegExp 时不报错的字符串"
-            },
             { value: "integer", desc: "整数" },
             { value: "float", desc: "浮点数" },
             { value: "enum", desc: "值必须出现在 enmu 枚举值中" },
@@ -116,7 +112,7 @@ export default {
             append: h => h("span", "/")
           },
           valueFormatter(val) {
-            return val ? new RegExp(val) : val;
+            return val ? eval("(/" + val + "/)") : val;
           },
           vif: data => ["any", "regexp", "string", "url"].includes(data.type)
         },
@@ -188,6 +184,9 @@ export default {
 
       const formItem = this.currentFormItem;
       if (!formItem.rules) formItem.rules = [];
+      if (data.enum && data.enum.length == 0) {
+        delete data.enum;
+      }
       formItem.rules.push(data);
       this.updateCurrentItem(formItem);
       this.formData = {};
