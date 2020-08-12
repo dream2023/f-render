@@ -11967,12 +11967,12 @@ vue-ele-form-gallery@^0.1.1:
   dependencies:
     vue-ele-gallery "^2.1.5"
 
-vue-ele-form-image-uploader@^0.1.7:
-  version "0.1.7"
-  resolved "https://registry.npmjs.org/vue-ele-form-image-uploader/-/vue-ele-form-image-uploader-0.1.7.tgz#271692b425ae756d578fc321bb58adc213d3aaf8"
-  integrity sha512-QTNm+TOOHblqf9WnL9owEr/Cf5eU/skASgUdPllzXPkVRyXNX8eWHCnFrX07En81m79Kebi/Qafd0sgVXfA3sw==
+vue-ele-form-image-uploader@^0.1.8:
+  version "0.1.8"
+  resolved "https://registry.npmjs.org/vue-ele-form-image-uploader/-/vue-ele-form-image-uploader-0.1.8.tgz#46c51fd17c90423351703da16cc0d7f5501fbffb"
+  integrity sha512-8gBRh+vjAFsE8G147AoBTikAIyNSBlSZDkhCXsoeSbdFaFHombrAyVx0ZMK/4otIRYbJydKnIgBZf0+E9FTItw==
   dependencies:
-    vue-ele-upload-image "^2.0.11"
+    vue-ele-upload-image "^2.0.12"
 
 vue-ele-form-json-editor@^0.1.3:
   version "0.1.3"
@@ -12039,10 +12039,10 @@ vue-ele-gallery@^2.1.5:
   resolved "https://registry.npmjs.org/vue-ele-gallery/-/vue-ele-gallery-2.1.5.tgz#a7d67b0991f4bab5a8d309df48ca3d387b418913"
   integrity sha512-ohpfm7lJ9+Loe2r3LwEv0ohbAmDJHHHq7I7ntxrzLy9FPc1vdfzv/iWm4/3pWTa4O1HSENMN+mCKI6ntyzzF3g==
 
-vue-ele-gallery@^2.1.6:
-  version "2.1.6"
-  resolved "https://registry.npmjs.org/vue-ele-gallery/-/vue-ele-gallery-2.1.6.tgz#ce62c752b183dd56a0c6e5bedd7ff67d42fd941f"
-  integrity sha512-Yad9d8HuSbS0jKkfVgWfYeVwXOKEjzumGvOFjvl7bkD2wM3VQpHi1iv5x8T2RBWBZL9U+M5aVnaQdxZHFHtXsg==
+vue-ele-gallery@^2.1.7:
+  version "2.1.7"
+  resolved "https://registry.npmjs.org/vue-ele-gallery/-/vue-ele-gallery-2.1.7.tgz#2491058668c60e75451ebc97f40f6869b8bf6ebb"
+  integrity sha512-it2po/Gz3DvxvEznwtZsl7Oths/rbc9pmuJB1tA8/4PoIWPSinxeJ+YRa+Qso3pcYSbJoehKBdnSzOOw7IklXw==
 
 vue-ele-upload-file@^0.0.6:
   version "0.0.6"
@@ -12052,12 +12052,12 @@ vue-ele-upload-file@^0.0.6:
     ly-downloader "^1.0.5"
     pretty-bytes "^5.3.0"
 
-vue-ele-upload-image@^2.0.11:
-  version "2.0.11"
-  resolved "https://registry.npmjs.org/vue-ele-upload-image/-/vue-ele-upload-image-2.0.11.tgz#77a182c80525607446aeea74f2192cb078895170"
-  integrity sha512-Vbu7Jm1j3XDOl1A3qM8kjoxyTXJdZVJQqALXF9Vu3s9YFuP8sQmLYzmqJqYFbap+K8aUvVcJ4HmVqhfs9UUfuQ==
+vue-ele-upload-image@^2.0.12:
+  version "2.0.12"
+  resolved "https://registry.npmjs.org/vue-ele-upload-image/-/vue-ele-upload-image-2.0.12.tgz#1a4c0ce3f2bbee7f9dfe523a9324377775c9fa63"
+  integrity sha512-BVD2GiFRKygo0DGOTYrea7t+kj8fT4fngFLt2KqouUv8D4U4nUAswthl7E38VGXyUZZ3AYicJvZ8Mc46K9J16A==
   dependencies:
-    vue-ele-gallery "^2.1.6"
+    vue-ele-gallery "^2.1.7"
     vue-image-crop-upload "^2.5.0"
 
 vue-ele-upload-video@^2.0.6:
