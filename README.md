@@ -6,6 +6,10 @@
 ![gitub pages](https://github.com/dream2023/vue-ele-form-generator/workflows/gitub%20pages/badge.svg)
 [![Star on GitHub](https://img.shields.io/github/stars/dream2023/vue-ele-form-generator.svg?style=social)](https://github.com/dream2023/vue-ele-form-generator/stargazers)
 
+## 交流群
+
+![交流群](https://i.loli.net/2020/02/07/MmY1u7f4wR3igcB.jpg)
+
 ## 介绍
 
 vue-ele-form-generator 是专为 [vue-ele-form](https://github.com/dream2023/vue-ele-form) 开发的可视化表单设计工具, 并且支持[vscode 插件](https://marketplace.visualstudio.com/items?itemName=dream2023.fgen-for-vscode)、[cli 本地启动](https://github.com/dream2023/fgen-cli)、[在线设计](https://dream2023.gitee.io/vue-ele-form-generator/)多种方式, 让表单开发的效率更上一层楼!
@@ -139,16 +143,18 @@ docker run -d --name=fgen -p 54321:80 chaojie1234/fgen
           <div>xzusoft</div>
         </a>
       </td>
+      <td align="center" valign="middle">
+        <a href="https://gitee.com/ahiris_seeenter" target="_blank">
+          <img width="200px" src="https://portrait.gitee.com/uploads/avatars/user/751/2253945_ahiris_seeenter_1597720904.png!avatar200">
+          <div>seeenter</div>
+        </a>
+      </td>
     </tr><tr></tr>
   </tbody>
 </table>
 <!--platinum end-->
 
 > 如果您觉得对您有所帮助, 可以请作者喝一杯咖啡, 让开源走的更远, 点击进入[码云赞赏](https://gitee.com/dream2023/vue-ele-form-generator)一下, 并加入下面交流群, 将链接发送给我
-
-## 交流群
-
-![交流群](https://i.loli.net/2020/02/07/MmY1u7f4wR3igcB.jpg)
 
 ## Contributors ✨
 
