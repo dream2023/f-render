@@ -1,7 +1,9 @@
 const path = require("path");
 const LodashModuleReplacementPlugin = require("lodash-webpack-plugin");
+const isProd = process.env.NODE_ENV === "production";
 
 module.exports = {
+  publicPath: isProd ? "./" : "/",
   configureWebpack: {
     entry: path.resolve(__dirname, "./example/main.js"),
     resolve: {
