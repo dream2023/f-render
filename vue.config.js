@@ -1,23 +1,17 @@
+const path = require("path");
+const LodashModuleReplacementPlugin = require("lodash-webpack-plugin");
+
 module.exports = {
-  publicPath: "./",
-  // 用于测试服务器保存功能
-  devServer: {
-    proxy: "http://localhost:8000"
-  },
   configureWebpack: {
-    output: {
-      libraryExport: "default"
-    },
+    entry: path.resolve(__dirname, "./example/main.js"),
     resolve: {
-      extensions: [".js", ".json", ".vue"]
+      alias: {
+        "f-render": path.resolve(__dirname, "./src/")
+      }
     },
-    module: {
-      rules: [
-        {
-          test: /\.ejs$/,
-          use: "raw-loader"
-        }
-      ]
-    }
+    plugins: [new LodashModuleReplacementPlugin()]
+  },
+  css: {
+    extract: false
   }
 };
