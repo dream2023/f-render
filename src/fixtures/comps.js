@@ -1,11 +1,32 @@
 const optionsConfig = {
-  type: "data-editor",
-  label: "选项",
-  attrs: {
-    types: ["string", "array", "function", "promise"]
+  options: {
+    type: "data-editor",
+    label: "选项",
+    attrs: {
+      types: ["string", "array", "function", "promise"]
+    },
+    tip:
+      'options支持`API接口`、`数组`、`函数`、`Promise`等, 具体看<a target="_blank" href="https://www.yuque.com/chaojie-vjiel/vbwzgu/rgenav" class="el-link el-link--primary">文档</a>'
   },
-  tip:
-    'options支持`API接口`、`数组`、`函数`、`Promise`等, 具体看<a target="_blank" href="https://www.yuque.com/chaojie-vjiel/vbwzgu/rgenav" class="el-link el-link--primary">文档</a>'
+  prop: {
+    type: "data-editor",
+    label: "options 配置",
+    attrs: {
+      type: ["object"]
+    }
+  },
+  optionsLinkageFields: {
+    type: "dynamic",
+    label: "options 关联属性"
+  }
+};
+
+const optionsConfigData = {
+  prop: {
+    text: "text",
+    value: "value"
+  },
+  optionsLinkageFields: []
 };
 
 export default [
@@ -354,7 +375,10 @@ export default [
             label: "默认值",
             options: data => data.options
           },
-          options: optionsConfig
+          ...optionsConfig
+        },
+        defaultData: {
+          ...optionsConfigData
         },
         requiredData: {
           options: [
@@ -483,7 +507,10 @@ export default [
 
             options: data => data.options
           },
-          options: optionsConfig
+          ...optionsConfig
+        },
+        defaultData: {
+          ...optionsConfigData
         },
         requiredData: {
           options: [
@@ -491,12 +518,6 @@ export default [
             { text: "选项2", value: 2 },
             { text: "选项3", value: 3 }
           ]
-        },
-        defaultData: {
-          prop: {
-            text: "text",
-            value: "value"
-          }
         }
       }
     }
@@ -527,7 +548,10 @@ export default [
 
             options: data => data.options
           },
-          options: optionsConfig
+          ...optionsConfig
+        },
+        defaultData: {
+          ...optionsConfigData
         },
         requiredData: {
           options: [
@@ -1597,7 +1621,10 @@ export default [
 
             options: data => data.options
           },
-          options: optionsConfig
+          ...optionsConfig
+        },
+        defaultData: {
+          ...optionsConfigData
         },
         requiredData: {
           options: [
@@ -1949,7 +1976,10 @@ export default [
               multiple: true
             }
           },
-          options: optionsConfig
+          ...optionsConfig
+        },
+        defaultData: {
+          ...optionsConfigData
         },
         requiredData: {
           options: [
@@ -1999,7 +2029,10 @@ export default [
 
             options: data => data.options
           },
-          options: optionsConfig
+          ...optionsConfig
+        },
+        defaultData: {
+          ...optionsConfigData
         },
         requiredData: {
           options: [
@@ -2555,7 +2588,10 @@ export default [
 
             options: data => data.options
           },
-          options: optionsConfig
+          ...optionsConfig
+        },
+        defaultData: {
+          ...optionsConfigData
         },
         requiredData: {
           options: [
@@ -2622,7 +2658,10 @@ export default [
 
             options: data => data.options
           },
-          options: optionsConfig
+          ...optionsConfig
+        },
+        defaultData: {
+          ...optionsConfigData
         },
         requiredData: {
           options: [
@@ -3020,13 +3059,14 @@ export default [
             type: "input",
             label: "默认值"
           },
-          options: optionsConfig
+          ...optionsConfig
+        },
+        defaultData: {
+          options: [],
+          ...optionsConfigData
         },
         requiredData: {
           default: "我是一段静态文本"
-        },
-        defaultData: {
-          options: []
         }
       }
     }

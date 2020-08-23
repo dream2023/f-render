@@ -1,4 +1,5 @@
 import _ from "lodash";
+const equal = require("fast-deep-equal");
 
 /**
  * 对象转为数组
@@ -67,7 +68,7 @@ export function addFormItem({ type, field, label, config = {} }) {
   // 获取配置
   const formItemConfig = _.cloneDeep(config);
   // 通用属性 = 配置（默认值）+ 配置（必填值）+ 三个特殊属性
-  const commonData = {
+  const requiredData = {
     ...(formItemConfig?.config?.common?.defaultData || {}),
     ...(formItemConfig?.config?.common?.requiredData || {}),
     // 放置后面，其到覆盖的作用
@@ -84,7 +85,7 @@ export function addFormItem({ type, field, label, config = {} }) {
 
   // 返回通用配置 + 属性配置
   return {
-    ...commonData,
+    ...requiredData,
     attrs: attrsData
   };
 }
@@ -104,11 +105,11 @@ export function reomveQuotes(str) {
  */
 export function removeUselessAttrs(obj = {}, defaultObj = {}) {
   const isEmpty = val => _.isNil(val);
-  const isDefault = (val, key) => _.eq(val, defaultObj[key]);
+  const isDefault = (val, key) => equal(val, defaultObj[key]);
   const isHide = key => (key || "").startsWith("_");
 
   return _.omitBy(
     obj,
-    (val, key) => isEmpty(val) || isDefault(val, key) || isHide(key)
+    (val, key) => isEmpty(val) || isHide(key) || isDefault(val, key)
   );
 }

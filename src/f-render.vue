@@ -222,7 +222,14 @@ export default {
       this.$emit("save", res);
     },
     getCommonDefaultData(type) {
-      return this.compsMap.get(type)?.config?.common?.defaultData || {};
+      const data = this.compsMap.get(type)?.config?.common?.defaultData || {};
+      return {
+        ...data,
+        // 通用默认值
+        vif: true,
+        disabled: false,
+        rules: []
+      };
     },
     getAttrsDefaultData(type) {
       return this.compsMap.get(type)?.config?.attrs?.defaultData || {};

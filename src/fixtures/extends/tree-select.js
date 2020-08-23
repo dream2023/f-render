@@ -1,3 +1,33 @@
+const optionsConfig = {
+  options: {
+    type: "data-editor",
+    label: "选项",
+    attrs: {
+      types: ["string", "array", "function", "promise"]
+    },
+    tip:
+      'options支持`API接口`、`数组`、`函数`、`Promise`等, 具体看<a target="_blank" href="https://www.yuque.com/chaojie-vjiel/vbwzgu/rgenav" class="el-link el-link--primary">文档</a>'
+  },
+  prop: {
+    type: "data-editor",
+    label: "options 配置",
+    attrs: {
+      type: ["object"]
+    }
+  },
+  optionsLinkageFields: {
+    type: "dynamic",
+    label: "options 关联属性"
+  }
+};
+
+const optionsConfigData = {
+  prop: {
+    text: "text",
+    value: "value"
+  },
+  optionsLinkageFields: []
+};
 export default {
   type: "tree-select",
   label: "树形下拉选择器",
@@ -84,17 +114,12 @@ export default {
           label: "默认值",
           options: data => data.options
         },
-        options: {
-          type: "data-editor",
-          label: "选项",
-          attrs: {
-            types: ["string", "array", "function", "promise"]
-          },
-          tip:
-            'options支持`API接口`、`数组`、`函数`、`Promise`等, 具体看<a target="_blank" href="https://www.yuque.com/chaojie-vjiel/vbwzgu/rgenav" class="el-link el-link--primary">文档</a>'
-        }
+        ...optionsConfig
       },
-      commonData: {
+      defaultData: {
+        ...optionsConfigData
+      },
+      requiredData: {
         options: [
           {
             id: "a",

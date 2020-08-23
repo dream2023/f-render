@@ -137,7 +137,7 @@ export default {
           }
         }
       },
-      commonData: {
+      requiredData: {
         default: [
           {
             grade: "三年级二班",

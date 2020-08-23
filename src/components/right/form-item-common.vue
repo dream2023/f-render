@@ -143,6 +143,26 @@ export default {
           tip:
             '校检规则文档, 请<a target="_blank" href="https://www.yuque.com/chaojie-vjiel/vbwzgu/qzzkpd" class="el-link el-link--primary">点击查看</a>'
         },
+        vif: {
+          type: "data-editor",
+          label: "联动显示/隐藏",
+          attrs: {
+            types: ["function", "boolean"]
+          },
+          default: true,
+          tip:
+            '支持`布尔值`和`函数`，具体请查看：<a target="_blank" href="https://www.yuque.com/chaojie-vjiel/vbwzgu/loffm6#wOVyc" class="el-link el-link--primary">文档</a>'
+        },
+        disabled: {
+          type: "data-editor",
+          label: "联动启用/禁用",
+          attrs: {
+            types: ["function", "boolean", "string"]
+          },
+          default: false,
+          tip:
+            '支持`布尔值`和`函数`，具体请查看：<a target="_blank" href="https://www.yuque.com/chaojie-vjiel/vbwzgu/loffm6#zaIsz" class="el-link el-link--primary">文档</a>'
+        },
         tip: {
           type: "input",
           label: "表单项提示"

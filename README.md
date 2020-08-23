@@ -47,7 +47,7 @@
 
 f-render 是基于 [vue-ele-form](https://github.com/dream2023/vue-ele-form) 开发的可视化表单设计工具, 适用于 各种流程引擎和动态表单项目，大大节省你的开发时间；
 
-[![f-render 演示图](https://s1.ax1x.com/2020/08/23/d0T976.gif)](https://dream2023.gitee.io/f-render/)
+[![f-render 演示图](https://s1.ax1x.com/2020/08/23/d0T976.gif)](https://dream2023.gitee.io/vue-ele-form-generator/)
 
 ## 注意
 
@@ -58,6 +58,10 @@ f-render 是基于 [vue-ele-form](https://github.com/dream2023/vue-ele-form) 开
 - 体积小：Gzip 压缩后 `200k` 以内；
 - 易扩展：可以在`不更改源码`的情况下属性、组件；
 - 组件方式：以组件方式接入，轻松融入项目；
+
+## Demo
+
+[https://dream2023.gitee.io/vue-ele-form-generator/](https://dream2023.gitee.io/vue-ele-form-generator/)
 
 ## 安装 & 注册
 
