@@ -1,7 +1,7 @@
 # f-render | 基于 vue-ele-form 的表单设计器
 
 [![MIT](https://img.shields.io/github/license/dream2023/f-render)](https://github.com/dream2023/f-render)
-![npm bundle size](https://img.shields.io/bundlephobia/min/f-render)
+![npm bundle size](https://img.shields.io/bundlephobia/minzip/f-render)
 ![npm](https://img.shields.io/npm/dt/f-render)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/4c2ddffb-26b2-4e64-8b22-25678db57483/deploy-status)](https://app.netlify.com/sites/f-render/deploys)
 ![gitub pages](https://github.com/dream2023/f-render/workflows/gitub%20pages/badge.svg)
@@ -162,7 +162,7 @@ Vue.component("f-render", FRender);
       this.loading = true;
       setTimeout(() => {
         this.loading = false;
-        this.formConfig = localStorage.getItem("form-config");
+        this.formConfig = localStorage.getItem("form-config") || "";
       }, 1000);
     }
   };
