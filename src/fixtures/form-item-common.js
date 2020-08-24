@@ -79,7 +79,8 @@ export default {
     }
   },
   data: {
-    labelWidth: "auto",
+    isShowLabel: true,
+    labelWidth: undefined,
     vif: true,
     disabled: false,
     rules: [],

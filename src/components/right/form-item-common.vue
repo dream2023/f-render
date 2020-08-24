@@ -68,7 +68,7 @@ export default {
     // 自定义的配置
     customConfig() {
       return this.currentFormItem
-        ? this.compsMap.get(this.currentFormItem.type).config?.common?.config
+        ? this.compsMap.get(this.currentFormItem.type)?.config?.common?.config
         : {};
     },
     // 字段出现的次数
@@ -123,10 +123,19 @@ export default {
           rules = [];
         }
         const data = Object.assign({}, this.currentFormItem, { rules: rules });
-        this.updateCurrentItem(data);
+        this.frender.updateCurrentFormItem(data);
       } catch (error) {
         // eslint-disable-next-line no-console
         console.error(error);
+      }
+    }
+  },
+  watch: {
+    // 对 layout 特殊处理
+    // 如果发现 layout 为 undefined，则赋值为 24
+    "currentFormItem.layout"(val) {
+      if (!val) {
+        this.frender.updateCurrentFormItem({ layout: 24 });
       }
     }
   }

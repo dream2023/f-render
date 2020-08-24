@@ -83,6 +83,7 @@ export default {
           key: "clear",
           isComponent: false,
           click: () => {
+            this.frender.currentIndex = null;
             this.frender.updateFormItemList([]);
           },
           icon: "el-icon-delete",

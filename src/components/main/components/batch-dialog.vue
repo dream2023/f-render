@@ -143,7 +143,8 @@ export default {
         const newFormItems = formItems.map(item =>
           addFormItem({
             ...item,
-            config: this.frender.compsMap.get(item.type)
+            config: this.frender.compsMap.get(item.type),
+            commonData: this.frender.formItemCommon.data
           })
         );
 
