@@ -43,7 +43,7 @@
                       ? formItem.label
                       : null
                   "
-                  :label-width="formItem.labelWidth || 'auto'"
+                  :label-width="formItem.labelWidth || undefined"
                 >
                   <component
                     :disabled="props.disabled || formItem._disabled"
