@@ -14,7 +14,8 @@
 - [介绍](#%E4%BB%8B%E7%BB%8D)
 - [注意](#%E6%B3%A8%E6%84%8F)
 - [特性](#%E7%89%B9%E6%80%A7)
-- [安装](#%E5%AE%89%E8%A3%85)
+- [Demo](#demo)
+- [安装 & 注册](#%E5%AE%89%E8%A3%85--%E6%B3%A8%E5%86%8C)
 - [使用简介](#%E4%BD%BF%E7%94%A8%E7%AE%80%E4%BB%8B)
   - [表单设计](#%E8%A1%A8%E5%8D%95%E8%AE%BE%E8%AE%A1)
   - [表单使用](#%E8%A1%A8%E5%8D%95%E4%BD%BF%E7%94%A8)
@@ -55,9 +56,9 @@ f-render 是基于 [vue-ele-form](https://github.com/dream2023/vue-ele-form) 开
 
 ## 特性
 
+- 组件方式：以组件方式接入，1 分钟轻松接入；
 - 体积小：Gzip 压缩后 `200k` 以内；
-- 易扩展：可以在`不更改源码`的情况下属性、组件；
-- 组件方式：以组件方式接入，轻松融入项目；
+- 易扩展：可以在`不更改源码`的情况下增删改属性、组件；
 
 ## Demo
 
@@ -119,7 +120,7 @@ Vue.component("f-render", FRender);
       this.loading = true;
       setTimeout(() => {
         this.loading = false;
-        this.formConfig = localStorage.getItem("form-config");
+        this.formConfig = localStorage.getItem("form-config") || "";
       }, 1000);
     }
   };
@@ -362,6 +363,7 @@ export default {
 
 - 组件配置目录：`src/fixtures/comps.js`
 - 表单配置目录：`src/fixtures/form-props.js`
+- 表单项通用属性配置：`src/fixtures/form-item-common.js`
 - 扩展组件目录：`src/fixtures/extends`
 
 如果你想修改组件属性或者表单的属性，减少或者增加组件，可以将上述文件`拷贝到自己的项目`目录，参考上述配置说明，进行更改，并传入即可：
@@ -369,7 +371,12 @@ export default {
 ```html
 <!-- formProps 是表单属性 -->
 <!-- comps 是组件列表和属性 -->
-<f-render :formProps="formProps" :comps="comps" />
+<!-- formItemCommon 是表单项通用属性配置 -->
+<f-render
+  :form-props="formProps"
+  :comps="comps"
+  :form-item-common="formItemCommon"
+/>
 ```
 
 ### 样式定制化
@@ -413,6 +420,11 @@ props: {
   formProps: {
     type: Object,
     default: () => formProps
+  },
+  // 表单项通用配置
+  formItemCommon: {
+    type: Object,
+    default: () => formItemCommonDefault
   },
   // 组件列表
   comps: {

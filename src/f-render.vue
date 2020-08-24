@@ -42,8 +42,9 @@ import _ from "lodash";
 import serialize from "serialize-javascript";
 import { objectToArr, arrToObject, removeUselessAttrs } from "./utils";
 
-import comps from "./fixtures/comps";
-import formProps from "./fixtures/form-props";
+import compsDefault from "./fixtures/comps";
+import formPropsDefault from "./fixtures/form-props";
+import formItemCommonDefault from "./fixtures/form-item-common";
 
 Vue.component("dynamic", EleFormDynamic);
 Vue.component("data-editor", EleFormDataEditor);
@@ -90,12 +91,17 @@ export default {
     // 表单配置
     formProps: {
       type: Object,
-      default: () => formProps
+      default: () => formPropsDefault
+    },
+    // 表单项通用配置
+    formItemCommon: {
+      type: Object,
+      default: () => formItemCommonDefault
     },
     // 组件列表
     comps: {
       type: Array,
-      default: () => comps
+      default: () => compsDefault
     },
     // 操作配置
     operations: {
@@ -115,6 +121,9 @@ export default {
   watch: {
     config: {
       handler(config) {
+        if (_.isNil(config)) {
+          config = {};
+        }
         try {
           if (typeof config === "string") {
             config = config ? eval(`(${config})`) : {};
@@ -226,9 +235,7 @@ export default {
       return {
         ...data,
         // 通用默认值
-        vif: true,
-        disabled: false,
-        rules: []
+        ...this.formItemCommon.data
       };
     },
     getAttrsDefaultData(type) {

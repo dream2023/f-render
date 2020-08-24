@@ -64,11 +64,18 @@ export function changeFormDescLabel(formDesc = {}) {
  *  }
  * ]
  */
-export function addFormItem({ type, field, label, config = {} }) {
+export function addFormItem({
+  type,
+  field,
+  label,
+  config = {},
+  commonData = {}
+}) {
   // 获取配置
   const formItemConfig = _.cloneDeep(config);
-  // 通用属性 = 配置（默认值）+ 配置（必填值）+ 三个特殊属性
+  // 通用属性 = 默认通用配置 + 自定义通用配置（默认值）+  自定义通用配置（必填值）+ 三个特殊属性
   const requiredData = {
+    ...commonData,
     ...(formItemConfig?.config?.common?.defaultData || {}),
     ...(formItemConfig?.config?.common?.requiredData || {}),
     // 放置后面，其到覆盖的作用

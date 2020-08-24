@@ -6,6 +6,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "toc": "doctoc README.md",
     "build:lib": "vue-cli-service build --target lib --name f-render --dest ./dist/ ./src/index.js",
     "lint": "vue-cli-service lint --mode=production",
     "pub": "npm run build:lib && npm publish && git push && git push gitee"
@@ -34,6 +35,7 @@
     "babel-eslint": "^10.1.0",
     "babel-plugin-lodash": "^3.3.4",
     "core-js": "^3.6.5",
+    "doctoc": "^1.4.0",
     "element-ui": "^2.13.2",
     "eslint": "^6.7.2",
     "eslint-plugin-prettier": "^3.1.3",

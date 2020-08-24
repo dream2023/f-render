@@ -61,7 +61,10 @@ export default {
   methods: {
     // 拖拽后新增表单项
     handleAddFormItem(config) {
-      return addFormItem({ config });
+      return addFormItem({
+        config,
+        commonData: this.frender.formItemCommon.data
+      });
     }
   }
 };
