@@ -1,0 +1,21 @@
+# Changelog
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+## [4.2.0](https://github.com/dream2023/vue-ele-form-generator/compare/v3.1.0...v4.2.0) (2020-08-24)
+
+
+### Features
+
+* 增加 Dockerfile ([240c669](https://github.com/dream2023/vue-ele-form-generator/commit/240c66998418bd0068e8c78e1b0b945245a4e37c))
+* 增加 time-picker 配置 ([1f043ee](https://github.com/dream2023/vue-ele-form-generator/commit/1f043eec6d86709cedcbed33132abd4e08239051))
+* 正则表达式校检不正确 ([31ca5c2](https://github.com/dream2023/vue-ele-form-generator/commit/31ca5c282d57692a5c89b90cef0a46d4666b9d2d))
+
+
+### Bug Fixes
+
+* 修复若干问题 ([#58](https://github.com/dream2023/vue-ele-form-generator/issues/58)) ([60c6815](https://github.com/dream2023/vue-ele-form-generator/commit/60c681569d842ff0027e0db75df9688441b2d7aa)), closes [#57](https://github.com/dream2023/vue-ele-form-generator/issues/57) [#56](https://github.com/dream2023/vue-ele-form-generator/issues/56) [#55](https://github.com/dream2023/vue-ele-form-generator/issues/55)
+* 修复BUG & 增加联动属性 ([27377b4](https://github.com/dream2023/vue-ele-form-generator/commit/27377b47a483c4c4d83fe12ea15fcf153d09858e))
+* 依赖报错 ([8eca6b5](https://github.com/dream2023/vue-ele-form-generator/commit/8eca6b50fad64d99ed61e312ba72ce3268e9382d))
+* 预览清空原数据 ([db60207](https://github.com/dream2023/vue-ele-form-generator/commit/db602073f5fc93c67b6d31b13a39aa48888c76e9))
+* labelWidth计算不正确 ([7b35ce1](https://github.com/dream2023/vue-ele-form-generator/commit/7b35ce1e67a2b908d2d3a4b4d3dc3a436e69a97e))

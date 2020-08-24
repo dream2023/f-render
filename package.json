@@ -1,6 +1,6 @@
 {
   "name": "f-render",
-  "version": "4.1.0",
+  "version": "4.2.0",
   "private": false,
   "description": "f-render | 基于 vue-ele-form 的表单设计器",
   "scripts": {
