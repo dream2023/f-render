@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.3.1](https://github.com/dream2023/vue-ele-form-generator/compare/v4.3.0...v4.3.1) (2020-08-24)
+
 ## [4.3.0](https://github.com/dream2023/vue-ele-form-generator/compare/v3.1.0...v4.3.0) (2020-08-24)
 
 
