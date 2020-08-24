@@ -9,7 +9,8 @@
     "toc": "doctoc README.md",
     "build:lib": "vue-cli-service build --target lib --name f-render --dest ./dist/ ./src/index.js",
     "lint": "vue-cli-service lint --mode=production",
-    "pub": "npm run build:lib && npm publish && git push && git push gitee"
+    "release": "standard-version",
+    "pub": "npm run build:lib && npm run release && npm publish && git push --follow-tags origin master && git push --follow-tags gitee master"
   },
   "main": "./dist/f-render.umd.min.js",
   "dependencies": {
