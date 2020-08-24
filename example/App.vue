@@ -39,7 +39,7 @@ export default {
     this.loading = true;
     setTimeout(() => {
       this.loading = false;
-      this.formConfig = localStorage.getItem("form-config") || "";
+      this.formConfig = localStorage.getItem("form-config");
     }, 1000);
   }
 };
