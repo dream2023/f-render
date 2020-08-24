@@ -160,6 +160,12 @@ export default {
 <style lang="scss">
 .main-content {
   padding: 20px;
+  .el-form {
+    border: 1px dashed #dcdfe6;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 4px;
+  }
 
   /* 当无表单时的占位 */
   .form-area-placeholder {
