@@ -121,6 +121,9 @@ export default {
   watch: {
     config: {
       handler(config) {
+        if (_.isNil(config)) {
+          config = {};
+        }
         try {
           if (typeof config === "string") {
             config = config ? eval(`(${config})`) : {};
