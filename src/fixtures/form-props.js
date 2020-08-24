@@ -130,9 +130,17 @@ export default {
     resetBtnText: {
       type: "input",
       label: "返回按钮文字"
+    },
+    formAttrs: {
+      type: "data-editor",
+      label: "el-form属性",
+      attrs: {
+        types: ["object"]
+      }
     }
   },
   data: {
+    formAttrs: {},
     inline: false,
     disabled: false,
     readonly: false,
