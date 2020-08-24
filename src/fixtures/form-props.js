@@ -148,7 +148,7 @@ export default {
     cancelBtnText: "取消",
     backBtnText: "返回",
     resetBtnText: "重置",
-    labelWidth: null,
+    labelWidth: "auto",
     labelPosition: null,
     span: null,
     formBtnSize: null

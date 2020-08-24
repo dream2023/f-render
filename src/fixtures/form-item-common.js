@@ -79,6 +79,7 @@ export default {
     }
   },
   data: {
+    labelWidth: "auto",
     vif: true,
     disabled: false,
     rules: [],
