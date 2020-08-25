@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.4.0](https://github.com/dream2023/vue-ele-form-generator/compare/v4.3.2...v4.4.0) (2020-08-25)
+
+
+### Features
+
+* 切换属性Tab时,滚动到顶部 ([00450a5](https://github.com/dream2023/vue-ele-form-generator/commit/00450a59302134e0d3fa258434d501c1153ee8e3))
+
 ### [4.3.2](https://github.com/dream2023/vue-ele-form-generator/compare/v4.3.1...v4.3.2) (2020-08-24)
 
 ### [4.3.1](https://github.com/dream2023/vue-ele-form-generator/compare/v4.3.0...v4.3.1) (2020-08-24)
