@@ -34,7 +34,7 @@
 
 <script>
 const fuzzy = require("fuzzy");
-import draggable from "vuedraggable";
+import draggable from "vuedraggable/src/vuedraggable";
 import { PerfectScrollbar } from "vue2-perfect-scrollbar";
 import { addFormItem } from "../../utils";
 

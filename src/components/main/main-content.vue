@@ -77,7 +77,7 @@
 </template>
 
 <script>
-import draggable from "vuedraggable";
+import draggable from "vuedraggable/src/vuedraggable";
 import { PerfectScrollbar } from "vue2-perfect-scrollbar";
 
 export default {

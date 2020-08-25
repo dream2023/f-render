@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import _ from "lodash";
+const cloneDeep = require("clone");
 
 export default {
   inject: ["frender"],
@@ -44,7 +44,7 @@ export default {
     visible(val) {
       if (val) {
         // 因为 ele-form 会自动添加一些隐藏属性，所以，这里复制一份，避免修改原数据
-        this.formConfig = _.cloneDeep(this.frender.changedFormConfig);
+        this.formConfig = cloneDeep(this.frender.changedFormConfig);
         this.formData = {};
       }
     }

@@ -2689,6 +2689,11 @@ clone@^1.0.2:
   resolved "https://registry.npm.taobao.org/clone/download/clone-1.0.4.tgz?cache=0&sync_timestamp=1589682821772&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fclone%2Fdownload%2Fclone-1.0.4.tgz#da309cc263df15994c688ca902179ca3c7cd7c7e"
   integrity sha1-2jCcwmPfFZlMaIypAheco8fNfH4=
 
+clone@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.npmjs.org/clone/-/clone-2.1.2.tgz#1b7f4b9f591f1e8f83670401600345a02887435f"
+  integrity sha1-G39Ln1kfHo+DZwQBYANFoCiHQ18=
+
 coa@^2.0.2:
   version "2.0.2"
   resolved "https://registry.npm.taobao.org/coa/download/coa-2.0.2.tgz#43f6c21151b4ef2bf57187db0d73de229e3e7ec3"
@@ -6094,11 +6099,6 @@ lodash._reinterpolate@^3.0.0:
   version "3.0.0"
   resolved "https://registry.npmjs.org/lodash._reinterpolate/-/lodash._reinterpolate-3.0.0.tgz#0ccf2d89166af03b3663c796538b75ac6e114d9d"
   integrity sha1-DM8tiRZq8Ds2Y8eWU4t1rG4RTZ0=
-
-lodash.clonedeep@^4.5.0:
-  version "4.5.0"
-  resolved "https://registry.npmjs.org/lodash.clonedeep/-/lodash.clonedeep-4.5.0.tgz#e23f3f9c4f8fbdde872529c1071857a086e5ccef"
-  integrity sha1-4j8/nE+Pvd6HJSnBBxhXoIblzO8=
 
 lodash.defaultsdeep@^4.6.1:
   version "4.6.1"
@@ -9827,14 +9827,14 @@ vue-ele-form-dynamic@^0.4.2:
     async-validator "^3.2.0"
     fast-deep-equal "^3.1.1"
 
-vue-ele-form@^0.8.34:
-  version "0.8.34"
-  resolved "https://registry.npmjs.org/vue-ele-form/-/vue-ele-form-0.8.34.tgz#83260c88dec94fae2ff595552ae0cdb32b0bd546"
-  integrity sha512-nPWsUp4zzGlTiMJFCnTTeJ0CwFtLxdn6ywmvaPkbMza9JgCzW3m2U1b0Z5GVHfxnX4cSh/hvJWbb56VJEBh4fw==
+vue-ele-form@^0.8.35:
+  version "0.8.35"
+  resolved "https://registry.npmjs.org/vue-ele-form/-/vue-ele-form-0.8.35.tgz#0da43d117673a100e58e930180b9cb3866fd1582"
+  integrity sha512-xgEgQAt0R8sLwAtzUeVIOVnqTPrHx1BYSLp/hwE2r1wmsXmKRWIfOrq8O59/ho/k2oJtwTa/QbeycwcC0g/5iw==
   dependencies:
+    clone "^2.1.2"
     dayjs "^1.8.31"
     is-number "^7.0.0"
-    lodash.clonedeep "^4.5.0"
     throttle-debounce "^2.2.1"
 
 vue-eslint-parser@^7.0.0:
@@ -9908,9 +9908,9 @@ vue-template-es2015-compiler@^1.9.0:
   resolved "https://registry.npm.taobao.org/vue-template-es2015-compiler/download/vue-template-es2015-compiler-1.9.1.tgz#1ee3bc9a16ecbf5118be334bb15f9c46f82f5825"
   integrity sha1-HuO8mhbsv1EYvjNLsV+cRvgvWCU=
 
-vue2-perfect-scrollbar@^1.5.0:
+vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.umd.min.js@^1.5.0:
   version "1.5.0"
-  resolved "https://registry.npmjs.org/vue2-perfect-scrollbar/-/vue2-perfect-scrollbar-1.5.0.tgz#f0389874214c8c84cd8576e1a45d62610e2f4541"
+  resolved "https://registry.npmjs.org/vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.umd.min.js/-/vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.umd.min.js-1.5.0.tgz#f0389874214c8c84cd8576e1a45d62610e2f4541"
   integrity sha512-hQAjhOX9MP3/ePa/AozKKtpiHSaV0dBlniyt2L7eqC/PsDx+pu7YBmTpM0KR5WlNq5GZwreK6215L8ZG1EHC7w==
   dependencies:
     cssnano "^4.1.3"

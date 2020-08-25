@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import _ from "lodash";
+const cloneDeep = require("clone");
 import { changeFormDescLabel } from "../../../utils";
 
 export default {
@@ -166,7 +166,7 @@ export default {
   methods: {
     handleAddRule(data) {
       // 过滤掉空值
-      const filteredData = _.cloneDeep(data);
+      const filteredData = cloneDeep(data);
       for (const key in filteredData) {
         if (!data[key]) {
           delete filteredData[key];

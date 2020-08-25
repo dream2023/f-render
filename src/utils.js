@@ -1,6 +1,6 @@
 import _ from "lodash";
 const equal = require("fast-deep-equal");
-
+const cloneDeep = require("clone");
 /**
  * 对象转为数组
  * @param {object} obj
@@ -23,7 +23,7 @@ export function objectToArr(obj, keyField) {
  * // {a1: { name: "张", age: 10 }, a2: { name: "李", age: 20 }}
  */
 export function arrToObject(arr, key) {
-  return _.cloneDeep(arr).reduce((acc, cur) => {
+  return cloneDeep(arr).reduce((acc, cur) => {
     acc[cur[key]] = cur;
     delete cur[key];
 
@@ -72,7 +72,7 @@ export function addFormItem({
   commonData = {}
 }) {
   // 获取配置
-  const formItemConfig = _.cloneDeep(config);
+  const formItemConfig = cloneDeep(config);
   // 通用属性 = 默认通用配置 + 自定义通用配置（默认值）+  自定义通用配置（必填值）+ 三个特殊属性
   const requiredData = {
     ...commonData,

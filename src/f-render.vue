@@ -39,6 +39,7 @@ import EleFormDynamic from "vue-ele-form-dynamic";
 import EleFormDataEditor from "vue-ele-form-data-editor";
 
 import _ from "lodash";
+const cloneDeep = require("clone");
 import serialize from "serialize-javascript";
 import { objectToArr, arrToObject, removeUselessAttrs } from "./utils";
 
@@ -132,7 +133,7 @@ export default {
           this.$message.error("数据解释失败");
           console.error(err);
         }
-        const formConfig = _.cloneDeep({
+        const formConfig = cloneDeep({
           ...this.formProps.data,
           ...config
         });
@@ -154,7 +155,7 @@ export default {
         formDesc: _.mapValues(this.formDesc, formItem => {
           return {
             ...removeUselessAttrs(
-              _.cloneDeep(formItem),
+              cloneDeep(formItem),
               this.getCommonDefaultData(formItem.type)
             ),
             attrs: removeUselessAttrs(
@@ -175,7 +176,7 @@ export default {
     },
     // 排序后的组件
     sortedComps() {
-      return _.cloneDeep(this.comps)
+      return cloneDeep(this.comps)
         .map(item => {
           item.sort = item.sort || 6;
           return item;
