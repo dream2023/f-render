@@ -8,7 +8,7 @@
         :name="tab.name"
       ></el-tab-pane>
     </el-tabs>
-    <perfect-scrollbar class="scroll-area">
+    <perfect-scrollbar ref="scroll" class="scroll-area">
       <component
         v-show="activeTab === tab.name"
         :is="tab.name"
@@ -50,6 +50,12 @@ export default {
         }
       ]
     };
+  },
+  watch: {
+    // 切换Tab滚动到顶部
+    activeTab() {
+      this.$refs.scroll.$el.scrollTop = 0;
+    }
   }
 };
 </script>
