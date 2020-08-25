@@ -10,6 +10,7 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
+
 - [交流群](#%E4%BA%A4%E6%B5%81%E7%BE%A4)
 - [介绍](#%E4%BB%8B%E7%BB%8D)
 - [注意](#%E6%B3%A8%E6%84%8F)
@@ -33,6 +34,7 @@
   - [定制化原组件配置 & 表单配置](#%E5%AE%9A%E5%88%B6%E5%8C%96%E5%8E%9F%E7%BB%84%E4%BB%B6%E9%85%8D%E7%BD%AE--%E8%A1%A8%E5%8D%95%E9%85%8D%E7%BD%AE)
   - [样式定制化](#%E6%A0%B7%E5%BC%8F%E5%AE%9A%E5%88%B6%E5%8C%96)
 - [二次开发](#%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91)
+- [f-render 不能做什么？](#f-render-%E4%B8%8D%E8%83%BD%E5%81%9A%E4%BB%80%E4%B9%88)
 - [Props 说明](#props-%E8%AF%B4%E6%98%8E)
 - [生态](#%E7%94%9F%E6%80%81)
 - [特别感谢赞助者](#%E7%89%B9%E5%88%AB%E6%84%9F%E8%B0%A2%E8%B5%9E%E5%8A%A9%E8%80%85)
@@ -391,6 +393,13 @@ export default {
 - 直接开发，然后发布到公司[私服](https://www.npmjs.com/package/verdaccio)，如果是开源，则可以发到 GitHub 或者 gitee，然后安装自己的即可
 
 如果你或者你的公司需要`付费`源码讲解和答疑，可加我微信：`dream10nian`。当然也有也有免费的交流群，也是加这个微信。
+
+## f-render 不能做什么？
+
+由于 `vue-ele-form` 原因，
+
+- f-render 不支持嵌套的子表单
+- 布局由于使用了 `el-row` 和 `el-col`，所以仅支持行布局
 
 ## Props 说明
 

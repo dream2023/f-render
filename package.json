@@ -2,6 +2,7 @@
   "name": "f-render",
   "version": "4.3.2",
   "private": false,
+  "license": "MIT",
   "description": "f-render | 基于 vue-ele-form 的表单设计器",
   "scripts": {
     "serve": "vue-cli-service serve",
