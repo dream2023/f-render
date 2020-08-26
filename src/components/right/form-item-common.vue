@@ -104,11 +104,7 @@ export default {
               }
             }
           }
-        ],
-        label: {
-          required: true,
-          message: "标签不能为空"
-        }
+        ]
       },
       isShowRuleDialog: false
     };

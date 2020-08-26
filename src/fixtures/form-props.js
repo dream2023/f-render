@@ -46,6 +46,15 @@ export default {
         width: "100%"
       }
     },
+    rules: {
+      type: "data-editor",
+      label: "校检规则",
+      attrs: {
+        types: ["object"]
+      },
+      tip:
+        '校检规则文档, 请<a target="_blank" href="https://www.yuque.com/chaojie-vjiel/vbwzgu/qzzkpd" class="el-link el-link--primary">点击查看</a>'
+    },
     isDialog: {
       type: "switch",
       label: "是否为弹窗"
@@ -140,6 +149,7 @@ export default {
     }
   },
   data: {
+    rules: {},
     formAttrs: {},
     inline: false,
     disabled: false,

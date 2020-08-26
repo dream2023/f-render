@@ -9814,8 +9814,8 @@ vm-browserify@^1.0.1:
 
 vue-ele-form-data-editor@^0.1.4:
   version "0.1.4"
-  resolved "https://registry.npmjs.org/vue-ele-form-data-editor/-/vue-ele-form-data-editor-0.1.4.tgz#7a7eb0eff973bea440d8272244b5381814c852a2"
-  integrity sha512-K6KsEnzQ43vDs0FJMmfHQT1KmiN/hTICL1yNyI/tAbxib+QsNJZXwbihQoJl48kkka5iOwxybtO96PMukofmqA==
+  resolved "https://registry.npm.taobao.org/vue-ele-form-data-editor/download/vue-ele-form-data-editor-0.1.4.tgz#7a7eb0eff973bea440d8272244b5381814c852a2"
+  integrity sha1-en6w7/lzvqRA2CciRLU4GBTIUqI=
   dependencies:
     serialize-javascript "^4.0.0"
 

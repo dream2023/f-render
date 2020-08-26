@@ -12,6 +12,7 @@
       <component
         v-show="activeTab === tab.name"
         :is="tab.name"
+        class="f-render-right-content"
         v-for="tab of tabs"
         :key="tab.name"
       />
@@ -84,6 +85,10 @@ export default {
   }
   .el-tabs__active-bar {
     height: 1px !important;
+  }
+
+  .f-render-right-content {
+    margin-bottom: 20px;
   }
 }
 </style>

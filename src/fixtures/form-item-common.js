@@ -77,6 +77,20 @@ export default {
       label: "标签宽度",
       type: "input",
       tip: "需要以`px`作为单位, 例如`100px`, 默认为全局设置的labelWidth值"
+    },
+    displayFormatter: {
+      label: "显示处理函数",
+      type: "data-editor",
+      attrs: {
+        types: ["function"]
+      }
+    },
+    valueFormatter: {
+      label: "最终值处理函数",
+      type: "data-editor",
+      attrs: {
+        types: ["function"]
+      }
     }
   },
   data: {
