@@ -9,7 +9,7 @@
       v-bind="frender.formConfig"
     >
       <template v-slot:form-content="{ props, formDesc, formErrorObj }">
-        <draggable
+        <vue-draggable
           :animation="200"
           v-if="isRenderFinish"
           :disabled="false"
@@ -70,22 +70,15 @@
               </el-col>
             </template>
           </template>
-        </draggable>
+        </vue-draggable>
       </template>
     </ele-form>
   </perfect-scrollbar>
 </template>
 
 <script>
-import draggable from "vuedraggable/src/vuedraggable";
-import { PerfectScrollbar } from "vue2-perfect-scrollbar";
-
 export default {
   inject: ["frender"],
-  components: {
-    draggable,
-    PerfectScrollbar
-  },
   computed: {
     formItemList() {
       return this.frender.formItemList;

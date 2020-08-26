@@ -11,7 +11,7 @@
 
     <!-- 组件列表 -->
     <perfect-scrollbar class="scroll-area">
-      <draggable
+      <vue-draggable
         :clone="handleAddFormItem"
         :group="{ name: 'form', pull: 'clone', put: false }"
         :list="filteredComps"
@@ -27,23 +27,17 @@
           <div class="f-render-comp-title">{{ item.type }}</div>
           <div>{{ item.label }}</div>
         </li>
-      </draggable>
+      </vue-draggable>
     </perfect-scrollbar>
   </div>
 </template>
 
 <script>
 const fuzzy = require("fuzzy");
-import draggable from "vuedraggable/src/vuedraggable";
-import { PerfectScrollbar } from "vue2-perfect-scrollbar";
 import { addFormItem } from "../../utils";
 
 export default {
   inject: ["frender"],
-  components: {
-    PerfectScrollbar,
-    draggable
-  },
   computed: {
     // 支持模糊搜索
     filteredComps() {

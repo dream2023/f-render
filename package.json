@@ -23,7 +23,7 @@
     "lodash": "^4.17.20",
     "prismjs": "^1.21.0",
     "serialize-javascript": "^4.0.0",
-    "vue-ele-form-data-editor": "^0.1.4",
+    "vue-ele-form-data-editor": "^0.1.5",
     "vue-ele-form-dynamic": "^0.4.2",
     "vue-multipane": "^0.9.5",
     "vue-prism-editor": "^1.2.2",

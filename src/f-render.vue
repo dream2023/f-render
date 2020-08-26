@@ -29,14 +29,13 @@
 </template>
 
 <script>
-import Vue from "vue";
+// 全局组件
+import "./extends";
+
 import FRenderLeft from "./components/left/index";
 import FRenderMain from "./components/main/index";
 import FRenderRight from "./components/right/index";
 import { Multipane, MultipaneResizer } from "vue-multipane";
-
-import EleFormDynamic from "vue-ele-form-dynamic";
-import EleFormDataEditor from "vue-ele-form-data-editor";
 
 import _ from "lodash";
 const cloneDeep = require("clone");
@@ -46,9 +45,6 @@ import { objectToArr, arrToObject, removeUselessAttrs } from "./utils";
 import compsDefault from "./fixtures/comps";
 import formPropsDefault from "./fixtures/form-props";
 import formItemCommonDefault from "./fixtures/form-item-common";
-
-Vue.component("dynamic", EleFormDynamic);
-Vue.component("data-editor", EleFormDataEditor);
 
 // 组件的数据，通过 provide / inject 的形式传递给子组件
 // 主要原因是因为组件嵌套过深，相当于一个状态管理
@@ -245,7 +241,6 @@ export default {
   }
 };
 </script>
-<style src="vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.css" />
 
 <style lang="scss">
 .f-render {

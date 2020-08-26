@@ -24,14 +24,12 @@
 import FormProps from "./form-props.vue";
 import FormItemAttrs from "./form-item-attrs.vue";
 import FormItemCommon from "./form-item-common.vue";
-import { PerfectScrollbar } from "vue2-perfect-scrollbar";
 
 export default {
   components: {
     FormProps,
     FormItemAttrs,
-    FormItemCommon,
-    PerfectScrollbar
+    FormItemCommon
   },
   data() {
     return {
