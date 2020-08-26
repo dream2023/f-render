@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.5.0](https://github.com/dream2023/vue-ele-form-generator/compare/v4.4.0...v4.5.0) (2020-08-26)
+
+
+### Features
+
+* 优化体积 ([9618c00](https://github.com/dream2023/vue-ele-form-generator/commit/9618c0017eb5bfe7a0526d07a0ae7b5c4660960e))
+
+
+### Bug Fixes
+
+* 修复 data-editor types 的拼写错误 ([743dc16](https://github.com/dream2023/vue-ele-form-generator/commit/743dc16c45786104d7e5ac52c0771ae75e320bc3))
+* 升级依赖 & 抽离全局组件 ([333e175](https://github.com/dream2023/vue-ele-form-generator/commit/333e175908ddf1c5339aca15dabc615d224cf247))
+* 增加配置 ([6d337f5](https://github.com/dream2023/vue-ele-form-generator/commit/6d337f5494dc8281a59678aec01248e2785081e1))
+
 ## [4.4.0](https://github.com/dream2023/vue-ele-form-generator/compare/v4.3.2...v4.4.0) (2020-08-25)
 
 
