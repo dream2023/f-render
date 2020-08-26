@@ -74,7 +74,8 @@ export default {
           type: "data-editor",
           label: "工具栏",
           attrs: {
-            types: ["object"]
+            types: ["object"],
+            rows: 10
           }
         },
         action: {

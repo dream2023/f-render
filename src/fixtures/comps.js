@@ -3,7 +3,8 @@ const optionsConfig = {
     type: "data-editor",
     label: "选项",
     attrs: {
-      types: ["string", "array", "function", "promise"]
+      types: ["string", "array", "function", "promise"],
+      rows: 10
     },
     tip:
       'options支持`API接口`、`数组`、`函数`、`Promise`等, 具体看<a target="_blank" href="https://www.yuque.com/chaojie-vjiel/vbwzgu/rgenav" class="el-link el-link--primary">文档</a>'
@@ -12,7 +13,8 @@ const optionsConfig = {
     type: "data-editor",
     label: "options 配置",
     attrs: {
-      type: ["object"]
+      types: ["object"],
+      rows: 4
     }
   },
   optionsLinkageFields: {
@@ -193,7 +195,8 @@ export default [
             attrs(data) {
               if (data.autosizeType === "data-editor") {
                 return {
-                  types: ["object"]
+                  types: ["object"],
+                  rows: 4
                 };
               }
             },
@@ -1573,7 +1576,7 @@ export default [
             type: "data-editor",
             label: "预定义颜色",
             attrs: {
-              type: "array"
+              types: ["array"]
             }
           }
         },
@@ -1647,7 +1650,8 @@ export default [
             type: "data-editor",
             label: "配置选项",
             attrs: {
-              type: "object"
+              types: "object",
+              rows: 9
             }
           },
           popperClass: {
@@ -1987,21 +1991,24 @@ export default [
             type: "data-editor",
             label: "自定义列表标题",
             attrs: {
-              types: ["array"]
+              types: ["array"],
+              rows: 4
             }
           },
           buttonTexts: {
             type: "data-editor",
             label: "自定义按钮文案",
             attrs: {
-              types: ["array"]
+              types: ["array"],
+              rows: 4
             }
           },
           format: {
             type: "data-editor",
             label: "列表顶部勾选状态文案",
             attrs: {
-              types: ["object"]
+              types: ["object"],
+              rows: 4
             }
           },
           props: {
@@ -2018,6 +2025,7 @@ export default [
             hasChecked: ""
           },
           props: {},
+          buttonTexts: [],
           titles: ["列表 1", "列表 2"],
           targetOrder: "original",
           filterable: false,
@@ -2067,7 +2075,8 @@ export default [
             type: "data-editor",
             label: "配置选项",
             attrs: {
-              type: "object"
+              types: ["object"],
+              rows: 10
             }
           }
         },
@@ -2585,7 +2594,8 @@ export default [
             label:
               "标记，key 的类型必须为 number 且取值在闭区间 [min, max] 内，每个标记可以单独设置样式",
             attrs: {
-              type: "object"
+              types: ["object"],
+              rows: 4
             }
           }
         },
@@ -2869,7 +2879,8 @@ export default [
             type: "data-editor",
             label: "icon 的颜色(3个元素)",
             attrs: {
-              types: ["array", "object"]
+              types: ["array", "object"],
+              rows: 4
             }
           },
           voidColor: {
@@ -2884,7 +2895,8 @@ export default [
             type: "data-editor",
             label: "icon 的类名",
             attrs: {
-              types: ["array", "object"]
+              types: ["array", "object"],
+              rows: 4
             }
           },
           voidIconClass: {
@@ -2981,7 +2993,7 @@ export default [
             type: "data-editor",
             label: "图片预览列表",
             attrs: {
-              type: ["array"]
+              types: ["array"]
             }
           },
           zIndex: {

@@ -3,7 +3,8 @@ const optionsConfig = {
     type: "data-editor",
     label: "选项",
     attrs: {
-      types: ["string", "array", "function", "promise"]
+      types: ["string", "array", "function", "promise"],
+      rows: 10
     },
     tip:
       'options支持`API接口`、`数组`、`函数`、`Promise`等, 具体看<a target="_blank" href="https://www.yuque.com/chaojie-vjiel/vbwzgu/rgenav" class="el-link el-link--primary">文档</a>'
@@ -12,7 +13,8 @@ const optionsConfig = {
     type: "data-editor",
     label: "options 配置",
     attrs: {
-      type: ["object"]
+      types: ["object"],
+      rows: 4
     }
   },
   optionsLinkageFields: {

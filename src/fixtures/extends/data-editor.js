@@ -50,7 +50,8 @@ export default {
           attrs(data) {
             if (data.autosizeType === "data-editor") {
               return {
-                types: ["object"]
+                types: ["object"],
+                rows: 4
               };
             }
           },

@@ -58,7 +58,8 @@ export default {
           type: "data-editor",
           label: "默认值",
           attrs: {
-            types: ["string", "object"]
+            types: ["string", "object"],
+            rows: 4
           }
         }
       },

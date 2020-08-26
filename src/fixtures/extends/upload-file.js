@@ -31,7 +31,8 @@ export default {
           type: "data-editor",
           label: '文件类型, 例如["png", "jpg", "jpeg"]',
           attrs: {
-            type: ["array"]
+            types: ["array"],
+            rows: 4
           }
         },
         multiple: {
@@ -71,14 +72,14 @@ export default {
           type: "data-editor",
           label: "上传时附带的额外参数",
           attrs: {
-            type: ["object"]
+            types: ["object"]
           }
         },
         headers: {
           type: "data-editor",
           label: "设置上传的请求头部",
           attrs: {
-            type: ["object"]
+            types: ["object"]
           }
         }
       },

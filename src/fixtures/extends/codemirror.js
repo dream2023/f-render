@@ -9,7 +9,8 @@ export default {
           type: "data-editor",
           label: "配置",
           attrs: {
-            types: ["object"]
+            types: ["object"],
+            rows: 10
           }
         }
       },

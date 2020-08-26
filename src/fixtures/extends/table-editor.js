@@ -11,7 +11,8 @@ export default {
           required: true,
           attrs: {
             types: ["array", "object"]
-          }
+          },
+          rows: 12
         },
         isShowDelete: {
           type: "switch",
@@ -36,7 +37,8 @@ export default {
           type: "data-editor",
           label: "校检规则",
           attrs: {
-            types: ["object", "array"]
+            types: ["object", "array"],
+            rows: 10
           }
         },
         extraBtns: {

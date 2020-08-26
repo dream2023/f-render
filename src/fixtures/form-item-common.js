@@ -38,7 +38,8 @@ export default {
       title: "新增校检规则",
       default: [],
       attrs: {
-        type: ["array", "object"]
+        types: ["array", "object"],
+        rows: 10
       },
       tip:
         '校检规则文档, 请<a target="_blank" href="https://www.yuque.com/chaojie-vjiel/vbwzgu/qzzkpd" class="el-link el-link--primary">点击查看</a>'

@@ -9908,10 +9908,10 @@ vue-template-es2015-compiler@^1.9.0:
   resolved "https://registry.npm.taobao.org/vue-template-es2015-compiler/download/vue-template-es2015-compiler-1.9.1.tgz#1ee3bc9a16ecbf5118be334bb15f9c46f82f5825"
   integrity sha1-HuO8mhbsv1EYvjNLsV+cRvgvWCU=
 
-vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.umd.min.js@^1.5.0:
+vue2-perfect-scrollbar@^1.5.0:
   version "1.5.0"
-  resolved "https://registry.npmjs.org/vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.umd.min.js/-/vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.umd.min.js-1.5.0.tgz#f0389874214c8c84cd8576e1a45d62610e2f4541"
-  integrity sha512-hQAjhOX9MP3/ePa/AozKKtpiHSaV0dBlniyt2L7eqC/PsDx+pu7YBmTpM0KR5WlNq5GZwreK6215L8ZG1EHC7w==
+  resolved "https://registry.npm.taobao.org/vue2-perfect-scrollbar/download/vue2-perfect-scrollbar-1.5.0.tgz#f0389874214c8c84cd8576e1a45d62610e2f4541"
+  integrity sha1-8DiYdCFMjITNhXbhpF1iYQ4vRUE=
   dependencies:
     cssnano "^4.1.3"
     perfect-scrollbar "^1.5.0"

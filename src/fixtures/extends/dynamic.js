@@ -20,7 +20,8 @@ export default {
           tip:
             "当columns为数组时, 则rules必须为对象类型, 指定校检字段, 当columns为对象时, 则rules为数组类型",
           attrs: {
-            types: ["array", "object"]
+            types: ["array", "object"],
+            rows: 10
           }
         },
         delimiter: {
