@@ -22,6 +22,7 @@
         <li
           v-for="item of filteredComps"
           :key="item.type"
+          @click="handleDoubleClick(item)"
           class="f-render-comp"
         >
           <div class="f-render-comp-title">{{ item.type }}</div>
@@ -53,12 +54,22 @@ export default {
     };
   },
   methods: {
-    // 拖拽后新增表单项
-    handleAddFormItem(config) {
+    // 获取数据
+    getFormItem(config) {
       return addFormItem({
         config,
         commonData: this.frender.formItemCommon.data
       });
+    },
+    // 双击添加表单
+    handleDoubleClick(config) {
+      this.frender.updateFormItemList(
+        this.frender.formItemList.concat(this.getFormItem(config))
+      );
+    },
+    // 拖拽后新增表单项
+    handleAddFormItem(config) {
+      return this.getFormItem(config);
     }
   }
 };
@@ -80,7 +91,6 @@ export default {
     width: 115px;
     line-height: 1.5em;
     color: #606266;
-    cursor: move;
     border: 1px solid #ebeef5;
     overflow: hidden;
     white-space: nowrap;
