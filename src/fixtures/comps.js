@@ -343,9 +343,9 @@ export default [
           default: {
             type: "select",
             label: "默认值",
-            options: data => {
-              return typeof data.options === "string" ? [] : data.options;
-            }
+            prop: data => data.prop,
+            optionsLinkageFields: data => data.optionsLinkageFields,
+            options: data => data.options
           }
         },
         requiredData: {
@@ -473,7 +473,8 @@ export default [
           default: {
             type: "checkbox",
             label: "默认值",
-
+            prop: data => data.prop,
+            optionsLinkageFields: data => data.optionsLinkageFields,
             options: data => data.options
           }
         },
@@ -511,7 +512,8 @@ export default [
           default: {
             type: "radio",
             label: "默认值",
-
+            prop: data => data.prop,
+            optionsLinkageFields: data => data.optionsLinkageFields,
             options: data => data.options
           }
         },
@@ -1644,7 +1646,8 @@ export default [
           default: {
             type: "cascader",
             label: "默认值",
-
+            prop: data => data.prop,
+            optionsLinkageFields: data => data.optionsLinkageFields,
             options: data => data.options
           }
         },
@@ -1994,11 +1997,16 @@ export default [
           default: {
             type: "select",
             label: "默认值",
-            options: data =>
-              data.options.map(item => ({
-                text: item.label,
-                value: item.key
-              })),
+            prop: data => data.prop,
+            optionsLinkageFields: data => data.optionsLinkageFields,
+            options: data => {
+              return Array.isArray(data.options)
+                ? data.options.map(item => ({
+                    text: item.label,
+                    value: item.key
+                  }))
+                : data.options;
+            },
             attrs: {
               multiple: true
             }
@@ -2051,6 +2059,8 @@ export default [
           default: {
             type: "cascader",
             label: "默认值",
+            prop: data => data.prop,
+            optionsLinkageFields: data => data.optionsLinkageFields,
             options: data => data.options
           }
         },
@@ -2607,7 +2617,8 @@ export default [
           default: {
             type: "radio",
             label: "默认值",
-
+            prop: data => data.prop,
+            optionsLinkageFields: data => data.optionsLinkageFields,
             options: data => data.options
           }
         },
@@ -2674,7 +2685,8 @@ export default [
           default: {
             type: "checkbox",
             label: "默认值",
-
+            prop: data => data.prop,
+            optionsLinkageFields: data => data.optionsLinkageFields,
             options: data => data.options
           }
         },

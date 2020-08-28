@@ -82,6 +82,8 @@ export default {
         default: {
           type: "tree-select",
           label: "默认值",
+          prop: data => data.prop,
+          optionsLinkageFields: data => data.optionsLinkageFields,
           options: data => data.options
         }
       },

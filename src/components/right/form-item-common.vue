@@ -79,18 +79,17 @@ export default {
     // 字段出现的次数
     fieldCountObj() {
       return _.countBy(this.formItemList, o => o.field);
-    },
-    formDesc() {
-      // 合并固定配置和自定义配置
+    }
+  },
+  watch: {
+    customConfig() {
       const formDesc = Object.assign(
         {},
         this.frender.formItemCommon.config,
         this.customConfig
       );
-      return changeFormDescLabel(formDesc);
-    }
-  },
-  watch: {
+      this.formDesc = changeFormDescLabel(formDesc);
+    },
     currentIndex: {
       // 默认值在保存后会被删除
       // 所以在回显的时候就会有问题，这里需要重新赋值
@@ -109,6 +108,7 @@ export default {
   },
   data() {
     return {
+      formDesc: {},
       rules: {
         field: [
           {

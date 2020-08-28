@@ -7,6 +7,7 @@
       height="calc(100vh - 60px)"
       :config="formConfig"
       v-model="formData"
+      :options-fn="$axios.get"
     />
   </div>
 </template>
