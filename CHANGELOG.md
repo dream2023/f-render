@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.6.0](https://github.com/dream2023/vue-ele-form-generator/compare/v4.5.0...v4.6.0) (2020-08-28)
+
+
+### Features
+
+* 增加点击添加功能 ([f8c53d9](https://github.com/dream2023/vue-ele-form-generator/commit/f8c53d9396e22dea7611cf3d13398bcbc4fac897))
+* 增加order属性, 避免回显时不一致 ([d81c4f4](https://github.com/dream2023/vue-ele-form-generator/commit/d81c4f43050112bfd47f458b8fb160993a94b4b2))
+
+
+### Bug Fixes
+
+* 处理 options 相关问题 ([ffef651](https://github.com/dream2023/vue-ele-form-generator/commit/ffef651e571037b501ce801be9c47598037e1801))
+
 ## [4.5.0](https://github.com/dream2023/vue-ele-form-generator/compare/v4.4.0...v4.5.0) (2020-08-26)
 
 
