@@ -163,7 +163,9 @@ export default {
               this.getAttrsDefaultData(formItem.type)
             )
           };
-        })
+        }),
+        // 强制排序，避免对象属性回显时不一样
+        order: this.formItemList.map(item => item.field)
       };
     },
     // 当前的表单项（provide）
