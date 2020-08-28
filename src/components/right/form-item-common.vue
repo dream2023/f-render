@@ -1,18 +1,23 @@
 <template>
   <div>
-    <template v-if="currentFormItem">
+    <template v-if="currentFormItem && currentIndex !== null">
       <attrs-header
         url="https://www.yuque.com/chaojie-vjiel/vbwzgu/iw5dzf"
         title="通用配置"
         v-model="keyword"
       />
+      <!-- 这里不能用 v-model 会产生循环引用 -->
       <ele-form
-        v-model="formItemList[currentIndex]"
+        :formData="formItemList[currentIndex]"
         :formDesc="filteredFormDesc"
         :formAttrs="{ size: 'small' }"
         :isShowBackBtn="false"
         :isShowSubmitBtn="false"
         :rules="rules"
+        :options-fn="
+          frender.formBindConfig['options-fn'] ||
+            frender.formBindConfig['optionsFn']
+        "
         :span="20"
         labelPosition="top"
       >
@@ -85,6 +90,23 @@ export default {
       return changeFormDescLabel(formDesc);
     }
   },
+  watch: {
+    currentIndex: {
+      // 默认值在保存后会被删除
+      // 所以在回显的时候就会有问题，这里需要重新赋值
+      handler(currentIndex) {
+        if (currentIndex === null) return;
+        const currentFormItem = Object.assign(
+          {},
+          this.frender.formItemCommon.data,
+          this.currentFormItem
+        );
+
+        this.frender.updateCurrentFormItem(currentFormItem);
+      },
+      immediate: true
+    }
+  },
   data() {
     return {
       rules: {
@@ -123,15 +145,6 @@ export default {
       } catch (error) {
         // eslint-disable-next-line no-console
         console.error(error);
-      }
-    }
-  },
-  watch: {
-    // 对 layout 特殊处理
-    // 如果发现 layout 为 undefined，则赋值为 24
-    "currentFormItem.layout"(val) {
-      if (!val) {
-        this.frender.updateCurrentFormItem({ layout: 24 });
       }
     }
   }

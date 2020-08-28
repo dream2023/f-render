@@ -15,6 +15,7 @@ export default {
     layout: {
       type: "slider",
       label: "宽度",
+      default: 24,
       attrs: {
         min: 1,
         max: 24,
@@ -43,6 +44,31 @@ export default {
       },
       tip:
         '校检规则文档, 请<a target="_blank" href="https://www.yuque.com/chaojie-vjiel/vbwzgu/qzzkpd" class="el-link el-link--primary">点击查看</a>'
+    },
+    options: {
+      type: "data-editor",
+      label: "选项",
+      attrs: {
+        types: ["string", "array", "function", "promise"],
+        rows: 10
+      },
+      vif: data => data.isOptions,
+      tip:
+        'options支持`API接口`、`数组`、`函数`、`Promise`等, 具体看<a target="_blank" href="https://www.yuque.com/chaojie-vjiel/vbwzgu/rgenav" class="el-link el-link--primary">文档</a>'
+    },
+    prop: {
+      type: "data-editor",
+      label: "options 配置",
+      vif: data => data.isOptions,
+      attrs: {
+        types: ["object"],
+        rows: 4
+      }
+    },
+    optionsLinkageFields: {
+      type: "dynamic",
+      vif: data => data.isOptions,
+      label: "options 关联属性"
     },
     vif: {
       type: "data-editor",
@@ -99,6 +125,11 @@ export default {
     vif: true,
     disabled: false,
     rules: [],
-    layout: 24
+    layout: 24,
+    prop: {
+      text: "text",
+      value: "value"
+    },
+    optionsLinkageFields: []
   }
 };

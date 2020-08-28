@@ -1933,6 +1933,13 @@ aws4@^1.8.0:
   resolved "https://registry.npm.taobao.org/aws4/download/aws4-1.10.1.tgz?cache=0&sync_timestamp=1597236947743&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Faws4%2Fdownload%2Faws4-1.10.1.tgz#e1e82e4f3e999e2cfd61b161280d16a111f86428"
   integrity sha1-4eguTz6Zniz9YbFhKA0WoRH4ZCg=
 
+axios@^0.20.0:
+  version "0.20.0"
+  resolved "https://registry.npmjs.org/axios/-/axios-0.20.0.tgz#057ba30f04884694993a8cd07fa394cff11c50bd"
+  integrity sha512-ANA4rr2BDcmmAQLOKft2fufrtuvlqR+cXNNinUmvfeSNCOF98PZL+7M/v1zIdGo7OLjEA9J2gXJL+j4zGsl0bA==
+  dependencies:
+    follow-redirects "^1.10.0"
+
 babel-eslint@^10.1.0:
   version "10.1.0"
   resolved "https://registry.npm.taobao.org/babel-eslint/download/babel-eslint-10.1.0.tgz#6968e568a910b78fb3779cdd8b6ac2f479943232"
@@ -4515,7 +4522,7 @@ flush-write-stream@^1.0.0:
     inherits "^2.0.3"
     readable-stream "^2.3.6"
 
-follow-redirects@^1.0.0:
+follow-redirects@^1.0.0, follow-redirects@^1.10.0:
   version "1.13.0"
   resolved "https://registry.npm.taobao.org/follow-redirects/download/follow-redirects-1.13.0.tgz?cache=0&sync_timestamp=1597057976909&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Ffollow-redirects%2Fdownload%2Ffollow-redirects-1.13.0.tgz#b42e8d93a2a7eea5ed88633676d6597bc8e384db"
   integrity sha1-tC6Nk6Kn7qXtiGM2dtZZe8jjhNs=
@@ -9812,10 +9819,10 @@ vm-browserify@^1.0.1:
   resolved "https://registry.npm.taobao.org/vm-browserify/download/vm-browserify-1.1.2.tgz?cache=0&sync_timestamp=1589682787766&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fvm-browserify%2Fdownload%2Fvm-browserify-1.1.2.tgz#78641c488b8e6ca91a75f511e7a3b32a86e5dda0"
   integrity sha1-eGQcSIuObKkadfUR56OzKobl3aA=
 
-vue-ele-form-data-editor@^0.1.5:
-  version "0.1.5"
-  resolved "https://registry.npm.taobao.org/vue-ele-form-data-editor/download/vue-ele-form-data-editor-0.1.5.tgz#da89c9103050476d1d0062b823fee7846c557e7a"
-  integrity sha1-2onJEDBQR20dAGK4I/7nhGxVfno=
+vue-ele-form-data-editor@^0.1.6:
+  version "0.1.6"
+  resolved "https://registry.npmjs.org/vue-ele-form-data-editor/-/vue-ele-form-data-editor-0.1.6.tgz#51e1c0ae512d77505b0d72c63a3f3c50bca9db2c"
+  integrity sha512-8Cr9/DNZcrBvOODqkrB24ww8+eufSdxjE9uafTDcgMi4KCTq/dIh4sdTty1i6YHi42sK9nQZuRTQRk/7jER/kQ==
   dependencies:
     serialize-javascript "^4.0.0"
 
@@ -9827,10 +9834,10 @@ vue-ele-form-dynamic@^0.4.2:
     async-validator "^3.2.0"
     fast-deep-equal "^3.1.1"
 
-vue-ele-form@^0.8.35:
-  version "0.8.35"
-  resolved "https://registry.npmjs.org/vue-ele-form/-/vue-ele-form-0.8.35.tgz#0da43d117673a100e58e930180b9cb3866fd1582"
-  integrity sha512-xgEgQAt0R8sLwAtzUeVIOVnqTPrHx1BYSLp/hwE2r1wmsXmKRWIfOrq8O59/ho/k2oJtwTa/QbeycwcC0g/5iw==
+vue-ele-form@^0.8.36:
+  version "0.8.36"
+  resolved "https://registry.npmjs.org/vue-ele-form/-/vue-ele-form-0.8.36.tgz#2ec241fb8133dda02126245350dc657a9bf92535"
+  integrity sha512-cszvbeGUNCGZ+VwTsg3bHPFlKIOKpLdb+POA+6gMaVFfIAHmgsv6vmTnYR17bp2JfFZpkZwypJE25m83vcGuxQ==
   dependencies:
     clone "^2.1.2"
     dayjs "^1.8.31"

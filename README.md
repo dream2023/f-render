@@ -10,7 +10,6 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-
 - [交流群](#%E4%BA%A4%E6%B5%81%E7%BE%A4)
 - [介绍](#%E4%BB%8B%E7%BB%8D)
 - [注意](#%E6%B3%A8%E6%84%8F)
@@ -394,12 +393,10 @@ export default {
 
 如果你或者你的公司需要`付费`源码讲解和答疑，可加我微信：`dream10nian`。当然也有也有免费的交流群，也是加这个微信。
 
-## f-render 不能做什么？
+## f-render 问答集锦
 
-由于 `vue-ele-form` 原因，
-
-- f-render 不支持嵌套的子表单
-- 布局由于使用了 `el-row` 和 `el-col`，所以仅支持行布局
+- [1、f-render 不能做什么？](https://www.yuque.com/chaojie-vjiel/vbwzgu/adz8q8#0nlfc)
+- [2、怎么实现 options URL 配置？](https://www.yuque.com/chaojie-vjiel/vbwzgu/adz8q8#gvS8c)
 
 ## Props 说明
 
@@ -449,11 +446,11 @@ props: {
   loading: Boolean,
 
   // 表单相关（pure 为 true 时）, 同 vue-ele-form
-  // https://www.yuque.com/chaojie-vjiel/vbwzgu/zbu9mn
-  value: Object,
+  // https://www.yuque.com/chaojie-vjiel/vbwzgu/dyw8a7
   requestFn: Function,
   isLoading: Boolean,
-  formError: Object
+  formError: Object,
+  // ....
 },
 ```
 

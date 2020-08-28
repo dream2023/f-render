@@ -6,7 +6,13 @@ import EleForm from "vue-ele-form";
 import EleDynamic from "vue-ele-form-dynamic";
 import "element-ui/lib/theme-chalk/index.css";
 import "normalize.css";
+import axios from "axios";
 
+axios.interceptors.response.use(response => {
+  // 将响应结果返回
+  return response.data;
+});
+Vue.prototype.$axios = axios;
 Vue.config.productionTip = false;
 Vue.use(ElementUI);
 Vue.use(EleForm, {

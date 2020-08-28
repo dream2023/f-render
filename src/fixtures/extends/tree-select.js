@@ -1,35 +1,3 @@
-const optionsConfig = {
-  options: {
-    type: "data-editor",
-    label: "选项",
-    attrs: {
-      types: ["string", "array", "function", "promise"],
-      rows: 10
-    },
-    tip:
-      'options支持`API接口`、`数组`、`函数`、`Promise`等, 具体看<a target="_blank" href="https://www.yuque.com/chaojie-vjiel/vbwzgu/rgenav" class="el-link el-link--primary">文档</a>'
-  },
-  prop: {
-    type: "data-editor",
-    label: "options 配置",
-    attrs: {
-      types: ["object"],
-      rows: 4
-    }
-  },
-  optionsLinkageFields: {
-    type: "dynamic",
-    label: "options 关联属性"
-  }
-};
-
-const optionsConfigData = {
-  prop: {
-    text: "text",
-    value: "value"
-  },
-  optionsLinkageFields: []
-};
 export default {
   type: "tree-select",
   label: "树形下拉选择器",
@@ -115,13 +83,10 @@ export default {
           type: "tree-select",
           label: "默认值",
           options: data => data.options
-        },
-        ...optionsConfig
-      },
-      defaultData: {
-        ...optionsConfigData
+        }
       },
       requiredData: {
+        isOptions: true,
         options: [
           {
             id: "a",

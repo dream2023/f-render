@@ -1,36 +1,3 @@
-const optionsConfig = {
-  options: {
-    type: "data-editor",
-    label: "选项",
-    attrs: {
-      types: ["string", "array", "function", "promise"],
-      rows: 10
-    },
-    tip:
-      'options支持`API接口`、`数组`、`函数`、`Promise`等, 具体看<a target="_blank" href="https://www.yuque.com/chaojie-vjiel/vbwzgu/rgenav" class="el-link el-link--primary">文档</a>'
-  },
-  prop: {
-    type: "data-editor",
-    label: "options 配置",
-    attrs: {
-      types: ["object"],
-      rows: 4
-    }
-  },
-  optionsLinkageFields: {
-    type: "dynamic",
-    label: "options 关联属性"
-  }
-};
-
-const optionsConfigData = {
-  prop: {
-    text: "text",
-    value: "value"
-  },
-  optionsLinkageFields: []
-};
-
 export default [
   {
     type: "input",
@@ -376,14 +343,13 @@ export default [
           default: {
             type: "select",
             label: "默认值",
-            options: data => data.options
-          },
-          ...optionsConfig
-        },
-        defaultData: {
-          ...optionsConfigData
+            options: data => {
+              return typeof data.options === "string" ? [] : data.options;
+            }
+          }
         },
         requiredData: {
+          isOptions: true,
           options: [
             { text: "选项1", value: 1 },
             { text: "选项2", value: 2 },
@@ -509,13 +475,10 @@ export default [
             label: "默认值",
 
             options: data => data.options
-          },
-          ...optionsConfig
-        },
-        defaultData: {
-          ...optionsConfigData
+          }
         },
         requiredData: {
+          isOptions: true,
           options: [
             { text: "选项1", value: 1 },
             { text: "选项2", value: 2 },
@@ -550,13 +513,10 @@ export default [
             label: "默认值",
 
             options: data => data.options
-          },
-          ...optionsConfig
-        },
-        defaultData: {
-          ...optionsConfigData
+          }
         },
         requiredData: {
+          isOptions: true,
           options: [
             { text: "选项1", value: 1 },
             { text: "选项2", value: 2 },
@@ -1686,13 +1646,10 @@ export default [
             label: "默认值",
 
             options: data => data.options
-          },
-          ...optionsConfig
-        },
-        defaultData: {
-          ...optionsConfigData
+          }
         },
         requiredData: {
+          isOptions: true,
           options: [
             {
               value: "zhinan",
@@ -2045,13 +2002,10 @@ export default [
             attrs: {
               multiple: true
             }
-          },
-          ...optionsConfig
-        },
-        defaultData: {
-          ...optionsConfigData
+          }
         },
         requiredData: {
+          isOptions: true,
           options: [
             { key: 1, label: "选项1" },
             { key: 2, label: "选项3" },
@@ -2097,15 +2051,11 @@ export default [
           default: {
             type: "cascader",
             label: "默认值",
-
             options: data => data.options
-          },
-          ...optionsConfig
-        },
-        defaultData: {
-          ...optionsConfigData
+          }
         },
         requiredData: {
+          isOptions: true,
           options: [
             {
               value: "zhinan",
@@ -2659,13 +2609,10 @@ export default [
             label: "默认值",
 
             options: data => data.options
-          },
-          ...optionsConfig
-        },
-        defaultData: {
-          ...optionsConfigData
+          }
         },
         requiredData: {
+          isOptions: true,
           options: [
             { text: "选项1", value: 1 },
             { text: "选项2", value: 2 },
@@ -2729,13 +2676,10 @@ export default [
             label: "默认值",
 
             options: data => data.options
-          },
-          ...optionsConfig
-        },
-        defaultData: {
-          ...optionsConfigData
+          }
         },
         requiredData: {
+          isOptions: true,
           options: [
             { text: "选项1", value: 1 },
             { text: "选项2", value: 2 },
@@ -3132,14 +3076,10 @@ export default [
           default: {
             type: "input",
             label: "默认值"
-          },
-          ...optionsConfig
-        },
-        defaultData: {
-          options: [],
-          ...optionsConfigData
+          }
         },
         requiredData: {
+          isOptions: true,
           default: "我是一段静态文本"
         }
       }

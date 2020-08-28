@@ -17,11 +17,8 @@
 
   <!-- 2.使用 -->
   <ele-form
-    v-bind="formConfig"
+    v-bind="formBindConfig"
     :formData="value"
-    :requestFn="requestFn"
-    :isLoading="isLoading"
-    :formError="formError"
     v-on="$listeners"
     @input="$emit('input', value)"
     v-else-if="isShowPure"
@@ -30,7 +27,7 @@
 
 <script>
 // 全局组件
-import "./extends";
+import "./global-components";
 
 import FRenderLeft from "./components/left/index";
 import FRenderMain from "./components/main/index";
@@ -110,10 +107,7 @@ export default {
 
     // 表单相关（pure 为 true 时）, 同 vue-ele-form
     // https://www.yuque.com/chaojie-vjiel/vbwzgu/zbu9mn
-    value: Object,
-    requestFn: Function,
-    isLoading: Boolean,
-    formError: Object
+    value: Object
   },
   watch: {
     config: {
@@ -139,11 +133,21 @@ export default {
         }
         this.formConfig = formConfig;
         this.formItemList = objectToArr(formConfig.formDesc, "field");
+
+        // 当有数据时，选中第一个
+        if (this.formItemList.length) {
+          this.currentIndex = 0;
+        }
       },
       immediate: true
     }
   },
   computed: {
+    // 表单绑定的配置
+    // 融合了 $attrs
+    formBindConfig() {
+      return { ...this.changedFormConfig, ...this.$attrs };
+    },
     // 最终的返回结果
     changedFormConfig() {
       return {
@@ -196,7 +200,7 @@ export default {
       // formDesc 的数组形态（provide）
       formItemList: [],
       // 当前 formItem的 index 值（provide）
-      currentIndex: 0
+      currentIndex: null
     };
   },
   methods: {

@@ -6,7 +6,7 @@
       @request-success="handleSuccess"
       ref="ele-form"
       :formDesc="frender.formDesc"
-      v-bind="frender.formConfig"
+      v-bind="frender.formBindConfig"
     >
       <template v-slot:form-content="{ props, formDesc, formErrorObj }">
         <vue-draggable

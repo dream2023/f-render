@@ -93,6 +93,7 @@ export default {
     color: #606266;
     border: 1px solid #ebeef5;
     overflow: hidden;
+    cursor: move;
     white-space: nowrap;
     display: inline-block;
     text-overflow: ellipsis;

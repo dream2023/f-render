@@ -1,3 +1,4 @@
+const isProd = process.env.NODE_ENV === "production";
 module.exports = {
   root: true,
   env: {
@@ -8,12 +9,9 @@ module.exports = {
     parser: "babel-eslint"
   },
   rules: {
-    "vue/no-unused-components":
-      process.env.NODE_ENV === "production" ? "error" : "warn",
-    "no-console":
-      process.env.NODE_ENV === "production"
-        ? ["error", { allow: ["warn", "error"] }]
-        : "off",
-    "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off"
+    "no-unused-vars": isProd ? "error" : "warn",
+    "vue/no-unused-components": isProd ? "error" : "warn",
+    "no-console": isProd ? ["error", { allow: ["warn", "error"] }] : "off",
+    "no-debugger": isProd ? "warn" : "off"
   }
 };
