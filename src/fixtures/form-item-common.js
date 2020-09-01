@@ -49,7 +49,7 @@ export default {
       type: "data-editor",
       label: "选项",
       attrs: {
-        types: ["string", "array", "function", "promise"],
+        types: ["string", "array", "function", "promise", "asyncfunction"],
         rows: 10
       },
       vif: data => data.isOptions,

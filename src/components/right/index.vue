@@ -36,7 +36,7 @@ export default {
       activeTab: "form-item-common",
       tabs: [
         {
-          label: "组件通用配置",
+          label: "表单项属性配置",
           name: "form-item-common"
         },
         {
