@@ -1,6 +1,6 @@
 {
   "name": "f-render",
-  "version": "4.6.1",
+  "version": "4.6.2",
   "private": false,
   "license": "MIT",
   "description": "f-render | 基于 vue-ele-form 的表单设计器",
