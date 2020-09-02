@@ -251,9 +251,9 @@ Vue.component("quill-editor", EleFormQuillEditor);
 
 <script>
 // 默认配置
-import comps from "f-render/fixtures/comps";
+import comps from "f-render/src/fixtures/comps";
 // 富文本配置
-import quillEditor from "f-render/fixtures/extends/quill-editor";
+import quillEditor from "f-render/src/fixtures/extends/quill-editor";
 // 可以更改显示组件位置，默认为 10
 // 这里更改为 2，显示更靠前
 quillEditor.sort = 2
@@ -348,7 +348,7 @@ export default {
 </template>
 
 <script>
-  import comps from "f-render/fixtures/comps";
+  import comps from "f-render/src/fixtures/comps";
   import customUrl from "some/path/custom-url";
   export default {
     data() {
@@ -362,10 +362,10 @@ export default {
 
 ### 定制化原组件配置 & 表单配置
 
-- 组件配置目录：`src/fixtures/comps.js`
-- 表单配置目录：`src/fixtures/form-props.js`
-- 表单项通用属性配置：`src/fixtures/form-item-common.js`
-- 扩展组件目录：`src/fixtures/extends`
+- 组件配置目录：`f-render/src/fixtures/comps.js`
+- 表单配置目录：`f-render/src/fixtures/form-props.js`
+- 表单项通用属性配置：`f-render/src/fixtures/form-item-common.js`
+- 扩展组件目录：`f-render/src/fixtures/extends/[扩展组件名].js`
 
 如果你想修改组件属性或者表单的属性，减少或者增加组件，可以将上述文件`拷贝到自己的项目`目录，参考上述配置说明，进行更改，并传入即可：
 
