@@ -140,14 +140,17 @@ export default {
         }
       },
       immediate: true
+    },
+    changedFormConfig: {
+      // 表单绑定的配置
+      // 融合了 $attrs
+      handler(formConfig) {
+        this.formBindConfig = { ...formConfig, ...this.$attrs };
+      },
+      immediate: true
     }
   },
   computed: {
-    // 表单绑定的配置
-    // 融合了 $attrs
-    formBindConfig() {
-      return { ...this.changedFormConfig, ...this.$attrs };
-    },
     // 最终的返回结果
     changedFormConfig() {
       return {
@@ -196,9 +199,10 @@ export default {
   },
   data() {
     return {
+      // 融合了配置 和 attrs
+      formBindConfig: {},
+      // 表单配置
       formConfig: {},
-      // 保存
-      formData: {},
       // formDesc 的数组形态（provide）
       formItemList: [],
       // 当前 formItem的 index 值（provide）

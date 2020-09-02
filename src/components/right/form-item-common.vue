@@ -3,7 +3,7 @@
     <template v-if="currentFormItem && currentIndex !== null">
       <attrs-header
         url="https://www.yuque.com/chaojie-vjiel/vbwzgu/iw5dzf"
-        title="通用配置"
+        title="表单项配置"
         v-model="keyword"
       />
       <!-- 这里不能用 v-model 会产生循环引用 -->

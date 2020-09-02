@@ -52,16 +52,16 @@
     "sass-loader": "^8.0.2",
     "standard-version": "^9.0.0",
     "vue": "^2.6.11",
-    "vue-ele-form": "^0.8.41",
+    "vue-ele-form": "^0.8.42",
     "vue-template-compiler": "^2.6.11"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/dream2023/vue-ele-form-generator"
+    "url": "https://github.com/dream2023/f-render"
   },
   "keywords": [
     "vue-ele-form",
-    "vue-ele-form-generator",
+    "f-render",
     "form-schema",
     "vue-form",
     "form-designer",

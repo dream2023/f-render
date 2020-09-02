@@ -286,6 +286,15 @@ export default [
             type: "switch",
             label: "是否为远程搜索"
           },
+          remoteMethod: {
+            type: "data-editor",
+            label: "远程搜索方法",
+            attrs: {
+              types: ["function", "asyncfunction"]
+            },
+            tip:
+              '具体可查看文档：<a target="_blank" href="https://www.yuque.com/chaojie-vjiel/vbwzgu/rgenav#0GZqL" class="el-link el-link--primary">点击查看</a>'
+          },
           loadingText: {
             type: "input",
             label: "远程加载时显示的文字"

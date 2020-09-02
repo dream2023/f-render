@@ -321,7 +321,7 @@ export default {
         name: "url"
       }
     },
-    // 通用配置，是 FormDesc 中非 attrs 的其它配置，
+    // 表单项配置，是 FormDesc 中非 attrs 的其它配置，
     // 具体可看：https://www.yuque.com/chaojie-vjiel/vbwzgu/iw5dzf#hl4pm
     common: {
       config: {
@@ -427,7 +427,7 @@ props: {
     type: Object,
     default: () => formProps
   },
-  // 表单项通用配置
+  // 表单项配置
   formItemCommon: {
     type: Object,
     default: () => formItemCommonDefault
