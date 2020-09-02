@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.7.0](https://github.com/dream2023/f-render/compare/v4.6.1...v4.7.0) (2020-09-02)
+
+
+### Features
+
+* 增加 remoteMethod ([f19e705](https://github.com/dream2023/f-render/commit/f19e70583badf51f98a0871063c8c785257069f2))
+
+
+### Bug Fixes
+
+* 修复BUG & 升级依赖 ([3134a5c](https://github.com/dream2023/f-render/commit/3134a5cc0608abe4b838dc94067564b79701e872))
+
 ### [4.6.2](https://github.com/dream2023/f-render/compare/v4.6.1...v4.6.2) (2020-09-01)
 
 ### Bug Fixes
