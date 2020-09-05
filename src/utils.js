@@ -113,10 +113,6 @@ export function reomveQuotes(str) {
 export function removeUselessAttrs(obj = {}, defaultObj = {}) {
   const isEmpty = val => _.isNil(val);
   const isDefault = (val, key) => equal(val, defaultObj[key]);
-  const isHide = key => (key || "").startsWith("_");
 
-  return _.omitBy(
-    obj,
-    (val, key) => isEmpty(val) || isHide(key) || isDefault(val, key)
-  );
+  return _.omitBy(obj, (val, key) => isEmpty(val) || isDefault(val, key));
 }

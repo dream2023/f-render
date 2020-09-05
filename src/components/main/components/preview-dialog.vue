@@ -9,7 +9,7 @@
     @closed="isShowContent = false"
   >
     <ele-form
-      v-bind="formConfig"
+      v-bind="frender.formBindConfig"
       v-model="formData"
       :visible="visible"
       v-if="isShowContent"
@@ -21,8 +21,6 @@
 </template>
 
 <script>
-const cloneDeep = require("clone");
-
 export default {
   inject: ["frender"],
   props: {
@@ -43,15 +41,14 @@ export default {
   watch: {
     visible(val) {
       if (val) {
-        // 因为 ele-form 会自动添加一些隐藏属性，所以，这里复制一份，避免修改原数据
-        this.formConfig = cloneDeep(this.frender.formBindConfig);
+        // 重置数据
         this.formData = {};
       }
     }
   },
   methods: {
     handleRequest(data) {
-      // eslint-disable-next-line no-console
+      // eslint-disable-next-line
       console.log(data);
       return Promise.resolve(data);
     },
