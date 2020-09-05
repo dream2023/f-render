@@ -20,7 +20,7 @@
         :span="20"
         labelPosition="top"
       >
-        <template v-slot:rules="{ desc, field, type }">
+        <template v-slot:rules="{ desc, formData, field, type }">
           <div style="margin-bottom: 20px">
             <el-button @click="isShowRuleDialog = true" type="danger"
               >新增校检规则</el-button
@@ -30,7 +30,7 @@
             :desc="desc"
             :is="type"
             :field="field"
-            :value="currentFormItem[field] || []"
+            v-model="formData[field]"
           />
           <form-item-rules :visible.sync="isShowRuleDialog" />
         </template>
