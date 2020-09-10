@@ -16,6 +16,9 @@ export default {
       type: "slider",
       label: "宽度",
       default: 24,
+      displayFormatter(val) {
+        return val || 24;
+      },
       attrs: {
         min: 1,
         max: 24,
