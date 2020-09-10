@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.7.2](https://github.com/dream2023/f-render/compare/v4.7.1...v4.7.2) (2020-09-10)
+
+
+### Bug Fixes
+
+* **#49:** 增加强制换行属性 ([fbbb9a5](https://github.com/dream2023/f-render/commit/fbbb9a5423ebd6d067e42f4e4de66e949e468065)), closes [#49](https://github.com/dream2023/f-render/issues/49)
+* form-props 和 form-item-common 增加default ([b16c006](https://github.com/dream2023/f-render/commit/b16c006b45c176cce4fbe060a1159d5968c40118))
+* layout 会缩小 ([302bb06](https://github.com/dream2023/f-render/commit/302bb06549b8df2f2e12add2a45b43610e4fced3))
+
 ### [4.7.1](https://github.com/dream2023/f-render/compare/v4.7.0...v4.7.1) (2020-09-05)
 
 
