@@ -123,6 +123,10 @@ export default {
       type: "input",
       tip: "需要以`px`作为单位, 例如`100px`, 默认为全局设置的labelWidth值"
     },
+    break: {
+      label: "强制折行",
+      type: "switch"
+    },
     displayFormatter: {
       label: "显示处理函数",
       type: "data-editor",

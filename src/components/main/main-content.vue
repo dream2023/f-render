@@ -33,7 +33,10 @@
                 @click.native="handleFormItemClick(index)"
                 v-if="formItem._vif"
                 class="form-item"
-                :class="{ 'form-item-active': currentIndex === index }"
+                :class="{
+                  'ele-form-col--break': formItem.break,
+                  'form-item-active': currentIndex === index
+                }"
               >
                 <el-form-item
                   :error="formErrorObj ? formErrorObj[field] : null"
