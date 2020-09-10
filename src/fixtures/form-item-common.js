@@ -1,3 +1,19 @@
+import clone from "clone";
+
+const defaultData = {
+  isShowLabel: true,
+  labelWidth: undefined,
+  vif: true,
+  disabled: false,
+  rules: [],
+  layout: 24,
+  prop: {
+    text: "text",
+    value: "value"
+  },
+  optionsLinkageFields: []
+};
+
 export default {
   config: {
     field: {
@@ -122,17 +138,9 @@ export default {
       }
     }
   },
-  data: {
-    isShowLabel: true,
-    labelWidth: undefined,
-    vif: true,
-    disabled: false,
-    rules: [],
-    layout: 24,
-    prop: {
-      text: "text",
-      value: "value"
-    },
-    optionsLinkageFields: []
-  }
+  // 默认值，如果是自定义值的话，不用管
+  // 主要作用时，最后显示的时候，通过比对 default 和 data，删除未变化的值
+  default: clone(defaultData),
+  // 覆盖值
+  data: clone(defaultData)
 };

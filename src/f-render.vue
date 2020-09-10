@@ -154,7 +154,7 @@ export default {
     // 最终的返回结果
     changedFormConfig() {
       return {
-        ...removeUselessAttrs(this.formConfig, this.formProps.data),
+        ...removeUselessAttrs(this.formConfig, this.formProps.default),
         formDesc: _.mapValues(this.formDesc, formItem => {
           return {
             ...removeUselessAttrs(
@@ -242,7 +242,7 @@ export default {
       return {
         ...data,
         // 通用默认值
-        ...this.formItemCommon.data
+        ...this.formItemCommon.default
       };
     },
     getAttrsDefaultData(type) {

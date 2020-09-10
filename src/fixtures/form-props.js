@@ -1,3 +1,28 @@
+import clone from "clone";
+
+const defaultData = {
+  rules: {},
+  formAttrs: {},
+  inline: false,
+  disabled: false,
+  readonly: false,
+  isShowLabel: true,
+  isDialog: false,
+  isShowSubmitBtn: true,
+  isShowBackBtn: null,
+  isShowResetBtn: false,
+  isShowCancelBtn: null,
+  isResponsive: true,
+  isShowErrorNotify: true,
+  submitBtnText: "提交",
+  cancelBtnText: "取消",
+  backBtnText: "返回",
+  resetBtnText: "重置",
+  labelWidth: "auto",
+  labelPosition: null,
+  span: null,
+  formBtnSize: null
+};
 export default {
   config: {
     inline: {
@@ -148,27 +173,6 @@ export default {
       }
     }
   },
-  data: {
-    rules: {},
-    formAttrs: {},
-    inline: false,
-    disabled: false,
-    readonly: false,
-    isShowLabel: true,
-    isDialog: false,
-    isShowSubmitBtn: true,
-    isShowBackBtn: null,
-    isShowResetBtn: false,
-    isShowCancelBtn: null,
-    isResponsive: true,
-    isShowErrorNotify: true,
-    submitBtnText: "提交",
-    cancelBtnText: "取消",
-    backBtnText: "返回",
-    resetBtnText: "重置",
-    labelWidth: "auto",
-    labelPosition: null,
-    span: null,
-    formBtnSize: null
-  }
+  default: clone(defaultData),
+  data: clone(defaultData)
 };
