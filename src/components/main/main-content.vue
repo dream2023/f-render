@@ -1,5 +1,5 @@
 <template>
-  <perfect-scrollbar class="scroll-area main-content">
+  <perfect-scrollbar class="f-render-scrollarea main-content">
     <ele-form
       v-model="formData"
       :request-fn="handleSubmit"
@@ -153,61 +153,64 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="css">
+/* 中间区域 */
 .main-content {
   padding: 20px;
-  .el-form {
-    border: 1px dashed #dcdfe6;
-    padding: 20px;
-    box-sizing: border-box;
-    border-radius: 4px;
-  }
+}
 
-  /* 当无表单时的占位 */
-  .form-area-placeholder {
-    width: 100%;
-    height: 300px;
-    line-height: 300px;
-    background-color: white;
-    color: #909399;
-    text-align: center;
-  }
+/* 表单样式 */
+.main-content .el-form {
+  border: 1px dashed #dcdfe6;
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
 
-  /* 表单项 */
-  .form-item {
-    background: white;
-    cursor: move;
-    position: relative;
-    z-index: 1;
-    padding: 0 20px;
-    border: 1px dashed rgba(0, 0, 0, 0);
+/* 当无表单时的占位 */
+.main-content .form-area-placeholder {
+  width: 100%;
+  height: 300px;
+  line-height: 300px;
+  background-color: white;
+  color: #909399;
+  text-align: center;
+}
+/* 表单项 */
+.main-content .form-item {
+  background: white;
+  cursor: move;
+  position: relative;
+  z-index: 1;
+  padding: 0 20px;
+  border: 1px dashed rgba(0, 0, 0, 0);
+}
+/* 表单项激活时 */
+.main-content .form-item-active {
+  border: 1px dashed #409eff;
+}
 
-    &-active {
-      border: 1px dashed #409eff;
-    }
+/* 遮挡区(遮挡住，不允许直接输入等操作) */
+.main-content .form-item::after {
+  content: " ";
+  display: block;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  z-index: 2;
+}
 
-    /* 遮挡区(遮挡住) */
-    &::after {
-      content: " ";
-      display: block;
-      left: 0;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      position: absolute;
-      z-index: 2;
-    }
-
-    .form-item-delete-btn {
-      position: absolute;
-      right: 0;
-      bottom: 0;
-      z-index: 3;
-      cursor: pointer;
-      padding: 7px 15px;
-      color: white;
-      background: #409eff;
-    }
-  }
+/* 删除按钮 */
+.main-content .form-item .form-item-delete-btn {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
+  cursor: pointer;
+  padding: 7px 15px;
+  color: white;
+  background: #409eff;
 }
 </style>

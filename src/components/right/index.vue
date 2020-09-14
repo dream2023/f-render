@@ -1,6 +1,6 @@
 <template>
   <div class="f-render-right">
-    <el-tabs :stretch="true" v-model="activeTab">
+    <el-tabs class="f-render-header" :stretch="true" v-model="activeTab">
       <el-tab-pane
         v-for="tab of tabs"
         :key="tab.name"
@@ -8,7 +8,7 @@
         :name="tab.name"
       ></el-tab-pane>
     </el-tabs>
-    <perfect-scrollbar ref="scroll" class="scroll-area">
+    <perfect-scrollbar ref="scroll" class="f-render-scrollarea">
       <component
         v-show="activeTab === tab.name"
         :is="tab.name"
@@ -59,34 +59,33 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="css">
 .f-render-right {
   width: 310px;
-  margin-top: 21px;
   height: 100%;
-
-  .form-item-placeholder {
-    height: 300px;
-    line-height: 300px;
-    color: #909399;
-    text-align: center;
-  }
-
-  .el-tabs__nav-wrap {
-    padding: 0 15px;
-  }
-  .el-tabs__item {
-    padding: 0 10px;
-  }
-  .el-tabs__nav-wrap::after {
-    height: 1px !important;
-  }
-  .el-tabs__active-bar {
-    height: 1px !important;
-  }
-
-  .f-render-right-content {
-    margin-bottom: 20px;
-  }
+}
+.f-render-right .form-item-placeholder {
+  height: 300px;
+  line-height: 300px;
+  color: #909399;
+  text-align: center;
+}
+.f-render-right .el-tabs__header {
+  padding-top: 20px;
+}
+.f-render-right .el-tabs__nav-wrap {
+  padding: 0 15px;
+}
+.f-render-right .el-tabs__item {
+  padding: 0 10px;
+}
+.f-render-right .el-tabs__nav-wrap::after {
+  height: 0;
+}
+.f-render-right .el-tabs__active-bar {
+  height: 1px !important;
+}
+.f-render-right .f-render-right-content {
+  padding: 20px 0;
 }
 </style>

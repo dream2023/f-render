@@ -48,8 +48,6 @@
     "lodash-webpack-plugin": "^0.11.5",
     "normalize.css": "^8.0.1",
     "prettier": "^1.19.1",
-    "sass": "^1.26.5",
-    "sass-loader": "^8.0.2",
     "standard-version": "^9.0.0",
     "vue": "^2.6.11",
     "vue-ele-form": "^0.8.44",

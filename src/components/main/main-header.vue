@@ -1,6 +1,6 @@
 <template>
   <div class="main-header">
-    <div class="main-header-btns">
+    <div class="f-render-header main-header-btns">
       <div>
         <el-button
           v-for="item of operations"
@@ -116,18 +116,15 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="css">
+/* 按钮列表 */
 .main-header-btns {
   display: flex;
   justify-content: space-between;
-  height: 60px;
-  line-height: 60px;
   padding: 0 15px;
-  border-bottom: 1px solid #ebeef5;
 }
-</style>
 
-<style lang="scss">
+/* 代码编辑区 */
 .f-render-code {
   background: #2d2d2d;
   color: #ccc;
@@ -136,10 +133,12 @@ export default {
   line-height: 1.5;
   padding: 5px;
   height: 350px;
+  margin-top: 20px;
   min-height: 350px;
+}
 
-  .prism-editor__textarea:focus {
-    outline: none;
-  }
+/* 去除默认边框 */
+.f-render-code .prism-editor__textarea:focus {
+  outline: none;
 }
 </style>

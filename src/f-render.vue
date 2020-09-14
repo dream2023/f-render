@@ -252,50 +252,68 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="css">
+/* f-render 整体样式 */
 .f-render {
   border: 1px solid #ebeef5;
   overflow: hidden;
-  &-left {
-    width: 260px;
-    min-width: 130px;
-  }
-  &-main {
-    flex-grow: 1;
-    width: 750px;
-  }
-  &-right {
-    width: 315px;
-  }
+}
 
-  & > .multipane-resizer {
-    margin: 0;
-    left: 0;
-    position: relative;
-    border-left: 1px solid #ebeef5;
-    border-right: 1px solid #ebeef5;
-    width: 7px;
-    &::before {
-      display: block;
-      content: "";
-      width: 1px;
-      height: 40px;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      margin-top: -20px;
-      margin-left: -1.5px;
-      border-left: 1px solid #dcdfe6;
-      border-right: 1px solid #dcdfe6;
-      &::before {
-        border-color: #999;
-      }
-    }
-  }
+/* 左侧 */
+.f-render-left {
+  width: 260px;
+  min-width: 130px;
+}
 
-  .scroll-area {
-    /* 减去头部的高度 */
-    height: calc(100% - 60px);
-  }
+/* 中部 */
+.f-render-main {
+  flex-grow: 1;
+  width: 750px;
+}
+
+/* 右侧 */
+.f-render-right {
+  width: 315px;
+}
+
+/* 头部区域 */
+.f-render-header {
+  height: 60px;
+  line-height: 60px;
+  border-bottom: 1px solid #eeeeee;
+}
+
+/* 滚动区域 */
+.f-render-scrollarea {
+  /* 减去头部的高度 */
+  height: calc(100% - 60px);
+}
+
+/* 左右面板拖动的抓手 */
+.f-render > .multipane-resizer {
+  margin: 0;
+  left: 0;
+  position: relative;
+  box-sizing: border-box;
+  border-left: 1px solid #ebeef5;
+  border-right: 1px solid #ebeef5;
+  width: 7px;
+}
+.f-render > .multipane-resizer::before {
+  display: block;
+  content: "";
+  width: 1px;
+  height: 40px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -20px;
+  margin-left: -1.5px;
+  box-sizing: border-box;
+  border-left: 1px solid #dcdfe6;
+  border-right: 1px solid #dcdfe6;
+}
+.f-render > .multipane-resizer::before::before {
+  border-color: #999;
 }
 </style>

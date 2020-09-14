@@ -92,19 +92,3 @@ export default {
   }
 };
 </script>
-<style lang="scss">
-.f-render-code {
-  margin-top: 20px;
-  background: #2d2d2d;
-  color: #ccc;
-  font-family: Fira code, Fira Mono, Consolas, Menlo, Courier, monospace;
-  font-size: 14px;
-  line-height: 1.5;
-  padding: 5px;
-  height: 350px;
-
-  .prism-editor__textarea:focus {
-    outline: none;
-  }
-}
-</style>

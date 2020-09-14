@@ -45,7 +45,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .app-header {
   box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
   z-index: 1;
@@ -54,19 +54,16 @@ export default {
   display: flex;
   justify-content: space-between;
   box-sizing: border-box;
-
-  .app-header-title {
-    font-size: 24px;
-    color: #409eff;
-  }
-
-  .app-header-right {
-    display: flex;
-    align-items: center;
-
-    .el-link {
-      margin-right: 20px;
-    }
-  }
+}
+.app-header .app-header-title {
+  font-size: 24px;
+  color: #409eff;
+}
+.app-header .app-header-right {
+  display: flex;
+  align-items: center;
+}
+.app-header .app-header-right .el-link {
+  margin-right: 20px;
 }
 </style>

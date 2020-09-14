@@ -1,7 +1,7 @@
 <template>
   <div class="f-render-left">
     <!-- 搜索 -->
-    <div class="f-render-comp-searcher">
+    <div class="f-render-header f-render-comp-searcher">
       <el-input
         clearable
         placeholder="请输入关键字查找组件"
@@ -10,7 +10,7 @@
     </div>
 
     <!-- 组件列表 -->
-    <perfect-scrollbar class="scroll-area">
+    <perfect-scrollbar class="f-render-scrollarea">
       <vue-draggable
         :clone="handleAddFormItem"
         :group="{ name: 'form', pull: 'clone', put: false }"
@@ -75,38 +75,39 @@ export default {
 };
 </script>
 
-<style lang="scss">
-// 搜索框
+<style lang="css">
+/* 搜索框 */
 .f-render-comp-searcher {
-  padding: 10px;
-  border-bottom: 1px solid #eee;
+  padding: 0 10px;
 }
 
-// 组件列表
+/* 组件列表 */
 .f-render-comps {
   padding: 0;
   margin-top: 10px;
+}
 
-  .f-render-comp {
-    width: 115px;
-    line-height: 1.5em;
-    color: #606266;
-    border: 1px solid #ebeef5;
-    overflow: hidden;
-    cursor: move;
-    white-space: nowrap;
-    display: inline-block;
-    text-overflow: ellipsis;
-    border-radius: 3px;
-    padding: 6px 8px;
-    box-sizing: border-box;
-    margin: 5px;
-    font-size: 12px;
+/* 单个组件 */
+.f-render-comps .f-render-comp {
+  width: 115px;
+  line-height: 1.5em;
+  color: #606266;
+  border: 1px solid #ebeef5;
+  overflow: hidden;
+  cursor: move;
+  white-space: nowrap;
+  display: inline-block;
+  text-overflow: ellipsis;
+  border-radius: 3px;
+  padding: 6px 8px;
+  box-sizing: border-box;
+  margin: 5px;
+  font-size: 12px;
+}
 
-    &-title {
-      font-weight: bold;
-      color: #222;
-    }
-  }
+/* 组件标题 */
+.f-render-comps .f-render-comp-title {
+  font-weight: bold;
+  color: #222;
 }
 </style>
