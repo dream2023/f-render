@@ -1,4 +1,7 @@
-// 全局组件
+/**
+ * 此文件用于注册全局组件
+ */
+
 import Vue from "vue";
 
 import PerfectScrollbar from "vue2-perfect-scrollbar";

@@ -1655,7 +1655,6 @@ export default [
           default: {
             type: "cascader",
             label: "默认值",
-            prop: data => data.prop,
             optionsLinkageFields: data => data.optionsLinkageFields,
             options: data => data.options
           }
@@ -2068,7 +2067,6 @@ export default [
           default: {
             type: "cascader",
             label: "默认值",
-            prop: data => data.prop,
             optionsLinkageFields: data => data.optionsLinkageFields,
             options: data => data.options
           }

@@ -3,12 +3,12 @@
   "version": "4.7.2",
   "private": false,
   "license": "MIT",
-  "description": "f-render | 基于 vue-ele-form 的表单设计器",
+  "description": "f-render | 基于 ElementUI 的表单设计器",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "toc": "doctoc README.md",
-    "build:lib": "vue-cli-service build --target lib --name f-render --dest ./dist/ ./src/index.js",
+    "build:lib": "vue-cli-service build --target lib --name f-render ./src/index.js",
     "lint": "vue-cli-service lint --mode=production",
     "release": "standard-version",
     "pub": "npm run build:lib && npm run release && npm publish && git push --follow-tags origin master && git push --follow-tags gitee master"

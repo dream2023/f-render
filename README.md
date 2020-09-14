@@ -1,4 +1,4 @@
-# f-render | 基于 vue-ele-form 的表单设计器
+# f-render | 基于 ElementUI 的表单设计器
 
 [![MIT](https://img.shields.io/github/license/dream2023/f-render)](https://github.com/dream2023/f-render)
 ![npm bundle size](https://img.shields.io/bundlephobia/minzip/f-render)
