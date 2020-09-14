@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.8.0](https://github.com/dream2023/f-render/compare/v4.7.2...v4.8.0) (2020-09-14)
+
+
+### Features
+
+* 修复级联组件默认值BUG ([c950d55](https://github.com/dream2023/f-render/commit/c950d55cca9b6fb12e2568b71c1bcece51711652))
+
 ### [4.7.2](https://github.com/dream2023/f-render/compare/v4.7.1...v4.7.2) (2020-09-10)
 
 
