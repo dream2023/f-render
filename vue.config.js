@@ -4,7 +4,14 @@ const isProd = process.env.NODE_ENV === "production";
 
 module.exports = {
   publicPath: isProd ? "./" : "/",
+  transpileDependencies: [
+    "indent-string",
+    "vue-ele-form-dynamic",
+    "vue-ele-form/lib",
+    "vuedraggable"
+  ],
   configureWebpack: {
+    devtool: "source-map",
     entry: path.resolve(__dirname, "./example/main.js"),
     resolve: {
       alias: {

@@ -9800,10 +9800,10 @@ vue-ele-form-dynamic@^0.4.2:
     async-validator "^3.2.0"
     fast-deep-equal "^3.1.1"
 
-vue-ele-form@^0.8.44:
-  version "0.8.44"
-  resolved "https://registry.npm.taobao.org/vue-ele-form/download/vue-ele-form-0.8.44.tgz?cache=0&sync_timestamp=1599709914821&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fvue-ele-form%2Fdownload%2Fvue-ele-form-0.8.44.tgz#ab6ac66b148049af5d97d5f6f0870fb0eaebcead"
-  integrity sha1-q2rGaxSASa9dl9X28IcPsOrrzq0=
+vue-ele-form@^0.8.46:
+  version "0.8.46"
+  resolved "https://registry.yarnpkg.com/vue-ele-form/-/vue-ele-form-0.8.46.tgz#8c88d4166ca1858e5a301108649fd0840f515593"
+  integrity sha512-LIeX9SNCI9PuDtQ57vKWoaBQzrimjxfHDy9tUhDX0ZMrPaI6gC32Zv09mLNPZaaeoexqVDSH9VjeiAcglLcvnA==
   dependencies:
     clone "^2.1.2"
     dayjs "^1.8.31"
