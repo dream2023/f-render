@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.10.0](https://github.com/dream2023/f-render/compare/v4.8.0...v4.10.0) (2020-10-14)
+
+
+### Features
+
+* 兼容 ie11 ([4a140df](https://github.com/dream2023/f-render/commit/4a140dfe7a9a6460170c8905b308b2a613b1ade6))
+
 ## [4.8.0](https://github.com/dream2023/f-render/compare/v4.7.2...v4.8.0) (2020-09-14)
 
 
