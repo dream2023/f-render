@@ -1,13 +1,13 @@
 <template>
   <div>
-    <template v-if="isShow">
+    <template v-if="frender.formItemList[frender.currentIndex]">
       <attrs-header
         :url="attrLink"
-        :title="currentFormItem.type + '组件'"
+        :title="frender.currentFormItemType + ' 组件'"
         v-model="keyword"
       />
       <ele-form
-        v-model="currentFormItem.attrs"
+        v-model="frender.formItemList[frender.currentIndex].attrs"
         :formDesc="filteredFormDesc"
         :formAttrs="{ size: 'small' }"
         :isShowBackBtn="false"
@@ -32,21 +32,14 @@ export default {
   mixins: [searchMixin],
   components: { AttrsHeader },
   computed: {
-    currentFormItem() {
-      return this.frender.currentFormItem;
-    },
-    config() {
-      return this.frender.compsMap.get(this.currentFormItem.type)?.config || {};
-    },
     formDesc() {
-      const formDesc = this.config?.attrs?.config;
-      return changeFormDescLabel(formDesc);
+      return changeFormDescLabel(
+        this.frender.currentCompConfig?.config?.attrs?.config || {}
+      );
     },
-    isShow() {
-      return this.currentFormItem && this.currentFormItem.attrs;
-    },
+    // 文档链接
     attrLink() {
-      return this.config.url;
+      return this.frender.currentCompConfig?.url;
     }
   }
 };

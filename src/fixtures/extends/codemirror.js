@@ -13,9 +13,6 @@ export default {
             rows: 10
           }
         }
-      },
-      defaultData: {
-        options: {}
       }
     },
     common: {

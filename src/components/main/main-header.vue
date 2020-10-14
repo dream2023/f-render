@@ -2,16 +2,19 @@
   <div class="main-header">
     <div class="f-render-header main-header-btns">
       <div>
-        <el-button
-          v-for="item of operations"
-          :key="item.key"
-          :icon="item.icon"
-          @click="item.click"
-          type="text"
-          >{{ item.label }}</el-button
-        >
+        <template v-for="key of frender.operations">
+          <!-- 根据 key 获取对应的 operationBtns 内容 -->
+          <el-button
+            :key="key"
+            :icon="operationBtns[key].icon"
+            @click="operationBtns[key].click"
+            v-if="operationBtns[key]"
+            type="text"
+            >{{ operationBtns[key].label }}</el-button
+          >
+        </template>
       </div>
-      <div>
+      <div v-if="frender.operations.includes('save')">
         <el-button @click="$emit('save')" icon="el-icon-upload2" type="text"
           >保存数据</el-button
         >
@@ -19,13 +22,13 @@
     </div>
 
     <!-- 预览弹窗 -->
-    <template v-for="item of operations">
+    <template v-for="key of frender.operations">
       <component
-        v-if="item.isComponent !== false"
-        :visible="operatekeys[item.key]"
-        :key="item.key"
-        :is="`${item.key}-dialog`"
-        @change="changeVisible($event, item.key)"
+        :visible="operationBtns[key].visible"
+        v-if="operationBtns[key] && operationBtns[key].isComponent !== false"
+        :key="key"
+        :is="`${key}-dialog`"
+        @change="operationBtns[key].click"
       />
     </template>
   </div>
@@ -37,12 +40,6 @@ import DataDialog from "./components/data-dialog";
 import CodeDialog from "./components/code-dialog";
 import BatchDialog from "./components/batch-dialog";
 
-// 各个弹窗都会用到的代码高亮 css
-import "prismjs/components/prism-clike";
-import "prismjs/components/prism-javascript";
-import "vue-prism-editor/dist/prismeditor.min.css";
-import "prismjs/themes/prism-tomorrow.css";
-
 export default {
   inject: ["frender"],
   components: {
@@ -52,66 +49,69 @@ export default {
     BatchDialog
   },
   data() {
-    return {
-      operatekeys: []
+    // 切换 visible
+    const createToggleVisibleFn = key => {
+      return () => {
+        this.$set(
+          this.operationBtns[key],
+          "visible",
+          !this.operationBtns[key].visible
+        );
+      };
     };
-  },
-  computed: {
-    operations() {
-      return [
-        {
-          key: "preview",
+    return {
+      // 左侧按钮列表
+      operationBtns: {
+        // 按钮的 key 和 frender 中 operationBtns 一一对应
+        preview: {
+          // 按钮的 icon
           icon: "el-icon-view",
-          label: "预览"
+          // 按钮的内容
+          label: "预览",
+          // 增加 visible: false
+          visible: false,
+          // 增加 click
+          click: createToggleVisibleFn("preview")
         },
-        {
-          key: "data",
+        data: {
           icon: "el-icon-edit",
-          label: "更改数据"
+          label: "更改数据",
+          // 增加 visible: false
+          visible: false,
+          // 增加 click
+          click: createToggleVisibleFn("data")
         },
-        {
-          key: "code",
+        code: {
           icon: "el-icon-tickets",
-          label: "生成代码"
+          label: "生成代码",
+          // 增加 visible: false
+          visible: false,
+          // 增加 click
+          click: createToggleVisibleFn("code")
         },
-        {
-          key: "batch",
+        batch: {
           icon: "el-icon-plus",
-          label: "批量添加"
+          label: "批量添加",
+          // 增加 visible: false
+          visible: false,
+          // 增加 click
+          click: createToggleVisibleFn("batch")
         },
-        {
-          key: "clear",
-          isComponent: false,
-          click: () => {
-            this.frender.currentIndex = null;
-            this.frender.updateFormItemList([]);
-          },
+        clear: {
           icon: "el-icon-delete",
-          label: "清空表单"
+          label: "清空表单",
+          // 不是组件
+          isComponent: false,
+          // 增加 click
+          click: () => {
+            // 将表单项置为空数组
+            this.frender.formItemList = [];
+            // 将表单属性置为原默认值
+            this.frender.initFormPropsData();
+          }
         }
-      ]
-        .filter(item => this.operatekeys[item.key] !== undefined)
-        .map(this.toggleVisible);
-    }
-  },
-  methods: {
-    toggleVisible(item) {
-      if (!item.click) {
-        item.click = () => {
-          this.$set(this.operatekeys, item.key, !this.operatekeys[item.key]);
-        };
       }
-      return item;
-    },
-    changeVisible(val, key) {
-      this.operatekeys[key] = val;
-    }
-  },
-  mounted() {
-    this.operatekeys = this.frender.operations.reduce((acc, key) => {
-      acc[key] = false;
-      return acc;
-    }, {});
+    };
   }
 };
 </script>

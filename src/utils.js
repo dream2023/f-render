@@ -1,5 +1,4 @@
 import _ from "lodash";
-const equal = require("fast-deep-equal");
 const cloneDeep = require("clone");
 /**
  * 对象转为数组
@@ -49,55 +48,6 @@ export function changeFormDescLabel(formDesc = {}) {
 }
 
 /**
- * 新增表单项
- * 应用场景：1.拖拽新增  2.批量添加
- * @param {array} comps 表单项配置
- * @param {string} type 表单项类型
- * @param {object} common 通用配置
- * @param {object} attrs 属性配置
- * comps: [
- *  { type: "input",
- *    config: {
- *      common: { defaultData: {}, requiredData: {} },
- *      attrs: { defaultData: {}, requiredData: {} }
- *    }
- *  }
- * ]
- */
-export function addFormItem({
-  type,
-  field,
-  label,
-  config = {},
-  commonData = {}
-}) {
-  // 获取配置
-  const formItemConfig = cloneDeep(config);
-  // 通用属性 = 默认通用配置 + 自定义通用配置（默认值）+  自定义通用配置（必填值）+ 三个特殊属性
-  const requiredData = {
-    ...commonData,
-    ...(formItemConfig?.config?.common?.defaultData || {}),
-    ...(formItemConfig?.config?.common?.requiredData || {}),
-    // 放置后面，其到覆盖的作用
-    type: type || formItemConfig.type,
-    label: label || formItemConfig.label,
-    field: field || "key_" + Date.now()
-  };
-
-  // 组件属性配置 =  配置（默认值）+ 配置（必填值）
-  const attrsData = {
-    ...(formItemConfig?.config?.attrs?.defaultData || {}),
-    ...(formItemConfig?.config?.attrs?.requiredData || {})
-  };
-
-  // 返回通用配置 + 属性配置
-  return {
-    ...requiredData,
-    attrs: attrsData
-  };
-}
-
-/**
  * 移除双引号
  * @param {string} str
  * @example
@@ -110,9 +60,6 @@ export function reomveQuotes(str) {
 /**
  * 移除无用的属性(默认值 + 空属性 + 隐藏的属性)
  */
-export function removeUselessAttrs(obj = {}, defaultObj = {}) {
-  const isEmpty = val => _.isNil(val);
-  const isDefault = (val, key) => equal(val, defaultObj[key]);
-
-  return _.omitBy(obj, (val, key) => isEmpty(val) || isDefault(val, key));
+export function removeEmptyProps(obj = {}) {
+  return _.omitBy(obj, val => _.isNil(val));
 }

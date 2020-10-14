@@ -62,19 +62,6 @@ export default {
           type: "switch",
           label: "是否自定加载根节点选项"
         }
-      },
-      defaultData: {
-        limit: Infinity,
-        searchable: true,
-        clearable: true,
-        multiple: false,
-        flattenSearchResults: false,
-        autoLoadRootOptions: true,
-        autoFocus: false,
-        async: false,
-        maxHeight: 300,
-        alwaysOpen: false,
-        appendToBody: false
       }
     },
     common: {
@@ -87,7 +74,7 @@ export default {
           options: data => data.options
         }
       },
-      requiredData: {
+      data: {
         isOptions: true,
         options: [
           {

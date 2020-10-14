@@ -70,18 +70,8 @@ export default {
           }
         }
       },
-      requiredData: {
+      data: {
         action: "https://www.mocky.io/v2/5cc8019d300000980a055e76"
-      },
-      defaultData: {
-        width: 360,
-        height: 0,
-        name: "file",
-        isShowTip: true,
-        data: {},
-        headers: {},
-        fileType: [],
-        withCredentials: false
       }
     }
   }

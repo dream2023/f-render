@@ -2,18 +2,17 @@
   <perfect-scrollbar class="f-render-scrollarea main-content">
     <ele-form
       v-model="formData"
-      :request-fn="handleSubmit"
-      @request-success="handleSuccess"
       ref="ele-form"
       :formDesc="frender.formDesc"
-      v-bind="frender.formBindConfig"
+      :order="Object.keys(frender.formDesc)"
+      v-bind="frender.formBindProps"
     >
       <template v-slot:form-content="{ props, formDesc, formErrorObj }">
         <vue-draggable
           :animation="200"
           v-if="isRenderFinish"
           :disabled="false"
-          :list="formItemList"
+          :list="frender.formItemList"
           @add="handleAdd"
           @end="handleMoveEnd"
           @start="handleMoveStart"
@@ -22,7 +21,10 @@
           style="padding-bottom: 80px;"
         >
           <!-- 当为空时 -->
-          <div class="form-area-placeholder" v-if="formItemList.length === 0">
+          <div
+            class="form-area-placeholder"
+            v-if="frender.formItemList.length === 0"
+          >
             从左侧拖拽来添加表单项
           </div>
           <template v-else>
@@ -35,7 +37,7 @@
                 class="form-item"
                 :class="{
                   'ele-form-col--break': formItem.break,
-                  'form-item-active': currentIndex === index
+                  'form-item-active': frender.currentIndex === index
                 }"
               >
                 <el-form-item
@@ -68,7 +70,7 @@
                 <i
                   @click.stop="handleDelete(index)"
                   class="el-icon-delete form-item-delete-btn"
-                  v-if="currentIndex === index"
+                  v-if="frender.currentIndex === index"
                 ></i>
               </el-col>
             </template>
@@ -82,14 +84,6 @@
 <script>
 export default {
   inject: ["frender"],
-  computed: {
-    formItemList() {
-      return this.frender.formItemList;
-    },
-    currentIndex() {
-      return this.frender.currentIndex;
-    }
-  },
   data() {
     return {
       formData: {},
@@ -107,47 +101,40 @@ export default {
     deleteItemByIndex(index) {
       this.frender.formItemList.splice(index, 1);
     },
-
     // 通过index更新
     updateSelectIndex(index) {
       this.frender.currentIndex = index;
     },
+
     // 删除
     handleDelete(index) {
       this.deleteItemByIndex(index);
 
       // 因为如果删除最后一个, 界面则无选中效果
       // 所以这里删除最后一个后, 重新选择最后一个
-      if (index >= this.formItemList.length) {
-        this.updateSelectIndex(this.formItemList.length - 1);
+      if (index >= this.frender.formItemList.length) {
+        this.updateSelectIndex(this.frender.formItemList.length - 1);
       }
     },
+
     // 新增
     handleAdd(res) {
       this.updateSelectIndex(res.newIndex);
     },
+
     // 移动开始
     handleMoveStart(res) {
       this.updateSelectIndex(res.oldIndex);
     },
+
     // 移动结束
     handleMoveEnd(res) {
       this.updateSelectIndex(res.newIndex);
     },
+
     // 点击选中
     handleFormItemClick(index) {
       this.updateSelectIndex(index);
-    },
-
-    // 表单提交
-    handleSubmit(data) {
-      // eslint-disable-next-line no-console
-      console.log(data);
-      return Promise.resolve();
-    },
-    // 请求成功
-    handleSuccess() {
-      this.$message.success("创建成功");
     }
   }
 };

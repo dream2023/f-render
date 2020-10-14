@@ -36,13 +36,13 @@
 </template>
 
 <script>
-import { PrismEditor } from "vue-prism-editor";
 import { highlight, languages } from "prismjs/components/prism-core";
+import "prismjs/components/prism-clike";
+import "prismjs/components/prism-javascript";
 
 import _ from "lodash";
 import copy from "clipboard-copy";
-import serialize from "serialize-javascript";
-import { reomveQuotes } from "../../../utils";
+import { reomveQuotes, objectToArr } from "../../../utils";
 
 export default {
   inject: ["frender"],
@@ -52,27 +52,31 @@ export default {
       default: false
     }
   },
-  components: {
-    PrismEditor
-  },
   data() {
     return {
-      code: ""
+      code: "",
+      fileURL: ""
     };
   },
   watch: {
     visible(val) {
       if (val) {
-        this.code = reomveQuotes(
-          serialize(this.frender.changedFormConfig, { space: 2 })
-        );
+        this.code = reomveQuotes(this.frender.getFormConfigStr());
       }
-    }
-  },
-  computed: {
-    fileURL() {
-      const blob = new Blob([this.code]);
-      return URL.createObjectURL(blob);
+    },
+    code: {
+      handler() {
+        // 防抖，最后一次起作用
+        if (!this.codeToURL) {
+          this.codeToURL = _.debounce(() => {
+            // 将代码转为 URL
+            const blob = new Blob([this.code]);
+            this.fileURL = URL.createObjectURL(blob);
+          }, 300);
+        }
+        this.codeToURL();
+      },
+      immediate: true
     }
   },
   methods: {
@@ -83,14 +87,27 @@ export default {
     // 保存数据
     handleChangeCode() {
       try {
+        // 将字符串转为对象
         const res = eval("(" + this.code + ")");
+        // 判断是否为对象
         if (_.isPlainObject(res)) {
-          this.frender.updateFormConfig(res);
-          this.$emit("change", false);
+          // 1. 通过解构符合的方式分离出 formDesc 和 formPropsData
+          const { formDesc = {}, ...formPropsData } = res;
+          // 2. 赋值 frender.formPropsData
+          this.frender.formPropsData = formPropsData;
+          // 3. 将 formDesc 转为数组，并赋值给 frender.formItemList
+          this.frender.formItemList = objectToArr(formDesc, "field").map(item =>
+            Object.assign({ attrs: {} }, item)
+          );
+
+          // 关闭弹窗
+          this.$emit("change");
         } else {
+          // 抛出解析异常
           throw new TypeError(res + ", 类型错误，非对象");
         }
       } catch (err) {
+        // 错误提示
         this.$message.error("解析失败，非 JS 对象，请检查");
         console.error(err);
       }

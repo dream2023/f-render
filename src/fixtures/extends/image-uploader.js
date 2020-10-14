@@ -109,21 +109,8 @@ export default {
           }
         }
       },
-      requiredData: {
+      data: {
         action: "https://www.mocky.io/v2/5cc8019d300000980a055e76"
-      },
-      defaultData: {
-        fileSize: 0,
-        name: "file",
-        crop: false,
-        size: 150,
-        isShowTip: false,
-        drag: false,
-        data: {},
-        headers: {},
-        fileType: [],
-        withCredentials: false,
-        multiple: false
       }
     }
   }

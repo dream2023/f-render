@@ -63,7 +63,7 @@ export default {
           }
         }
       },
-      requiredData: {
+      data: {
         columns: [
           {
             // el-table-column 的属性
@@ -116,17 +116,6 @@ export default {
         newColumnValue: {
           grade: "三年级二班"
         }
-      },
-      defaultData: {
-        isShowDelete: true,
-        deleteBtnAttr: {
-          type: "text"
-        },
-        isShowAdd: true,
-        addBtnText: "新增",
-        tableAttrs: {
-          border: true
-        }
       }
     },
     common: {
@@ -139,7 +128,7 @@ export default {
           }
         }
       },
-      requiredData: {
+      data: {
         default: [
           {
             grade: "三年级二班",

@@ -105,16 +105,7 @@ export default [
             label: "输入时是否触发表单的校验"
           }
         },
-        defaultData: {
-          size: null,
-          type: "text",
-          minlength: 0,
-          maxlength: 0,
-          showWordLimit: false,
-          clearable: false,
-          autofocus: false,
-          validateEvent: true
-        }
+        data: {}
       }
     }
   },
@@ -134,10 +125,10 @@ export default [
             }
           },
           rows: {
-            type: "number",
+            type: "input",
             label: "输入框行",
             attrs: {
-              min: 1
+              type: "number"
             }
           },
           autosizeType: {
@@ -215,13 +206,7 @@ export default [
             label: "输入时是否触发表单的校验"
           }
         },
-        defaultData: {
-          rows: 2,
-          autosizeType: "switch",
-          autosize: false,
-          showWordLimit: false,
-          clearable: false
-        }
+        data: {}
       }
     }
   },
@@ -326,26 +311,7 @@ export default [
               "对于不可搜索的 Select，是否在输入框获得焦点后自动弹出选项菜单"
           }
         },
-        defaultData: {
-          size: null,
-          multiple: false,
-          valueKey: "value",
-          clearable: false,
-          collapseTags: false,
-          multipleLimit: 0,
-          autocomplete: "off",
-          filterable: false,
-          allowCreate: false,
-          remote: false,
-          loading: false,
-          loadingText: "加载中",
-          noMatchText: "无匹配数据",
-          noDataText: "无数据",
-          reserveKeyword: false,
-          defaultFirstOption: false,
-          popperAppendToBody: true,
-          automaticDropdown: false
-        }
+        data: {}
       },
       common: {
         config: {
@@ -357,7 +323,7 @@ export default [
             options: data => data.options
           }
         },
-        requiredData: {
+        data: {
           isOptions: true,
           options: [
             { text: "选项1", value: 1 },
@@ -422,16 +388,7 @@ export default [
             options: [{ text: "默认", value: null }, "right"]
           }
         },
-        defaultData: {
-          size: null,
-          min: -Infinity,
-          max: Infinity,
-          step: 1,
-          controlsPosition: null,
-          precision: 0,
-          stepStrictly: false,
-          controls: true
-        }
+        data: {}
       },
       common: {
         config: {
@@ -471,11 +428,7 @@ export default [
             }
           }
         },
-        defaultData: {
-          size: null,
-          min: 0,
-          max: 0
-        }
+        data: {}
       },
       common: {
         config: {
@@ -487,7 +440,7 @@ export default [
             options: data => data.options
           }
         },
-        requiredData: {
+        data: {
           isOptions: true,
           options: [
             { text: "选项1", value: 1 },
@@ -512,9 +465,7 @@ export default [
             options: [{ text: "默认", value: null }, "medium", "small", "mini"]
           }
         },
-        defaultData: {
-          size: null
-        }
+        data: {}
       },
       common: {
         config: {
@@ -526,7 +477,7 @@ export default [
             options: data => data.options
           }
         },
-        requiredData: {
+        data: {
           isOptions: true,
           options: [
             { text: "选项1", value: 1 },
@@ -582,12 +533,7 @@ export default [
             label: "改变 switch 状态时是否触发表单的校验"
           }
         },
-        defaultData: {
-          width: 40,
-          activeColor: "#409EFF",
-          inactiveColor: "#C0CCDA",
-          validateEvent: true
-        }
+        data: {}
       },
       common: {
         config: {
@@ -650,15 +596,7 @@ export default [
             label: "完全只读"
           }
         },
-        defaultData: {
-          type: "date",
-          readonly: false,
-          editable: true,
-          clearable: true,
-          size: null,
-          prefixIcon: "el-icon-date",
-          clearIcon: "el-icon-circle-close"
-        }
+        data: {}
       },
       common: {
         config: {
@@ -750,20 +688,7 @@ export default [
             label: "输入时是否触发表单的校验"
           }
         },
-
-        defaultData: {
-          type: "daterange",
-          validateEvent: false,
-          unlinkPanels: false,
-          readonly: false,
-          editable: true,
-          clearable: true,
-          align: "left",
-          size: null,
-          rangeSeparator: "-",
-          prefixIcon: "el-icon-date",
-          clearIcon: "el-icon-circle-close"
-        }
+        data: {}
       },
       common: {
         config: {
@@ -825,15 +750,7 @@ export default [
             label: "完全只读"
           }
         },
-        defaultData: {
-          timeArrowControl: false,
-          readonly: false,
-          editable: true,
-          clearable: true,
-          size: null,
-          prefixIcon: "el-icon-date",
-          clearIcon: "el-icon-circle-close"
-        }
+        data: {}
       },
       common: {
         config: {
@@ -924,19 +841,7 @@ export default [
             label: "输入时是否触发表单的校验"
           }
         },
-        defaultData: {
-          timeArrowControl: false,
-          validateEvent: false,
-          unlinkPanels: false,
-          readonly: false,
-          editable: true,
-          clearable: true,
-          align: "left",
-          size: null,
-          rangeSeparator: "-",
-          prefixIcon: "el-icon-date",
-          clearIcon: "el-icon-circle-close"
-        }
+        data: {}
       },
       common: {
         config: {
@@ -990,14 +895,7 @@ export default [
             label: "完全只读"
           }
         },
-        defaultData: {
-          readonly: false,
-          editable: true,
-          clearable: true,
-          size: null,
-          prefixIcon: "el-icon-time",
-          clearIcon: "el-icon-circle-close"
-        }
+        data: {}
       },
       common: {
         config: {
@@ -1052,14 +950,7 @@ export default [
             label: "完全只读"
           }
         },
-        defaultData: {
-          readonly: false,
-          editable: true,
-          clearable: true,
-          size: null,
-          prefixIcon: "el-icon-time",
-          clearIcon: "el-icon-circle-close"
-        }
+        data: {}
       },
       common: {
         config: {
@@ -1138,16 +1029,7 @@ export default [
             label: "完全只读"
           }
         },
-        defaultData: {
-          readonly: false,
-          editable: true,
-          clearable: true,
-          align: "left",
-          size: null,
-          rangeSeparator: "-",
-          prefixIcon: "el-icon-time",
-          clearIcon: "el-icon-circle-close"
-        }
+        data: {}
       },
       common: {
         config: {
@@ -1205,14 +1087,7 @@ export default [
             label: "完全只读"
           }
         },
-        defaultData: {
-          readonly: false,
-          editable: true,
-          clearable: true,
-          size: null,
-          prefixIcon: "el-icon-date",
-          clearIcon: "el-icon-circle-close"
-        }
+        data: {}
       },
       common: {
         config: {
@@ -1270,14 +1145,7 @@ export default [
             label: "完全只读"
           }
         },
-        defaultData: {
-          readonly: false,
-          editable: true,
-          clearable: true,
-          size: null,
-          prefixIcon: "el-icon-date",
-          clearIcon: "el-icon-circle-close"
-        }
+        data: {}
       },
       common: {
         config: {
@@ -1335,14 +1203,7 @@ export default [
             label: "完全只读"
           }
         },
-        defaultData: {
-          readonly: false,
-          editable: true,
-          clearable: true,
-          size: null,
-          prefixIcon: "el-icon-date",
-          clearIcon: "el-icon-circle-close"
-        }
+        data: {}
       },
       common: {
         config: {
@@ -1429,18 +1290,7 @@ export default [
             label: "输入时是否触发表单的校验"
           }
         },
-        defaultData: {
-          validateEvent: false,
-          unlinkPanels: false,
-          readonly: false,
-          editable: true,
-          clearable: true,
-          align: "left",
-          size: null,
-          rangeSeparator: "-",
-          prefixIcon: "el-icon-date",
-          clearIcon: "el-icon-circle-close"
-        }
+        data: {}
       },
       common: {
         config: {
@@ -1498,14 +1348,7 @@ export default [
             label: "完全只读"
           }
         },
-        defaultData: {
-          readonly: false,
-          editable: true,
-          clearable: true,
-          size: null,
-          prefixIcon: "el-icon-date",
-          clearIcon: "el-icon-circle-close"
-        }
+        data: {}
       },
       common: {
         config: {
@@ -1551,12 +1394,7 @@ export default [
             }
           }
         },
-        defaultData: {
-          size: null,
-          showAlpha: false,
-          colorFormat: "hex",
-          predefine: []
-        }
+        data: {}
       },
       common: {
         config: {
@@ -1630,25 +1468,7 @@ export default [
             label: "自定义浮层类名"
           }
         },
-
-        defaultData: {
-          size: null,
-          clearable: false,
-          showAllLevels: true,
-          collapseTags: false,
-          separator: "/",
-          filterable: false,
-          debounce: 300,
-          props: {
-            expandTrigger: "click",
-            emitPath: true,
-            value: "value",
-            label: "label",
-            children: "children",
-            disabled: "disabled",
-            leaf: "leaf"
-          }
-        }
+        data: {}
       },
       common: {
         config: {
@@ -1659,7 +1479,7 @@ export default [
             options: data => data.options
           }
         },
-        requiredData: {
+        data: {
           isOptions: true,
           options: [
             {
@@ -1987,18 +1807,7 @@ export default [
             }
           }
         },
-        defaultData: {
-          format: {
-            noChecked: "",
-            hasChecked: ""
-          },
-          props: {},
-          buttonTexts: [],
-          titles: ["列表 1", "列表 2"],
-          targetOrder: "original",
-          filterable: false,
-          filterPlaceholder: "请输入搜索内容"
-        }
+        data: {}
       },
       common: {
         config: {
@@ -2020,7 +1829,7 @@ export default [
             }
           }
         },
-        requiredData: {
+        data: {
           isOptions: true,
           options: [
             { key: 1, label: "选项1" },
@@ -2050,17 +1859,7 @@ export default [
             }
           }
         },
-        defaultData: {
-          props: {
-            expandTrigger: "click",
-            emitPath: true,
-            value: "value",
-            label: "label",
-            children: "children",
-            disabled: "disabled",
-            leaf: "leaf"
-          }
-        }
+        data: {}
       },
       common: {
         config: {
@@ -2071,7 +1870,7 @@ export default [
             options: data => data.options
           }
         },
-        requiredData: {
+        data: {
           isOptions: true,
           options: [
             {
@@ -2418,17 +2217,7 @@ export default [
             label: "输入时是否触发表单的校验"
           }
         },
-        defaultData: {
-          size: null,
-          showPassword: false,
-          type: "text",
-          showWordLimit: false,
-          clearable: false,
-          autofocus: false,
-          validateEvent: true,
-          maxlength: 0,
-          minlength: 0
-        }
+        data: {}
       }
     }
   },
@@ -2455,11 +2244,7 @@ export default [
             label: "设置 indeterminate 状态，只负责样式控制"
           }
         },
-        defaultData: {
-          border: false,
-          size: null,
-          indeterminate: false
-        }
+        data: {}
       },
       common: {
         config: {
@@ -2472,7 +2257,7 @@ export default [
             label: "默认值"
           }
         },
-        requiredData: {
+        data: {
           title: "是否选择"
         }
       }
@@ -2566,20 +2351,7 @@ export default [
             }
           }
         },
-        defaultData: {
-          min: 0,
-          max: 100,
-          step: 1,
-          showInput: false,
-          showInputControls: true,
-          inputSize: "small",
-          showStops: false,
-          showTooltip: true,
-          range: false,
-          vertical: false,
-          debounce: 300,
-          marks: {}
-        }
+        data: {}
       },
       common: {
         config: {
@@ -2613,11 +2385,7 @@ export default [
             label: "Radio 激活时的填充色和边框色"
           }
         },
-        defaultData: {
-          size: null,
-          textColor: "#ffffff",
-          fill: "#409EFF"
-        }
+        data: {}
       },
       common: {
         config: {
@@ -2629,7 +2397,7 @@ export default [
             options: data => data.options
           }
         },
-        requiredData: {
+        data: {
           isOptions: true,
           options: [
             { text: "选项1", value: 1 },
@@ -2679,13 +2447,7 @@ export default [
             }
           }
         },
-        defaultData: {
-          size: null,
-          min: 0,
-          max: 0,
-          textColor: "#ffffff",
-          fill: "#409EFF"
-        }
+        data: {}
       },
       common: {
         config: {
@@ -2697,7 +2459,7 @@ export default [
             options: data => data.options
           }
         },
-        requiredData: {
+        data: {
           isOptions: true,
           options: [
             { text: "选项1", value: 1 },
@@ -2792,16 +2554,7 @@ export default [
             label: "是否默认突出显示远程搜索建议中的第一项"
           }
         },
-        defaultData: {
-          valueKey: "value",
-          debounce: 300,
-          placement: "bottom-end",
-          triggerOnFocus: false,
-          selectWhenUnmatched: false,
-          hideLoading: false,
-          popperAppendToBody: true,
-          highlightFirstItem: false
-        }
+        data: {}
       }
     }
   },
@@ -2895,27 +2648,7 @@ export default [
             label: "分数显示模板"
           }
         },
-        defaultData: {
-          max: 5,
-          allowHalf: false,
-          lowThreshold: 2,
-          highThreshold: 4,
-          colors: ["#F7BA2A", "#F7BA2A", "#F7BA2A"],
-          voidColor: "#C6D1DE",
-          disabledVoidColor: "#EFF2F7",
-          iconClasses: [
-            "el-icon-star-on",
-            "el-icon-star-on",
-            "el-icon-star-on"
-          ],
-          voidIconClass: "el-icon-star-off",
-          disabledVoidIconClass: "el-icon-star-on",
-          showText: false,
-          showScore: false,
-          textColor: "#1F2D3D",
-          texts: ["极差", "失望", "一般", "满意", "惊喜"],
-          scoreTemplate: "{value}"
-        }
+        data: {}
       },
       common: {
         config: {
@@ -2924,7 +2657,7 @@ export default [
             label: "默认值"
           }
         },
-        defaultData: {
+        default: {
           default: 0
         }
       }
@@ -2964,12 +2697,7 @@ export default [
             label: "设置图片预览的 z-index"
           }
         },
-        defaultData: {
-          fit: "cover",
-          lazy: false,
-          previewSrcList: [],
-          zIndex: 2000
-        }
+        data: {}
       },
       common: {
         config: {
@@ -2986,7 +2714,7 @@ export default [
             }
           }
         },
-        requiredData: {
+        data: {
           default: [
             "https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg"
           ]
@@ -3045,26 +2773,7 @@ export default [
               "对于不可搜索的 Select，是否在输入框获得焦点后自动弹出选项菜单"
           }
         },
-        defaultData: {
-          size: null,
-          multiple: false,
-          valueKey: "value",
-          clearable: false,
-          collapseTags: false,
-          multipleLimit: 0,
-          autocomplete: "off",
-          filterable: false,
-          allowCreate: false,
-          remote: false,
-          loading: false,
-          loadingText: "加载中",
-          noMatchText: "无匹配数据",
-          noDataText: "无数据",
-          reserveKeyword: false,
-          defaultFirstOption: false,
-          popperAppendToBody: true,
-          automaticDropdown: false
-        }
+        data: {}
       },
       common: {
         config: {
@@ -3097,7 +2806,7 @@ export default [
             label: "默认值"
           }
         },
-        requiredData: {
+        data: {
           isOptions: true,
           default: "我是一段静态文本"
         }
@@ -3159,15 +2868,7 @@ export default [
             options: ["button", "submit", "reset"]
           }
         },
-        defaultData: {
-          size: null,
-          type: null,
-          plain: false,
-          round: false,
-          circle: false,
-          autofocus: false,
-          nativeType: "button"
-        }
+        data: {}
       },
       common: {
         config: {
@@ -3176,7 +2877,7 @@ export default [
             label: "按钮文本"
           }
         },
-        requiredData: {
+        data: {
           default: "按钮文本"
         }
       }

@@ -103,15 +103,7 @@ export default {
           label: "输入时是否触发表单的校验"
         }
       },
-      defaultData: {
-        autoSave: true,
-        types: [],
-        rows: 2,
-        autosizeType: "switch",
-        autosize: false,
-        showWordLimit: false,
-        clearable: false
-      }
+      data: {}
     }
   }
 };

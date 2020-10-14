@@ -115,30 +115,8 @@ export default {
           }
         }
       },
-      requiredData: {
+      data: {
         action: "https://www.mocky.io/v2/5cc8019d300000980a055e76"
-      },
-      defaultData: {
-        fontSize: "15px",
-        scrollStyle: true,
-        boxShadow: true,
-        boxShadowStyle: "0 2px 12px 0 rgba(0, 0, 0, 0.1)",
-        transition: true,
-        toolbarsBackground: "#ffffff",
-        previewBackground: "#fbfbfb",
-        subfield: true,
-        defaultOpen: "edit",
-        placeholder: "开始编辑...",
-        editable: true,
-        toolbarsFlag: true,
-        navigation: false,
-        shortCut: true,
-        autofocus: true,
-        ishljs: true,
-        name: "file",
-        data: {},
-        headers: {},
-        withCredentials: false
       }
     },
     common: {

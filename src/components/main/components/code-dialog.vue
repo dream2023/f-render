@@ -18,6 +18,7 @@
     ></prism-editor>
     <div style="text-align: center;margin-top: 20px">
       <el-button @click="handleCopyCode" type="primary">复制代码</el-button>
+      <!-- 下载 TODO 检测移入事件 -->
       <el-button type="primary"
         ><el-link
           :href="fileURL"
@@ -40,7 +41,8 @@ import { highlight, languages } from "prismjs/components/prism-core";
 
 import FRenderTpl from "./tpl/f-render";
 import EleFormTpl from "./tpl/vue-ele-form";
-import serialize from "serialize-javascript";
+
+import _ from "lodash";
 const indentString = require("indent-string");
 import { reomveQuotes } from "../../../utils";
 
@@ -57,34 +59,49 @@ export default {
   },
   data() {
     return {
+      code: "",
+      fileURL: "",
       showType: "f-render"
     };
   },
-  computed: {
-    code() {
-      // serialize 将对象转为字符串，
-      // reomveQuotes 去除 key 的双引号，
-      // indentString 增加缩进
-      // trim 去除第一行的缩进（第一行不需要）
-
-      const config = this.frender.changedFormConfig;
-      const code = indentString(
-        reomveQuotes(serialize(config, { space: 2 })),
-        6
-      ).trim();
-
-      const tpl = this.showType === "f-render" ? FRenderTpl : EleFormTpl;
-      return tpl(code);
+  watch: {
+    // 当 showType 变化
+    showType() {
+      this.setCode();
     },
-    fileURL() {
-      const blob = new Blob([this.code]);
-      return URL.createObjectURL(blob);
+    // 当 visible 变化时
+    visible(val) {
+      if (val) {
+        this.setCode();
+      }
+    },
+    // 检测 code 当代码变化时，重新生成 URL
+    code() {
+      // 防抖，最后一次起作用
+      if (!this.codeToURL) {
+        this.codeToURL = _.debounce(() => {
+          // 将代码转为 URL
+          const blob = new Blob([this.code]);
+          this.fileURL = URL.createObjectURL(blob);
+        }, 200);
+      }
+
+      this.codeToURL();
     }
   },
   methods: {
+    // 设置代码
+    setCode() {
+      const tpl = this.showType === "f-render" ? FRenderTpl : EleFormTpl;
+      this.code = tpl(
+        indentString(reomveQuotes(this.frender.getFormConfigStr()), 6).trim()
+      );
+    },
+    // 高亮代码
     highlighter(code) {
       return highlight(code, languages.js);
     },
+    // 复制代码
     handleCopyCode() {
       copy(this.code);
       this.$message.success("复制成功!");

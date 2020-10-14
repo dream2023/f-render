@@ -35,7 +35,6 @@
 
 <script>
 const fuzzy = require("fuzzy");
-import { addFormItem } from "../../utils";
 
 export default {
   inject: ["frender"],
@@ -54,22 +53,22 @@ export default {
     };
   },
   methods: {
-    // 获取数据
-    getFormItem(config) {
-      return addFormItem({
-        config,
-        commonData: this.frender.formItemCommon.data
-      });
+    getFormItemByConfig({ type, label }) {
+      const formItemData = this.frender.getFormItemByType(type);
+      return {
+        label,
+        field: "key_" + Date.now(),
+        ...formItemData
+      };
     },
     // 双击添加表单
     handleDoubleClick(config) {
-      this.frender.updateFormItemList(
-        this.frender.formItemList.concat(this.getFormItem(config))
-      );
+      const formItemData = this.getFormItemByConfig(config);
+      this.frender.formItemList = [...this.frender.formItemList, formItemData];
     },
     // 拖拽后新增表单项
     handleAddFormItem(config) {
-      return this.getFormItem(config);
+      return this.getFormItemByConfig(config);
     }
   }
 };

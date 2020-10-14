@@ -1,19 +1,3 @@
-import clone from "clone";
-
-const defaultData = {
-  isShowLabel: true,
-  labelWidth: undefined,
-  vif: true,
-  disabled: false,
-  rules: [],
-  layout: 24,
-  prop: {
-    text: "text",
-    value: "value"
-  },
-  optionsLinkageFields: []
-};
-
 export default {
   config: {
     field: {
@@ -31,10 +15,6 @@ export default {
     layout: {
       type: "slider",
       label: "宽度",
-      default: 24,
-      displayFormatter(val) {
-        return val || 24;
-      },
       attrs: {
         min: 1,
         max: 24,
@@ -95,7 +75,6 @@ export default {
       attrs: {
         types: ["function", "boolean"]
       },
-      default: true,
       tip:
         '支持`布尔值`和`函数`，具体请查看：<a target="_blank" href="https://www.yuque.com/chaojie-vjiel/vbwzgu/loffm6#wOVyc" class="el-link el-link--primary">文档</a>'
     },
@@ -105,7 +84,6 @@ export default {
       attrs: {
         types: ["function", "boolean", "string"]
       },
-      default: false,
       tip:
         '支持`布尔值`和`函数`，具体请查看：<a target="_blank" href="https://www.yuque.com/chaojie-vjiel/vbwzgu/loffm6#zaIsz" class="el-link el-link--primary">文档</a>'
     },
@@ -142,9 +120,6 @@ export default {
       }
     }
   },
-  // 默认值，如果是自定义值的话，不用管
-  // 主要作用时，最后显示的时候，通过比对 default 和 data，删除未变化的值
-  default: clone(defaultData),
   // 覆盖值
-  data: clone(defaultData)
+  data: {}
 };

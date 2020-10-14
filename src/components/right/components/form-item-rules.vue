@@ -2,9 +2,8 @@
   <!-- 新增校检 -->
   <ele-form-dialog
     v-model="formData"
-    :formDesc="computedFormDesc"
-    :request-fn="handleAddRule"
-    @request-success="handleSuccess"
+    :formDesc="formDesc"
+    @request="handleAddRule"
     :visible="visible"
     :dialogAttrs="{
       'append-to-body': true
@@ -27,17 +26,9 @@ export default {
       default: false
     }
   },
-  computed: {
-    currentFormItem() {
-      return this.frender.currentFormItem;
-    },
-    computedFormDesc() {
-      return changeFormDescLabel(this.formDesc);
-    }
-  },
   watch: {
     visible(value) {
-      if (!value) {
+      if (value) {
         this.formData = {};
       }
     }
@@ -49,7 +40,7 @@ export default {
       );
     return {
       formData: {},
-      formDesc: {
+      formDesc: changeFormDescLabel({
         type: {
           type: "select",
           label: "类型",
@@ -150,21 +141,20 @@ export default {
             clearable: true
           }
         }
-      },
+      }),
       formBtns: [
         {
           text: "提交并新增",
           type: "primary",
           click: () => {
-            const data = this.handleAddRule(this.formData);
-            this.handleSuccess(data, false);
+            this.handleAddRule(this.formData, false);
           }
         }
       ]
     };
   },
   methods: {
-    handleAddRule(data) {
+    handleAddRule(data, isClose = true) {
       // 过滤掉空值
       const filteredData = cloneDeep(data);
       for (const key in filteredData) {
@@ -172,27 +162,33 @@ export default {
           delete filteredData[key];
         }
       }
-      return filteredData;
+      if (filteredData.enum && filteredData.enum.length == 0) {
+        delete filteredData.enum;
+      }
+
+      if (Object.keys(filteredData).length === 0) return;
+
+      // 更改 formItemList 中当前正在编辑的表单项的 rules
+      const currentItem = this.frender.formItemList[this.frender.currentIndex];
+      this.$set(
+        this.frender.formItemList[this.frender.currentIndex],
+        "rules",
+        (currentItem.rules || []).concat(filteredData)
+      );
+
+      // 关闭弹窗
+      if (isClose) {
+        this.toggleDialog();
+      } else {
+        // 回复默认值
+        this.formData = {};
+      }
+
+      this.$message.success("创建成功");
     },
 
     toggleDialog(visible = false) {
       this.$emit("update:visible", visible);
-    },
-    handleSuccess(data, isClose = true) {
-      if (Object.keys(data).length === 0) return;
-
-      const rules = this.currentFormItem.rules || [];
-      if (data.enum && data.enum.length == 0) {
-        delete data.enum;
-      }
-      rules.push(data);
-      this.frender.updateCurrentFormItem({ rules });
-      this.formData = {};
-      this.$message.success("创建成功");
-
-      if (isClose) {
-        this.toggleDialog();
-      }
     }
   }
 };

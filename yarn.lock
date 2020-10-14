@@ -4280,7 +4280,7 @@ extsprintf@^1.2.0:
   resolved "https://registry.npm.taobao.org/extsprintf/download/extsprintf-1.4.0.tgz#e2689f8f356fad62cca65a3a91c5df5f9551692f"
   integrity sha1-4mifjzVvrWLMplo6kcXfX5VRaS8=
 
-fast-deep-equal@^3.1.1, fast-deep-equal@^3.1.3:
+fast-deep-equal@^3.1.1:
   version "3.1.3"
   resolved "https://registry.npmjs.org/fast-deep-equal/-/fast-deep-equal-3.1.3.tgz#3a7d56b559d6cbc3eb512325244e619a65c6c525"
   integrity sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q==
@@ -9800,10 +9800,10 @@ vue-ele-form-dynamic@^0.4.2:
     async-validator "^3.2.0"
     fast-deep-equal "^3.1.1"
 
-vue-ele-form@^0.8.46:
-  version "0.8.46"
-  resolved "https://registry.yarnpkg.com/vue-ele-form/-/vue-ele-form-0.8.46.tgz#8c88d4166ca1858e5a301108649fd0840f515593"
-  integrity sha512-LIeX9SNCI9PuDtQ57vKWoaBQzrimjxfHDy9tUhDX0ZMrPaI6gC32Zv09mLNPZaaeoexqVDSH9VjeiAcglLcvnA==
+vue-ele-form@^0.8.49:
+  version "0.8.49"
+  resolved "https://registry.yarnpkg.com/vue-ele-form/-/vue-ele-form-0.8.49.tgz#794298bc911e509595a8191ca12f246bb8786d69"
+  integrity sha512-yuwLuhm4GaIiPY85pQQKIoVtkCtCS1Mh5cvUGFmKuh0FV3pQ3BeTzddxSdo8uQGJZNgW1FODxE37ubKEYcaI0g==
   dependencies:
     clone "^2.1.2"
     dayjs "^1.8.31"

@@ -29,10 +29,7 @@ export default {
           label: "分割符"
         }
       },
-      defaultData: {
-        rules: [],
-        delimiter: "-"
-      }
+      data: {}
     },
     common: {
       config: {
@@ -44,7 +41,7 @@ export default {
           }
         }
       },
-      requiredData: {
+      data: {
         default: []
       }
     }

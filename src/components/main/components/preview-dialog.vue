@@ -9,7 +9,8 @@
     @closed="isShowContent = false"
   >
     <ele-form
-      v-bind="frender.formBindConfig"
+      v-bind="frender.formBindProps"
+      :formDesc="frender.formDesc"
       v-model="formData"
       :visible="visible"
       v-if="isShowContent"
@@ -32,10 +33,7 @@ export default {
   data() {
     return {
       isShowContent: false,
-      formData: {},
-      formConfig: {
-        formDesc: {}
-      }
+      formData: {}
     };
   },
   watch: {

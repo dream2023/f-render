@@ -42,14 +42,8 @@ export default {
           label: "搜索占位符"
         }
       },
-      requiredData: {
+      data: {
         ak: "9YLHZRPvUNLhi34Oh2ojqeGSpzCf1rVG"
-      },
-      defaultData: {
-        zoom: 12,
-        isScrollWheelZoom: false,
-        mapHeight: 400,
-        isShowGeolocation: true
       }
     },
     common: {
@@ -62,9 +56,6 @@ export default {
             rows: 4
           }
         }
-      },
-      defaultData: {
-        default: ""
       }
     }
   }

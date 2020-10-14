@@ -1,55 +1,29 @@
-import clone from "clone";
-
-const defaultData = {
-  rules: {},
-  formAttrs: {},
-  inline: false,
-  disabled: false,
-  readonly: false,
-  isShowLabel: true,
-  isDialog: false,
-  isShowSubmitBtn: true,
-  isShowBackBtn: null,
-  isShowResetBtn: false,
-  isShowCancelBtn: null,
-  isResponsive: true,
-  isShowErrorNotify: true,
-  submitBtnText: "提交",
-  cancelBtnText: "取消",
-  backBtnText: "返回",
-  resetBtnText: "重置",
-  labelWidth: "auto",
-  labelPosition: null,
-  span: null,
-  formBtnSize: null
-};
 export default {
   config: {
     inline: {
-      type: "radio",
-      default: false,
+      type: "radio-button",
       label: "inline模式 / layout模式",
       options: [
-        { text: "layout模式", value: false },
+        { text: "layout模式", value: undefined },
         { text: "inline模式", value: true }
       ]
     },
     isResponsive: {
-      type: "switch",
+      type: "radio-button",
       label: "是否响应式",
       vif: data => !data.inline,
       options: [
-        { text: "是", value: true },
+        { text: "是", value: undefined },
         { text: "否", value: false }
       ]
     },
     labelPosition: {
-      type: "select",
+      type: "radio-button",
       label: "标签位置",
       options(data) {
         const options = ["left", "right", "top"];
-        if (data.isResponsive && !data.inline) {
-          options.unshift({ text: "响应式", value: null });
+        if (data.isResponsive !== false && !data.inline) {
+          options.unshift({ text: "响应式", value: undefined });
         }
         return options;
       }
@@ -58,13 +32,11 @@ export default {
       type: "select",
       label: "表单宽度",
       vif: data => !data.inline,
-      options(data) {
+      options() {
         const options = Array.from({ length: 24 }, (v, i) => {
           return { text: `${24 - i} / 24`, value: 24 - i };
         });
-        if (data.isResponsive) {
-          options.unshift({ text: "响应式", value: null });
-        }
+        options.unshift({ text: "响应式", value: undefined });
         return options;
       },
       style: {
@@ -81,12 +53,20 @@ export default {
         '校检规则文档, 请<a target="_blank" href="https://www.yuque.com/chaojie-vjiel/vbwzgu/qzzkpd" class="el-link el-link--primary">点击查看</a>'
     },
     isDialog: {
-      type: "switch",
-      label: "是否为弹窗"
+      type: "radio-button",
+      label: "是否为弹窗",
+      options: [
+        { text: "非弹窗", value: undefined },
+        { text: "弹窗", value: true }
+      ]
     },
     isShowLabel: {
-      type: "switch",
-      label: "是否显示标签"
+      type: "radio-button",
+      label: "是否显示标签",
+      options: [
+        { text: "显示", value: undefined },
+        { text: "不显示", value: false }
+      ]
     },
     labelWidth: {
       type: "input",
@@ -96,58 +76,68 @@ export default {
         min: 0,
         step: 10
       },
-      tip: "默认值为auto"
+      tip: "默认值为 `auto`"
     },
     disabled: {
-      type: "switch",
-      label: "全局禁用表单"
-    },
-    readonly: {
-      type: "switch",
-      label: "全局只读表单"
-    },
-    isShowErrorNotify: {
-      type: "switch",
-      label: "是否在校检错误后显示右上角提示"
-    },
-    isShowSubmitBtn: {
-      type: "radio",
-      label: "提交按钮",
+      type: "radio-button",
+      label: "全局禁用表单",
       options: [
-        { text: "显示", value: true },
-        { text: "隐藏", value: false }
+        { text: "正常", value: undefined },
+        { text: "禁用", value: true }
       ]
     },
-    isShowResetBtn: {
-      type: "radio",
-      label: "重置按钮",
+    readonly: {
+      type: "radio-button",
+      label: "全局只读表单",
       options: [
-        { text: "显示", value: true },
+        { text: "正常", value: undefined },
+        { text: "只读", value: true }
+      ]
+    },
+    isShowErrorNotify: {
+      type: "radio-button",
+      label: "是否在校检错误后显示右上角提示",
+      options: [
+        { text: "显示", value: undefined },
+        { text: "不显示", value: false }
+      ]
+    },
+    isShowSubmitBtn: {
+      type: "radio-button",
+      label: "提交按钮",
+      options: [
+        { text: "显示", value: undefined },
         { text: "隐藏", value: false }
       ]
     },
     isShowBackBtn: {
-      type: "radio",
+      type: "radio-button",
       label: "返回按钮",
       options: [
-        { text: "默认", value: null },
-        { text: "显示", value: true },
-        { text: "隐藏", value: false }
-      ]
-    },
-    isShowCancelBtn: {
-      type: "radio",
-      label: "取消按钮",
-      options: [
-        { text: "默认", value: null },
-        { text: "显示", value: true },
+        { text: "显示", value: undefined },
         { text: "隐藏", value: false }
       ]
     },
     formBtnSize: {
-      type: "select",
+      type: "radio-button",
       label: "表单按钮大小",
-      options: [{ text: "默认", value: null }, "medium", "small", "mini"]
+      options: [{ text: "默认", value: undefined }, "medium", "small", "mini"]
+    },
+    isShowResetBtn: {
+      type: "radio-button",
+      label: "重置按钮",
+      options: [
+        { text: "显示", value: true },
+        { text: "隐藏", value: undefined }
+      ]
+    },
+    isShowCancelBtn: {
+      type: "radio-button",
+      label: "取消按钮",
+      options: [
+        { text: "显示", value: true },
+        { text: "隐藏", value: undefined }
+      ]
     },
     submitBtnText: {
       type: "input",
@@ -173,6 +163,5 @@ export default {
       }
     }
   },
-  default: clone(defaultData),
-  data: clone(defaultData)
+  data: {}
 };

@@ -1,21 +1,21 @@
 <template>
   <div>
-    <template v-if="currentFormItem && currentIndex !== null">
+    <template v-if="frender.formItemList[frender.currentIndex]">
       <attrs-header
         url="https://www.yuque.com/chaojie-vjiel/vbwzgu/iw5dzf"
         title="表单项配置"
         v-model="keyword"
       />
       <ele-form
-        :formData="formItemList[currentIndex]"
+        v-model="frender.formItemList[frender.currentIndex]"
         :formDesc="filteredFormDesc"
         :formAttrs="{ size: 'small' }"
         :isShowBackBtn="false"
         :isShowSubmitBtn="false"
         :rules="rules"
         :options-fn="
-          frender.formBindConfig['options-fn'] ||
-            frender.formBindConfig['optionsFn']
+          frender.formBindProps['options-fn'] ||
+            frender.formBindProps['optionsFn']
         "
         :span="20"
         labelPosition="top"
@@ -57,50 +57,31 @@ export default {
     FormItemRules
   },
   computed: {
-    formItemList() {
-      return this.frender.formItemList;
-    },
-    currentIndex() {
-      return this.frender.currentIndex;
-    },
-    currentFormItem() {
-      return this.frender.currentFormItem;
-    },
-    compsMap() {
-      return this.frender.compsMap;
-    },
     // 自定义的配置
     customConfig() {
-      return this.currentFormItem
-        ? this.compsMap.get(this.currentFormItem.type)?.config?.common?.config
-        : {};
+      const currentCompConfig = this.frender.currentCompConfig;
+      return currentCompConfig?.config?.common?.config || {};
     },
     // 字段出现的次数
     fieldCountObj() {
-      return _.countBy(this.formItemList, o => o.field);
+      return _.countBy(this.frender.formItemList, o => o.field);
     }
   },
   watch: {
-    customConfig() {
-      const formDesc = Object.assign(
-        {},
-        this.frender.formItemCommon.config,
-        this.customConfig
-      );
-      this.formDesc = changeFormDescLabel(formDesc);
-    },
-    currentIndex: {
-      // 默认值在保存后会被删除
-      // 所以在回显的时候就会有问题，这里需要重新赋值
-      handler(currentIndex) {
-        if (currentIndex === null) return;
-        const currentFormItem = Object.assign(
-          {},
-          this.frender.formItemCommon.data,
-          this.currentFormItem
-        );
+    // 检测当前表单项类型变化
+    "frender.currentFormItemType": {
+      handler(currentFormItemType) {
+        // 如果并没有选择表单项类型，则为空
+        if (!currentFormItemType) {
+          this.formDesc = {};
+          return;
+        }
 
-        this.frender.updateCurrentFormItem(currentFormItem);
+        // 当前组件信息
+        this.formDesc = changeFormDescLabel({
+          ...this.frender.formItemCommon.config,
+          ...this.customConfig
+        });
       },
       immediate: true
     }
@@ -129,23 +110,6 @@ export default {
       },
       isShowRuleDialog: false
     };
-  },
-  methods: {
-    handleChangeRules(rules) {
-      try {
-        if (rules) {
-          rules = eval("(" + rules + ")");
-          if (typeof rules !== "object") return;
-        } else {
-          rules = [];
-        }
-        const data = Object.assign({}, this.currentFormItem, { rules: rules });
-        this.frender.updateCurrentFormItem(data);
-      } catch (error) {
-        // eslint-disable-next-line no-console
-        console.error(error);
-      }
-    }
   }
 };
 </script>

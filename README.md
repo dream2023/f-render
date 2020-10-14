@@ -49,7 +49,7 @@
 
 f-render 是基于 [vue-ele-form](https://github.com/dream2023/vue-ele-form) 开发的可视化表单设计工具, 适用于 各种流程引擎和动态表单项目，大大节省你的开发时间；
 
-[![f-render 演示图](https://s1.ax1x.com/2020/08/23/d0T976.gif)](https://dream2023.gitee.io/f-render/)
+[![f-render 演示图](./demo.webp)](https://dream2023.gitee.io/f-render/)
 
 ## 注意
 
@@ -58,20 +58,24 @@ f-render 是基于 [vue-ele-form](https://github.com/dream2023/vue-ele-form) 开
 ## 特性
 
 - 组件方式：以组件方式接入，1 分钟轻松接入；
-- 体积小：Gzip 压缩后 `200k` 以内；
+- 体积小：Gzip 压缩后 `100k` 左右；
 - 易扩展：可以在`不更改源码`的情况下增删改属性、组件；
 
 ## Demo
 
 [https://dream2023.gitee.io/f-render/](https://dream2023.gitee.io/f-render/)
 
-## 安装 & 注册
+## 1 分钟快速接入
+
+#### 第 1 步：安装
 
 ```bash
 yarn add element-ui  # npm install element-ui
 yarn add vue-ele-form # npm install vue-ele-form
 yarn add f-render # npm install f-render
 ```
+
+#### 第 2 步：注册
 
 ```js
 // vue-ele-form 的注册可参考：https://www.yuque.com/chaojie-vjiel/vbwzgu/xl46cd
@@ -85,11 +89,7 @@ Vue.use(EleForm);
 Vue.component("f-render", FRender);
 ```
 
-## 使用简介
-
-使用分为两个部分，首先是进行表单拖拽设计，然后再已纯表单的形式使用
-
-### 表单设计
+#### 第 3 步：使用
 
 ```html
 <template>
@@ -128,9 +128,16 @@ Vue.component("f-render", FRender);
 </script>
 ```
 
-### 表单使用
+## 用户模式
 
-#### 基于 f-render 使用
+我们把动态表单分为两个阶段：
+
+- 首先是设计阶段：通过拖拽设计表单；
+- 然后是用户阶段：将设计好的表单以纯表单的形式让用户填写。
+
+我们别分称这两个阶段的表单为设计模式和用户模式。设计模式的表单配置我们已经讲了，下面看用户模式下的表单配置：
+
+#### 基于 f-render 的配置
 
 通过属性 `pure`, 可以直接做为表单使用，其数据提交方式同 `vue-ele-form` 一样，具体可查看[文档](https://www.yuque.com/chaojie-vjiel/vbwzgu/zbu9mn)。
 
@@ -175,7 +182,7 @@ Vue.component("f-render", FRender);
 </script>
 ```
 
-#### 基于 vue-ele-form 使用
+#### 基于 vue-ele-form 的配置
 
 如果你的可视化设计和表单使用，不再一个系统，可以直接使用 `vue-ele-form`，不必安装 `f-render`，具体如下：
 
@@ -310,14 +317,8 @@ export default {
         }
         // ....
       },
-      // 默认值
-      // 如果在保存时，默认值未更改，则会被剔除，保持数据的简洁性
-      defaultData: {
-        max: 255
-      },
-      // 必须值
-      // 在保存时，必填值无论是否更改，都会保留，用作一些属性是必填的
-      requiredData: {
+      // 默认值，如果在配置文件里设置了，则每个组件都会携带
+      data: {
         name: "url"
       }
     },
@@ -331,9 +332,7 @@ export default {
           label: "默认值"
         }
       },
-      // 这两个和上面一个意思，分别是 common 的默认值和必填值
-      defaultData: {},
-      requiredData: {}
+      data: {}
     }
   }
 };
@@ -378,6 +377,32 @@ export default {
   :comps="comps"
   :form-item-common="formItemCommon"
 />
+```
+
+具体而言，如果想让每个 `input` 组件都携带 `clearable: true` 的属性，我们可以这样操作：
+
+```html
+<template>
+  <!-- 其它属性省略 -->
+  <!-- 将更改后的 comps 传递过去即可 -->
+  <f-render :comps="comps" />
+</template>
+
+<script>
+  import comps from "f-render/src/fixtures/comps";
+  // 查找 input 组件，当然你也可以看源码，直接查看索引
+  const inputIndex = comps.findIndex(item => item.type === "input");
+  // 更改 config.attrs.data 值即可
+  comps[inputIndex].config.attrs.data = { clearable: true };
+
+  export default {
+    data() {
+      return {
+        comps
+      };
+    }
+  };
+</script>
 ```
 
 ### 样式定制化
@@ -440,7 +465,7 @@ props: {
   // 操作配置
   operations: {
     type: Array,
-    default: () => ["preview", "data", "code", "batch", "clear"]
+    default: () => ["preview", "data", "code", "batch", "clear", "save"]
   },
   // 是否在加载
   loading: Boolean,

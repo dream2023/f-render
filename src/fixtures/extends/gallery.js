@@ -49,15 +49,7 @@ export default {
           }
         }
       },
-      defaultData: {
-        type: "image",
-        size: 150,
-        width: 150,
-        height: 150,
-        lazy: false,
-        thumbStyle: {},
-        carouselAttrs: {}
-      }
+      data: {}
     },
     common: {
       config: {
@@ -74,7 +66,7 @@ export default {
           }
         }
       },
-      requiredData: {
+      data: {
         default: [
           "https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",
           "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"

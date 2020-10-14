@@ -21,11 +21,7 @@ export default {
           }
         }
       },
-      defaultData: {
-        height: "300px",
-        plus: false,
-        options: {}
-      }
+      data: {}
     },
     common: {
       config: {

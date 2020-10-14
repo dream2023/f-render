@@ -1,6 +1,6 @@
 {
   "name": "f-render",
-  "version": "4.8.0",
+  "version": "4.9.0",
   "private": false,
   "license": "MIT",
   "description": "f-render | 基于 ElementUI 的表单设计器",
@@ -17,7 +17,6 @@
   "dependencies": {
     "clipboard-copy": "^3.1.0",
     "clone": "^2.1.2",
-    "fast-deep-equal": "^3.1.3",
     "fuzzy": "^0.1.3",
     "indent-string": "^4.0.0",
     "lodash": "^4.17.20",
@@ -50,7 +49,7 @@
     "prettier": "^1.19.1",
     "standard-version": "^9.0.0",
     "vue": "^2.6.11",
-    "vue-ele-form": "^0.8.46",
+    "vue-ele-form": "^0.8.49",
     "vue-template-compiler": "^2.6.11"
   },
   "repository": {

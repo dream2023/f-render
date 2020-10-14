@@ -2,7 +2,7 @@
   <div>
     <div class="f-render-right-link">
       <el-link type="primary" target="_blank" :href="url"
-        >点击查看{{ title }}</el-link
+        >点击查看 {{ title }}</el-link
       >&nbsp;
       <span style="vertical-align: middle;">属性详细解释</span>
     </div>
