@@ -4,45 +4,39 @@ All notable changes to this project will be documented in this file. See [standa
 
 ## [4.10.0](https://github.com/dream2023/f-render/compare/v4.8.0...v4.10.0) (2020-10-14)
 
-
 ### Features
 
-* 兼容 ie11 ([4a140df](https://github.com/dream2023/f-render/commit/4a140dfe7a9a6460170c8905b308b2a613b1ade6))
+- 兼容 ie11 ([4a140df](https://github.com/dream2023/f-render/commit/4a140dfe7a9a6460170c8905b308b2a613b1ade6))
 
 ## [4.8.0](https://github.com/dream2023/f-render/compare/v4.7.2...v4.8.0) (2020-09-14)
 
-
 ### Features
 
-* 修复级联组件默认值BUG ([c950d55](https://github.com/dream2023/f-render/commit/c950d55cca9b6fb12e2568b71c1bcece51711652))
+- 修复级联组件默认值 BUG ([c950d55](https://github.com/dream2023/f-render/commit/c950d55cca9b6fb12e2568b71c1bcece51711652))
 
 ### [4.7.2](https://github.com/dream2023/f-render/compare/v4.7.1...v4.7.2) (2020-09-10)
 
-
 ### Bug Fixes
 
-* **#49:** 增加强制换行属性 ([fbbb9a5](https://github.com/dream2023/f-render/commit/fbbb9a5423ebd6d067e42f4e4de66e949e468065)), closes [#49](https://github.com/dream2023/f-render/issues/49)
-* form-props 和 form-item-common 增加default ([b16c006](https://github.com/dream2023/f-render/commit/b16c006b45c176cce4fbe060a1159d5968c40118))
-* layout 会缩小 ([302bb06](https://github.com/dream2023/f-render/commit/302bb06549b8df2f2e12add2a45b43610e4fced3))
+- **#49:** 增加强制换行属性 ([fbbb9a5](https://github.com/dream2023/f-render/commit/fbbb9a5423ebd6d067e42f4e4de66e949e468065)), closes [#49](https://github.com/dream2023/f-render/issues/49)
+- form-props 和 form-item-common 增加 default ([b16c006](https://github.com/dream2023/f-render/commit/b16c006b45c176cce4fbe060a1159d5968c40118))
+- layout 会缩小 ([302bb06](https://github.com/dream2023/f-render/commit/302bb06549b8df2f2e12add2a45b43610e4fced3))
 
 ### [4.7.1](https://github.com/dream2023/f-render/compare/v4.7.0...v4.7.1) (2020-09-05)
 
-
 ### Bug Fixes
 
-* **#62:** 校检更新问题 ([1e7a3cc](https://github.com/dream2023/f-render/commit/1e7a3cc474d288244935f2ab76bfdfbdff7b1a35)), closes [#62](https://github.com/dream2023/f-render/issues/62)
+- **#62:** 校检更新问题 ([1e7a3cc](https://github.com/dream2023/f-render/commit/1e7a3cc474d288244935f2ab76bfdfbdff7b1a35)), closes [#62](https://github.com/dream2023/f-render/issues/62)
 
 ## [4.7.0](https://github.com/dream2023/f-render/compare/v4.6.1...v4.7.0) (2020-09-02)
 
-
 ### Features
 
-* 增加 remoteMethod ([f19e705](https://github.com/dream2023/f-render/commit/f19e70583badf51f98a0871063c8c785257069f2))
-
+- 增加 remoteMethod ([f19e705](https://github.com/dream2023/f-render/commit/f19e70583badf51f98a0871063c8c785257069f2))
 
 ### Bug Fixes
 
-* 修复BUG & 升级依赖 ([3134a5c](https://github.com/dream2023/f-render/commit/3134a5cc0608abe4b838dc94067564b79701e872))
+- 修复 BUG & 升级依赖 ([3134a5c](https://github.com/dream2023/f-render/commit/3134a5cc0608abe4b838dc94067564b79701e872))
 
 ### [4.6.2](https://github.com/dream2023/f-render/compare/v4.6.1...v4.6.2) (2020-09-01)
 
