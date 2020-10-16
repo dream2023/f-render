@@ -492,7 +492,7 @@ export default [
     type: "switch",
     label: "开关",
     sort: 7,
-    confg: {
+    config: {
       url: "https://element.eleme.cn/#/zh-CN/component/switch",
       attrs: {
         config: {
@@ -505,11 +505,11 @@ export default [
             label: "switch 关闭时的背景色"
           },
           width: {
-            type: "number",
+            type: "input",
             label: "switch 的宽度（像素）",
             attrs: {
               min: 1,
-              step: 10
+              type: "number"
             }
           },
           activeIconClass: {
@@ -523,6 +523,22 @@ export default [
           activeText: {
             type: "input",
             label: "switch 打开时的文字描述"
+          },
+          activeValue: {
+            type: "data-editor",
+            label: "switch 打开时的值",
+            attrs: {
+              types: ["boolean", "number", "string"],
+              rows: 2
+            }
+          },
+          inactiveValue: {
+            type: "data-editor",
+            label: "switch 关闭时的值",
+            attrs: {
+              types: ["boolean", "number", "string"],
+              rows: 2
+            }
           },
           inactiveText: {
             type: "input",
@@ -538,8 +554,12 @@ export default [
       common: {
         config: {
           default: {
-            type: "switch",
-            label: "默认值"
+            type: "data-editor",
+            label: "默认值",
+            attrs: {
+              types: ["boolean", "number", "string"],
+              rows: 2
+            }
           }
         }
       }

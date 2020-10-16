@@ -70,9 +70,9 @@ f-render 是基于 [vue-ele-form](https://github.com/dream2023/vue-ele-form) 开
 #### 第 1 步：安装
 
 ```bash
-yarn add element-ui  # npm install element-ui
-yarn add vue-ele-form # npm install vue-ele-form
-yarn add f-render # npm install f-render
+yarn add element-ui  # npm install element-ui -S
+yarn add vue-ele-form # npm install vue-ele-form -S
+yarn add f-render # npm install f-render -S
 ```
 
 #### 第 2 步：注册
@@ -250,30 +250,28 @@ Vue.component("quill-editor", EleFormQuillEditor);
 
 ```html
 <template>
-<!-- 省略其它属性 -->
-<f-render
-  :comps="comps"
-/>
+  <!-- 省略其它属性 -->
+  <f-render :comps="comps" />
 </template>
 
 <script>
-// 默认配置
-import comps from "f-render/src/fixtures/comps";
-// 富文本配置
-import quillEditor from "f-render/src/fixtures/extends/quill-editor";
-// 可以更改显示组件位置，默认为 10
-// 这里更改为 2，显示更靠前
-quillEditor.sort = 2
+  // 默认配置
+  import comps from "f-render/src/fixtures/comps";
+  // 富文本配置
+  import quillEditor from "f-render/src/fixtures/extends/quill-editor";
+  // 可以更改显示组件位置，默认为 10
+  // 这里更改为 2，显示更靠前
+  quillEditor.sort = 2;
 
-export default {
-  data() {
-    return {
-      // 拼接上即可
-      comps: comps.concat(quillEditor),
+  export default {
+    data() {
+      return {
+        // 拼接上即可
+        comps: comps.concat(quillEditor)
+      };
     }
-  }
-}
-</scirpt>
+  };
+</script>
 ```
 
 ### 新增自定义组件
