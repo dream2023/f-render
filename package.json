@@ -1,6 +1,6 @@
 {
   "name": "f-render",
-  "version": "4.10.0",
+  "version": "4.10.1",
   "private": false,
   "license": "MIT",
   "description": "f-render | 基于 ElementUI 的表单设计器",
@@ -49,7 +49,7 @@
     "prettier": "^1.19.1",
     "standard-version": "^9.0.0",
     "vue": "^2.6.11",
-    "vue-ele-form": "^0.8.49",
+    "vue-ele-form": "^0.8.50",
     "vue-template-compiler": "^2.6.11"
   },
   "repository": {
