@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.10.2](https://github.com/dream2023/f-render/compare/v4.10.1...v4.10.2) (2020-10-23)
+
+
+### Bug Fixes
+
+* 修复 BUG ([fe50821](https://github.com/dream2023/f-render/commit/fe50821918dfd1106ee23feccae3f88a102d771b))
+* 修复 switch 相关 BUG ([dfd0a7e](https://github.com/dream2023/f-render/commit/dfd0a7ecc349322983e8a5507641d547829d1618))
+
 ### [4.10.1](https://github.com/dream2023/f-render/compare/v4.9.0...v4.10.1) (2020-10-16)
 
 ## [4.10.0](https://github.com/dream2023/f-render/compare/v4.8.0...v4.10.0) (2020-10-14)
