@@ -176,7 +176,7 @@ export default {
         ];
 
         this.$message.success("添加成功");
-        // 回复数据
+        // 恢复数据
         this.formData = {
           type: "dynamic",
           formItems: []

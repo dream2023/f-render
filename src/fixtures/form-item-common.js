@@ -93,8 +93,12 @@ export default {
     },
     isShowLabel: {
       label: "否显示标签",
-      type: "switch",
-      tip: "与全局isShowLabel作用相同"
+      type: "radio-button",
+      tip: "与全局isShowLabel作用相同",
+      options: [
+        { text: "显示", value: undefined },
+        { text: "隐藏", value: false }
+      ]
     },
     labelWidth: {
       label: "标签宽度",
@@ -103,7 +107,11 @@ export default {
     },
     break: {
       label: "强制折行",
-      type: "switch"
+      type: "radio-button",
+      options: [
+        { text: "正常", value: undefined },
+        { text: "折行", value: true }
+      ]
     },
     displayFormatter: {
       label: "显示处理函数",

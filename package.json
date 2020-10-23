@@ -49,7 +49,7 @@
     "prettier": "^1.19.1",
     "standard-version": "^9.0.0",
     "vue": "^2.6.11",
-    "vue-ele-form": "^0.8.50",
+    "vue-ele-form": "^0.8.51",
     "vue-template-compiler": "^2.6.11"
   },
   "repository": {

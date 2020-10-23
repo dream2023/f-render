@@ -128,6 +128,10 @@ export default {
           try {
             // 有可能解析出错
             formConfig = formConfig ? eval(`(${formConfig})`) : {};
+            if (!_.isPlainObject(formConfig)) {
+              // 如果不是对象，则也抛出遗产
+              throw new TypeError("config 不是对象");
+            }
           } catch (err) {
             this.$message.error("数据解析失败");
             console.error(err);
@@ -136,7 +140,7 @@ export default {
         }
 
         if (!_.isPlainObject(formConfig)) {
-          // 如果不是对象，则也抛出遗产
+          // 如果不是对象，则也抛出异常
           console.error("[f-render]: config 不是对象", formConfig);
           return;
         }
@@ -263,13 +267,7 @@ export default {
     },
     // 设置表单属性默认值
     initFormPropsData() {
-      this.formPropsData = Object.assign(
-        {},
-        // 默认值
-        this.formProps.default,
-        // 覆盖默认值
-        this.formProps.data
-      );
+      this.formPropsData = cloneDeep(this.formProps.data);
     }
   },
   created() {

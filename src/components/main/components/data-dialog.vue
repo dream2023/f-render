@@ -92,9 +92,11 @@ export default {
         // 判断是否为对象
         if (_.isPlainObject(res)) {
           // 1. 通过解构符合的方式分离出 formDesc 和 formPropsData
-          const { formDesc = {}, ...formPropsData } = res;
+          const { formDesc = {}, order = [], ...formPropsData } = res;
           // 2. 赋值 frender.formPropsData
-          this.frender.formPropsData = formPropsData;
+          this.frender.formPropsData = Object.assign(formPropsData, {
+            order: order || Object.keys(formDesc)
+          });
           // 3. 将 formDesc 转为数组，并赋值给 frender.formItemList
           this.frender.formItemList = objectToArr(formDesc, "field").map(item =>
             Object.assign({ attrs: {} }, item)

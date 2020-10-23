@@ -58,8 +58,8 @@ export function reomveQuotes(str) {
 }
 
 /**
- * 移除无用的属性(默认值 + 空属性 + 隐藏的属性)
+ * 移除无用的属性
  */
 export function removeEmptyProps(obj = {}) {
-  return _.omitBy(obj, val => _.isNil(val));
+  return _.omitBy(obj, val => val === undefined || val === null || val === "");
 }
