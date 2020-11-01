@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.12.0](https://github.com/dream2023/f-render/compare/v4.10.2...v4.12.0) (2020-11-01)
+
+
+### Features
+
+* 增加插槽 & 右侧属性面板配置 ([106fa49](https://github.com/dream2023/f-render/commit/106fa49f965366bd53dc90f3d8541ca0089c0b98))
+
 ## [4.11.0](https://github.com/dream2023/f-render/compare/v4.10.2...v4.11.0) (2020-11-01)
 
 
