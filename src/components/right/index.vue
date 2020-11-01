@@ -2,7 +2,7 @@
   <div class="f-render-right">
     <el-tabs class="f-render-header" :stretch="true" v-model="activeTab">
       <el-tab-pane
-        v-for="tab of tabs"
+        v-for="tab of frender.rightTabs"
         :key="tab.name"
         :label="tab.label"
         :name="tab.name"
@@ -13,7 +13,7 @@
         v-show="activeTab === tab.name"
         :is="tab.name"
         class="f-render-right-content"
-        v-for="tab of tabs"
+        v-for="tab of frender.rightTabs"
         :key="tab.name"
       />
     </perfect-scrollbar>
@@ -26,6 +26,7 @@ import FormItemAttrs from "./form-item-attrs.vue";
 import FormItemCommon from "./form-item-common.vue";
 
 export default {
+  inject: ["frender"],
   components: {
     FormProps,
     FormItemAttrs,
@@ -33,21 +34,7 @@ export default {
   },
   data() {
     return {
-      activeTab: "form-item-common",
-      tabs: [
-        {
-          label: "表单项属性配置",
-          name: "form-item-common"
-        },
-        {
-          label: "组件属性配置",
-          name: "form-item-attrs"
-        },
-        {
-          label: "表单配置",
-          name: "form-props"
-        }
-      ]
+      activeTab: ""
     };
   },
   watch: {
@@ -55,6 +42,9 @@ export default {
     activeTab() {
       this.$refs.scroll.$el.scrollTop = 0;
     }
+  },
+  mounted() {
+    this.activeTab = this.frender.rightTabs[0].name;
   }
 };
 </script>

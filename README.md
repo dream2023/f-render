@@ -15,12 +15,13 @@
 - [注意](#%E6%B3%A8%E6%84%8F)
 - [特性](#%E7%89%B9%E6%80%A7)
 - [Demo](#demo)
-- [安装 & 注册](#%E5%AE%89%E8%A3%85--%E6%B3%A8%E5%86%8C)
-- [使用简介](#%E4%BD%BF%E7%94%A8%E7%AE%80%E4%BB%8B)
-  - [表单设计](#%E8%A1%A8%E5%8D%95%E8%AE%BE%E8%AE%A1)
-  - [表单使用](#%E8%A1%A8%E5%8D%95%E4%BD%BF%E7%94%A8)
-    - [基于 f-render 使用](#%E5%9F%BA%E4%BA%8E-f-render-%E4%BD%BF%E7%94%A8)
-    - [基于 vue-ele-form 使用](#%E5%9F%BA%E4%BA%8E-vue-ele-form-%E4%BD%BF%E7%94%A8)
+- [1 分钟快速接入](#1-%E5%88%86%E9%92%9F%E5%BF%AB%E9%80%9F%E6%8E%A5%E5%85%A5)
+  - [第 1 步：安装](#%E7%AC%AC-1-%E6%AD%A5%E5%AE%89%E8%A3%85)
+  - [第 2 步：注册](#%E7%AC%AC-2-%E6%AD%A5%E6%B3%A8%E5%86%8C)
+  - [第 3 步：使用](#%E7%AC%AC-3-%E6%AD%A5%E4%BD%BF%E7%94%A8)
+- [用户模式](#%E7%94%A8%E6%88%B7%E6%A8%A1%E5%BC%8F)
+  - [基于 f-render 的配置](#%E5%9F%BA%E4%BA%8E-f-render-%E7%9A%84%E9%85%8D%E7%BD%AE)
+  - [基于 vue-ele-form 的配置](#%E5%9F%BA%E4%BA%8E-vue-ele-form-%E7%9A%84%E9%85%8D%E7%BD%AE)
 - [定制化](#%E5%AE%9A%E5%88%B6%E5%8C%96)
   - [新增官方扩展组件（以富文本扩展为例）](#%E6%96%B0%E5%A2%9E%E5%AE%98%E6%96%B9%E6%89%A9%E5%B1%95%E7%BB%84%E4%BB%B6%E4%BB%A5%E5%AF%8C%E6%96%87%E6%9C%AC%E6%89%A9%E5%B1%95%E4%B8%BA%E4%BE%8B)
     - [安装组件](#%E5%AE%89%E8%A3%85%E7%BB%84%E4%BB%B6)
@@ -31,10 +32,12 @@
     - [书写配置](#%E4%B9%A6%E5%86%99%E9%85%8D%E7%BD%AE)
     - [合并配置并传入](#%E5%90%88%E5%B9%B6%E9%85%8D%E7%BD%AE%E5%B9%B6%E4%BC%A0%E5%85%A5)
   - [定制化原组件配置 & 表单配置](#%E5%AE%9A%E5%88%B6%E5%8C%96%E5%8E%9F%E7%BB%84%E4%BB%B6%E9%85%8D%E7%BD%AE--%E8%A1%A8%E5%8D%95%E9%85%8D%E7%BD%AE)
+  - [定制化右侧 Tabs](#%E5%AE%9A%E5%88%B6%E5%8C%96%E5%8F%B3%E4%BE%A7-tabs)
   - [样式定制化](#%E6%A0%B7%E5%BC%8F%E5%AE%9A%E5%88%B6%E5%8C%96)
 - [二次开发](#%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91)
-- [f-render 不能做什么？](#f-render-%E4%B8%8D%E8%83%BD%E5%81%9A%E4%BB%80%E4%B9%88)
+- [f-render 问答集锦](#f-render-%E9%97%AE%E7%AD%94%E9%9B%86%E9%94%A6)
 - [Props 说明](#props-%E8%AF%B4%E6%98%8E)
+- [插槽](#%E6%8F%92%E6%A7%BD)
 - [生态](#%E7%94%9F%E6%80%81)
 - [特别感谢赞助者](#%E7%89%B9%E5%88%AB%E6%84%9F%E8%B0%A2%E8%B5%9E%E5%8A%A9%E8%80%85)
 - [Contributors ✨](#contributors-)
@@ -403,6 +406,32 @@ export default {
 </script>
 ```
 
+### 定制化右侧 Tabs
+
+我们可以通过 `isShowRight` 属性来控制右侧面板是否显示，通过 `rightTabs` 来定制具体显示的面板名称，具体如下：
+
+```html
+<template>
+  <!-- 定制化右侧 tabs -->
+  <f-render :right-tabs="tabs" />
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        tabs: [
+          { label: "表单项属性配置", name: "form-item-common" },
+          { label: "组件属性配置", name: "form-item-attrs" }
+          // 注释下面的内容，就可以不显示
+          // { label: "表单配置", name: "form-props" }
+        ]
+      };
+    }
+  };
+</script>
+```
+
 ### 样式定制化
 
 直接进行样式覆盖即可，注意不要加 `scoped`，否则覆盖不成功
@@ -465,6 +494,20 @@ props: {
     type: Array,
     default: () => ["preview", "data", "code", "batch", "clear", "save"]
   },
+  // 是否显示右侧
+  isShowRight: {
+    type: Boolean,
+    default: true
+  },
+  // 右侧属性面板 Tabs
+  rightTabs: {
+    type: Array,
+    default: () => [
+      { label: "表单项属性配置", name: "form-item-common" },
+      { label: "组件属性配置", name: "form-item-attrs" },
+      { label: "表单配置", name: "form-props" }
+    ]
+  },
   // 是否在加载
   loading: Boolean,
 
@@ -476,6 +519,33 @@ props: {
   // ....
 },
 ```
+
+## 插槽
+
+- left：左侧组件列表
+- main: 中间区域
+- main-header: 头部操作区
+- main-content: 表单设计区
+- right: 右侧属性配置区
+
+举例：
+
+```html
+<template>
+  <f-render>
+    <!-- 左侧插槽 -->
+    <template v-slot:left="{frender}">
+      <div>
+        <div>left</div>
+        <div>{{frender.comps}}</div>
+      </div>
+    </template>
+  </f-render>
+  <template></template
+></template>
+```
+
+其中 `frender` 数据是 `f-render` 组件数据的集合，具体都有哪些数据，可以参考[源码](https://gitee.com/dream2023/f-render/blob/master/src/f-render.vue)，其它插槽均有此参数。
 
 ## 生态
 

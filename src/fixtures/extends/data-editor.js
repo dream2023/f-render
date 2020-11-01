@@ -40,7 +40,7 @@ export default {
         autosize: {
           type: data => data.autosizeType,
           default: data => {
-            if (data === "switch") {
+            if (data.autosizeType === "switch") {
               return false;
             } else {
               return { minRows: 2, maxRows: 6 };

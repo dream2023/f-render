@@ -9,6 +9,13 @@
       <h1 class="app-header-title">FRender 表单设计器</h1>
     </el-link>
     <div class="app-header-right">
+      <el-button
+        @click="$emit('change')"
+        icon="el-icon-view"
+        type="text"
+        style="margin-right: 20px"
+        >切换视图</el-button
+      >
       <el-link
         :href="item.url"
         target="_blank"

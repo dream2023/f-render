@@ -2,17 +2,25 @@
   <!-- 1.设计阶段 -->
   <multipane v-if="!pure" :style="{ height }" class="f-render">
     <!-- 左侧 -->
-    <f-render-left class="f-render-left" />
+    <slot name="left" :comps="sortedComps" :frender="this">
+      <f-render-left />
+    </slot>
     <multipane-resizer></multipane-resizer>
     <!-- 中间 -->
-    <f-render-main
-      :loading="loading"
-      @save="handleSave"
-      class="f-render-main"
-    />
-    <multipane-resizer></multipane-resizer>
-    <!-- 右侧 -->
-    <f-render-right class="f-render-right" />
+    <slot name="main" :frender="this">
+      <f-render-main
+        :loading="loading"
+        @save="handleSave"
+        class="f-render-main"
+      />
+    </slot>
+    <template v-if="isShowRight && rightTabs.length">
+      <multipane-resizer></multipane-resizer>
+      <!-- 右侧 -->
+      <slot name="right" :frender="this">
+        <f-render-right class="f-render-right" />
+      </slot>
+    </template>
   </multipane>
 
   <!-- 2.使用 -->
@@ -108,6 +116,23 @@ export default {
     operations: {
       type: Array,
       default: () => ["preview", "data", "code", "batch", "clear", "save"]
+    },
+    // 是否显示右侧
+    isShowRight: {
+      type: Boolean,
+      default: true
+    },
+    // 右侧属性面板 Tabs
+    rightTabs: {
+      type: Array,
+      default: () => [
+        { label: "表单项属性配置", name: "form-item-common" },
+        { label: "组件属性配置", name: "form-item-attrs" },
+        { label: "表单配置", name: "form-props" }
+      ],
+      validator(tabs) {
+        return (tabs || []).every(item => item.label && item.name);
+      }
     },
     // 是否在加载
     loading: Boolean,
