@@ -11,7 +11,7 @@
     "build:lib": "vue-cli-service build --target lib --name f-render ./src/index.js",
     "lint": "vue-cli-service lint --mode=production",
     "release": "standard-version",
-    "pub": "npm run build:lib && npm run release && npm publish && git push --follow-tags origin master && git push --follow-tags gitee master"
+    "pub": " npm run release && npm publish && git push --follow-tags origin master"
   },
   "main": "./dist/f-render.umd.min.js",
   "dependencies": {

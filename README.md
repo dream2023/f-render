@@ -10,18 +10,20 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
+
 - [交流群](#%E4%BA%A4%E6%B5%81%E7%BE%A4)
 - [介绍](#%E4%BB%8B%E7%BB%8D)
 - [注意](#%E6%B3%A8%E6%84%8F)
 - [特性](#%E7%89%B9%E6%80%A7)
 - [Demo](#demo)
+- [教程](#%E6%95%99%E7%A8%8B)
 - [1 分钟快速接入](#1-%E5%88%86%E9%92%9F%E5%BF%AB%E9%80%9F%E6%8E%A5%E5%85%A5)
-  - [第 1 步：安装](#%E7%AC%AC-1-%E6%AD%A5%E5%AE%89%E8%A3%85)
-  - [第 2 步：注册](#%E7%AC%AC-2-%E6%AD%A5%E6%B3%A8%E5%86%8C)
-  - [第 3 步：使用](#%E7%AC%AC-3-%E6%AD%A5%E4%BD%BF%E7%94%A8)
+    - [第 1 步：安装](#%E7%AC%AC-1-%E6%AD%A5%E5%AE%89%E8%A3%85)
+    - [第 2 步：注册](#%E7%AC%AC-2-%E6%AD%A5%E6%B3%A8%E5%86%8C)
+    - [第 3 步：使用](#%E7%AC%AC-3-%E6%AD%A5%E4%BD%BF%E7%94%A8)
 - [用户模式](#%E7%94%A8%E6%88%B7%E6%A8%A1%E5%BC%8F)
-  - [基于 f-render 的配置](#%E5%9F%BA%E4%BA%8E-f-render-%E7%9A%84%E9%85%8D%E7%BD%AE)
-  - [基于 vue-ele-form 的配置](#%E5%9F%BA%E4%BA%8E-vue-ele-form-%E7%9A%84%E9%85%8D%E7%BD%AE)
+    - [基于 f-render 的配置](#%E5%9F%BA%E4%BA%8E-f-render-%E7%9A%84%E9%85%8D%E7%BD%AE)
+    - [基于 vue-ele-form 的配置](#%E5%9F%BA%E4%BA%8E-vue-ele-form-%E7%9A%84%E9%85%8D%E7%BD%AE)
 - [定制化](#%E5%AE%9A%E5%88%B6%E5%8C%96)
   - [新增官方扩展组件（以富文本扩展为例）](#%E6%96%B0%E5%A2%9E%E5%AE%98%E6%96%B9%E6%89%A9%E5%B1%95%E7%BB%84%E4%BB%B6%E4%BB%A5%E5%AF%8C%E6%96%87%E6%9C%AC%E6%89%A9%E5%B1%95%E4%B8%BA%E4%BE%8B)
     - [安装组件](#%E5%AE%89%E8%A3%85%E7%BB%84%E4%BB%B6)
@@ -46,7 +48,7 @@
 
 ## 交流群
 
-![交流群](https://i.loli.net/2020/02/07/MmY1u7f4wR3igcB.jpg)
+![交流群](https://i.loli.net/2020/11/06/5rJiZOG4w3eVdnT.jpg)
 
 ## 介绍
 
@@ -67,6 +69,12 @@ f-render 是基于 [vue-ele-form](https://github.com/dream2023/vue-ele-form) 开
 ## Demo
 
 [https://dream2023.gitee.io/f-render/](https://dream2023.gitee.io/f-render/)
+
+## 教程
+
+虽然 f-render 可以做到在不更改源码的情况下实现大量的定制化，但是依然有不少人希望能够根据公司的需求进行二次开发。
+
+所以我推出了一个从 0 实现整个项目的 [教程](https://www.lanqiao.cn/courses/2848)，如果感兴趣 f-render 的实现过程和思考，可以点击 [从 0 实现可视化表单组件](https://www.lanqiao.cn/courses/2848) 进行学习。
 
 ## 1 分钟快速接入
 
@@ -443,7 +451,7 @@ export default {
 - 直接放到项目目录里，并将安装 `dependencies` 的依赖复制到项目，进行开发即可；
 - 直接开发，然后发布到公司[私服](https://www.npmjs.com/package/verdaccio)，如果是开源，则可以发到 GitHub 或者 gitee，然后安装自己的即可
 
-如果你或者你的公司需要`付费`源码讲解和答疑，可加我微信：`dream10nian`。当然也有也有免费的交流群，也是加这个微信。
+具体的细节，开头提的[教程](https://www.lanqiao.cn/courses/2848)里会有详细的过程，希望大家可以支持一下。
 
 ## f-render 问答集锦
 
