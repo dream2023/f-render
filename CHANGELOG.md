@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.12.1](https://github.com/dream2023/f-render/compare/v4.12.0...v4.12.1) (2020-11-17)
+
 ## [4.12.0](https://github.com/dream2023/f-render/compare/v4.10.2...v4.12.0) (2020-11-01)
 
 

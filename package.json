@@ -1,6 +1,6 @@
 {
   "name": "f-render",
-  "version": "4.12.0",
+  "version": "4.12.1",
   "private": false,
   "license": "MIT",
   "description": "f-render | 基于 ElementUI 的表单设计器",
