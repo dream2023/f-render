@@ -28,6 +28,7 @@
     :formDesc="formDesc"
     :formData="value"
     v-bind="formBindProps"
+    ref="form"
     v-on="$listeners"
     :class="{ 'pure-form--loading': loading }"
     @input="$emit('input', value)"
