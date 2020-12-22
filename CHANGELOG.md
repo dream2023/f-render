@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.12.2](https://github.com/dream2023/f-render/compare/v4.12.1...v4.12.2) (2020-12-22)
+
+
+### Bug Fixes
+
+* **#66:** attrs 属性未隔离 & 火狐浏览器拖拽打开新页面 ([7d733e9](https://github.com/dream2023/f-render/commit/7d733e94131d8ae6a9384b6b25cf8a1c0009136f)), closes [#66](https://github.com/dream2023/f-render/issues/66)
+
 ### [4.12.1](https://github.com/dream2023/f-render/compare/v4.12.0...v4.12.1) (2020-11-17)
 
 ## [4.12.0](https://github.com/dream2023/f-render/compare/v4.10.2...v4.12.0) (2020-11-01)
