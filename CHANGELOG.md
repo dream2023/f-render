@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.12.2](https://github.com/dream2023/f-render/compare/v4.12.1...v4.12.2) (2021-01-01)
+
+
+### Bug Fixes
+
+* 修复 formPropsData 无效问题 ([35f3796](https://github.com/dream2023/f-render/commit/35f37969c57c13ee0d523c4fe40a5121eadd9446))
+
 ### [4.12.1](https://github.com/dream2023/f-render/compare/v4.12.0...v4.12.1) (2020-11-17)
 
 ## [4.12.0](https://github.com/dream2023/f-render/compare/v4.10.2...v4.12.0) (2020-11-01)
