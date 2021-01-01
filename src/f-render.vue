@@ -148,7 +148,6 @@ export default {
         // 判断是否有值
         if (!config) return;
         let formConfig = cloneDeep(config);
-
         // 如果是字符串，则转为对象
         if (typeof config === "string") {
           try {
@@ -171,8 +170,9 @@ export default {
           return;
         }
 
-        const { formDesc = {}, formPropsData = {} } = formConfig;
-        this.formPropsData = formPropsData;
+        const { formDesc = {}, ...formPropsData } = cloneDeep(formConfig);
+
+        this.formPropsData = Object.assign(this.formPropsData, formPropsData);
         this.formItemList = objectToArr(formDesc, "field").map(item =>
           Object.assign({ attrs: {} }, item)
         );
@@ -293,7 +293,10 @@ export default {
     },
     // 设置表单属性默认值
     initFormPropsData() {
-      this.formPropsData = cloneDeep(this.formProps.data);
+      this.formPropsData = Object.assign(
+        this.formPropsData,
+        cloneDeep(this.formProps.data)
+      );
     }
   },
   created() {
