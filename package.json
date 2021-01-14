@@ -23,7 +23,7 @@
     "prismjs": "^1.21.0",
     "serialize-javascript": "^4.0.0",
     "vue-ele-form-data-editor": "^0.1.6",
-    "vue-ele-form-dynamic": "^0.4.2",
+    "vue-ele-form-dynamic": "^0.4.3",
     "vue-multipane": "^0.9.5",
     "vue-prism-editor": "^1.2.2",
     "vue2-perfect-scrollbar": "^1.5.0",
@@ -49,7 +49,7 @@
     "prettier": "^1.19.1",
     "standard-version": "^9.0.0",
     "vue": "^2.6.11",
-    "vue-ele-form": "^0.8.52",
+    "vue-ele-form": "^0.8.56",
     "vue-template-compiler": "^2.6.11"
   },
   "repository": {

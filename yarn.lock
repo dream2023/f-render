@@ -9792,18 +9792,18 @@ vue-ele-form-data-editor@^0.1.6:
   dependencies:
     serialize-javascript "^4.0.0"
 
-vue-ele-form-dynamic@^0.4.2:
-  version "0.4.2"
-  resolved "https://registry.npmjs.org/vue-ele-form-dynamic/-/vue-ele-form-dynamic-0.4.2.tgz#bf57e6acba94d6f7f002c82eb91d3b683290614c"
-  integrity sha512-/iENVYFI2ghCCV9aUTUVC/d7SbWSkhB8orhKi1r3Y+2QFEEWF+6TTdaWMh9DRFIu+nrHQ1KyvTrNrNF9gnN15Q==
+vue-ele-form-dynamic@^0.4.3:
+  version "0.4.3"
+  resolved "https://registry.npm.taobao.org/vue-ele-form-dynamic/download/vue-ele-form-dynamic-0.4.3.tgz#12dc3491855a3d862eb508634a57a286d34bc3c0"
+  integrity sha1-Etw0kYVaPYYutQhjSleihtNLw8A=
   dependencies:
     async-validator "^3.2.0"
     fast-deep-equal "^3.1.1"
 
-vue-ele-form@^0.8.52:
-  version "0.8.52"
-  resolved "https://registry.yarnpkg.com/vue-ele-form/-/vue-ele-form-0.8.52.tgz#276a2c577520aa00b80fc14465c69180ec7b4f70"
-  integrity sha512-zrDTImHfZZEoZwiBdznejiKrtEoWk9tZqpCPAcDDP9AduXGKKaOABpI9+RbwrvqBnaszYtoB6VhWAbObhJNhlw==
+vue-ele-form@^0.8.56:
+  version "0.8.56"
+  resolved "https://registry.npm.taobao.org/vue-ele-form/download/vue-ele-form-0.8.56.tgz#e0a89785a4832aea241c8dd4b4ed0038759e5135"
+  integrity sha1-4KiXhaSDKuokHI3UtO0AOHWeUTU=
   dependencies:
     clone "^2.1.2"
     dayjs "^1.8.31"
