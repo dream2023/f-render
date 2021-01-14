@@ -249,12 +249,12 @@ export default {
     // 通过类型获取表单项
     getFormItemByType(type) {
       const comp = this.getCompByType(type);
-      return {
+      return cloneDeep({
         type,
-        ...cloneDeep(this.formItemCommon.data),
-        ...cloneDeep(comp?.config?.common?.data || {}),
+        ...this.formItemCommon.data,
+        ...(comp?.config?.common?.data || {}),
         attrs: comp?.config?.attrs?.data || {}
-      };
+      });
     },
     // 通过类型获取组件
     getCompByType(type) {
@@ -302,6 +302,17 @@ export default {
   created() {
     // 设置表单属性默认值
     this.initFormPropsData();
+
+    // 防止火狐拖拽打开新标签
+    this.ondrop = function(event) {
+      event.preventDefault();
+      event.stopPropagation();
+    };
+
+    document.body.addEventListener("drop", this.ondrop);
+  },
+  beforeDestroy() {
+    document.body.removeEventListener("drop", this.ondrop);
   }
 };
 </script>
