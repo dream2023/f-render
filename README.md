@@ -46,10 +46,6 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-## 交流群
-
-![交流群](https://i.loli.net/2020/11/06/5rJiZOG4w3eVdnT.jpg)
-
 ## 介绍
 
 f-render 是基于 [vue-ele-form](https://github.com/dream2023/vue-ele-form) 开发的可视化表单设计工具, 适用于 各种流程引擎和动态表单项目，大大节省你的开发时间；
